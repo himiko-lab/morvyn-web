@@ -18,10 +18,14 @@ interface PhoneFrameProps {
 }
 
 /**
- * Bingkai ponsel untuk memajang tampilan aplikasi.
+ * Bingkai ponsel Android untuk memajang tampilan aplikasi.
  *
- * Bingkainya digambar dengan CSS, bukan gambar — jadi tetap tajam di layar
+ * Bingkainya digambar dengan CSS, bukan gambar, jadi tetap tajam di layar
  * kepadatan berapa pun dan tidak menambah berat halaman.
+ *
+ * Bentuknya sengaja Android, bukan iPhone: Morvyn hanya ada di Google Play,
+ * dan memajangnya di dalam bingkai iPhone menjanjikan sesuatu yang tidak bisa
+ * ditepati situs ini.
  */
 export function PhoneFrame({
   src,
@@ -35,12 +39,6 @@ export function PhoneFrame({
     <div
       className={`relative aspect-[9/19.5] w-full max-w-[19rem] rounded-[2.75rem] border-[6px] border-[color:var(--device-frame)] bg-[color:var(--device-frame)] p-[3px] shadow-[var(--shadow-brand-lg)] ${className}`}
     >
-      {/* Poni kamera. Murni hiasan, jadi disembunyikan dari pembaca layar. */}
-      <div
-        aria-hidden
-        className="absolute left-1/2 top-[7px] z-20 h-[18px] w-[86px] -translate-x-1/2 rounded-full bg-[color:var(--device-frame)]"
-      />
-
       <div className="relative h-full w-full overflow-hidden rounded-[2.35rem] bg-white">
         {src ? (
           <Image
@@ -55,6 +53,22 @@ export function PhoneFrame({
           <Placeholder label={placeholderLabel ?? alt} />
         )}
         {children}
+
+        {/* Kamera punch-hole ala Android: lubang bundar di tengah atas, di
+            ATAS layar dan bukan di bingkainya. Itu bedanya dengan poni iPhone,
+            yang memakan sepotong bingkai selebar 86px.
+
+            Ukurannya dalam persen, bukan piksel, karena bingkai ini dipakai
+            dalam tiga lebar berbeda (19rem di hero, 17rem dan 15rem di bagian
+            fitur). Ukuran piksel tetap akan terlihat kebesaran di yang kecil.
+
+            Ditaruh setelah {children} supaya selalu di atas isinya, dan di
+            dalam wadah ber-overflow-hidden supaya ikut terpotong lengkung
+            layar. Murni hiasan, jadi disembunyikan dari pembaca layar. */}
+        <div
+          aria-hidden
+          className="absolute left-1/2 top-[1.7%] z-20 aspect-square w-[5%] -translate-x-1/2 rounded-full bg-[color:var(--device-camera)] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.16)]"
+        />
       </div>
     </div>
   );

@@ -49,6 +49,14 @@
        supaya masih terpisah dari latar halaman. */
     --device-frame: oklch(23% 0.04 260);
 
+    /* Lubang kamera di layar mockup.
+       Sengaja hanya dideklarasikan di sini dan TIDAK ditimpa di blok gelap:
+       lubang ini duduk di atas layar aplikasi yang selalu putih, bukan di atas
+       latar halaman, jadi nilainya tidak boleh ikut membalik. Blok
+       [data-theme="dark"] hanya menimpa token yang disebutnya, sisanya tetap
+       memakai nilai :root ini. */
+    --device-camera: oklch(14% 0.02 262);
+
     /* Warna merek HeroUI. */
     --accent: var(--brand-blue);
     --accent-foreground: oklch(100% 0 0);
