@@ -40,6 +40,7 @@ function FeatureRow({
   const feature = dict.features[featureKey];
   const { Icon, hue } = featureIcons[featureKey];
   const color = featureColor(hue);
+  const mockupAlt = dict.featureMockupAlt.replace("{name}", feature.name);
 
   return (
     <section
@@ -104,8 +105,8 @@ function FeatureRow({
               style={{ backgroundColor: color }}
             />
             <PhoneFrame
-              alt={`${feature.name} — Morvyn`}
-              placeholderLabel={`${feature.name} — Morvyn`}
+              alt={mockupAlt}
+              placeholderLabel={mockupAlt}
               className="w-[15rem] sm:w-[17rem]"
             />
           </div>

@@ -9,6 +9,7 @@ import { HowItWorks } from "./sections/HowItWorks";
 import { Faq } from "./sections/Faq";
 import { DownloadCta } from "./sections/DownloadCta";
 import { Footer } from "./sections/Footer";
+import { JsonLd } from "./JsonLd";
 import { getDictionary, type Locale } from "@/content";
 
 /**
@@ -23,6 +24,7 @@ export function SiteContent({ locale }: { locale: Locale }) {
 
   return (
     <>
+      <JsonLd locale={locale} />
       <Header dict={dict} locale={locale} />
       <main>
         <Hero dict={dict} />

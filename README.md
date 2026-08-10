@@ -66,11 +66,11 @@ grep -rn "PhoneFrame" src/components
 Simpan screenshot di `public/screenshots/` lalu tambahkan prop `src`:
 
 ```tsx
-{/* sebelum */}
-<PhoneFrame alt="Catatan — Morvyn" placeholderLabel="Catatan — Morvyn" />
+{/* sebelum: teks alternatifnya masih dirakit dari dict.featureMockupAlt */}
+<PhoneFrame alt={mockupAlt} placeholderLabel={mockupAlt} />
 
 {/* sesudah */}
-<PhoneFrame src="/screenshots/catatan.png" alt="Layar Catatan di aplikasi Morvyn" />
+<PhoneFrame src="/screenshots/catatan.png" alt={mockupAlt} />
 ```
 
 Rasio yang diharapkan **9:19.5** (mis. 1080×2340, ukuran layar Android umum).
@@ -87,10 +87,11 @@ playStoreUrl: "https://play.google.com/store/apps/details?id=com.himikolab.morvy
 Ganti dengan URL asli dari Play Console. Tautan ini dipakai di lima tempat
 (header, menu ponsel, hero, blok CTA, footer) — cukup diubah sekali di sini.
 
-### 3. Alamat email kontak — opsional
+### 3. Alamat email kontak — sudah diisi
 
-`site.contactEmail` sengaja dikosongkan. Selama masih kosong, baris "Kontak"
-tidak muncul di footer — bukan tautan mati. Isi kalau sudah ada alamat resmi.
+`site.contactEmail` berisi `hi@himikolab.my.id`. Kalau suatu saat alamat itu
+dicabut, kosongkan saja string-nya: baris "Kontak" di footer ikut hilang alih-alih
+jadi tautan mati, dan `Organization.email` di data terstruktur ikut disesuaikan.
 
 ### 4. Halaman Kebijakan Privasi & Ketentuan Layanan — belum ada
 
@@ -115,6 +116,49 @@ berikut belum terkonfirmasi dan sebaiknya diperiksa sebelum tayang:
 |---|---|
 | "Morvyn tersedia gratis di Google Play" (blok CTA) | Benarkah gratis sepenuhnya, atau ada pembelian dalam aplikasi? |
 | Fitur mana yang jalan tanpa internet | Belum disinggung di FAQ. Layak ditambahkan kalau Catatan/Agenda/Kebiasaan memang bisa offline. |
+
+---
+
+## SEO
+
+Semua berikut ini dibangun dari `src/content/`, jadi mengubah teksnya sekali
+sudah cukup — metadata, peta situs, dan data terstruktur ikut menyesuaikan.
+
+| Berkas | Isinya |
+|---|---|
+| `src/app/siteMetadata.ts` | Judul, deskripsi, canonical, hreflang, Open Graph, Twitter Card, arahan robots. Dipanggil kedua root layout supaya tidak ada bahasa yang tertinggal |
+| `src/app/robots.ts` | Menghasilkan `/robots.txt` beserta baris `Sitemap:` |
+| `src/app/sitemap.ts` | Menghasilkan `/sitemap.xml`, satu entri per bahasa lengkap dengan `xhtml:link` hreflang |
+| `src/components/JsonLd.tsx` | Data terstruktur schema.org: `Organization`, `WebSite`, `MobileApplication`, dan `WebPage`+`FAQPage` |
+| `public/og-id.png`, `public/og-en.png` | Gambar 1200×630 yang tampil saat tautannya dibagikan |
+
+Beberapa hal yang sengaja diputuskan begitu:
+
+- **`meta.title` dan `meta.ogTitle` berbeda.** `title` ditulis untuk daftar
+  hasil pencarian, jadi memuat kata yang benar-benar diketik orang. `ogTitle`
+  memakai taglinenya, karena yang melihatnya sudah menatap gambar dan lambang.
+- **Tidak ada `aggregateRating` atau jumlah unduhan** di data terstruktur.
+  Angkanya belum ada, dan mengarangnya bisa berbuntut sanksi manual dari Google.
+- **`sameAs` diambil dari `socialLinks`** di `site.ts`. Itulah yang memberi tahu
+  Google bahwa akun Instagram dan TikTok satu pemilik dengan situs ini; daftar
+  di footer saja tidak cukup.
+- **Peta situs memakai daftar `locales`.** Kalau nanti ada bahasa ketiga,
+  entrinya bertambah sendiri.
+
+### Mendaftarkan ke Google Search Console
+
+1. Tambahkan properti bertipe **Domain** untuk `himikolab.my.id`, lalu
+   verifikasi lewat data DNS TXT di Cloudflare. Satu verifikasi itu berlaku
+   untuk `morvyn.himikolab.my.id` dan seluruh subdomain lainnya.
+2. Kalau lebih memilih cara **HTML tag**, isi `site.googleSiteVerification` di
+   `src/content/site.ts` dengan nilai `content="..."`-nya saja, lalu deploy
+   ulang. Selama kosong, tagnya memang tidak dicetak.
+3. Kirim `https://morvyn.himikolab.my.id/sitemap.xml` di menu Sitemaps.
+4. Periksa hasil data terstrukturnya di
+   <https://search.google.com/test/rich-results>.
+
+Pengindeksan biasanya butuh beberapa hari sampai satu-dua minggu untuk domain
+yang benar-benar baru.
 
 ---
 

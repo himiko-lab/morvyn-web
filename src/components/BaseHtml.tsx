@@ -17,7 +17,7 @@ const themeScript = `
 (function () {
   var root = document.documentElement;
   // Menandai bahwa JavaScript hidup. Animasi muncul-saat-digulir hanya
-  // menyembunyikan elemen kalau kelas ini ada — jadi bila skrip gagal dimuat,
+  // menyembunyikan elemen kalau kelas ini ada, jadi bila skrip gagal dimuat,
   // halaman tampil utuh alih-alih kosong. Lihat .js .reveal di globals.css.
   root.classList.add("js");
   try {

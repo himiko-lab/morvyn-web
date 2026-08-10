@@ -8,11 +8,13 @@ import type { Dictionary } from "./types";
  */
 export const id: Dictionary = {
   meta: {
-    title: "Morvyn — Satu ruang tenang untuk seluruh harimu",
+    title: "Morvyn: Catatan, Keuangan, dan Agenda dalam Satu Aplikasi",
+    ogTitle: "Morvyn, satu ruang tenang untuk seluruh harimu",
     description:
-      "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, dan berita dalam satu aplikasi Android yang saling terhubung.",
+      "Morvyn menyatukan catatan, keuangan, agenda, kebiasaan, cuaca, kalender, dan berita dari 27 portal dalam satu aplikasi Android. Gratis di Google Play.",
     localeName: "Indonesia",
     localeShort: "ID",
+    ogImageAlt: "Morvyn, satu ruang tenang untuk seluruh harimu",
   },
 
   nav: {
@@ -30,12 +32,14 @@ export const id: Dictionary = {
   hero: {
     eyebrow: "Tujuh kebutuhan harian, satu aplikasi",
     headline: ["Satu ruang tenang untuk", "seluruh harimu"],
-    body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, dan berita — semuanya ada di Morvyn, dan semuanya bisa saling terhubung.",
+    body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, dan berita. Semuanya ada di Morvyn, dan semuanya bisa saling terhubung.",
     primaryCta: "Unduh di Google Play",
     secondaryCta: "Lihat fiturnya",
     iosNote: "Versi iOS sedang disiapkan",
     mockupAlt: "Tampilan Beranda aplikasi Morvyn",
   },
+
+  featureMockupAlt: "Tampilan menu {name} di aplikasi Morvyn",
 
   stats: [
     { value: "7", label: "fitur inti", detail: "dalam satu aplikasi" },
@@ -76,7 +80,7 @@ export const id: Dictionary = {
       name: "Agenda",
       tagline: "Alarm, acara, dan tugas dalam satu daftar",
       short: "Bangun tepat waktu, hadir tepat waktu, selesai tepat waktu.",
-      body: "Alarm untuk bangun, jadwal acara supaya tidak terlewat, dan daftar tugas untuk yang masih tertunda — semuanya diatur dari satu tempat.",
+      body: "Alarm untuk bangun, jadwal acara supaya tidak terlewat, dan daftar tugas untuk yang masih tertunda. Semuanya diatur dari satu tempat.",
       points: [
         "Alarm dengan pola pengulangan",
         "Jadwal acara beserta pengingatnya",
@@ -120,7 +124,7 @@ export const id: Dictionary = {
       name: "Kalender",
       tagline: "Satu bulan penuh dalam sekali lihat",
       short: "Kalender lengkap dengan tugas dan acara di tanggalnya.",
-      body: "Kalender utuh yang sudah berisi daftar tugas dan jadwal acara di tanggalnya masing-masing — tidak perlu membuka menu lain untuk tahu tanggal 17 sibuk atau tidak.",
+      body: "Kalender utuh yang sudah berisi daftar tugas dan jadwal acara di tanggalnya masing-masing, jadi tidak perlu membuka menu lain untuk tahu tanggal 17 sibuk atau tidak.",
       points: [
         "Tampilan bulanan yang utuh",
         "Tugas dan acara menempel di tanggalnya",
@@ -133,7 +137,7 @@ export const id: Dictionary = {
     eyebrow: "Yang membedakan",
     title: "Catatanmu tahu isi harimu",
     body: "Di kebanyakan aplikasi, catatan hanyalah kotak teks. Di Morvyn, satu catatan bisa menautkan tugas di Agenda, pengeluaran di Keuangan, dan target di Kebiasaan. Buka catatannya, seluruh konteksnya ikut terbuka.",
-    noteTitle: "Rapat tim — Senin",
+    noteTitle: "Rapat tim Senin",
     noteLines: [
       "Kirim proposal sebelum Jumat",
       "Bayar langganan alat desain",
@@ -152,7 +156,7 @@ export const id: Dictionary = {
     steps: [
       {
         title: "Unduh dan pilih bahasa",
-        body: "Morvyn mengikuti bahasa ponselmu — Indonesia atau Inggris — dan bisa diganti kapan saja.",
+        body: "Morvyn mengikuti bahasa ponselmu, Indonesia atau Inggris, dan bisa diganti kapan saja.",
       },
       {
         title: "Nyalakan menu yang kamu perlu",
@@ -185,7 +189,7 @@ export const id: Dictionary = {
       },
       {
         q: "Dari mana berita-beritanya diambil?",
-        a: "Dari 27 portal nasional dan internasional — di antaranya ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, dan The New York Times.",
+        a: "Dari 27 portal nasional dan internasional, di antaranya ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, dan The New York Times.",
       },
       {
         q: "Apakah saya harus memakai semua fiturnya?",
@@ -193,7 +197,7 @@ export const id: Dictionary = {
       },
       {
         q: "Bagaimana Morvyn menentukan cuaca saya?",
-        a: "Dari lokasi perangkatmu, sehingga perkiraannya untuk tempat kamu berada — bukan rata-rata satu kota.",
+        a: "Dari lokasi perangkatmu, sehingga perkiraannya untuk tempat kamu berada, bukan rata-rata satu kota.",
       },
     ],
   },
@@ -209,6 +213,7 @@ export const id: Dictionary = {
     tagline: "Satu ruang tenang untuk seluruh harimu.",
     productHeading: "Produk",
     aboutHeading: "Tentang",
+    followHeading: "Ikuti kami",
     privacy: "Kebijakan Privasi",
     terms: "Ketentuan Layanan",
     contact: "Kontak",

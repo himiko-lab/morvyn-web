@@ -30,10 +30,24 @@ export interface FeatureCopy {
 
 export interface Dictionary {
   meta: {
+    /**
+     * Isi tag <title>. Ditulis untuk hasil pencarian, bukan untuk suasana:
+     * kata yang benar-benar diketik orang lebih dulu, nama merek di depannya.
+     * Usahakan di bawah 60 karakter supaya tidak dipotong Google.
+     */
     title: string;
+    /**
+     * Judul yang tampil saat tautannya dibagikan (Open Graph). Di sini
+     * taglinenya boleh mengambil alih — yang membaca sudah melihat gambar dan
+     * lambangnya, jadi kata kunci tidak lagi jadi tugas judul.
+     */
+    ogTitle: string;
+    /** Sekitar 150-160 karakter; lebih dari itu dipotong di hasil pencarian. */
     description: string;
     localeName: string;
     localeShort: string;
+    /** Teks alternatif gambar Open Graph. */
+    ogImageAlt: string;
   };
   nav: {
     features: string;
@@ -56,6 +70,11 @@ export interface Dictionary {
     iosNote: string;
     mockupAlt: string;
   };
+  /**
+   * Teks alternatif mockup di bagian pembahasan fitur. `{name}` diganti nama
+   * menunya saat dipakai — lihat `FeatureDetails.tsx`.
+   */
+  featureMockupAlt: string;
   stats: { value: string; label: string; detail: string }[];
   overview: { eyebrow: string; title: string; body: string };
   features: Record<FeatureKey, FeatureCopy>;
@@ -83,6 +102,8 @@ export interface Dictionary {
     tagline: string;
     productHeading: string;
     aboutHeading: string;
+    /** Judul di atas deretan ikon media sosial. */
+    followHeading: string;
     privacy: string;
     terms: string;
     contact: string;
