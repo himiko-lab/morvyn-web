@@ -30,9 +30,20 @@ jobs:
           node-version: 24
           cache: npm
 
-      # `npm ci` memasang persis apa yang tercatat di package-lock.json,
-      # jadi hasil build di sini sama dengan di mesin lokal.
-      - run: npm ci
+      # Sengaja `npm install`, bukan `npm ci`.
+      #
+      # npm memangkas package-lock.json menurut platform tempat lock itu
+      # dibuat. Lock ini dibuat di macOS/arm64, sehingga cabang milik paket
+      # *-wasm32-wasi (@emnapi/core, @emnapi/runtime) tidak ikut tercatat —
+      # paket-paket itu tidak berlaku di macOS. Runner ini Linux, npm
+      # membutuhkannya, lalu `npm ci` menolak jalan karena lock dianggap tidak
+      # sinkron. Membuat ulang lock di macOS tidak menyelesaikannya: satu
+      # berkas lock tidak bisa memuaskan `npm ci` di macOS dan Linux sekaligus.
+      #
+      # `npm install` tetap menghormati versi yang sudah terkunci di lock dan
+      # hanya menambal bagian yang hilang untuk platform ini — bukan `npm
+      # update`, jadi versinya tidak melompat.
+      - run: npm install
 
       # Menghasilkan folder out/ karena next.config.ts memakai output: "export".
       - run: npm run build
