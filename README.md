@@ -171,6 +171,12 @@ Proxy Cloudflare harus dimatikan, setidaknya sampai GitHub selesai menerbitkan
 sertifikat HTTPS-nya. Dengan proxy menyala, GitHub tidak bisa memverifikasi
 kepemilikan domain dan opsi "Enforce HTTPS" akan tetap terkunci.
 
+**Alamat `himiko-lab.github.io/morvyn-web/` sengaja tidak dipakai dan akan
+tampil berantakan** — tanpa gaya sama sekali. Itu bukan kerusakan: situs ini
+dibangun tanpa `basePath` karena menargetkan akar subdomain, sehingga seluruh
+aset dicari di `/_next/…` sedangkan di alamat itu letaknya
+`/morvyn-web/_next/…`. Pakai domainnya, bukan URL github.io.
+
 ## Menyesuaikan warna
 
 Semua warna terpusat di blok `@layer base` pada `src/app/globals.css`.
