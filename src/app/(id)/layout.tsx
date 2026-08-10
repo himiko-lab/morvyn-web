@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   authors: [{ name: site.publisher }],
   alternates: {
     canonical: "/",
-    languages: { "id-ID": "/", "en-US": "/en" },
+    languages: { "id-ID": "/", "en-US": "/en/" },
   },
   openGraph: {
     type: "website",

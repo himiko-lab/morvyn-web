@@ -118,6 +118,59 @@ berikut belum terkonfirmasi dan sebaiknya diperiksa sebelum tayang:
 
 ---
 
+## Deploy — GitHub Pages
+
+Situs live: **<https://morvyn.himikolab.my.id>**
+Repo: <https://github.com/himiko-lab/morvyn-web>
+
+Setiap `git push` ke `main` otomatis membangun ulang dan menerbitkan situs
+lewat `.github/workflows/deploy.yml`. Tidak ada langkah manual. Progresnya bisa
+dilihat di tab **Actions**, dan workflow-nya juga bisa dijalankan sendiri lewat
+tombol "Run workflow".
+
+Untuk memeriksa hasil build persis seperti yang akan tayang:
+
+```bash
+npm run build && python3 -m http.server 4323 --directory out
+```
+
+Lalu buka <http://localhost:4323>. Ini menyajikan `out/` sebagai berkas diam,
+tanpa server Next — sama seperti yang dilakukan GitHub Pages.
+
+### Empat setelan yang membuatnya jalan
+
+Semuanya di `next.config.ts`, dan semuanya wajib:
+
+| Setelan | Kalau dihapus |
+|---|---|
+| `output: "export"` | Tidak ada folder `out/`; Pages tidak punya apa pun untuk disajikan. |
+| `images: { unoptimized: true }` | Build gagal begitu ada `<Image>`, karena pengoptimal gambar Next butuh server. |
+| `trailingSlash: true` | Menghasilkan `out/en.html`, bukan `out/en/index.html`. URL `/en` jadi bergantung pada tebakan server. |
+| `touch out/.nojekyll` (di workflow) | Pages menjalankan Jekyll, yang membuang semua folder berawalan garis bawah — termasuk `_next/`, isinya seluruh CSS dan JavaScript situs. |
+
+### Kalau alamatnya berubah
+
+Alamat situs tercatat di **dua** tempat yang harus selalu sama:
+
+1. `public/CNAME` — dibaca GitHub Pages untuk menentukan domainnya
+2. `site.url` di `src/content/site.ts` — dipakai untuk canonical URL dan Open Graph
+
+Kalau suatu saat pindah ke project page (`himiko-lab.github.io/morvyn-web`),
+hapus `public/CNAME` dan tambahkan `basePath: "/morvyn-web"` di `next.config.ts`
+— tanpa `basePath`, seluruh CSS dan JavaScript akan 404.
+
+### DNS
+
+Satu record di pengelola DNS (domainnya ada di Cloudflare):
+
+| Tipe | Nama | Tujuan | Proxy |
+|---|---|---|---|
+| CNAME | `morvyn` | `himiko-lab.github.io` | **DNS only** (awan abu-abu) |
+
+Proxy Cloudflare harus dimatikan, setidaknya sampai GitHub selesai menerbitkan
+sertifikat HTTPS-nya. Dengan proxy menyala, GitHub tidak bisa memverifikasi
+kepemilikan domain dan opsi "Enforce HTTPS" akan tetap terkunci.
+
 ## Menyesuaikan warna
 
 Semua warna terpusat di blok `@layer base` pada `src/app/globals.css`.

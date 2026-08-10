@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   applicationName: site.name,
   authors: [{ name: site.publisher }],
   alternates: {
-    canonical: "/en",
-    languages: { "id-ID": "/", "en-US": "/en" },
+    canonical: "/en/",
+    languages: { "id-ID": "/", "en-US": "/en/" },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: `${site.url}/en`,
+    url: `${site.url}/en/`,
     siteName: site.name,
     title: dict.meta.title,
     description: dict.meta.description,

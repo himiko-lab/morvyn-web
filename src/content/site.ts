@@ -6,8 +6,12 @@
 export const site = {
   name: "Morvyn",
 
-  /** Dipakai untuk metadata Open Graph dan canonical URL. */
-  url: "https://himikolab.com/morvyn",
+  /**
+   * Dipakai untuk metadata Open Graph dan canonical URL.
+   * Harus sama dengan isi `public/CNAME`, kalau tidak canonical-nya menunjuk
+   * ke alamat yang salah.
+   */
+  url: "https://morvyn.himikolab.my.id",
 
   /**
    * PLACEHOLDER. Ganti dengan URL Play Store yang sebenarnya, bentuknya:
