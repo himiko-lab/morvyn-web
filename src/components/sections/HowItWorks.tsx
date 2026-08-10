@@ -4,7 +4,7 @@ import type { Dictionary } from "@/content";
 
 export function HowItWorks({ dict }: { dict: Dictionary }) {
   return (
-    <section id="cara" className="scroll-mt-24 py-20 md:py-28">
+    <section id="cara" className="scroll-mt-24 py-14 sm:py-20 md:py-28">
       <div className="shell">
         <SectionHeading eyebrow={dict.how.eyebrow} title={dict.how.title} />
 

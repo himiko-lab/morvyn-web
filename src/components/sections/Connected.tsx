@@ -35,7 +35,7 @@ export function Connected({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="terhubung"
-      className="relative scroll-mt-24 overflow-hidden py-20 md:py-28"
+      className="relative scroll-mt-24 overflow-hidden py-14 sm:py-20 md:py-28"
     >
       <div
         aria-hidden

@@ -12,7 +12,7 @@ import type { Dictionary } from "@/content";
  */
 export function Overview({ dict }: { dict: Dictionary }) {
   return (
-    <section id="fitur" className="scroll-mt-24 py-20 md:py-28">
+    <section id="fitur" className="scroll-mt-24 py-14 sm:py-20 md:py-28">
       <div className="shell">
         <SectionHeading
           eyebrow={dict.overview.eyebrow}

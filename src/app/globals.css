@@ -286,16 +286,29 @@
 
 .marquee {
   --marquee-speed: 60s;
+
+  /* Lebar pudar di tiap ujung. Di layar lebar 6rem terasa halus, tapi di
+     ponsel selebar 375px dua ujung itu memakan 192px — lebih dari separuh
+     pitanya kabur dan nama portalnya jadi sulit dibaca. Lihat penimpaan di
+     media query di bawah. */
+  --marquee-fade: 6rem;
+
   position: relative;
   overflow: hidden;
   /* Kedua ujungnya dibuat memudar, supaya pil tidak terpotong mendadak. */
   mask-image: linear-gradient(
     to right,
     transparent,
-    black 6rem,
-    black calc(100% - 6rem),
+    black var(--marquee-fade),
+    black calc(100% - var(--marquee-fade)),
     transparent
   );
+}
+
+@media (max-width: 640px) {
+  .marquee {
+    --marquee-fade: 2rem;
+  }
 }
 
 .marquee__track {

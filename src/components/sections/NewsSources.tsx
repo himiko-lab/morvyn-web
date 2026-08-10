@@ -15,7 +15,7 @@ import { newsSources, type Dictionary } from "@/content";
  */
 export function NewsSources({ dict }: { dict: Dictionary }) {
   return (
-    <section className="overflow-hidden py-20 md:py-24">
+    <section className="overflow-hidden py-14 sm:py-20 md:py-24">
       <div className="shell">
         <SectionHeading
           eyebrow={dict.news.eyebrow}

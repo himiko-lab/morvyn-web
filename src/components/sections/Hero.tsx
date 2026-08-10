@@ -10,7 +10,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
     // overflow-x-clip, bukan overflow-hidden: kartu mengapung di sisi mockup
     // perlu dipotong ke samping, tapi cahaya latar harus boleh meluber ke bawah
     // supaya memudar di luar layar alih-alih terpotong garis lurus.
-    <section className="relative overflow-x-clip pt-14 pb-20 md:pt-20 md:pb-28">
+    <section className="relative overflow-x-clip pt-10 pb-14 sm:pt-14 sm:pb-20 md:pt-20 md:pb-28">
       <GlowBackdrop />
 
       <div className="shell relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
@@ -36,19 +36,23 @@ export function Hero({ dict }: { dict: Dictionary }) {
           </Reveal>
 
           <Reveal delay={240}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            {/* Di ponsel kedua tombol dibuat selebar kolom dan ditumpuk.
+                Dibiarkan mengalir, keduanya membungkus jadi dua baris dengan
+                lebar yang berbeda-beda (253px dan 155px di layar 375px), dan
+                yang pendek berakhir menggantung di tengah tanpa alasan. */}
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a
                 href={site.playStoreUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className={buttonVariants({ variant: "primary", size: "lg" })}
+                className={`${buttonVariants({ variant: "primary", size: "lg" })} w-full justify-center sm:w-auto`}
               >
                 <GooglePlayLogo size={20} weight="fill" />
                 {dict.hero.primaryCta}
               </a>
               <a
                 href="#fitur"
-                className={buttonVariants({ variant: "outline", size: "lg" })}
+                className={`${buttonVariants({ variant: "outline", size: "lg" })} w-full justify-center sm:w-auto`}
               >
                 {dict.hero.secondaryCta}
                 <ArrowRight size={18} />
@@ -83,7 +87,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
               alt={dict.hero.mockupAlt}
               placeholderLabel={dict.hero.mockupAlt}
               priority
-              className="float-slow"
+              className="float-slow max-w-[15rem] sm:max-w-[19rem]"
             />
             <FloatingChip
               className="-left-6 top-[16%] md:-left-14"

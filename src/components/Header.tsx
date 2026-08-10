@@ -64,7 +64,10 @@ export function Header({ dict, locale }: HeaderProps) {
       <div className="shell flex h-18 items-center justify-between gap-4">
         <Link
           href={localeHref(locale)}
-          className="rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--focus)]"
+          // py-2 semata-mata untuk jari: tanpa itu daerah sentuhnya hanya
+          // setinggi lambangnya sendiri, 34px. Tidak mengubah tata letak,
+          // karena barisnya sudah setinggi h-18 dan isinya dipusatkan.
+          className="rounded-lg py-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--focus)]"
         >
           <Logo />
         </Link>
@@ -105,14 +108,32 @@ export function Header({ dict, locale }: HeaderProps) {
             {dict.nav.download}
           </a>
 
+          {/* Kembaran tombol di atas untuk layar sempit, hanya lambangnya.
+              Di bawah md, tombol berteks itu hilang dan satu-satunya jalan
+              mengunduh adalah membuka menu dulu — padahal itu tindakan utama
+              seluruh situs. Versi ini menahannya tetap sejangkauan ibu jari
+              sepanjang halaman digulir, tanpa memakan lebar baris. */}
+          <a
+            href={site.playStoreUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={dict.nav.download}
+            className="grid size-11 place-items-center rounded-full bg-[color:var(--brand-blue)] text-white transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)] md:hidden"
+          >
+            <GooglePlayLogo size={20} weight="fill" />
+          </a>
+
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? dict.nav.closeMenu : dict.nav.openMenu}
             aria-expanded={open}
-            className="grid size-10 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--foreground)] transition-colors hover:bg-[color:var(--surface-secondary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)] lg:hidden"
+            // size-11, bukan size-10: 44px adalah ukuran terkecil yang masih
+            // enak ditekan jari, dan ini tombol yang paling sering dipakai
+            // di ponsel karena seluruh navigasi ada di baliknya.
+            className="grid size-11 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--foreground)] transition-colors hover:bg-[color:var(--surface-secondary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)] lg:hidden"
           >
-            {open ? <X size={18} /> : <List size={18} />}
+            {open ? <X size={20} /> : <List size={20} />}
           </button>
         </div>
       </div>

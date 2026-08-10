@@ -11,7 +11,7 @@ import type { Dictionary } from "@/content";
  */
 export function Faq({ dict }: { dict: Dictionary }) {
   return (
-    <section id="tanya" className="scroll-mt-24 py-20 md:py-28">
+    <section id="tanya" className="scroll-mt-24 py-14 sm:py-20 md:py-28">
       <div className="shell">
         <SectionHeading eyebrow={dict.faq.eyebrow} title={dict.faq.title} />
 

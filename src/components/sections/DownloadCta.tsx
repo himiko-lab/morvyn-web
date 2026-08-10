@@ -4,7 +4,7 @@ import { site, type Dictionary } from "@/content";
 
 export function DownloadCta({ dict }: { dict: Dictionary }) {
   return (
-    <section id="unduh" className="scroll-mt-24 pb-24 md:pb-32">
+    <section id="unduh" className="scroll-mt-24 pb-16 sm:pb-24 md:pb-32">
       <div className="shell">
         <Reveal>
           <div className="gradient-brand relative overflow-hidden rounded-[2rem] px-8 py-16 text-center text-white sm:px-16 md:py-20">

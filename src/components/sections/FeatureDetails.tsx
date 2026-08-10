@@ -45,11 +45,11 @@ function FeatureRow({
   return (
     <section
       id={`fitur-${featureKey}`}
-      className={`scroll-mt-24 py-16 md:py-20 ${
+      className={`scroll-mt-24 py-10 sm:py-16 md:py-20 ${
         tinted ? "bg-[color:var(--surface-secondary)]/45" : ""
       }`}
     >
-      <div className="shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div className="shell grid items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-20">
         <div className={flipped ? "lg:order-2" : undefined}>
           <Reveal>
             <span
@@ -107,7 +107,7 @@ function FeatureRow({
             <PhoneFrame
               alt={mockupAlt}
               placeholderLabel={mockupAlt}
-              className="w-[15rem] sm:w-[17rem]"
+              className="max-w-[12rem] sm:max-w-[15rem] lg:max-w-[17rem]"
             />
           </div>
         </Reveal>

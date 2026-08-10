@@ -24,6 +24,21 @@ const socialIcons = {
   email: EnvelopeSimple,
 } as const;
 
+/**
+ * Tautan footer di ponsel.
+ *
+ * Teksnya sendiri cuma setinggi 20px. Ditelusuri dengan jari, itu separuh dari
+ * 44px yang disarankan, dan sebelas tautan sekecil itu berjejer 32px sekali
+ * langkah membuat salah pencet jadi lumrah. Bantalan tegaknya menaikkan
+ * daerah sentuh ke 40px tanpa mengubah ukuran huruf.
+ *
+ * Hanya berlaku sampai `sm`; di layar lebar yang dipakai tetikus, jarak
+ * aslinya dikembalikan supaya tampilannya tidak jadi renggang.
+ */
+const footerListClass = "mt-5 space-y-1 sm:space-y-3";
+const footerLinkClass =
+  "block py-2.5 sm:py-0 text-[color:var(--foreground)]/55 transition-colors hover:text-[color:var(--brand-blue)]";
+
 export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const other = altLocale(locale);
 
@@ -69,13 +84,10 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           <h2 className="text-sm font-bold tracking-wider uppercase">
             {dict.footer.productHeading}
           </h2>
-          <ul className="mt-5 space-y-3">
+          <ul className={footerListClass}>
             {featureOrder.map((key) => (
               <li key={key}>
-                <a
-                  href={`#fitur-${key}`}
-                  className="text-[color:var(--foreground)]/55 transition-colors hover:text-[color:var(--brand-blue)]"
-                >
+                <a href={`#fitur-${key}`} className={footerLinkClass}>
                   {dict.features[key].name}
                 </a>
               </li>
@@ -87,11 +99,11 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           <h2 className="text-sm font-bold tracking-wider uppercase">
             {dict.footer.aboutHeading}
           </h2>
-          <ul className="mt-5 space-y-3">
+          <ul className={footerListClass}>
             <li>
               <Link
                 href={localeHref(other)}
-                className="text-[color:var(--foreground)]/55 transition-colors hover:text-[color:var(--brand-blue)]"
+                className={footerLinkClass}
               >
                 {dict.meta.localeName === "Indonesia" ? "English" : "Bahasa Indonesia"}
               </Link>
@@ -101,7 +113,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
                 href={site.playStoreUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-[color:var(--foreground)]/55 transition-colors hover:text-[color:var(--brand-blue)]"
+                className={footerLinkClass}
               >
                 Google Play
               </a>
@@ -111,7 +123,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
                 href={site.publisherUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-[color:var(--foreground)]/55 transition-colors hover:text-[color:var(--brand-blue)]"
+                className={footerLinkClass}
               >
                 {site.publisher}
               </a>
@@ -122,7 +134,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               <li>
                 <a
                   href={`mailto:${site.contactEmail}`}
-                  className="text-[color:var(--foreground)]/55 transition-colors hover:text-[color:var(--brand-blue)]"
+                  className={footerLinkClass}
                 >
                   {dict.footer.contact}
                 </a>
