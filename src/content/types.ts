@@ -98,6 +98,28 @@ export interface Dictionary {
     items: { q: string; a: string }[];
   };
   cta: { title: string; body: string; button: string; iosNote: string };
+  /**
+   * Teks yang menggantikan seluruh ajakan mengunduh selama
+   * `site.playStoreLive` masih `false`.
+   *
+   * Dipisah dari `cta`, bukan menimpanya, supaya salinan versi terbit tetap
+   * utuh dan tinggal dipakai lagi begitu sakelarnya dinyalakan. Tidak ada
+   * yang perlu ditulis ulang saat peluncuran.
+   */
+  comingSoon: {
+    /** Label tombol utama di hero dan lencana di blok ajakan. */
+    badge: string;
+    /** Label ringkas di header, menggantikan "Unduh". */
+    navLabel: string;
+    title: string;
+    body: string;
+    /** Catatan kecil di bawah tombol, menggantikan `iosNote`. */
+    note: string;
+    /** Judul di atas tombol Instagram dan TikTok. */
+    followHeading: string;
+    /** Tanya jawab tambahan, disisipkan paling atas selama belum terbit. */
+    faq: { q: string; a: string };
+  };
   footer: {
     tagline: string;
     productHeading: string;

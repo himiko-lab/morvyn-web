@@ -181,7 +181,7 @@ export const id: Dictionary = {
     items: [
       {
         q: "Apakah Morvyn tersedia untuk iPhone?",
-        a: "Belum. Saat ini Morvyn tersedia untuk Android lewat Google Play, dan versi iOS sedang disiapkan.",
+        a: "Belum. Morvyn dibuat untuk Android lebih dulu, dan versi iOS menyusul setelah itu.",
       },
       {
         q: "Bahasa apa saja yang didukung?",
@@ -207,6 +207,19 @@ export const id: Dictionary = {
     body: "Morvyn tersedia gratis di Google Play.",
     button: "Unduh di Google Play",
     iosNote: "Versi iOS sedang disiapkan",
+  },
+
+  comingSoon: {
+    badge: "Segera di Google Play",
+    navLabel: "Segera",
+    title: "Morvyn segera hadir",
+    body: "Aplikasinya sedang dirampungkan sebelum masuk Google Play. Ikuti kabarnya, nanti kami beri tahu begitu sudah bisa diunduh.",
+    note: "Android lebih dulu, versi iOS menyusul",
+    followHeading: "Ikuti kabarnya",
+    faq: {
+      q: "Kapan Morvyn bisa diunduh?",
+      a: "Belum ada tanggal pastinya. Aplikasinya sedang dirampungkan sebelum masuk Google Play, dan pengumumannya akan lewat Instagram serta TikTok Himiko Lab.",
+    },
   },
 
   footer: {

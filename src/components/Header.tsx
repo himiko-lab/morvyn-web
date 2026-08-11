@@ -6,7 +6,15 @@ import { buttonVariants } from "@heroui/react";
 import { GooglePlayLogo, List, Translate, X } from "@phosphor-icons/react/ssr";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
-import { altLocale, localeHref, site, type Dictionary, type Locale } from "@/content";
+import {
+  altLocale,
+  downloadHref,
+  downloadIsExternal,
+  localeHref,
+  site,
+  type Dictionary,
+  type Locale,
+} from "@/content";
 
 interface HeaderProps {
   dict: Dictionary;
@@ -55,6 +63,12 @@ export function Header({ dict, locale }: HeaderProps) {
 
   const other = altLocale(locale);
 
+  // "Unduh" hanya benar kalau memang ada yang bisa diunduh.
+  const ctaLabel = site.playStoreLive ? dict.nav.download : dict.comingSoon.navLabel;
+  const externalProps = downloadIsExternal
+    ? ({ target: "_blank", rel: "noreferrer noopener" } as const)
+    : {};
+
   return (
     <header
       className={`glass sticky top-0 z-50 border-b transition-colors ${
@@ -99,28 +113,34 @@ export function Header({ dict, locale }: HeaderProps) {
           </div>
 
           <a
-            href={site.playStoreUrl}
-            target="_blank"
-            rel="noreferrer noopener"
+            href={downloadHref}
+            {...externalProps}
             className={`${buttonVariants({ variant: "primary", size: "md" })} hidden md:inline-flex`}
           >
             <GooglePlayLogo size={18} weight="fill" />
-            {dict.nav.download}
+            {ctaLabel}
           </a>
 
-          {/* Kembaran tombol di atas untuk layar sempit, hanya lambangnya.
-              Di bawah md, tombol berteks itu hilang dan satu-satunya jalan
-              mengunduh adalah membuka menu dulu — padahal itu tindakan utama
-              seluruh situs. Versi ini menahannya tetap sejangkauan ibu jari
-              sepanjang halaman digulir, tanpa memakan lebar baris. */}
+          {/* Kembaran tombol di atas untuk layar sempit. Di bawah md, tombol
+              berteks itu hilang dan satu-satunya jalan ke sana adalah membuka
+              menu dulu — padahal itu tindakan utama seluruh situs. Versi ini
+              menahannya tetap sejangkauan ibu jari sepanjang halaman digulir.
+
+              Selama belum terbit sengaja berteks, bukan hanya berlambang:
+              lambang Google Play sendirian selalu terbaca "unduh sekarang",
+              dan itu bukan yang ditawarkan halaman ini saat ini. */}
           <a
-            href={site.playStoreUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label={dict.nav.download}
-            className="grid size-11 place-items-center rounded-full bg-[color:var(--brand-blue)] text-white transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)] md:hidden"
+            href={downloadHref}
+            {...externalProps}
+            aria-label={ctaLabel}
+            className={
+              site.playStoreLive
+                ? "grid size-11 place-items-center rounded-full bg-[color:var(--brand-blue)] text-white transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)] md:hidden"
+                : "inline-flex h-11 items-center gap-1.5 rounded-full bg-[color:var(--brand-blue)] px-4 text-sm font-semibold text-white transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)] md:hidden"
+            }
           >
             <GooglePlayLogo size={20} weight="fill" />
+            {!site.playStoreLive && ctaLabel}
           </a>
 
           <button
@@ -163,13 +183,13 @@ export function Header({ dict, locale }: HeaderProps) {
               </Link>
               <ThemeToggle label={dict.nav.toggleTheme} />
               <a
-                href={site.playStoreUrl}
-                target="_blank"
-                rel="noreferrer noopener"
+                href={downloadHref}
+                {...externalProps}
+                onClick={() => setOpen(false)}
                 className={`${buttonVariants({ variant: "primary", size: "md" })} flex-1`}
               >
                 <GooglePlayLogo size={18} weight="fill" />
-                {dict.nav.download}
+                {ctaLabel}
               </a>
             </div>
           </nav>

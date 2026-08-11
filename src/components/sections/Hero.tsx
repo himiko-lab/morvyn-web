@@ -3,9 +3,21 @@ import { ArrowRight, GooglePlayLogo, Sparkle } from "@phosphor-icons/react/ssr";
 import { PhoneFrame } from "../PhoneFrame";
 import { Reveal } from "../Reveal";
 import { featureColor, featureIcons, featureOrder } from "../featureIcons";
-import { site, type Dictionary } from "@/content";
+import {
+  downloadHref,
+  downloadIsExternal,
+  site,
+  type Dictionary,
+} from "@/content";
 
 export function Hero({ dict }: { dict: Dictionary }) {
+  // Selama aplikasinya belum terbit, tombol utama mengaku apa adanya dan
+  // menurunkan pembaca ke blok penjelasan, bukan ke Play Store yang 404.
+  const primaryLabel = site.playStoreLive
+    ? dict.hero.primaryCta
+    : dict.comingSoon.badge;
+  const note = site.playStoreLive ? dict.hero.iosNote : dict.comingSoon.note;
+
   return (
     // overflow-x-clip, bukan overflow-hidden: kartu mengapung di sisi mockup
     // perlu dipotong ke samping, tapi cahaya latar harus boleh meluber ke bawah
@@ -42,13 +54,14 @@ export function Hero({ dict }: { dict: Dictionary }) {
                 yang pendek berakhir menggantung di tengah tanpa alasan. */}
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a
-                href={site.playStoreUrl}
-                target="_blank"
-                rel="noreferrer noopener"
+                href={downloadHref}
+                {...(downloadIsExternal
+                  ? { target: "_blank", rel: "noreferrer noopener" }
+                  : {})}
                 className={`${buttonVariants({ variant: "primary", size: "lg" })} w-full justify-center sm:w-auto`}
               >
                 <GooglePlayLogo size={20} weight="fill" />
-                {dict.hero.primaryCta}
+                {primaryLabel}
               </a>
               <a
                 href="#fitur"
@@ -58,9 +71,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
                 <ArrowRight size={18} />
               </a>
             </div>
-            <p className="mt-4 text-sm text-[color:var(--foreground)]/45">
-              {dict.hero.iosNote}
-            </p>
+            <p className="mt-4 text-sm text-[color:var(--foreground)]/45">{note}</p>
           </Reveal>
 
           <Reveal delay={320}>

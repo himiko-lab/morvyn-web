@@ -178,7 +178,7 @@ export const en: Dictionary = {
     items: [
       {
         q: "Is Morvyn available for iPhone?",
-        a: "Not yet. Morvyn is on Android through Google Play today, and an iOS version is in the works.",
+        a: "Not yet. Morvyn is built for Android first, and an iOS version follows after that.",
       },
       {
         q: "Which languages are supported?",
@@ -204,6 +204,19 @@ export const en: Dictionary = {
     body: "Morvyn is free on Google Play.",
     button: "Get it on Google Play",
     iosNote: "iOS version in the works",
+  },
+
+  comingSoon: {
+    badge: "Coming soon to Google Play",
+    navLabel: "Soon",
+    title: "Morvyn is almost here",
+    body: "The app is being finished before it goes up on Google Play. Follow along and you'll hear from us the moment it can be downloaded.",
+    note: "Android first, iOS to follow",
+    followHeading: "Follow along",
+    faq: {
+      q: "When can I download Morvyn?",
+      a: "There is no firm date yet. The app is being finished before it goes up on Google Play, and the announcement will come through the Himiko Lab Instagram and TikTok accounts.",
+    },
   },
 
   footer: {

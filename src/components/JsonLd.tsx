@@ -1,5 +1,6 @@
 import { featureOrder } from "./featureIcons";
 import {
+  faqItems,
   getDictionary,
   localeTag,
   localeUrl,
@@ -66,16 +67,28 @@ export function JsonLd({ locale }: { locale: Locale }) {
       applicationCategory: "ProductivityApplication",
       operatingSystem: "Android",
       inLanguage: Object.values(localeTag),
-      installUrl: site.playStoreUrl,
-      downloadUrl: site.playStoreUrl,
       featureList: featureOrder.map((key) => dict.features[key].name),
       publisher: { "@id": organizationId },
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "IDR",
-        availability: "https://schema.org/InStock",
-      },
+
+      // `installUrl`, `downloadUrl`, dan `offers` hanya dicetak setelah
+      // aplikasinya benar-benar terbit. Selama belum, ketiganya berbohong:
+      // dua yang pertama menunjuk alamat Play Store yang membalas 404, dan
+      // `offers` dengan `InStock` menyatakan barangnya siap diambil. Data
+      // terstruktur yang tidak cocok dengan kenyataan halamannya bisa
+      // berbuntut tindakan manual, jadi lebih baik tidak menyebutkannya
+      // sama sekali daripada menyebutkan yang salah.
+      ...(site.playStoreLive
+        ? {
+            installUrl: site.playStoreUrl,
+            downloadUrl: site.playStoreUrl,
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "IDR",
+              availability: "https://schema.org/InStock",
+            },
+          }
+        : {}),
     },
     {
       // Dua tipe sekaligus, bukan dua simpul terpisah: halaman ini memang satu
@@ -95,7 +108,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
         width: 1200,
         height: 630,
       },
-      mainEntity: dict.faq.items.map((item) => ({
+      mainEntity: faqItems(dict).map((item) => ({
         "@type": "Question",
         name: item.q,
         acceptedAnswer: { "@type": "Answer", text: item.a },

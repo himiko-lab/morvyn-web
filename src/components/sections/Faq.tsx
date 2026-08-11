@@ -2,7 +2,7 @@ import { Accordion } from "@heroui/react";
 import { CaretDown } from "@phosphor-icons/react/ssr";
 import { SectionHeading } from "../SectionHeading";
 import { Reveal } from "../Reveal";
-import type { Dictionary } from "@/content";
+import { faqItems, type Dictionary } from "@/content";
 
 /**
  * Tanya jawab memakai Accordion HeroUI, yang di baliknya adalah DisclosureGroup
@@ -18,7 +18,7 @@ export function Faq({ dict }: { dict: Dictionary }) {
         <Reveal delay={100}>
           <div className="mx-auto mt-12 max-w-3xl">
             <Accordion variant="surface" className="w-full">
-              {dict.faq.items.map((item, index) => (
+              {faqItems(dict).map((item, index) => (
                 <Accordion.Item key={item.q} id={`faq-${index}`}>
                   <Accordion.Heading>
                     <Accordion.Trigger className="text-left text-base font-semibold sm:text-lg">

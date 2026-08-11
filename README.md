@@ -76,16 +76,41 @@ Simpan screenshot di `public/screenshots/` lalu tambahkan prop `src`:
 Rasio yang diharapkan **9:19.5** (mis. 1080×2340, ukuran layar Android umum).
 Gunakan PNG atau WebP. Begitu `src` diisi, placeholder-nya hilang sendiri.
 
-### 2. Tautan Google Play — **wajib**
+### 2. Google Play — **wajib saat peluncuran**
 
-`src/content/site.ts` masih memakai tebakan:
+Aplikasinya belum terbit, dan alamat di `playStoreUrl` masih membalas **404**.
+Karena itu ada sakelar di `src/content/site.ts`:
 
 ```ts
 playStoreUrl: "https://play.google.com/store/apps/details?id=com.himikolab.morvyn",
+playStoreLive: false,
 ```
 
-Ganti dengan URL asli dari Play Console. Tautan ini dipakai di lima tempat
-(header, menu ponsel, hero, blok CTA, footer) — cukup diubah sekali di sini.
+Selama `playStoreLive: false`, **tidak satu pun tautan ke Play Store dicetak**.
+Yang berubah otomatis:
+
+| Tempat | Saat `false` | Saat `true` |
+|---|---|---|
+| Header (dan menu ponsel) | "Segera", menuju `#unduh` | "Unduh", menuju Play Store |
+| Tombol utama hero | "Segera di Google Play", menuju `#unduh` | "Unduh di Google Play" |
+| Blok `#unduh` | Lencana + tombol Instagram & TikTok | Tombol unduh |
+| Footer | baris "Google Play" disembunyikan | baris muncul |
+| Tanya jawab | "Kapan Morvyn bisa diunduh?" disisipkan paling atas | tidak disisipkan |
+| JSON-LD | tanpa `offers`, `downloadUrl`, `installUrl` | ketiganya dicetak |
+
+**Saat peluncuran:** ganti `playStoreUrl` dengan URL asli dari Play Console,
+setel `playStoreLive: true`, lalu deploy. Tidak ada teks yang perlu ditulis
+ulang — salinan versi terbit sudah tersimpan utuh di `dict.cta`.
+
+Periksa dulu sebelum menyalakannya:
+
+```bash
+curl -sI -o /dev/null -w '%{http_code}\n' "https://play.google.com/store/apps/details?id=com.himikolab.morvyn"
+```
+
+Harus `200`. Kalau masih `404`, biarkan sakelarnya `false`: halaman yang
+mengajak mengunduh sesuatu yang belum ada merugikan dua kali, pengunjung
+sampai di halaman kosong dan Google melihat halaman promosi bertombol mati.
 
 ### 3. Alamat email kontak — sudah diisi
 

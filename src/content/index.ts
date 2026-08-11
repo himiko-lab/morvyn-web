@@ -40,6 +40,36 @@ export function localeUrl(locale: Locale): string {
 }
 
 /**
+ * Daftar tanya jawab yang benar-benar tampil di halaman.
+ *
+ * Selama aplikasinya belum terbit, "Kapan Morvyn bisa diunduh?" disisipkan
+ * paling atas, karena itu yang pertama ditanyakan orang begitu melihat
+ * lencana "Segera di Google Play".
+ *
+ * Dipakai bersama oleh bagian Tanya Jawab dan data terstruktur FAQPage.
+ * Kalau keduanya menyusun daftarnya sendiri-sendiri, markup dan teks yang
+ * terlihat bisa berbeda isi, dan itu justru yang dianggap menyesatkan Google.
+ */
+export function faqItems(dict: Dictionary): { q: string; a: string }[] {
+  return site.playStoreLive
+    ? dict.faq.items
+    : [dict.comingSoon.faq, ...dict.faq.items];
+}
+
+/**
+ * Tujuan setiap tombol unduh di situs ini.
+ *
+ * Selama aplikasinya belum terbit, semuanya mengarah ke blok penjelasan di
+ * halaman yang sama alih-alih ke Play Store yang masih membalas 404. Ditulis
+ * sekali di sini supaya header, hero, dan blok ajakan tidak bisa berbeda
+ * pendapat soal ke mana tombolnya menuju.
+ */
+export const downloadHref = site.playStoreLive ? site.playStoreUrl : "#unduh";
+
+/** Tautan ke luar butuh target dan rel; tautan jangkar dalam halaman tidak. */
+export const downloadIsExternal = site.playStoreLive;
+
+/**
  * Gambar yang tampil saat tautannya dibagikan. Dua berkas, karena teks di
  * dalam gambarnya ikut berbahasa halaman itu. Ada di `public/`.
  */

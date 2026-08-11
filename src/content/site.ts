@@ -19,6 +19,24 @@ export const site = {
    */
   playStoreUrl: "https://play.google.com/store/apps/details?id=com.himikolab.morvyn",
 
+  /**
+   * SATU SAKELAR UNTUK SELURUH SITUS. Setel `true` begitu aplikasinya benar-
+   * benar bisa dibuka di Google Play, lalu deploy. Tidak ada lagi yang perlu
+   * diubah: tombol unduh di header, hero, blok ajakan, dan footer ikut hidup
+   * sendiri, begitu pula `offers` dan `downloadUrl` di data terstruktur.
+   *
+   * Selama `false`, tidak satu pun tautan menuju Play Store dicetak. Alasannya
+   * bukan sekadar rapi: alamat itu masih membalas 404, dan halaman yang
+   * mengajak mengunduh sesuatu yang belum ada merugikan dua kali sekaligus.
+   * Pengunjung sampai di halaman kosong, dan Google melihat halaman promosi
+   * yang tombol utamanya mati, salah satu sebab kenapa `morvyn.himikolab.my.id`
+   * berstatus "di-crawl, saat ini tidak diindeks".
+   *
+   * Periksa dulu sebelum menyalakannya:
+   *   curl -sI -o /dev/null -w '%{http_code}\n' "$PLAY_STORE_URL"
+   */
+  playStoreLive: false,
+
   /** Kosongkan string ini kalau alamatnya dicabut dan belum ada gantinya. */
   contactEmail: "hi@himikolab.my.id",
 

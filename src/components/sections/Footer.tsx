@@ -108,16 +108,21 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
                 {dict.meta.localeName === "Indonesia" ? "English" : "Bahasa Indonesia"}
               </Link>
             </li>
-            <li>
-              <a
-                href={site.playStoreUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={footerLinkClass}
-              >
-                Google Play
-              </a>
-            </li>
+            {/* Baris ini hilang selama aplikasinya belum terbit. Tautan mati
+                di footer tidak kelihatan sampai diklik, dan itu justru bagian
+                situs yang paling sering dijadikan patokan keabsahan. */}
+            {site.playStoreLive && (
+              <li>
+                <a
+                  href={site.playStoreUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className={footerLinkClass}
+                >
+                  Google Play
+                </a>
+              </li>
+            )}
             <li>
               <a
                 href={site.publisherUrl}
