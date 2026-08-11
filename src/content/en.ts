@@ -211,7 +211,6 @@ export const en: Dictionary = {
     navLabel: "Soon",
     title: "Morvyn is almost here",
     body: "The app is being finished before it goes up on Google Play. Follow along and you'll hear from us the moment it can be downloaded.",
-    note: "Android first, iOS to follow",
     followHeading: "Follow along",
     faq: {
       q: "When can I download Morvyn?",

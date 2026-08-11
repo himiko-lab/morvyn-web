@@ -123,8 +123,6 @@ function ComingSoon({ dict }: { dict: Dictionary }) {
           );
         })}
       </div>
-
-      <p className="mt-6 text-sm text-white/70">{dict.comingSoon.note}</p>
     </>
   );
 }

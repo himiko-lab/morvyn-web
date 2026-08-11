@@ -16,7 +16,10 @@ export function Hero({ dict }: { dict: Dictionary }) {
   const primaryLabel = site.playStoreLive
     ? dict.hero.primaryCta
     : dict.comingSoon.badge;
-  const note = site.playStoreLive ? dict.hero.iosNote : dict.comingSoon.note;
+
+  // Catatan iOS hanya muncul setelah aplikasinya terbit. Sebelum itu tidak
+  // ada gunanya menyebut platform kedua, karena yang pertama pun belum ada.
+  const note = site.playStoreLive ? dict.hero.iosNote : null;
 
   return (
     // overflow-x-clip, bukan overflow-hidden: kartu mengapung di sisi mockup
@@ -71,7 +74,9 @@ export function Hero({ dict }: { dict: Dictionary }) {
                 <ArrowRight size={18} />
               </a>
             </div>
-            <p className="mt-4 text-sm text-[color:var(--foreground)]/45">{note}</p>
+            {note && (
+              <p className="mt-4 text-sm text-[color:var(--foreground)]/45">{note}</p>
+            )}
           </Reveal>
 
           <Reveal delay={320}>

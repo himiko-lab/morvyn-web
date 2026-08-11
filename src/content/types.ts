@@ -113,9 +113,7 @@ export interface Dictionary {
     navLabel: string;
     title: string;
     body: string;
-    /** Catatan kecil di bawah tombol, menggantikan `iosNote`. */
-    note: string;
-    /** Judul di atas tombol Instagram dan TikTok. */
+    /** Judul di atas deretan tombol media sosial. */
     followHeading: string;
     /** Tanya jawab tambahan, disisipkan paling atas selama belum terbit. */
     faq: { q: string; a: string };

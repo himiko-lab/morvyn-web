@@ -214,7 +214,6 @@ export const id: Dictionary = {
     navLabel: "Segera",
     title: "Morvyn segera hadir",
     body: "Aplikasinya sedang dirampungkan sebelum masuk Google Play. Ikuti kabarnya, nanti kami beri tahu begitu sudah bisa diunduh.",
-    note: "Android lebih dulu, versi iOS menyusul",
     followHeading: "Ikuti kabarnya",
     faq: {
       q: "Kapan Morvyn bisa diunduh?",
