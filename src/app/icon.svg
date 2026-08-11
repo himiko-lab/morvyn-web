@@ -3,17 +3,23 @@
     Favicon. Next.js memungut berkas bernama icon.svg di folder app secara
     otomatis, tidak perlu <link rel="icon"> di layout.
 
-    Latar putih dipertahankan di sini, beda dari public/logo-morvyn.svg, karena
-    ikon tab butuh bidang penuh, bukan bentuk mengambang.
+    Tanpa latar sama sekali, jadi lambangnya boleh memakai seluruh bidang.
+    Sebelumnya ada kotak putih bersudut membulat di belakangnya, dan kotak itu
+    memakan ruang dua kali: pinggirannya sendiri, lalu bantalan di dalamnya.
+    Di ukuran 16px yang tersisa untuk lambangnya tinggal segelintir piksel.
 
-    Lambangnya ditanam sebagai <svg> bersarang, bukan disalin dengan transform
-    baru. Dengan begitu penskalaan dan pemusatannya diurus preserveAspectRatio
-    bawaan: logonya 10468x9226 (bukan persegi), dan menaruhnya di kotak 800x800
-    membuatnya jadi 800x705 lalu dipusatkan tegak dengan sendirinya. Kalau
-    logonya diganti lagi, cukup tukar viewBox dan ketiga path di bawah.
+    Yang menyekalakan adalah <svg> bersarang di bawah, bukan transform baru.
+    Lambangnya 10468x9226, tidak persegi. Dijejalkan ke kotak 1024x1024,
+    preserveAspectRatio bawaan (xMidYMid meet) memuaikannya sampai selebar
+    kotak lalu memusatkannya tegak dengan sendirinya. Jadi lebarnya terpakai
+    penuh tanpa satu pun angka yang perlu dihitung tangan.
+
+    Warnanya sengaja tidak diubah menurut mode terang atau gelap: biru dan
+    ungu ini sama-sama terbaca di bilah tab terang maupun gelap, sedangkan
+    percikan putih di tengahnya selalu duduk di atas bentuk berwarna,
+    bukan di atas latar.
   -->
-  <rect width="1024" height="1024" rx="224" fill="#FFFFFF"/>
-  <svg x="112" y="112" width="800" height="800" viewBox="0 0 10468 9226">
+  <svg width="1024" height="1024" viewBox="0 0 10468 9226">
     <g transform="translate(-3305.608748,-23623)">
       <path d="M11688.596,31900C11688.596,29299.587 6100.629,23623.149 4228.596,23623C2356.564,23622.906 3559.896,32847.405 5803.93,32848C6984.44,32848 8539.263,31423 8539.263,31423C8539.263,31423 10094.304,32848 11274.596,32848C11615.81,32848.499 11688.554,32327.89 11688.596,31900Z" fill="#078DFB"/>
     </g>
