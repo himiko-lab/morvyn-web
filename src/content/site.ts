@@ -84,6 +84,15 @@ export const socialLinks = [
     label: "YouTube",
     href: "https://www.youtube.com/@HimikoLab",
   },
+  {
+    // Subdomain `id.`, bukan `www.`, bukan karena pembacanya orang Indonesia:
+    // itulah yang dinyatakan Pinterest sendiri sebagai canonical, bahkan saat
+    // halamannya diambil lewat www. Memakai www di `sameAs` berarti menunjuk
+    // alamat yang pemiliknya sendiri bilang bukan yang utama.
+    key: "pinterest",
+    label: "Pinterest",
+    href: "https://id.pinterest.com/labhimiko/",
+  },
   { key: "website", label: site.publisher, href: site.publisherUrl },
   { key: "email", label: site.contactEmail, href: `mailto:${site.contactEmail}` },
 ] as const;

@@ -3,6 +3,7 @@ import {
   EnvelopeSimple,
   Globe,
   InstagramLogo,
+  PinterestLogo,
   TiktokLogo,
   YoutubeLogo,
 } from "@phosphor-icons/react/ssr";
@@ -22,6 +23,7 @@ const socialIcons = {
   instagram: InstagramLogo,
   tiktok: TiktokLogo,
   youtube: YoutubeLogo,
+  pinterest: PinterestLogo,
   website: Globe,
   email: EnvelopeSimple,
 } as const;

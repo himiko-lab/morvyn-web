@@ -1,10 +1,28 @@
-import { GooglePlayLogo, InstagramLogo, Sparkle, TiktokLogo } from "@phosphor-icons/react/ssr";
+import {
+  GooglePlayLogo,
+  InstagramLogo,
+  PinterestLogo,
+  Sparkle,
+  TiktokLogo,
+  YoutubeLogo,
+} from "@phosphor-icons/react/ssr";
 import { Reveal } from "../Reveal";
 import { site, socialLinks, type Dictionary } from "@/content";
 
-/** Akun yang layak diikuti untuk menunggu kabar peluncuran. */
-const followKeys = ["instagram", "tiktok"] as const;
-const followIcons = { instagram: InstagramLogo, tiktok: TiktokLogo } as const;
+/**
+ * Akun yang layak diikuti untuk menunggu kabar peluncuran.
+ *
+ * Sengaja bukan seluruh isi `socialLinks`: situs Himiko Lab dan alamat email
+ * di sana bukan tempat orang menunggu pengumuman. Daftar ini harus sejalan
+ * dengan kanal yang disebut di `comingSoon.faq`.
+ */
+const followKeys = ["instagram", "tiktok", "youtube", "pinterest"] as const;
+const followIcons = {
+  instagram: InstagramLogo,
+  tiktok: TiktokLogo,
+  youtube: YoutubeLogo,
+  pinterest: PinterestLogo,
+} as const;
 
 export function DownloadCta({ dict }: { dict: Dictionary }) {
   return (
@@ -59,7 +77,7 @@ function Available({ dict }: { dict: Dictionary }) {
  * Bentuk blok ini selama `site.playStoreLive` masih `false`.
  *
  * Tidak ada tombol unduh sama sekali, karena tidak ada yang bisa diunduh.
- * Sebagai gantinya lencana yang menyatakan keadaannya, lalu dua tindakan yang
+ * Sebagai gantinya lencana yang menyatakan keadaannya, lalu tindakan yang
  * benar-benar bisa dilakukan sekarang: mengikuti akun yang akan mengumumkan
  * peluncurannya. Inilah satu-satunya halaman tempat pengunjung menyatakan
  * minat sebelum aplikasinya ada, jadi sayang kalau dibiarkan buntu.
@@ -82,7 +100,11 @@ function ComingSoon({ dict }: { dict: Dictionary }) {
       <p className="mt-9 text-sm font-semibold tracking-wider text-white/70 uppercase">
         {dict.comingSoon.followHeading}
       </p>
-      <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      {/* Ditumpuk selebar kolom di ponsel, sebaris mulai `sm`. `flex-wrap`
+          hanya berlaku sejak `sm` juga: dengan empat tombol, satu baris tidak
+          selalu muat di lebar menengah, dan tanpa ini keempatnya akan
+          dimampatkan sampai teksnya berdesakan alih-alih pindah baris. */}
+      <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
         {followKeys.map((key) => {
           const link = socialLinks.find((s) => s.key === key);
           if (!link) return null;
