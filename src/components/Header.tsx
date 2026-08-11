@@ -44,11 +44,14 @@ export function Header({ dict, locale }: HeaderProps) {
   }, []);
 
   // Mengunci guliran badan halaman selagi menu ponsel terbuka.
+  //
+  // Yang mengunci adalah aturan `body.menu-open` di globals.css, bukan gaya
+  // inline dari sini. Di sana kuncinya dibatalkan sendiri mulai lebar `lg`,
+  // sehingga halaman tidak mungkin tertinggal terkunci di layar yang menu
+  // ponselnya sudah tidak ada. Lihat catatan panjangnya di berkas itu.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.classList.toggle("menu-open", open);
+    return () => document.body.classList.remove("menu-open");
   }, [open]);
 
   // Esc menutup menu — pengguna papan ketik mengharapkannya.
@@ -59,6 +62,35 @@ export function Header({ dict, locale }: HeaderProps) {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // Menutup menu begitu layarnya melebar sampai `lg`.
+  //
+  // Tanpa ini halaman bisa terkunci total tanpa jalan keluar: panel menunya
+  // `lg:hidden` sehingga lenyap saat layar melebar, tombol hamburgernya juga
+  // `lg:hidden` sehingga ikut lenyap, tapi `open` tetap true dan efek di atas
+  // menahan `body { overflow: hidden }`. Yang tersisa bagi pengguna adalah
+  // halaman yang tidak bisa digulir dan tidak ada satu pun tombol untuk
+  // membukanya kembali — hanya muat ulang yang menolong. Terpicu nyata saat
+  // tablet diputar ke lanskap atau ponsel lipat dibentangkan selagi menu
+  // terbuka.
+  //
+  // 1024px = titik henti `lg` Tailwind.
+  //
+  // Sengaja mendengarkan `resize`, bukan peristiwa `change` milik matchMedia.
+  // Keduanya seharusnya setara, tapi `change` tidak selalu terkirim ketika
+  // ukuran viewport diubah dari luar peramban — terbukti saat menguji ini:
+  // media query-nya sudah cocok, panelnya sudah lenyap, tapi peristiwanya
+  // tidak pernah sampai dan halaman tetap terkunci. `resize` jauh lebih
+  // terjamin, dan pemeriksaannya cukup murah untuk dijalankan sesering itu.
+  useEffect(() => {
+    if (!open) return;
+    function closeIfWide() {
+      if (window.innerWidth >= 1024) setOpen(false);
+    }
+    closeIfWide();
+    window.addEventListener("resize", closeIfWide);
+    return () => window.removeEventListener("resize", closeIfWide);
   }, [open]);
 
   const other = altLocale(locale);
@@ -159,8 +191,35 @@ export function Header({ dict, locale }: HeaderProps) {
       </div>
 
       {open && (
-        <div className="border-t border-[color:var(--border)] bg-[color:var(--background)] lg:hidden">
-          <nav aria-label="Utama (ponsel)" className="shell flex flex-col gap-1 py-4">
+        <>
+          {/* Bidang gelap yang menutupi sisa halaman.
+              Selagi menu terbuka, halaman di belakangnya terlihat tapi
+              terkunci. Tanpa bidang ini, mengetuknya tidak menghasilkan apa
+              pun dan situsnya terasa macet — padahal mengetuk di luar menu
+              adalah cara paling naluriah menutupnya di ponsel. Sekaligus
+              memberi tahu secara visual bagian mana yang sedang aktif. */}
+          <button
+            type="button"
+            aria-label={dict.nav.closeMenu}
+            tabIndex={-1}
+            onClick={() => setOpen(false)}
+            className="fixed inset-x-0 top-[4.5rem] bottom-0 -z-10 cursor-default bg-[color:var(--brand-ink)]/25 lg:hidden"
+          />
+
+          {/* max-h + overflow-y: di lanskap ponsel tinggi layarnya cuma ~360px
+              sementara panel ini butuh ~382px. Sebelumnya baris terbawah
+              (ganti bahasa, tema, unduh) jatuh di luar layar dan TIDAK BISA
+              dijangkau sama sekali, karena `body` sedang terkunci dan panelnya
+              sendiri tidak bisa digulir.
+
+              100dvh, bukan 100vh: di peramban ponsel bilah alamat menyusut dan
+              memuai saat digulir, dan 100vh selalu memakai ukuran terbesarnya
+              sehingga tetap meleset. 4.5rem itu tinggi header (h-18).
+
+              overscroll-contain menahan guliran supaya tidak merembet ke
+              halaman di belakangnya saat sudah mentok. */}
+          <div className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-[color:var(--border)] bg-[color:var(--background)] lg:hidden">
+            <nav aria-label="Utama (ponsel)" className="shell flex flex-col gap-1 py-4">
             {links.map((link) => (
               <a
                 key={link.href}
@@ -172,28 +231,34 @@ export function Header({ dict, locale }: HeaderProps) {
               </a>
             ))}
 
-            <div className="mt-3 flex items-center gap-2 border-t border-[color:var(--border)] pt-4">
-              <Link
-                href={localeHref(other)}
-                aria-label={dict.nav.switchTo}
-                className="flex h-10 items-center gap-1.5 rounded-full border border-[color:var(--border)] px-3.5 text-sm font-semibold"
-              >
-                <Translate size={16} />
-                {other.toUpperCase()}
-              </Link>
-              <ThemeToggle label={dict.nav.toggleTheme} />
-              <a
-                href={downloadHref}
-                {...externalProps}
-                onClick={() => setOpen(false)}
-                className={`${buttonVariants({ variant: "primary", size: "md" })} flex-1`}
-              >
-                <GooglePlayLogo size={18} weight="fill" />
-                {ctaLabel}
-              </a>
-            </div>
-          </nav>
-        </div>
+              {/* h-11 di ketiganya. Baris ini terlewat waktu target sentuh
+                  dirapikan: isinya masih 40px, padahal justru di sinilah
+                  ganti bahasa dan ganti tema satu-satunya bisa dilakukan
+                  dari ponsel. */}
+              <div className="mt-3 flex items-center gap-2 border-t border-[color:var(--border)] pt-4">
+                <Link
+                  href={localeHref(other)}
+                  aria-label={dict.nav.switchTo}
+                  onClick={() => setOpen(false)}
+                  className="flex h-11 items-center gap-1.5 rounded-full border border-[color:var(--border)] px-3.5 text-sm font-semibold"
+                >
+                  <Translate size={16} />
+                  {other.toUpperCase()}
+                </Link>
+                <ThemeToggle label={dict.nav.toggleTheme} sizeClass="size-11" />
+                <a
+                  href={downloadHref}
+                  {...externalProps}
+                  onClick={() => setOpen(false)}
+                  className={`${buttonVariants({ variant: "primary", size: "md" })} h-11 flex-1`}
+                >
+                  <GooglePlayLogo size={18} weight="fill" />
+                  {ctaLabel}
+                </a>
+              </div>
+            </nav>
+          </div>
+        </>
       )}
     </header>
   );

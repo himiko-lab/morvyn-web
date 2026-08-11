@@ -130,6 +130,28 @@
   ::selection {
     background-color: color-mix(in oklab, var(--brand-blue) 22%, transparent);
   }
+
+  /* Mengunci guliran halaman selagi menu ponsel terbuka.
+
+     Ditulis sebagai kelas di CSS, bukan `style.overflow` yang dipasang
+     JavaScript, karena batas berlakunya jadi ikut aturan CSS. Di atas `lg`
+     menu ponselnya memang tidak ada — panel dan tombol hamburgernya sama-sama
+     `lg:hidden` — jadi kuncinya wajib lepas di sana apa pun yang terjadi.
+
+     Versi JavaScript-nya bergantung pada peristiwa `resize` yang sampai tepat
+     waktu. Kalau peristiwa itu meleset, halaman terkunci total tanpa satu pun
+     tombol yang tersisa untuk membukanya, dan hanya muat ulang yang menolong.
+     Aturan di bawah membuat kemungkinan itu hilang: lebar layarlah yang
+     menentukan, bukan peristiwa yang mungkin datang mungkin tidak. */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  @media (min-width: 64rem) {
+    body.menu-open {
+      overflow: visible;
+    }
+  }
 }
 
 /* ==========================================================================

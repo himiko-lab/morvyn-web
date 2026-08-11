@@ -13,7 +13,19 @@ const STORAGE_KEY = "morvyn-theme";
  * digambar, ikon yang benar langsung muncul — tidak ada tombol kosong yang
  * berkedip selagi React menghidrasi.
  */
-export function ThemeToggle({ label }: { label: string }) {
+export function ThemeToggle({
+  label,
+  /**
+   * Kelas ukuran. Bawaannya 40px, dipakai di baris header layar lebar tempat
+   * tetikuslah yang menekannya dan tingginya harus sepadan dengan tombol di
+   * sebelahnya. Di dalam menu ponsel dikirim `size-11` (44px), karena di sana
+   * yang menekan adalah jari dan tombol ini satu-satunya jalan mengganti tema.
+   */
+  sizeClass = "size-10",
+}: {
+  label: string;
+  sizeClass?: string;
+}) {
   function toggle() {
     const root = document.documentElement;
     const next = root.dataset.theme === "dark" ? "light" : "dark";
@@ -31,7 +43,7 @@ export function ThemeToggle({ label }: { label: string }) {
       type="button"
       onClick={toggle}
       aria-label={label}
-      className="grid size-10 shrink-0 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--foreground)]/70 transition-colors hover:bg-[color:var(--surface-secondary)] hover:text-[color:var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)]"
+      className={`grid ${sizeClass} shrink-0 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--foreground)]/70 transition-colors hover:bg-[color:var(--surface-secondary)] hover:text-[color:var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)]`}
     >
       <Moon size={18} className="theme-icon theme-icon--moon" />
       <Sun size={18} className="theme-icon theme-icon--sun" />
