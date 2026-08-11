@@ -178,7 +178,7 @@ export const en: Dictionary = {
     items: [
       {
         q: "Is Morvyn available for iPhone?",
-        a: "Not yet. Morvyn is built for Android first, and an iOS version follows after that.",
+        a: "Not yet. Coming soon.",
       },
       {
         q: "Which languages are supported?",
