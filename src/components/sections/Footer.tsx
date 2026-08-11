@@ -4,6 +4,7 @@ import {
   Globe,
   InstagramLogo,
   TiktokLogo,
+  YoutubeLogo,
 } from "@phosphor-icons/react/ssr";
 import { Logo } from "../Logo";
 import { featureOrder } from "../featureIcons";
@@ -20,6 +21,7 @@ import {
 const socialIcons = {
   instagram: InstagramLogo,
   tiktok: TiktokLogo,
+  youtube: YoutubeLogo,
   website: Globe,
   email: EnvelopeSimple,
 } as const;

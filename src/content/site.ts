@@ -79,6 +79,11 @@ export const socialLinks = [
     label: "TikTok",
     href: "https://www.tiktok.com/@himiko.lab",
   },
+  {
+    key: "youtube",
+    label: "YouTube",
+    href: "https://www.youtube.com/@HimikoLab",
+  },
   { key: "website", label: site.publisher, href: site.publisherUrl },
   { key: "email", label: site.contactEmail, href: `mailto:${site.contactEmail}` },
 ] as const;
