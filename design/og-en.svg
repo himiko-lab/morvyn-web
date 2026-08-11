@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!--
+    Sumber gambar Open Graph. Bukan berkas yang disajikan: yang dipakai situs
+    adalah public/og-id.png hasil render berkas ini. Disimpan di repo supaya
+    bisa dibuat ulang saat logo atau taglinenya berubah, alih-alih hilang
+    bersama folder sementara. Cara membuatnya ada di README bagian SEO.
+
+    Lambangnya memakai transform yang sudah diratakan, sama persis dengan
+    public/logo-morvyn.svg dan src/components/Logo.tsx. Warnanya diputihkan
+    karena latarnya gradien biru.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#078DFB"/>
+      <stop offset="100%" stop-color="#4D61F9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.14" r="0.7">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <svg x="88" y="86" width="112" height="99" viewBox="0 0 10468 9226">
+    <g transform="translate(-3305.608748,-23623)">
+      <path d="M11688.596,31900C11688.596,29299.587 6100.629,23623.149 4228.596,23623C2356.564,23622.906 3559.896,32847.405 5803.93,32848C6984.44,32848 8539.263,31423 8539.263,31423C8539.263,31423 10094.304,32848 11274.596,32848C11615.81,32848.499 11688.554,32327.89 11688.596,31900Z" fill="#FFFFFF" fill-opacity="0.92"/>
+    </g>
+    <g transform="matrix(-1,0,0,1,13229.238145,-23623)">
+      <path d="M11144.917,31900C11144.917,29299.587 5556.95,23623.149 3684.917,23623C1812.885,23622.906 3016.217,32847.405 5260.251,32848C6440.761,32848 7995.584,31423 7995.584,31423C7995.584,31423 9550.625,32848 10730.917,32848C11072.131,32848.499 11144.875,32327.89 11144.917,31900Z" fill="#FFFFFF" fill-opacity="0.72"/>
+    </g>
+    <g transform="translate(-3099.67909,-23623)">
+      <path d="M8333.333,28854C8452.039,28853.998 8459.389,29207.711 8742.718,29491.041C9026.047,29774.37 9383.001,29823.411 9383,29938C9383.001,30052.589 9026.047,30101.63 8742.718,30384.959C8459.389,30668.289 8452.039,31022.002 8333.333,31022C8214.627,31022.002 8207.278,30668.289 7923.949,30384.959C7640.62,30101.63 7283.666,30052.589 7283.667,29938C7283.666,29823.411 7640.62,29774.37 7923.949,29491.041C8207.278,29207.711 8214.627,28853.998 8333.333,28854Z" fill="#078DFB"/>
+    </g>
+  </svg>
+
+  <text x="222" y="163" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="800" fill="#FFFFFF" letter-spacing="-1.5">Morvyn</text>
+
+  <text x="88" y="300" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.6">One calm space for</text>
+  <text x="88" y="378" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.6">your whole day</text>
+
+  <text x="88" y="446" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="29" font-weight="500" fill="#FFFFFF" fill-opacity="0.82">Notes · Finance · Agenda · Habits · Weather · Calendar · News</text>
+
+  <rect x="88" y="510" width="408" height="58" rx="29" fill="#FFFFFF"/>
+  <text x="292" y="548" text-anchor="middle" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" fill="#078DFB">Coming soon to Google Play</text>
+
+  <text x="1112" y="548" text-anchor="end" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="600" fill="#FFFFFF" fill-opacity="0.78">morvyn.himikolab.my.id</text>
+</svg>

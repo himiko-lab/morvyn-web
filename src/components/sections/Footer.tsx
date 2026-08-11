@@ -149,11 +149,25 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
         </div>
       </div>
 
+      {/* Baris penutup, dipusatkan.
+          Dulu `justify-between` melempar hak cipta ke kiri dan nama produk ke
+          kanan, dan di layar lebar keduanya berakhir sejauh mungkin satu sama
+          lain dengan bentangan kosong di antaranya. Keduanya keterangan
+          penutup yang sejenis, jadi lebih masuk akal berdampingan di tengah.
+
+          Ditumpuk di bawah `sm`, sebaris dengan titik pemisah di atasnya.
+          Bukan dibiarkan membungkus sendiri: dengan `flex-wrap`, di 320px
+          barisnya patah tepat sebelum "Morvyn" dan titik pemisahnya tertinggal
+          menggantung di ujung baris pertama. Menentukan sendiri kapan menumpuk
+          membuat keadaan itu tidak mungkin terjadi. */}
       <div className="border-t border-[color:var(--border)]">
-        <div className="shell flex flex-wrap items-center justify-between gap-3 py-6 text-sm text-[color:var(--foreground)]/45">
+        <div className="shell flex flex-col items-center gap-1 py-6 text-center text-sm text-[color:var(--foreground)]/45 sm:flex-row sm:justify-center sm:gap-2">
           <p>
             © {new Date().getFullYear()} {site.publisher}. {dict.footer.rights}
           </p>
+          <span aria-hidden className="hidden sm:inline">
+            ·
+          </span>
           <p>{site.name}</p>
         </div>
       </div>

@@ -156,6 +156,13 @@ sudah cukup — metadata, peta situs, dan data terstruktur ikut menyesuaikan.
 | `src/app/sitemap.ts` | Menghasilkan `/sitemap.xml`, satu entri per bahasa lengkap dengan `xhtml:link` hreflang |
 | `src/components/JsonLd.tsx` | Data terstruktur schema.org: `Organization`, `WebSite`, `MobileApplication`, dan `WebPage`+`FAQPage` |
 | `public/og-id.png`, `public/og-en.png` | Gambar 1200×630 yang tampil saat tautannya dibagikan |
+| `design/og-id.svg`, `design/og-en.svg` | Sumber kedua gambar di atas. Tidak ikut disajikan |
+
+Gambar Open Graph dibuat ulang dari sumbernya dengan:
+
+```bash
+cd design && rsvg-convert -w 1200 -h 630 og-id.svg -o ../public/og-id.png && rsvg-convert -w 1200 -h 630 og-en.svg -o ../public/og-en.png
+```
 
 Beberapa hal yang sengaja diputuskan begitu:
 
@@ -259,6 +266,26 @@ berlumpur seperti kalau dicampur di ruang sRGB:
 | Biru utama | `#078DFB` | `oklch(64.06% 0.1909 252.22)` |
 | Ungu sekunder | `#4D61F9` | `oklch(56.99% 0.2254 271.43)` |
 | Putih | `#FFFFFF` | — |
+
+### Mengganti logo
+
+Lambangnya ada di **lima** tempat dan kelimanya harus diganti bersamaan:
+
+| Berkas | Perannya |
+|---|---|
+| `public/logo-morvyn.svg` | Berkas mandiri, dirujuk `Organization.logo` di data terstruktur |
+| `src/components/Logo.tsx` | Lambang di header dan footer, ditanam inline |
+| `src/components/PhoneFrame.tsx` | Lambang samar di placeholder mockup, tanpa percikan putih |
+| `src/app/icon.svg` | Favicon, berlatar putih dan bersudut membulat |
+| `design/og-id.svg`, `design/og-en.svg` | Lambang putih di gambar Open Graph |
+
+Berkas Affinity biasanya mengekspor SVG dengan `<g>` bersarang beberapa lapis.
+Ratakan dulu jadi satu transform per bentuk di `public/logo-morvyn.svg`, lalu
+**buktikan hasilnya identik** sebelum menyebar angkanya ke empat berkas lain:
+
+```bash
+rsvg-convert -w 800 -b '#dddddd' "../Logo/Logo Morvyn (2).svg" -o /tmp/asal.png && rsvg-convert -w 800 -b '#dddddd' public/logo-morvyn.svg -o /tmp/rata.png && cmp /tmp/asal.png /tmp/rata.png && echo IDENTIK
+```
 
 HeroUI v3 memakai `--accent` sebagai warna merek (di v2 namanya `--primary`),
 jadi menimpa satu variabel itu sudah mewarnai seluruh komponennya sekaligus.

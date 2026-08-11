@@ -96,14 +96,17 @@ function Placeholder({ label }: { label: string }) {
       data-placeholder
       className="flex h-full w-full flex-col items-center justify-center gap-4 border-2 border-dashed border-[color:var(--brand-blue)]/30 bg-linear-to-b from-[color:var(--brand-blue)]/8 to-[color:var(--brand-violet)]/12 p-6 text-center"
     >
-      <svg viewBox="2100 3671 12466 9325" className="h-12 w-auto opacity-25">
-        <g transform="translate(-205.929658,-19902.166846)">
+      {/* Lambang tanpa percikan putih di tengahnya: latar placeholder ini
+          terang, jadi bentuk putih itu cuma jadi lubang. Lihat Logo.tsx untuk
+          asal-usul angka transformnya. */}
+      <svg viewBox="0 0 10468 9226" className="h-12 w-auto opacity-25">
+        <g transform="translate(-3305.608748,-23623)">
           <path
             d="M11688.596,31900C11688.596,29299.587 6100.629,23623.149 4228.596,23623C2356.564,23622.906 3559.896,32847.405 5803.93,32848C6984.44,32848 8539.263,31423 8539.263,31423C8539.263,31423 10094.304,32848 11274.596,32848C11615.81,32848.499 11688.554,32327.89 11688.596,31900Z"
             fill="#078DFB"
           />
         </g>
-        <g transform="matrix(-1,0,0,1,16328.917235,-19902.166846)">
+        <g transform="matrix(-1,0,0,1,13229.238145,-23623)">
           <path
             d="M11144.917,31900C11144.917,29299.587 5556.95,23623.149 3684.917,23623C1812.885,23622.906 3016.217,32847.405 5260.251,32848C6440.761,32848 7995.584,31423 7995.584,31423C7995.584,31423 9550.625,32848 10730.917,32848C11072.131,32848.499 11144.875,32327.89 11144.917,31900Z"
             fill="#4D61F9"
