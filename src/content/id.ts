@@ -217,7 +217,7 @@ export const id: Dictionary = {
     followHeading: "Ikuti kabarnya",
     faq: {
       q: "Kapan Morvyn bisa diunduh?",
-      a: "Belum ada tanggal pastinya. Aplikasinya sedang dirampungkan sebelum masuk Google Play, dan pengumumannya akan lewat Instagram, TikTok, YouTube, dan Pinterest Himiko Lab.",
+      a: "Belum ada tanggal pastinya. Aplikasinya sedang dirampungkan sebelum masuk Google Play, dan pengumumannya akan lewat akun media sosial Himiko Lab.",
     },
   },
 

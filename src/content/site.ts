@@ -93,6 +93,27 @@ export const socialLinks = [
     label: "Pinterest",
     href: "https://id.pinterest.com/labhimiko/",
   },
+  {
+    // Halaman ini belum punya nama pengguna, jadi alamatnya masih bentuk
+    // `profile.php?id=`. Itu memang alamat sah yang dipakai Facebook sendiri
+    // selama username-nya belum diatur; kalau nanti sudah ada, alamat pendek
+    // itulah yang harus dipakai di sini.
+    key: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61593282388390",
+  },
+  {
+    key: "x",
+    label: "X",
+    href: "https://x.com/HimikoLab",
+  },
+  {
+    // `threads.com`, bukan `threads.net`: alamat lamanya dialihkan ke sini dan
+    // inilah yang dinyatakan Threads sebagai canonical.
+    key: "threads",
+    label: "Threads",
+    href: "https://www.threads.com/@himiko.lab",
+  },
   { key: "website", label: site.publisher, href: site.publisherUrl },
   { key: "email", label: site.contactEmail, href: `mailto:${site.contactEmail}` },
 ] as const;

@@ -214,7 +214,7 @@ export const en: Dictionary = {
     followHeading: "Follow along",
     faq: {
       q: "When can I download Morvyn?",
-      a: "There is no firm date yet. The app is being finished before it goes up on Google Play, and the announcement will come through the Himiko Lab Instagram, TikTok, YouTube, and Pinterest accounts.",
+      a: "There is no firm date yet. The app is being finished before it goes up on Google Play, and the announcement will come through the Himiko Lab social accounts.",
     },
   },
 

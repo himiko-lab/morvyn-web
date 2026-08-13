@@ -1,10 +1,13 @@
 import Link from "next/link";
 import {
   EnvelopeSimple,
+  FacebookLogo,
   Globe,
   InstagramLogo,
   PinterestLogo,
+  ThreadsLogo,
   TiktokLogo,
+  XLogo,
   YoutubeLogo,
 } from "@phosphor-icons/react/ssr";
 import { Logo } from "../Logo";
@@ -24,6 +27,9 @@ const socialIcons = {
   tiktok: TiktokLogo,
   youtube: YoutubeLogo,
   pinterest: PinterestLogo,
+  facebook: FacebookLogo,
+  x: XLogo,
+  threads: ThreadsLogo,
   website: Globe,
   email: EnvelopeSimple,
 } as const;

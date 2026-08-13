@@ -1,9 +1,12 @@
 import {
+  FacebookLogo,
   GooglePlayLogo,
   InstagramLogo,
   PinterestLogo,
   Sparkle,
+  ThreadsLogo,
   TiktokLogo,
+  XLogo,
   YoutubeLogo,
 } from "@phosphor-icons/react/ssr";
 import { Reveal } from "../Reveal";
@@ -16,12 +19,23 @@ import { site, socialLinks, type Dictionary } from "@/content";
  * di sana bukan tempat orang menunggu pengumuman. Daftar ini harus sejalan
  * dengan kanal yang disebut di `comingSoon.faq`.
  */
-const followKeys = ["instagram", "tiktok", "youtube", "pinterest"] as const;
+const followKeys = [
+  "instagram",
+  "tiktok",
+  "youtube",
+  "pinterest",
+  "facebook",
+  "x",
+  "threads",
+] as const;
 const followIcons = {
   instagram: InstagramLogo,
   tiktok: TiktokLogo,
   youtube: YoutubeLogo,
   pinterest: PinterestLogo,
+  facebook: FacebookLogo,
+  x: XLogo,
+  threads: ThreadsLogo,
 } as const;
 
 export function DownloadCta({ dict }: { dict: Dictionary }) {
@@ -101,8 +115,8 @@ function ComingSoon({ dict }: { dict: Dictionary }) {
         {dict.comingSoon.followHeading}
       </p>
       {/* Ditumpuk selebar kolom di ponsel, sebaris mulai `sm`. `flex-wrap`
-          hanya berlaku sejak `sm` juga: dengan empat tombol, satu baris tidak
-          selalu muat di lebar menengah, dan tanpa ini keempatnya akan
+          hanya berlaku sejak `sm` juga: dengan tujuh tombol, satu baris jelas
+          tidak muat di lebar berapa pun, dan tanpa ini ketujuhnya akan
           dimampatkan sampai teksnya berdesakan alih-alih pindah baris. */}
       <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
         {followKeys.map((key) => {
