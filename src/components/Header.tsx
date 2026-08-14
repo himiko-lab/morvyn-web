@@ -19,17 +19,34 @@ import {
 interface HeaderProps {
   dict: Dictionary;
   locale: Locale;
+  /**
+   * Awalan untuk tautan jangkar, dipakai halaman selain beranda.
+   *
+   * Seluruh menu di header menunjuk bagian-bagian beranda. Dibiarkan apa
+   * adanya, `#fitur` yang dibuka dari `/privasi` tidak menuju ke mana-mana —
+   * dan menu mati adalah jenis kerusakan yang tidak terlihat sampai diklik.
+   * Halaman hukum mengisinya dengan `/` atau `/en/`.
+   *
+   * Kosong di beranda, supaya jangkarnya tetap murni dalam halaman dan
+   * tidak memicu permintaan baru.
+   */
+  anchorBase?: string;
+  /**
+   * Tujuan tombol ganti bahasa. Bawaannya beranda bahasa satunya; halaman
+   * hukum menimpanya dengan halaman yang sama dalam bahasa lain.
+   */
+  altHref?: string;
 }
 
-export function Header({ dict, locale }: HeaderProps) {
+export function Header({ dict, locale, anchorBase = "", altHref }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const links = [
-    { href: "#fitur", label: dict.nav.features },
-    { href: "#terhubung", label: dict.nav.connected },
-    { href: "#cara", label: dict.nav.how },
-    { href: "#tanya", label: dict.nav.faq },
+    { href: `${anchorBase}#fitur`, label: dict.nav.features },
+    { href: `${anchorBase}#terhubung`, label: dict.nav.connected },
+    { href: `${anchorBase}#cara`, label: dict.nav.how },
+    { href: `${anchorBase}#tanya`, label: dict.nav.faq },
   ];
 
   // Garis tepi bawah hanya muncul setelah halaman digulir, supaya header
@@ -94,12 +111,19 @@ export function Header({ dict, locale }: HeaderProps) {
   }, [open]);
 
   const other = altLocale(locale);
+  const switchHref = altHref ?? localeHref(other);
 
   // "Unduh" hanya benar kalau memang ada yang bisa diunduh.
   const ctaLabel = site.playStoreLive ? dict.nav.download : dict.comingSoon.navLabel;
   const externalProps = downloadIsExternal
     ? ({ target: "_blank", rel: "noreferrer noopener" } as const)
     : {};
+
+  // Selama Play Store belum hidup, `downloadHref` berisi jangkar `#unduh` yang
+  // ada di beranda — jadi ia butuh awalan yang sama seperti menu di atas.
+  // Begitu `playStoreLive: true`, isinya alamat penuh dan awalan itu justru
+  // akan merusaknya.
+  const ctaHref = downloadIsExternal ? downloadHref : `${anchorBase}${downloadHref}`;
 
   return (
     <header
@@ -132,7 +156,7 @@ export function Header({ dict, locale }: HeaderProps) {
 
         <div className="flex items-center gap-2">
           <Link
-            href={localeHref(other)}
+            href={switchHref}
             aria-label={dict.nav.switchTo}
             className="hidden h-10 items-center gap-1.5 rounded-full border border-[color:var(--border)] px-3.5 text-sm font-semibold text-[color:var(--foreground)]/70 transition-colors hover:bg-[color:var(--surface-secondary)] hover:text-[color:var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)] sm:flex"
           >
@@ -145,7 +169,7 @@ export function Header({ dict, locale }: HeaderProps) {
           </div>
 
           <a
-            href={downloadHref}
+            href={ctaHref}
             {...externalProps}
             className={`${buttonVariants({ variant: "primary", size: "md" })} hidden md:inline-flex`}
           >
@@ -162,7 +186,7 @@ export function Header({ dict, locale }: HeaderProps) {
               lambang Google Play sendirian selalu terbaca "unduh sekarang",
               dan itu bukan yang ditawarkan halaman ini saat ini. */}
           <a
-            href={downloadHref}
+            href={ctaHref}
             {...externalProps}
             aria-label={ctaLabel}
             className={
@@ -237,7 +261,7 @@ export function Header({ dict, locale }: HeaderProps) {
                   dari ponsel. */}
               <div className="mt-3 flex items-center gap-2 border-t border-[color:var(--border)] pt-4">
                 <Link
-                  href={localeHref(other)}
+                  href={switchHref}
                   aria-label={dict.nav.switchTo}
                   onClick={() => setOpen(false)}
                   className="flex h-11 items-center gap-1.5 rounded-full border border-[color:var(--border)] px-3.5 text-sm font-semibold"
@@ -247,7 +271,7 @@ export function Header({ dict, locale }: HeaderProps) {
                 </Link>
                 <ThemeToggle label={dict.nav.toggleTheme} sizeClass="size-11" />
                 <a
-                  href={downloadHref}
+                  href={ctaHref}
                   {...externalProps}
                   onClick={() => setOpen(false)}
                   className={`${buttonVariants({ variant: "primary", size: "md" })} h-11 flex-1`}

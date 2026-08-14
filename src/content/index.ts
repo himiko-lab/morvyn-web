@@ -26,6 +26,20 @@ export function localeHref(locale: Locale): string {
   return locale === "id" ? "/" : "/en";
 }
 
+/**
+ * Sama seperti `localeHref`, tapi selalu berakhiran garis miring.
+ *
+ * Dipakai sebagai awalan tautan jangkar dari halaman selain beranda: dari
+ * `/privasi`, tautan "Fitur" harus berbunyi `/#fitur`, bukan `#fitur` yang
+ * tidak menuju ke mana-mana. Yang berbahasa Inggris jadi `/en/#fitur` —
+ * garis miringnya wajib ada, karena `/en#fitur` membuat peramban meminta
+ * `/en` lalu dialihkan ke `/en/`, dan jangkarnya kerap hilang di tengah
+ * pengalihan itu.
+ */
+export function localeHomePath(locale: Locale): string {
+  return locale === "id" ? "/" : "/en/";
+}
+
 /** Kode bahasa lengkap untuk atribut hreflang dan `inLanguage`. */
 export const localeTag: Record<Locale, string> = {
   id: "id-ID",

@@ -5,6 +5,8 @@ Website dua bahasa untuk aplikasi Morvyn. Next.js 16 (App Router) + Tailwind CSS
 
 - `/` — Bahasa Indonesia
 - `/en` — English
+- `/privasi` · `/ketentuan` — Kebijakan Privasi & Ketentuan Layanan
+- `/en/privacy` · `/en/terms` — versi Inggrisnya
 
 ## Menjalankan
 
@@ -24,8 +26,15 @@ src/
 ├── app/
 │   ├── globals.css        # SELURUH tema: warna, font, animasi, utilitas
 │   ├── icon.svg           # favicon (dipungut otomatis oleh Next.js)
-│   ├── (id)/              # root layout <html lang="id"> + halaman "/"
-│   └── (en)/en/           # root layout <html lang="en"> + halaman "/en"
+│   ├── siteMetadata.ts    # <head> beranda (buildMetadata) & halaman hukum
+│   ├── (id)/              # root layout <html lang="id">
+│   │   ├── page.tsx       #   "/"
+│   │   ├── privasi/       #   "/privasi"
+│   │   └── ketentuan/     #   "/ketentuan"
+│   └── (en)/en/           # root layout <html lang="en">
+│       ├── page.tsx       #   "/en"
+│       ├── privacy/       #   "/en/privacy"
+│       └── terms/         #   "/en/terms"
 ├── components/
 │   ├── BaseHtml.tsx       # kerangka <html> yang dipakai kedua bahasa
 │   ├── SiteContent.tsx    # susunan bagian halaman, satu-satunya tempat urutan diatur
@@ -33,11 +42,13 @@ src/
 │   ├── PhoneFrame.tsx     # bingkai ponsel + placeholder screenshot
 │   ├── Reveal.tsx         # animasi muncul saat digulir
 │   ├── featureIcons.tsx   # peta ikon & warna ketujuh menu
-│   └── sections/          # satu berkas per bagian halaman
+│   ├── sections/          # satu berkas per bagian beranda
+│   └── legal/             # kerangka halaman hukum + penerjemah teks sebarisnya
 ├── content/
 │   ├── types.ts           # bentuk salinan teks
-│   ├── id.ts / en.ts      # SELURUH teks situs
-│   └── site.ts            # URL Play Store, domain, daftar 27 portal berita
+│   ├── id.ts / en.ts      # SELURUH teks beranda
+│   ├── site.ts            # URL Play Store, domain, daftar 27 portal berita
+│   └── legal/             # isi Kebijakan Privasi & Ketentuan Layanan (4 berkas)
 └── public/logo-morvyn.svg
 ```
 
@@ -46,7 +57,8 @@ Dua aturan yang memudahkan perawatan:
 1. **Tidak ada teks yang ditulis langsung di komponen.** Semuanya lewat `content/`.
 2. **`id.ts` dan `en.ts` memakai tipe `Dictionary` yang sama.** Kalau satu bahasa
    ketinggalan sebuah kunci, `npm run build` gagal — terjemahan tidak bisa
-   diam-diam tertinggal.
+   diam-diam tertinggal. Keempat berkas di `content/legal/` memakai tipe
+   `LegalDocument` yang sama, dengan alasan yang persis sama.
 
 ---
 
@@ -118,12 +130,48 @@ sampai di halaman kosong dan Google melihat halaman promosi bertombol mati.
 dicabut, kosongkan saja string-nya: baris "Kontak" di footer ikut hilang alih-alih
 jadi tautan mati, dan `Organization.email` di data terstruktur ikut disesuaikan.
 
-### 4. Halaman Kebijakan Privasi & Ketentuan Layanan — belum ada
+### 4. Halaman Kebijakan Privasi & Ketentuan Layanan — sudah ada
 
-Google Play mewajibkan tautan kebijakan privasi. Halamannya belum dibuat, dan
-tautannya sengaja tidak dipasang di footer supaya tidak ada tautan yang menuju
-halaman kosong. Teksnya sudah tersedia di `dict.footer.privacy` dan
-`dict.footer.terms` begitu halamannya siap.
+Empat halaman, dua dokumen kali dua bahasa:
+
+| Dokumen | Indonesia | Inggris |
+|---|---|---|
+| Kebijakan Privasi | `/privasi` | `/en/privacy` |
+| Ketentuan Layanan | `/ketentuan` | `/en/terms` |
+
+Isinya di `src/content/legal/`, kerangkanya di `src/components/legal/`.
+Tautannya sudah terpasang di footer keempat halaman dan di beranda.
+
+**Yang tidak boleh diubah tanpa berpikir dua kali:**
+
+1. **Alamat `/privasi`.** Inilah URL yang didaftarkan ke Google Cloud Console
+   (layar persetujuan OAuth) dan ke Play Console. Pengajuan verifikasi menunjuk
+   alamat persis; memindahkannya membatalkan pemeriksaan yang sedang berjalan.
+2. **Bagian "Kepatuhan terhadap Kebijakan Data Pengguna Layanan Google API"**
+   di `privacy-id.ts` / `privacy-en.ts`. Verifikasi untuk scope sensitif
+   (`drive.appdata`, `calendar.events`) hampir selalu ditolak kalau pernyataan
+   kepatuhan beserta persyaratan **Limited Use** dan tautan ke halaman kebijakan
+   Google tidak tercantum eksplisit.
+3. **Nama aplikasi ditulis persis `Morvyn`**, sama dengan yang terdaftar di layar
+   persetujuan OAuth.
+
+Keduanya dirender penuh saat build — tidak ada bagian yang menunggu JavaScript.
+Itu syarat, bukan kebetulan: pemeriksa Google membuka alamatnya sendiri, dan
+halaman yang isinya baru muncul setelah skrip jalan berisiko dianggap kosong.
+Periksa ulang setiap kali halaman ini disentuh:
+
+```bash
+npm run build && grep -c "Limited Use" out/privasi/index.html out/en/privacy/index.html
+```
+
+**Tanggal berlaku** saat ini **14 Agustus 2026**. Kalau isinya berubah, perbarui
+`effectiveDate` di keempat berkas dokumen DAN `legalEffectiveIso` di
+`src/content/legal/index.ts` — yang pertama untuk pembaca, yang kedua untuk
+atribut `<time datetime>`.
+
+Dokumen ini disusun agar jujur terhadap perilaku aplikasi, tetapi **bukan nasihat
+hukum**. Kalau Morvyn nanti diedarkan luas, tinjauan dari orang yang paham hukum
+tetap sepadan.
 
 ### 5. Angka di bagian statistik — periksa dulu
 

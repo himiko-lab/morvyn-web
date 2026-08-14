@@ -20,6 +20,7 @@ import {
   type Dictionary,
   type Locale,
 } from "@/content";
+import { legalPath } from "@/content/legal";
 
 /** Ikon untuk tiap akun di `socialLinks`, dikunci lewat `key`-nya. */
 const socialIcons = {
@@ -49,8 +50,23 @@ const footerListClass = "mt-5 space-y-1 sm:space-y-3";
 const footerLinkClass =
   "block py-2.5 sm:py-0 text-[color:var(--foreground)]/55 transition-colors hover:text-[color:var(--brand-blue)]";
 
-export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
+interface FooterProps {
+  dict: Dictionary;
+  locale: Locale;
+  /**
+   * Awalan tautan jangkar untuk halaman selain beranda — sama persis
+   * alasannya seperti di `Header`. Daftar "Produk" di bawah seluruhnya
+   * berjangkar ke bagian beranda, jadi tanpa ini ketujuh tautannya mati
+   * begitu footer ini dipakai di halaman hukum.
+   */
+  anchorBase?: string;
+  /** Tujuan tautan ganti bahasa. Bawaannya beranda bahasa satunya. */
+  altHref?: string;
+}
+
+export function Footer({ dict, locale, anchorBase = "", altHref }: FooterProps) {
   const other = altLocale(locale);
+  const switchHref = altHref ?? localeHref(other);
 
   return (
     <footer className="border-t border-[color:var(--border)] bg-[color:var(--surface)]">
@@ -97,7 +113,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           <ul className={footerListClass}>
             {featureOrder.map((key) => (
               <li key={key}>
-                <a href={`#fitur-${key}`} className={footerLinkClass}>
+                <a href={`${anchorBase}#fitur-${key}`} className={footerLinkClass}>
                   {dict.features[key].name}
                 </a>
               </li>
@@ -112,7 +128,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           <ul className={footerListClass}>
             <li>
               <Link
-                href={localeHref(other)}
+                href={switchHref}
                 className={footerLinkClass}
               >
                 {dict.meta.localeName === "Indonesia" ? "English" : "Bahasa Indonesia"}
@@ -143,8 +159,20 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
                 {site.publisher}
               </a>
             </li>
-            {/* Halaman privasi dan ketentuan belum dibuat — lihat README.
-                Sengaja tidak dipasang sebagai tautan mati. */}
+            {/* Tautan wajib bagi Google Play, dan tempat pertama yang dibuka
+                pemeriksa verifikasi OAuth setelah beranda. Alamatnya diambil
+                dari `legalPath` supaya footer tidak bisa menunjuk alamat yang
+                berbeda dengan yang dipakai halamannya sendiri. */}
+            <li>
+              <Link href={legalPath.privacy[locale]} className={footerLinkClass}>
+                {dict.footer.privacy}
+              </Link>
+            </li>
+            <li>
+              <Link href={legalPath.terms[locale]} className={footerLinkClass}>
+                {dict.footer.terms}
+              </Link>
+            </li>
             {site.contactEmail && (
               <li>
                 <a

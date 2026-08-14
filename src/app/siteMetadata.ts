@@ -6,6 +6,7 @@ import {
   site,
   type Locale,
 } from "@/content";
+import { getLegalDocument, legalPath, type LegalKind } from "@/content/legal";
 
 /**
  * Metadata <head> untuk satu bahasa.
@@ -87,6 +88,76 @@ export function buildMetadata(locale: Locale): Metadata {
     ...(site.googleSiteVerification
       ? { verification: { google: site.googleSiteVerification } }
       : {}),
+  };
+}
+
+/**
+ * Metadata <head> untuk satu halaman hukum.
+ *
+ * Bukan `buildMetadata` dengan beberapa penimpaan: canonical, hreflang, dan
+ * judulnya semuanya berbeda, dan yang tersisa sama cuma identitas penerbit.
+ * Menyatukan keduanya lewat parameter opsional justru membuat keduanya sulit
+ * dibaca sekaligus mudah salah.
+ *
+ * Yang paling penting di sini `alternates.canonical`. Empat halaman hukum
+ * isinya berpasangan dua-dua, dan tanpa canonical serta hreflang yang benar,
+ * `/privasi` dan `/en/privacy` gampang dinilai Google sebagai konten kembar.
+ */
+export function buildLegalMetadata(kind: LegalKind, locale: Locale): Metadata {
+  const doc = getLegalDocument(kind, locale);
+  const url = `${site.url}${legalPath[kind][locale]}`;
+  const image = ogImagePath(locale);
+
+  return {
+    metadataBase: new URL(site.url),
+    // Judul beranda ditulis untuk hasil pencarian; yang ini tidak perlu.
+    // Orang mencari halaman ini dengan menyebut namanya beserta nama
+    // aplikasinya, dan itu persis yang tertulis di sini.
+    title: { absolute: `${doc.title} — ${site.name}` },
+    description: doc.description,
+    applicationName: site.name,
+    authors: [{ name: site.publisher, url: site.publisherUrl }],
+    creator: site.publisher,
+    publisher: site.publisher,
+
+    alternates: {
+      canonical: url,
+      languages: {
+        "id-ID": `${site.url}${legalPath[kind].id}`,
+        "en-US": `${site.url}${legalPath[kind].en}`,
+        "x-default": `${site.url}${legalPath[kind].id}`,
+      },
+    },
+
+    // Halaman ini memang dimaksudkan untuk ditemukan — Google Play dan layar
+    // persetujuan OAuth sama-sama menautkannya.
+    robots: { index: true, follow: true },
+
+    openGraph: {
+      type: "article",
+      locale: locale === "id" ? "id_ID" : "en_US",
+      alternateLocale: locale === "id" ? "en_US" : "id_ID",
+      url,
+      siteName: site.name,
+      title: `${doc.title} — ${site.name}`,
+      description: doc.description,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: getDictionary(locale).meta.ogImageAlt,
+          type: "image/png",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${doc.title} — ${site.name}`,
+      description: doc.description,
+      images: [{ url: image, alt: getDictionary(locale).meta.ogImageAlt }],
+    },
   };
 }
 
