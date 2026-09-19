@@ -1,10 +1,10 @@
 import type { LegalDocument } from "./types";
 
 /**
- * Kebijakan Privasi — Bahasa Indonesia.
+ * Kebijakan Privasi, Bahasa Indonesia.
  *
  * Disusun dari perilaku aplikasi yang sebenarnya, bukan dari template. Kalau
- * suatu fitur berubah, YANG DIUBAH DULU adalah berkas ini — kebijakan yang
+ * suatu fitur berubah, YANG DIUBAH DULU adalah berkas ini: kebijakan yang
  * menjanjikan sesuatu yang tidak lagi benar lebih merugikan daripada tidak
  * ada kebijakan sama sekali, dan itu juga yang paling cepat menggagalkan
  * verifikasi OAuth.
@@ -15,7 +15,7 @@ import type { LegalDocument } from "./types";
  *    (`drive.appdata`, `calendar.events`) hampir selalu ditolak kalau
  *    pernyataan kepatuhan dan Limited Use tidak tercantum eksplisit beserta
  *    tautan ke halaman kebijakan Google.
- * 2. Nama aplikasi yang ditulis persis "Morvyn" — harus sama dengan yang
+ * 2. Nama aplikasi yang ditulis persis "Morvyn", harus sama dengan yang
  *    terdaftar di layar persetujuan OAuth.
  *
  * Versi Inggrisnya di `privacy-en.ts` harus punya `id` bagian yang sama persis.
@@ -24,7 +24,7 @@ export const privacyId: LegalDocument = {
   title: "Kebijakan Privasi",
   description:
     "Cara Morvyn menangani data Anda: tetap di perangkat kecuali Anda menyalakan pencadangan. Tanpa server, tanpa pelacakan, sinkronisasi kalender opsional.",
-  lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan — sama pentingnya — apa yang tidak dilakukannya.",
+  lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan, sama pentingnya, apa yang tidak dilakukannya.",
   effectiveLabel: "Berlaku sejak",
   effectiveDate: "20 September 2026",
 
@@ -33,7 +33,7 @@ export const privacyId: LegalDocument = {
     "**Morvyn tidak punya server.** Himiko Lab tidak memiliki basis data pengguna dan tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun.",
     "Seluruh data Anda disimpan **di dalam perangkat Anda sendiri**, dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
     "**Tidak ada analitik, tidak ada iklan, tidak ada SDK pelacak.** Tidak ada data yang dijual atau dibagikan.",
-    "Masuk dengan Google, pencadangan ke Google Drive, dan sinkronisasi Google Calendar semuanya **opsional** — Morvyn tetap utuh tanpa satu pun di antaranya.",
+    "Masuk dengan Google, pencadangan ke Google Drive, dan sinkronisasi Google Calendar semuanya **opsional**: Morvyn tetap utuh tanpa satu pun di antaranya.",
   ],
 
   tocHeading: "Isi halaman ini",
@@ -157,7 +157,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Data kalender **tidak pernah dikirim ke pihak mana pun selain Google**, dan tidak pernah melewati server Himiko Lab — sekali lagi, karena server itu tidak ada.",
+          text: "Data kalender **tidak pernah dikirim ke pihak mana pun selain Google**, dan tidak pernah melewati server Himiko Lab, sekali lagi karena server itu tidak ada.",
         },
         {
           kind: "p",
@@ -204,7 +204,7 @@ export const privacyId: LegalDocument = {
             "Data itu hanya dipakai untuk menyediakan fitur yang terlihat langsung oleh Anda, yaitu pencadangan dan sinkronisasi kalender yang Anda nyalakan sendiri.",
             "Data itu tidak dipindahkan ke pihak mana pun. Tidak ada perantara yang dilewati, karena Morvyn tidak punya server.",
             "Data itu tidak dipakai untuk iklan, dan tidak dipakai untuk membangun profil apa pun.",
-            "Tidak ada manusia yang membacanya. Himiko Lab tidak punya jalan teknis ke sana: berkas cadangan berada di folder tersembunyi milik Anda di Drive, dan data kalender tidak pernah keluar dari perangkat Anda selain menuju kalender Google Anda sendiri, atau ke cadangan milik Anda sendiri, bila Anda menyalakannya.",
+            "Tidak ada manusia yang membacanya. Himiko Lab tidak punya jalan teknis ke sana: berkas cadangan berada di folder tersembunyi milik Anda di Drive, dan data kalender tidak pernah keluar dari perangkat Anda selain menuju kalender Google Anda sendiri atau cadangan milik Anda sendiri, bila Anda menyalakannya.",
           ],
         },
       ],
@@ -240,7 +240,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Masa simpan.** Acara yang ditarik dari Google Calendar tetap ada di perangkat Anda sampai Anda menghapusnya atau memutus sambungan Google Calendar dari Pengaturan Morvyn, yang menghapusnya dari Morvyn. Mematikan sinkronisasi hanya menjedanya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya atau memutus sambungan Morvyn. Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
+          text: "**Masa simpan.** Acara yang ditarik dari Google Calendar tetap ada di perangkat Anda sampai Anda menghapusnya atau memutus sambungan Google Calendar dari Pengaturan Morvyn, yang menghapusnya dari Morvyn. Mematikan sinkronisasi hanya menjedanya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya. Memutus sambungan Morvyn tidak menghapusnya; lihat \"Cara menghapus data Anda\". Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
         },
       ],
     },
@@ -256,8 +256,8 @@ export const privacyId: LegalDocument = {
         {
           kind: "list",
           items: [
-            "`api.open-meteo.com` — [Open-Meteo](https://open-meteo.com/)",
-            "`api.openweathermap.org` — [OpenWeather](https://openweathermap.org/)",
+            "`api.open-meteo.com`: [Open-Meteo](https://open-meteo.com/)",
+            "`api.openweathermap.org`: [OpenWeather](https://openweathermap.org/)",
           ],
         },
         {
@@ -273,7 +273,7 @@ export const privacyId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Fitur berita mengambil umpan RSS **langsung dari situs penerbitnya**, tanpa perantara. Artinya penerbit tersebut dapat melihat permintaan yang datang dari perangkat Anda — alamat IP dan informasi permintaan biasa — sebagaimana bila Anda membuka situs mereka lewat peramban.",
+          text: "Fitur berita mengambil umpan RSS **langsung dari situs penerbitnya**, tanpa perantara. Artinya penerbit tersebut dapat melihat permintaan yang datang dari perangkat Anda (alamat IP dan informasi permintaan biasa), sebagaimana bila Anda membuka situs mereka lewat peramban.",
         },
         {
           kind: "p",
@@ -288,7 +288,7 @@ export const privacyId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Fitur keuangan mengambil nilai tukar dari `open.er-api.com`. Tidak ada data Anda yang dikirim ke sana — hanya permintaan nilai tukar.",
+          text: "Fitur keuangan mengambil nilai tukar dari `open.er-api.com`. Tidak ada data Anda yang dikirim ke sana, hanya permintaan nilai tukar.",
         },
       ],
     },
@@ -343,7 +343,7 @@ export const privacyId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Morvyn tidak ditujukan untuk anak di bawah 13 tahun. Himiko Lab tidak mengumpulkan data dari mereka dengan sengaja — dan tidak mengumpulkan data dari siapa pun, karena tidak ada server yang menerimanya.",
+          text: "Morvyn tidak ditujukan untuk anak di bawah 13 tahun. Himiko Lab tidak mengumpulkan data dari mereka dengan sengaja, dan tidak mengumpulkan data dari siapa pun, karena tidak ada server yang menerimanya.",
         },
         {
           kind: "p",

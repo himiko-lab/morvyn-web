@@ -1,11 +1,11 @@
 import type { LegalDocument } from "./types";
 
 /**
- * Privacy Policy — English.
+ * Privacy Policy, English.
  *
  * Terjemahan dari `privacy-id.ts`, dan harus tetap sepadan isinya. Kalau satu
  * bahasa diperbarui sendirian, dua halaman ini menjanjikan hal yang berbeda
- * tentang aplikasi yang sama — dan yang berbahasa Inggris sering justru itu
+ * tentang aplikasi yang sama, dan yang berbahasa Inggris sering justru itu
  * yang dibaca pemeriksa.
  *
  * Urutan dan `id` tiap bagian sengaja dibuat sama persis dengan versi
@@ -15,7 +15,7 @@ export const privacyEn: LegalDocument = {
   title: "Privacy Policy",
   description:
     "How Morvyn handles your data: it stays on your device unless you turn on backup. No server, no tracking, and Google Calendar sync is optional.",
-  lead: "Morvyn is an Android app made by Himiko Lab. This page explains what data the app handles, where it goes, and — just as importantly — what it does not do.",
+  lead: "Morvyn is an Android app made by Himiko Lab. This page explains what data the app handles, where it goes, and, just as importantly, what it does not do.",
   effectiveLabel: "Effective",
   effectiveDate: "20 September 2026",
 
@@ -24,7 +24,7 @@ export const privacyEn: LegalDocument = {
     "**Morvyn has no server.** Himiko Lab holds no user database and cannot see anyone's notes, schedule, finances, or habits.",
     "All of your data is stored **on your own device**, and in your own Google account only if you turn on backup.",
     "**No analytics, no ads, no tracking SDKs.** Nothing is sold or shared.",
-    "Google sign-in, Google Drive backup, and Google Calendar sync are all **optional** — Morvyn works fully without any of them.",
+    "Google sign-in, Google Drive backup, and Google Calendar sync are all **optional**: Morvyn works fully without any of them.",
   ],
 
   tocHeading: "On this page",
@@ -148,7 +148,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Calendar data is **never sent to anyone other than Google**, and never passes through a Himiko Lab server — again, because no such server exists.",
+          text: "Calendar data is **never sent to anyone other than Google**, and never passes through a Himiko Lab server, again because no such server exists.",
         },
         {
           kind: "p",
@@ -192,10 +192,10 @@ export const privacyEn: LegalDocument = {
         {
           kind: "list",
           items: [
-            "It is used only to provide user-facing features — the backup and calendar sync that you switch on yourself.",
+            "It is used only to provide user-facing features: the backup and calendar sync that you switch on yourself.",
             "It is not transferred to anyone. There is no intermediary to pass through, because Morvyn has no server.",
             "It is not used for advertising, and not used to build any kind of profile.",
-            "No human reads it. Himiko Lab has no technical route to it: backup files sit in your own hidden folder on Drive, and calendar data never leaves your device except to reach your own Google calendar, or to your own backups, if you turn them on.",
+            "No human reads it. Himiko Lab has no technical route to it: backup files sit in your own hidden folder on Drive, and calendar data never leaves your device except to reach your own Google calendar or your own backups, if you turn them on.",
           ],
         },
       ],
@@ -231,7 +231,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Retention.** Events pulled from Google Calendar stay on your device until you delete them or disconnect Google Calendar in Morvyn's Settings, which removes them from Morvyn. Turning sync off only pauses it. Backup files stay in your Drive until you delete them or disconnect Morvyn. Because Himiko Lab has no server, there is no copy with us to retain or delete.",
+          text: "**Retention.** Events pulled from Google Calendar stay on your device until you delete them or disconnect Google Calendar in Morvyn's Settings, which removes them from Morvyn. Turning sync off only pauses it. Backup files stay in your Drive until you delete them. Disconnecting Morvyn does not delete them; see \"How to delete your data\". Because Himiko Lab has no server, there is no copy with us to retain or delete.",
         },
       ],
     },
@@ -247,8 +247,8 @@ export const privacyEn: LegalDocument = {
         {
           kind: "list",
           items: [
-            "`api.open-meteo.com` — [Open-Meteo](https://open-meteo.com/)",
-            "`api.openweathermap.org` — [OpenWeather](https://openweathermap.org/)",
+            "`api.open-meteo.com`: [Open-Meteo](https://open-meteo.com/)",
+            "`api.openweathermap.org`: [OpenWeather](https://openweathermap.org/)",
           ],
         },
         {
@@ -264,7 +264,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "The news feature fetches RSS feeds **directly from each publisher's own site**, with nothing in between. That means those publishers can see the request coming from your device — your IP address and ordinary request information — exactly as if you had opened their site in a browser.",
+          text: "The news feature fetches RSS feeds **directly from each publisher's own site**, with nothing in between. That means those publishers can see the request coming from your device (your IP address and ordinary request information), exactly as if you had opened their site in a browser.",
         },
         {
           kind: "p",
@@ -279,7 +279,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "The finance feature fetches exchange rates from `open.er-api.com`. None of your data is sent there — only a request for rates.",
+          text: "The finance feature fetches exchange rates from `open.er-api.com`. None of your data is sent there, only a request for rates.",
         },
       ],
     },
@@ -334,7 +334,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Morvyn is not directed at children under 13. Himiko Lab does not knowingly collect data from them — and collects data from no one at all, because there is no server to receive it.",
+          text: "Morvyn is not directed at children under 13. Himiko Lab does not knowingly collect data from them, and collects data from no one at all, because there is no server to receive it.",
         },
         {
           kind: "p",
