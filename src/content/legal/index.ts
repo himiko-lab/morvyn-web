@@ -46,10 +46,14 @@ export function otherLegalKind(kind: LegalKind): LegalKind {
  * `<time datetime>`. Bentuk yang dibaca manusia ada di tiap dokumen, karena
  * penulisannya berbeda antarbahasa.
  *
- * Diperbarui bersama `effectiveDate` di keempat berkas dokumen setiap kali
- * isinya berubah.
+ * Dipisah per dokumen karena keduanya bisa diperbarui pada tanggal berbeda.
+ * Diperbarui bersama `effectiveDate` di kedua berkas bahasa dokumen yang
+ * bersangkutan setiap kali isinya berubah.
  */
-export const legalEffectiveIso = "2026-08-14";
+export const legalEffectiveIso: Record<LegalKind, string> = {
+  privacy: "2026-09-20",
+  terms: "2026-08-14",
+};
 
 /**
  * Teks kerangka halaman — yang di luar isi dokumen itu sendiri.

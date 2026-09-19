@@ -26,12 +26,12 @@ export const privacyId: LegalDocument = {
     "Bagaimana Morvyn menangani data Anda: seluruhnya di perangkat, tanpa server, tanpa pelacakan, dengan pencadangan dan sinkronisasi Google yang opsional.",
   lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan — sama pentingnya — apa yang tidak dilakukannya.",
   effectiveLabel: "Berlaku sejak",
-  effectiveDate: "14 Agustus 2026",
+  effectiveDate: "20 September 2026",
 
   summaryHeading: "Ringkasnya",
   summary: [
     "**Morvyn tidak punya server.** Himiko Lab tidak memiliki basis data pengguna dan tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun.",
-    "Seluruh data Anda disimpan **di dalam perangkat Anda sendiri**.",
+    "Seluruh data Anda disimpan **di dalam perangkat Anda sendiri**, dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
     "**Tidak ada analitik, tidak ada iklan, tidak ada SDK pelacak.** Tidak ada data yang dijual atau dibagikan.",
     "Masuk dengan Google, pencadangan ke Google Drive, dan sinkronisasi Google Calendar semuanya **opsional** — Morvyn tetap utuh tanpa satu pun di antaranya.",
   ],
@@ -71,7 +71,7 @@ export const privacyId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "**Morvyn tidak punya server sendiri.** Himiko Lab tidak memiliki basis data pengguna dan tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun. Seluruh data pengguna disimpan di dalam perangkat memakai basis data lokal (Room/SQLite).",
+          text: "**Morvyn tidak punya server sendiri.** Himiko Lab tidak memiliki basis data pengguna dan tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun. Seluruh data pengguna disimpan di dalam perangkat memakai basis data lokal (Room/SQLite), dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
         },
         {
           kind: "p",
@@ -134,6 +134,10 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
+          text: "Cadangan juga memuat berkas PDF di Catatan Anda, yang disimpan di folder data aplikasi yang sama.",
+        },
+        {
+          kind: "p",
           text: "Folder itu tersembunyi dari aplikasi lain, dan **Himiko Lab tidak punya akses ke sana**. Anda dapat menghapus isinya sendiri kapan saja lewat pengaturan Google Drive.",
         },
       ],
@@ -149,7 +153,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Bila Anda menyalakannya, Morvyn **membaca dan menulis acara** pada satu kalender yang Anda pilih sendiri. Acara yang ditarik dari Google Calendar disimpan **hanya di perangkat Anda**; acara yang Anda buat atau ubah di Morvyn dikirim ke kalender Google Anda.",
+          text: "Bila Anda menyalakannya, Morvyn **membaca dan menulis acara** pada satu kalender yang Anda pilih sendiri. Acara yang ditarik dari Google Calendar disimpan **di perangkat Anda** (dan di cadangan milik Anda sendiri, bila Anda menyalakan pencadangan); acara yang Anda buat atau ubah di Morvyn dikirim ke kalender Google Anda.",
         },
         {
           kind: "p",
@@ -200,8 +204,43 @@ export const privacyId: LegalDocument = {
             "Data itu hanya dipakai untuk menyediakan fitur yang terlihat langsung oleh Anda, yaitu pencadangan dan sinkronisasi kalender yang Anda nyalakan sendiri.",
             "Data itu tidak dipindahkan ke pihak mana pun. Tidak ada perantara yang dilewati, karena Morvyn tidak punya server.",
             "Data itu tidak dipakai untuk iklan, dan tidak dipakai untuk membangun profil apa pun.",
-            "Tidak ada manusia yang membacanya. Himiko Lab tidak punya jalan teknis ke sana: berkas cadangan berada di folder tersembunyi milik Anda di Drive, dan data kalender tidak pernah keluar dari perangkat Anda selain menuju kalender Google Anda sendiri.",
+            "Tidak ada manusia yang membacanya. Himiko Lab tidak punya jalan teknis ke sana: berkas cadangan berada di folder tersembunyi milik Anda di Drive, dan data kalender tidak pernah keluar dari perangkat Anda selain menuju kalender Google Anda sendiri, atau ke cadangan milik Anda sendiri, bila Anda menyalakannya.",
           ],
+        },
+      ],
+    },
+
+    {
+      id: "perlindungan",
+      title: "Cara data Anda dilindungi",
+      blocks: [
+        {
+          kind: "p",
+          text: "**Enkripsi saat dikirim.** Seluruh komunikasi antara Morvyn dan layanan Google (Google Sign-In, Google Drive, Google Calendar, Firebase) memakai HTTPS dengan enkripsi TLS.",
+        },
+        {
+          kind: "p",
+          text: "**Penyimpanan di perangkat.** Data Anda berada di penyimpanan privat aplikasi Morvyn, yang dijaga sandbox Android agar tidak bisa diakses aplikasi lain. Pada perangkat yang memakai kunci layar, Android juga mengenkripsi penyimpanan ini.",
+        },
+        {
+          kind: "p",
+          text: "**Token akses Google.** Morvyn tidak menyimpan kata sandi Google Anda maupun token akses jangka panjang. Token berumur pendek diminta dari Google Play services hanya saat pencadangan atau sinkronisasi kalender berjalan, dan hanya dipakai untuk permintaan itu.",
+        },
+        {
+          kind: "p",
+          text: "**Pencadangan Google Drive.** Cadangan hanya ditulis ke folder data aplikasi tersembunyi di Drive Anda (scope `drive.appdata`). Morvyn tidak dapat melihat atau mengubah berkas lain mana pun di Drive Anda. Google mengenkripsi berkas-berkas itu saat tersimpan.",
+        },
+        {
+          kind: "p",
+          text: "**Cadangan sistem Android.** Bila cadangan Android menyala, database lokal dan pengaturan Morvyn dapat ikut masuk ke cadangan perangkat di Akun Google Anda. Morvyn hanya mengizinkan cadangan ini bila perangkat memakai kunci layar, agar Android dapat mengenkripsinya secara end-to-end dengan kredensial kunci layar Anda. Sesi masuk Anda tidak pernah ikut dicadangkan.",
+        },
+        {
+          kind: "p",
+          text: "**Hak akses seminimal mungkin.** Morvyn hanya meminta dua scope Google, `drive.appdata` dan `calendar.events`, dan hanya setelah Anda menyalakan fitur yang bersangkutan. Akses kalender dibatasi pada satu kalender yang Anda pilih.",
+        },
+        {
+          kind: "p",
+          text: "**Masa simpan.** Data Google Calendar disimpan di perangkat Anda hanya selama sinkronisasi menyala atau sampai Anda menghapusnya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya atau memutus sambungan Morvyn. Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
         },
       ],
     },

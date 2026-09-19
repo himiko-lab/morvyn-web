@@ -17,12 +17,12 @@ export const privacyEn: LegalDocument = {
     "How Morvyn handles your data: everything stays on your device, no server, no tracking, with Google backup and calendar sync entirely optional.",
   lead: "Morvyn is an Android app made by Himiko Lab. This page explains what data the app handles, where it goes, and — just as importantly — what it does not do.",
   effectiveLabel: "Effective",
-  effectiveDate: "14 August 2026",
+  effectiveDate: "20 September 2026",
 
   summaryHeading: "In short",
   summary: [
     "**Morvyn has no server.** Himiko Lab holds no user database and cannot see anyone's notes, schedule, finances, or habits.",
-    "All of your data is stored **on your own device**.",
+    "All of your data is stored **on your own device**, and in your own Google account only if you turn on backup.",
     "**No analytics, no ads, no tracking SDKs.** Nothing is sold or shared.",
     "Google sign-in, Google Drive backup, and Google Calendar sync are all **optional** — Morvyn works fully without any of them.",
   ],
@@ -62,7 +62,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "**Morvyn has no server of its own.** Himiko Lab holds no user database and cannot see anyone's notes, schedule, finances, or habits. All user data is stored on the device itself, in a local database (Room/SQLite).",
+          text: "**Morvyn has no server of its own.** Himiko Lab holds no user database and cannot see anyone's notes, schedule, finances, or habits. All user data is stored on the device itself, in a local database (Room/SQLite), and in your own Google account only if you turn on backup.",
         },
         {
           kind: "p",
@@ -125,6 +125,10 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
+          text: "Backups also include the PDF files in your Notes, which are kept in the same app data folder.",
+        },
+        {
+          kind: "p",
           text: "That folder is hidden from other apps, and **Himiko Lab has no access to it**. You can delete its contents yourself at any time through your Google Drive settings.",
         },
       ],
@@ -140,7 +144,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "When you turn it on, Morvyn **reads and writes events** on a single calendar that you choose yourself. Events pulled from Google Calendar are stored **only on your device**; events you create or change in Morvyn are sent to your Google calendar.",
+          text: "When you turn it on, Morvyn **reads and writes events** on a single calendar that you choose yourself. Events pulled from Google Calendar are stored **on your device** (and in your own backups, if you turn backup on); events you create or change in Morvyn are sent to your Google calendar.",
         },
         {
           kind: "p",
@@ -191,8 +195,43 @@ export const privacyEn: LegalDocument = {
             "It is used only to provide user-facing features — the backup and calendar sync that you switch on yourself.",
             "It is not transferred to anyone. There is no intermediary to pass through, because Morvyn has no server.",
             "It is not used for advertising, and not used to build any kind of profile.",
-            "No human reads it. Himiko Lab has no technical route to it: backup files sit in your own hidden folder on Drive, and calendar data never leaves your device except to reach your own Google calendar.",
+            "No human reads it. Himiko Lab has no technical route to it: backup files sit in your own hidden folder on Drive, and calendar data never leaves your device except to reach your own Google calendar, or to your own backups, if you turn them on.",
           ],
+        },
+      ],
+    },
+
+    {
+      id: "perlindungan",
+      title: "How your data is protected",
+      blocks: [
+        {
+          kind: "p",
+          text: "**Encryption in transit.** All communication between Morvyn and Google services (Google Sign-In, Google Drive, Google Calendar, Firebase) uses HTTPS with TLS encryption.",
+        },
+        {
+          kind: "p",
+          text: "**Storage on your device.** Your data lives in Morvyn's private app storage, which the Android sandbox keeps inaccessible to other apps. On devices with a screen lock, Android also encrypts this storage.",
+        },
+        {
+          kind: "p",
+          text: "**Google access tokens.** Morvyn does not store your Google password or long-lived access tokens. Short-lived tokens are requested from Google Play services only when a backup or calendar sync runs, and are used only for that request.",
+        },
+        {
+          kind: "p",
+          text: "**Google Drive backup.** Backups are written only to your Drive's hidden app data folder (`drive.appdata` scope). Morvyn cannot see or modify any other file in your Drive. Google encrypts the files at rest.",
+        },
+        {
+          kind: "p",
+          text: "**Android system backup.** If Android backup is on, Morvyn's local database and settings may be included in your device backup to your Google Account. Morvyn only allows this backup when the device has a screen lock, so that Android can encrypt it end-to-end with your lock screen credential. Your sign-in session is never included.",
+        },
+        {
+          kind: "p",
+          text: "**Least privilege.** Morvyn requests only two Google scopes, `drive.appdata` and `calendar.events`, and only after you turn on the matching feature. Calendar access is limited to the one calendar you choose.",
+        },
+        {
+          kind: "p",
+          text: "**Retention.** Google Calendar data is kept on your device only while sync is on or until you delete it. Backup files stay in your Drive until you delete them or disconnect Morvyn. Because Himiko Lab has no server, there is no copy with us to retain or delete.",
         },
       ],
     },

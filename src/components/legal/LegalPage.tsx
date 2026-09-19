@@ -102,7 +102,7 @@ export function LegalPage({ kind, locale }: { kind: LegalKind; locale: Locale })
             {/* dateTime dalam bentuk ISO supaya tanggalnya terbaca mesin,
                 sementara yang tampil tetap ditulis menurut kebiasaan tiap
                 bahasa. */}
-            <time dateTime={legalEffectiveIso} className="font-semibold text-[color:var(--foreground)]/70">
+            <time dateTime={legalEffectiveIso[kind]} className="font-semibold text-[color:var(--foreground)]/70">
               {doc.effectiveDate}
             </time>
           </p>
