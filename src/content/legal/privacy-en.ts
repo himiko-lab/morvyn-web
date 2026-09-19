@@ -14,7 +14,7 @@ import type { LegalDocument } from "./types";
 export const privacyEn: LegalDocument = {
   title: "Privacy Policy",
   description:
-    "How Morvyn handles your data: everything stays on your device, no server, no tracking, with Google backup and calendar sync entirely optional.",
+    "How Morvyn handles your data: it stays on your device unless you turn on backup. No server, no tracking, and Google Calendar sync is optional.",
   lead: "Morvyn is an Android app made by Himiko Lab. This page explains what data the app handles, where it goes, and — just as importantly — what it does not do.",
   effectiveLabel: "Effective",
   effectiveDate: "20 September 2026",
@@ -95,7 +95,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "All of it is local. Not one item on that list is sent to Himiko Lab.",
+          text: "All of it is local, apart from your own backups. Not one item on that list is sent to Himiko Lab.",
         },
       ],
     },
@@ -231,7 +231,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Retention.** Google Calendar data is kept on your device only while sync is on or until you delete it. Backup files stay in your Drive until you delete them or disconnect Morvyn. Because Himiko Lab has no server, there is no copy with us to retain or delete.",
+          text: "**Retention.** Events pulled from Google Calendar stay on your device until you delete them or disconnect Google Calendar in Morvyn's Settings, which removes them from Morvyn. Turning sync off only pauses it. Backup files stay in your Drive until you delete them or disconnect Morvyn. Because Himiko Lab has no server, there is no copy with us to retain or delete.",
         },
       ],
     },
@@ -338,7 +338,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "For the same reason there is nothing for us to delete on request: a child's data lives on the device they used, and can be removed by clearing that app's data. The next section explains how.",
+          text: "For the same reason there is nothing for us to delete on request: a child's data lives on the device they used, and in that device's own backups if backup was turned on. It can be removed by clearing that app's data and deleting those backups. The next section explains how.",
         },
       ],
     },
@@ -359,8 +359,12 @@ export const privacyEn: LegalDocument = {
               text: "Disconnect from Morvyn's Settings, then delete the backup files through the connected-apps settings in Google Drive.",
             },
             {
+              term: "Android system backup",
+              text: "Clearing Morvyn's data on the device does not remove a copy that is already in your device backup. Manage or delete that backup through the backup settings on your device or in your Google Account.",
+            },
+            {
               term: "Calendar data",
-              text: "Turn off sync in Morvyn's Settings. Events already in Google Calendar remain yours and can be deleted there.",
+              text: "Turning sync off only pauses it; events already pulled stay in Morvyn. Disconnecting Google Calendar in Morvyn's Settings removes the events that came from Google from Morvyn. Events in Google Calendar itself remain yours and can be deleted there. Copies in your backups are deleted through the two backup items above.",
             },
             {
               term: "Revoke Google access",

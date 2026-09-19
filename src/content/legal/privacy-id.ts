@@ -23,7 +23,7 @@ import type { LegalDocument } from "./types";
 export const privacyId: LegalDocument = {
   title: "Kebijakan Privasi",
   description:
-    "Bagaimana Morvyn menangani data Anda: seluruhnya di perangkat, tanpa server, tanpa pelacakan, dengan pencadangan dan sinkronisasi Google yang opsional.",
+    "Cara Morvyn menangani data Anda: tetap di perangkat kecuali Anda menyalakan pencadangan. Tanpa server, tanpa pelacakan, sinkronisasi kalender opsional.",
   lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan — sama pentingnya — apa yang tidak dilakukannya.",
   effectiveLabel: "Berlaku sejak",
   effectiveDate: "20 September 2026",
@@ -104,7 +104,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Semuanya lokal. Tidak satu pun dari daftar di atas yang dikirim ke Himiko Lab.",
+          text: "Semuanya lokal, selain cadangan milik Anda sendiri. Tidak satu pun dari daftar di atas yang dikirim ke Himiko Lab.",
         },
       ],
     },
@@ -240,7 +240,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Masa simpan.** Data Google Calendar disimpan di perangkat Anda hanya selama sinkronisasi menyala atau sampai Anda menghapusnya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya atau memutus sambungan Morvyn. Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
+          text: "**Masa simpan.** Acara yang ditarik dari Google Calendar tetap ada di perangkat Anda sampai Anda menghapusnya atau memutus sambungan Google Calendar dari Pengaturan Morvyn, yang menghapusnya dari Morvyn. Mematikan sinkronisasi hanya menjedanya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya atau memutus sambungan Morvyn. Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
         },
       ],
     },
@@ -347,7 +347,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Karena itu pula tidak ada yang bisa kami hapus dari sisi kami bila diminta: data anak yang memakai perangkat tertentu berada di perangkat itu sendiri, dan dapat dihapus dengan menghapus data aplikasinya. Caranya ada di bagian berikutnya.",
+          text: "Karena itu pula tidak ada yang bisa kami hapus dari sisi kami bila diminta: data anak yang memakai perangkat tertentu berada di perangkat itu sendiri, dan di cadangan perangkat itu bila pencadangan pernah dinyalakan. Data itu dapat dihapus dengan menghapus data aplikasinya dan menghapus cadangan tersebut. Caranya ada di bagian berikutnya.",
         },
       ],
     },
@@ -368,8 +368,12 @@ export const privacyId: LegalDocument = {
               text: "Putuskan sambungan dari Pengaturan Morvyn, lalu hapus berkas cadangannya lewat pengaturan aplikasi terhubung di Google Drive.",
             },
             {
+              term: "Cadangan sistem Android",
+              text: "Menghapus data Morvyn di perangkat tidak menghapus salinan yang sudah masuk ke cadangan perangkat. Kelola atau hapus cadangan itu lewat pengaturan cadangan di perangkat Anda atau di Akun Google Anda.",
+            },
+            {
               term: "Data kalender",
-              text: "Matikan sinkronisasi dari Pengaturan Morvyn. Acara yang terlanjur ada di Google Calendar tetap milik Anda dan dapat dihapus dari sana.",
+              text: "Mematikan sinkronisasi hanya menjedanya; acara yang sudah ditarik tetap ada di Morvyn. Memutus sambungan Google Calendar dari Pengaturan Morvyn menghapus acara yang berasal dari Google dari Morvyn. Acara di Google Calendar sendiri tetap milik Anda dan dapat dihapus dari sana. Salinan di cadangan dihapus lewat dua butir cadangan di atas.",
             },
             {
               term: "Cabut izin Google",
