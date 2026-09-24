@@ -164,10 +164,19 @@ Periksa ulang setiap kali halaman ini disentuh:
 npm run build && grep -c "Limited Use" out/privasi/index.html out/en/privacy/index.html
 ```
 
-**Tanggal berlaku** saat ini **14 Agustus 2026**. Kalau isinya berubah, perbarui
-`effectiveDate` di keempat berkas dokumen DAN `legalEffectiveIso` di
-`src/content/legal/index.ts`. Yang pertama untuk pembaca, yang kedua untuk
-atribut `<time datetime>`.
+**Tanggal berlaku** dicatat per dokumen, karena keduanya bisa diperbarui pada
+tanggal berbeda. Saat ini:
+
+| Dokumen | Tanggal berlaku |
+| --- | --- |
+| Kebijakan Privasi | 20 September 2026 |
+| Ketentuan Layanan | 14 Agustus 2026 |
+
+Kalau isi sebuah dokumen berubah, perbarui `effectiveDate` di kedua berkas
+bahasanya (misalnya `privacy-id.ts` dan `privacy-en.ts`) DAN entrinya di
+`legalEffectiveIso` di `src/content/legal/index.ts`. Yang pertama untuk pembaca.
+Yang kedua dipakai untuk atribut `<time datetime>` sekaligus `lastmod` di peta
+situs, jadi jangan sampai terlewat.
 
 Dokumen ini disusun agar jujur terhadap perilaku aplikasi, tetapi **bukan nasihat
 hukum**. Kalau Morvyn nanti diedarkan luas, tinjauan dari orang yang paham hukum
