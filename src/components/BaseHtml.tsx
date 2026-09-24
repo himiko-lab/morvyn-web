@@ -33,7 +33,7 @@ const themeScript = `
 /**
  * Kerangka <html> yang dipakai kedua bahasa.
  *
- * Ada dua root layout di situs ini — `(id)/layout.tsx` dan `(en)/layout.tsx` —
+ * Ada dua root layout di situs ini (`(id)/layout.tsx` dan `(en)/layout.tsx`),
  * semata-mata supaya atribut `lang` benar di masing-masing bahasa. Selain nilai
  * `lang` itu, isinya sama, jadi disatukan di sini.
  */

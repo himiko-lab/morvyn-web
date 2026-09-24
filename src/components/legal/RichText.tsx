@@ -14,18 +14,18 @@ import type { ReactNode } from "react";
  * Kenapa tidak menyimpan JSX saja di berkas isinya? Karena aturan pertama
  * README: tidak ada teks yang ditulis di komponen, semuanya lewat `content/`.
  * Menaruh JSX di sana sama saja memindahkan komponen ke folder isi, dan
- * kalimatnya jadi tercerai-berai di antara tag sehingga sulit dibaca ulang —
+ * kalimatnya jadi tercerai-berai di antara tag sehingga sulit dibaca ulang,
  * padahal dokumen hukum justru sering dibaca ulang.
  *
  * Kenapa tidak memakai pustaka Markdown? Karena yang dibutuhkan cuma empat
- * bentuk di atas, dan seluruh isinya ditulis sendiri di repo ini — tidak ada
+ * bentuk di atas, dan seluruh isinya ditulis sendiri di repo ini: tidak ada
  * masukan dari luar yang perlu dibersihkan. Menarik pustaka penuh untuk itu
  * berarti menambah beban unduh pada satu-satunya halaman yang paling wajib
  * ringan dan terbaca tanpa JavaScript.
  *
  * Yang TIDAK didukung: penanda bersarang. `**tebal dengan [tautan](...)`
  * di dalamnya** tidak akan terbaca sebagaimana diharapkan. Kalau suatu saat
- * benar-benar diperlukan, pecah kalimatnya — jangan menambah kerumitan di
+ * benar-benar diperlukan, pecah kalimatnya, jangan menambah kerumitan di
  * sini.
  */
 const INLINE_SOURCE =
@@ -36,7 +36,7 @@ const INLINE_SOURCE =
  *
  * Regex ber-flag `g` menyimpan `lastIndex` di dalam dirinya sendiri, jadi satu
  * objek yang dipakai bergantian oleh banyak pemanggil akan melanjutkan dari
- * posisi pemanggil sebelumnya — dan potongan awal teks berikutnya hilang tanpa
+ * posisi pemanggil sebelumnya, dan potongan awal teks berikutnya hilang tanpa
  * pesan kesalahan apa pun. Menyetel ulang `lastIndex` di awal fungsi memang
  * bisa, tapi itu berarti mengubah nilai di luar komponen, yang justru ditolak
  * aturan `react-hooks/immutability`. Membuatnya baru menghapus persoalannya
@@ -64,7 +64,7 @@ function renderLink(label: string, href: string, key: number): ReactNode {
     );
   }
 
-  // mailto: dibuka oleh aplikasi surel, bukan tab baru — target dan rel tidak
+  // mailto: dibuka oleh aplikasi surel, bukan tab baru; target dan rel tidak
   // berlaku di situ.
   const isMail = href.startsWith("mailto:");
   return (

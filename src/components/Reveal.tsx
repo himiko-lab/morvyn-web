@@ -16,7 +16,7 @@ interface RevealProps {
  *
  * Yang menyembunyikan elemen adalah CSS `.js .reveal`, dan kelas `js` baru
  * dipasang di <html> oleh skrip di BaseHtml. Jadi kalau JavaScript gagal
- * dimuat, kelas itu tidak pernah ada dan seluruh isi halaman tetap terbaca —
+ * dimuat, kelas itu tidak pernah ada dan seluruh isi halaman tetap terbaca,
  * bukan halaman kosong.
  *
  * Kelas `is-visible` ditambahkan langsung ke node lewat classList, bukan lewat

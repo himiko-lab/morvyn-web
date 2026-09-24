@@ -7,7 +7,7 @@ import {
   NotePencil,
   Target,
 } from "@phosphor-icons/react/ssr";
-// Titik masuk /ssr hanya mengekspor komponen ikonnya, bukan tipe `Icon` —
+// Titik masuk /ssr hanya mengekspor komponen ikonnya, bukan tipe `Icon`;
 // tipenya diambil langsung dari lib.
 import type { Icon } from "@phosphor-icons/react/dist/lib/types";
 import type { FeatureKey } from "@/content";
@@ -34,7 +34,7 @@ export function featureColor(hue: number): string {
   return `color-mix(in oklab, var(--brand-violet) ${Math.round(hue * 100)}%, var(--brand-blue))`;
 }
 
-/** Urutan menu di seluruh situs. Catatan sengaja pertama — itu fitur pembeda. */
+/** Urutan menu di seluruh situs. Catatan sengaja pertama: itu fitur pembeda. */
 export const featureOrder: FeatureKey[] = [
   "notes",
   "finance",

@@ -7,7 +7,7 @@ import type { Dictionary } from "@/content";
 /**
  * Bagian pembeda: satu catatan yang bercabang ke tiga menu lain.
  *
- * Peragaannya digambar dengan HTML biasa, bukan gambar — supaya teksnya bisa
+ * Peragaannya digambar dengan HTML biasa, bukan gambar, supaya teksnya bisa
  * ikut diterjemahkan, bisa dipilih, dan terbaca oleh pembaca layar.
  */
 export function Connected({ dict }: { dict: Dictionary }) {

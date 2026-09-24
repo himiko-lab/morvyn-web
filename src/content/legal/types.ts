@@ -3,8 +3,8 @@
  *
  * Dipisahkan dari `Dictionary` di `content/types.ts` dengan sengaja. Dictionary
  * itu salinan teks beranda: puluhan kunci pendek yang dipetakan satu-satu ke
- * elemen tertentu. Dokumen hukum bentuknya lain — prosa berbagian-bagian yang
- * jumlah bagiannya bisa bertambah kapan saja — dan menumpangkannya ke sana
+ * elemen tertentu. Dokumen hukum bentuknya lain (prosa berbagian-bagian yang
+ * jumlah bagiannya bisa bertambah kapan saja), dan menumpangkannya ke sana
  * akan membuat Dictionary membengkak tanpa satu pun kunci baru yang dipakai
  * beranda.
  *
@@ -19,7 +19,7 @@ export type LegalBlock =
   /** Daftar bertitik. */
   | { kind: "list"; items: string[] }
   /**
-   * Daftar istilah dan penjelasannya — dipakai untuk hal-hal yang memang
+   * Daftar istilah dan penjelasannya, dipakai untuk hal-hal yang memang
    * berpasangan, seperti nama izin Android dan alasan dipakainya. Digambar
    * sebagai <dl>, bukan <ul> berisi tanda hubung, supaya pembaca layar
    * membacakan pasangannya sebagai pasangan.
@@ -29,7 +29,7 @@ export type LegalBlock =
 export interface LegalSection {
   /**
    * Dipakai dua kali: sebagai `id` elemen <section> dan sebagai tujuan tautan
-   * daftar isi. Sengaja SAMA di kedua bahasa — dengan begitu `#kalender` pada
+   * daftar isi. Sengaja SAMA di kedua bahasa; dengan begitu `#kalender` pada
    * `/privasi` dan `/en/privacy` menunjuk bagian yang sama, dan tautan yang
    * dibagikan seseorang tidak patah ketika pembacanya berganti bahasa.
    */

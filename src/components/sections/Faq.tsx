@@ -6,7 +6,7 @@ import { faqItems, type Dictionary } from "@/content";
 
 /**
  * Tanya jawab memakai Accordion HeroUI, yang di baliknya adalah DisclosureGroup
- * milik React Aria — jadi navigasi papan ketik dan atribut ARIA-nya sudah benar
+ * milik React Aria, jadi navigasi papan ketik dan atribut ARIA-nya sudah benar
  * tanpa perlu ditambal.
  */
 export function Faq({ dict }: { dict: Dictionary }) {

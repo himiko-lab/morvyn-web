@@ -7,7 +7,7 @@ import { newsSources, type Dictionary } from "@/content";
  * Sama seperti pita di situs MOGLE: berisi DUA daftar yang isinya harus persis
  * sama. Animasinya menggeser jalur tepat 50% dari lebarnya, sehingga grup kedua
  * mengambil alih posisi grup pertama tanpa sambungan terlihat. Kalau daftar
- * portalnya berubah, kedua daftar ikut berubah — karena keduanya dibangun dari
+ * portalnya berubah, kedua daftar ikut berubah; karena keduanya dibangun dari
  * array `newsSources` yang sama, itu terjadi dengan sendirinya.
  *
  * Kalau sistem pengguna meminta pengurangan gerak, animasinya berhenti dan

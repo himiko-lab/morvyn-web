@@ -1,12 +1,12 @@
-# Morvyn — Website Perkenalan Aplikasi
+# Morvyn: Website Perkenalan Aplikasi
 
 Website dua bahasa untuk aplikasi Morvyn. Next.js 16 (App Router) + Tailwind CSS v4
 + HeroUI v3 + ikon Phosphor.
 
-- `/` — Bahasa Indonesia
-- `/en` — English
-- `/privasi` · `/ketentuan` — Kebijakan Privasi & Ketentuan Layanan
-- `/en/privacy` · `/en/terms` — versi Inggrisnya
+- `/`: Bahasa Indonesia
+- `/en`: English
+- `/privasi` · `/ketentuan`: Kebijakan Privasi & Ketentuan Layanan
+- `/en/privacy` · `/en/terms`: versi Inggrisnya
 
 ## Menjalankan
 
@@ -56,7 +56,7 @@ Dua aturan yang memudahkan perawatan:
 
 1. **Tidak ada teks yang ditulis langsung di komponen.** Semuanya lewat `content/`.
 2. **`id.ts` dan `en.ts` memakai tipe `Dictionary` yang sama.** Kalau satu bahasa
-   ketinggalan sebuah kunci, `npm run build` gagal — terjemahan tidak bisa
+   ketinggalan sebuah kunci, `npm run build` gagal, jadi terjemahan tidak bisa
    diam-diam tertinggal. Keempat berkas di `content/legal/` memakai tipe
    `LegalDocument` yang sama, dengan alasan yang persis sama.
 
@@ -64,7 +64,7 @@ Dua aturan yang memudahkan perawatan:
 
 ## Yang masih perlu diisi
 
-### 1. Screenshot aplikasi — **wajib**
+### 1. Screenshot aplikasi (**wajib**)
 
 Seluruh bingkai ponsel saat ini menampilkan kotak placeholder bergaris
 putus-putus. Ada **8 tempat**: satu di hero, tujuh di bagian pembahasan fitur.
@@ -88,7 +88,7 @@ Simpan screenshot di `public/screenshots/` lalu tambahkan prop `src`:
 Rasio yang diharapkan **9:19.5** (mis. 1080×2340, ukuran layar Android umum).
 Gunakan PNG atau WebP. Begitu `src` diisi, placeholder-nya hilang sendiri.
 
-### 2. Google Play — **wajib saat peluncuran**
+### 2. Google Play (**wajib saat peluncuran**)
 
 Aplikasinya belum terbit, dan alamat di `playStoreUrl` masih membalas **404**.
 Karena itu ada sakelar di `src/content/site.ts`:
@@ -112,7 +112,7 @@ Yang berubah otomatis:
 
 **Saat peluncuran:** ganti `playStoreUrl` dengan URL asli dari Play Console,
 setel `playStoreLive: true`, lalu deploy. Tidak ada teks yang perlu ditulis
-ulang — salinan versi terbit sudah tersimpan utuh di `dict.cta`.
+ulang: salinan versi terbit sudah tersimpan utuh di `dict.cta`.
 
 Periksa dulu sebelum menyalakannya:
 
@@ -124,13 +124,13 @@ Harus `200`. Kalau masih `404`, biarkan sakelarnya `false`: halaman yang
 mengajak mengunduh sesuatu yang belum ada merugikan dua kali, pengunjung
 sampai di halaman kosong dan Google melihat halaman promosi bertombol mati.
 
-### 3. Alamat email kontak — sudah diisi
+### 3. Alamat email kontak (sudah diisi)
 
 `site.contactEmail` berisi `hi@himikolab.my.id`. Kalau suatu saat alamat itu
 dicabut, kosongkan saja string-nya: baris "Kontak" di footer ikut hilang alih-alih
 jadi tautan mati, dan `Organization.email` di data terstruktur ikut disesuaikan.
 
-### 4. Halaman Kebijakan Privasi & Ketentuan Layanan — sudah ada
+### 4. Halaman Kebijakan Privasi & Ketentuan Layanan (sudah ada)
 
 Empat halaman, dua dokumen kali dua bahasa:
 
@@ -155,7 +155,7 @@ Tautannya sudah terpasang di footer keempat halaman dan di beranda.
 3. **Nama aplikasi ditulis persis `Morvyn`**, sama dengan yang terdaftar di layar
    persetujuan OAuth.
 
-Keduanya dirender penuh saat build — tidak ada bagian yang menunggu JavaScript.
+Keduanya dirender penuh saat build: tidak ada bagian yang menunggu JavaScript.
 Itu syarat, bukan kebetulan: pemeriksa Google membuka alamatnya sendiri, dan
 halaman yang isinya baru muncul setelah skrip jalan berisiko dianggap kosong.
 Periksa ulang setiap kali halaman ini disentuh:
@@ -166,19 +166,19 @@ npm run build && grep -c "Limited Use" out/privasi/index.html out/en/privacy/ind
 
 **Tanggal berlaku** saat ini **14 Agustus 2026**. Kalau isinya berubah, perbarui
 `effectiveDate` di keempat berkas dokumen DAN `legalEffectiveIso` di
-`src/content/legal/index.ts` — yang pertama untuk pembaca, yang kedua untuk
+`src/content/legal/index.ts`. Yang pertama untuk pembaca, yang kedua untuk
 atribut `<time datetime>`.
 
 Dokumen ini disusun agar jujur terhadap perilaku aplikasi, tetapi **bukan nasihat
 hukum**. Kalau Morvyn nanti diedarkan luas, tinjauan dari orang yang paham hukum
 tetap sepadan.
 
-### 5. Angka di bagian statistik — periksa dulu
+### 5. Angka di bagian statistik (periksa dulu)
 
 Tiga angka di bawah hero (`stats` pada `id.ts`/`en.ts`) sengaja hanya berisi
 fakta yang bisa diperiksa: **7** fitur, **27** sumber berita, **2** bahasa.
 Jumlah unduhan dan rating Play Store TIDAK dicantumkan karena angkanya belum
-ada. Kalau nanti mau ditambahkan, ambil dari Play Console — jangan dikarang.
+ada. Kalau nanti mau ditambahkan, ambil dari Play Console, jangan dikarang.
 
 ### 6. Dua jawaban FAQ yang perlu Anda pastikan
 
@@ -195,7 +195,7 @@ berikut belum terkonfirmasi dan sebaiknya diperiksa sebelum tayang:
 ## SEO
 
 Semua berikut ini dibangun dari `src/content/`, jadi mengubah teksnya sekali
-sudah cukup — metadata, peta situs, dan data terstruktur ikut menyesuaikan.
+sudah cukup: metadata, peta situs, dan data terstruktur ikut menyesuaikan.
 
 | Berkas | Isinya |
 |---|---|
@@ -242,7 +242,7 @@ yang benar-benar baru.
 
 ---
 
-## Deploy — GitHub Pages
+## Deploy: GitHub Pages
 
 Situs live: **<https://morvyn.himikolab.my.id>**
 Repo: <https://github.com/himiko-lab/morvyn-web>
@@ -259,7 +259,7 @@ npm run build && python3 -m http.server 4323 --directory out
 ```
 
 Lalu buka <http://localhost:4323>. Ini menyajikan `out/` sebagai berkas diam,
-tanpa server Next — sama seperti yang dilakukan GitHub Pages.
+tanpa server Next, sama seperti yang dilakukan GitHub Pages.
 
 ### Empat setelan yang membuatnya jalan
 
@@ -270,18 +270,18 @@ Semuanya di `next.config.ts`, dan semuanya wajib:
 | `output: "export"` | Tidak ada folder `out/`; Pages tidak punya apa pun untuk disajikan. |
 | `images: { unoptimized: true }` | Build gagal begitu ada `<Image>`, karena pengoptimal gambar Next butuh server. |
 | `trailingSlash: true` | Menghasilkan `out/en.html`, bukan `out/en/index.html`. URL `/en` jadi bergantung pada tebakan server. |
-| `touch out/.nojekyll` (di workflow) | Pages menjalankan Jekyll, yang membuang semua folder berawalan garis bawah — termasuk `_next/`, isinya seluruh CSS dan JavaScript situs. |
+| `touch out/.nojekyll` (di workflow) | Pages menjalankan Jekyll, yang membuang semua folder berawalan garis bawah, termasuk `_next/`, isinya seluruh CSS dan JavaScript situs. |
 
 ### Kalau alamatnya berubah
 
 Alamat situs tercatat di **dua** tempat yang harus selalu sama:
 
-1. `public/CNAME` — dibaca GitHub Pages untuk menentukan domainnya
-2. `site.url` di `src/content/site.ts` — dipakai untuk canonical URL dan Open Graph
+1. `public/CNAME`: dibaca GitHub Pages untuk menentukan domainnya
+2. `site.url` di `src/content/site.ts`: dipakai untuk canonical URL dan Open Graph
 
 Kalau suatu saat pindah ke project page (`himiko-lab.github.io/morvyn-web`),
-hapus `public/CNAME` dan tambahkan `basePath: "/morvyn-web"` di `next.config.ts`
-— tanpa `basePath`, seluruh CSS dan JavaScript akan 404.
+hapus `public/CNAME` dan tambahkan `basePath: "/morvyn-web"` di `next.config.ts`.
+Tanpa `basePath`, seluruh CSS dan JavaScript akan 404.
 
 ### DNS
 
@@ -296,7 +296,7 @@ sertifikat HTTPS-nya. Dengan proxy menyala, GitHub tidak bisa memverifikasi
 kepemilikan domain dan opsi "Enforce HTTPS" akan tetap terkunci.
 
 **Alamat `himiko-lab.github.io/morvyn-web/` sengaja tidak dipakai dan akan
-tampil berantakan** — tanpa gaya sama sekali. Itu bukan kerusakan: situs ini
+tampil berantakan**, tanpa gaya sama sekali. Itu bukan kerusakan: situs ini
 dibangun tanpa `basePath` karena menargetkan akar subdomain, sehingga seluruh
 aset dicari di `/_next/…` sedangkan di alamat itu letaknya
 `/morvyn-web/_next/…`. Pakai domainnya, bukan URL github.io.
@@ -313,7 +313,7 @@ berlumpur seperti kalau dicampur di ruang sRGB:
 |---|---|---|
 | Biru utama | `#078DFB` | `oklch(64.06% 0.1909 252.22)` |
 | Ungu sekunder | `#4D61F9` | `oklch(56.99% 0.2254 271.43)` |
-| Putih | `#FFFFFF` | — |
+| Putih | `#FFFFFF` | - |
 
 ### Mengganti logo
 
@@ -354,33 +354,33 @@ mode gelap.
   state React, jadi ikonnya sudah benar sejak gambar pertama.
 
 - **Dua root layout** (`(id)` dan `(en)`) ada semata-mata supaya atribut `lang`
-  pada `<html>` benar di masing-masing bahasa — satu root layout bersama tidak
+  pada `<html>` benar di masing-masing bahasa; satu root layout bersama tidak
   bisa melakukannya. Isinya dipusatkan di `BaseHtml.tsx`.
 
 - **Tidak ada pengalihan URL maupun middleware**, jadi situs ini tetap bisa
   diekspor statis. Bahasa Indonesia ada di `/`, Inggris di `/en`.
 
 - **Animasi scroll** memakai `IntersectionObserver` (`Reveal.tsx`). Elemen baru
-  disembunyikan setelah komponennya terpasang, bukan sejak render di server —
+  disembunyikan setelah komponennya terpasang, bukan sejak render di server,
   sehingga konten tetap terbaca kalau JavaScript gagal dimuat.
 
 - **`prefers-reduced-motion` dihormati**: seluruh animasi dimatikan, dan pita
   sumber berita berubah dari pita berjalan menjadi daftar yang bisa digulir
   tangan.
 
-- **Pita sumber berita** berisi dua daftar dengan isi yang persis sama —
+- **Pita sumber berita** berisi dua daftar dengan isi yang persis sama:
   keduanya dibangun dari array `newsSources` yang sama, jadi menambah atau
   menghapus portal cukup di satu tempat. Kecepatannya diatur lewat
   `--marquee-speed` di `globals.css`.
 
 - **Font** Plus Jakarta Sans dimuat lewat `next/font/google`, jadi ikut
-  di-*self-host* saat build — tidak ada permintaan ke server Google saat
+  di-*self-host* saat build, jadi tidak ada permintaan ke server Google saat
   halaman dibuka.
 
   Catatan buat yang mengubah `globals.css`: token font berada di blok `@theme`
   **biasa**, bukan `@theme inline`. Blok `inline` tidak menerbitkan variabelnya
   ke CSS, sehingga `var(--font-sans)` jadi kosong dan seluruh deklarasi
-  `font-family` gugur — situs diam-diam kembali ke font bawaan HeroUI.
+  `font-family` gugur, lalu situs diam-diam kembali ke font bawaan HeroUI.
 
 - **Ikon** memakai [Phosphor Icons](https://phosphoricons.com) lewat paket
   `@phosphor-icons/react`, diimpor dari titik masuk `/ssr` supaya bisa dipakai
@@ -396,7 +396,7 @@ mode gelap.
 
 ## Kredit
 
-- [HeroUI v3](https://heroui.com) — MIT License
-- [Phosphor Icons](https://github.com/phosphor-icons/core) — MIT License
-- [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) —
+- [HeroUI v3](https://heroui.com): MIT License
+- [Phosphor Icons](https://github.com/phosphor-icons/core): MIT License
+- [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans):
   SIL Open Font License 1.1

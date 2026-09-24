@@ -10,7 +10,7 @@ const STORAGE_KEY = "morvyn-theme";
  * Kedua ikonnya selalu ada di DOM; yang menentukan mana yang tampil adalah CSS
  * yang membaca `data-theme` pada <html> (lihat globals.css bagian "Tombol
  * tema"). Karena atribut itu sudah dipasang skrip di BaseHtml sebelum halaman
- * digambar, ikon yang benar langsung muncul — tidak ada tombol kosong yang
+ * digambar, ikon yang benar langsung muncul: tidak ada tombol kosong yang
  * berkedip selagi React menghidrasi.
  */
 export function ThemeToggle({

@@ -23,7 +23,7 @@ import {
 /**
  * Kerangka bersama Kebijakan Privasi dan Ketentuan Layanan.
  *
- * Dipakai empat kali — dua dokumen kali dua bahasa — dan seluruh perbedaannya
+ * Dipakai empat kali (dua dokumen kali dua bahasa), dan seluruh perbedaannya
  * ada di `content/legal/`. Tidak ada satu kalimat pun yang ditulis di berkas
  * ini.
  *
@@ -53,7 +53,7 @@ export function LegalPage({ kind, locale }: { kind: LegalKind; locale: Locale })
     <>
       {/* Tautan jangkar di header dan footer menunjuk bagian-bagian beranda,
           yang tidak ada di halaman ini. `anchorBase` mengubahnya jadi
-          "/#fitur" alih-alih "#fitur" — tanpa itu seluruh menu jadi mati saat
+          "/#fitur" alih-alih "#fitur"; tanpa itu seluruh menu jadi mati saat
           dibuka dari sini.
 
           `altHref` membuat tombol ganti bahasa menuju halaman yang sama dalam
@@ -70,7 +70,7 @@ export function LegalPage({ kind, locale }: { kind: LegalKind; locale: Locale })
       <main className="shell">
         {/* max-w-3xl ditulis di dalam `.shell`, bukan ditumpuk pada kelasnya.
             Keduanya sama-sama utilitas, jadi yang menang cuma ditentukan
-            urutan berkas — dan max-width beranda 76rem itu terlalu lebar untuk
+            urutan berkas, dan max-width beranda 76rem itu terlalu lebar untuk
             dibaca sebagai prosa. Baris teks yang enak dibaca berhenti di
             sekitar 75 karakter. */}
         <article className="mx-auto max-w-3xl py-12 md:py-16">
@@ -283,7 +283,7 @@ function Block({ block }: { block: LegalBlock }) {
                   FOREGROUND_SERVICE_SPECIAL_USE satu kata utuh selebar ~250px
                   dan tidak punya satu pun titik potong alami. Tanpa ini
                   hurufnya meluber keluar kotak dan menabrak kolom penjelasan
-                  di sebelahnya — terlihat mulai lebar sm, persis di ukuran
+                  di sebelahnya, terlihat mulai lebar sm, persis di ukuran
                   tablet. */}
               <dt className="font-semibold break-words text-[color:var(--foreground)]/85">
                 <RichText text={item.term} />

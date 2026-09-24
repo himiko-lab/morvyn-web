@@ -23,7 +23,7 @@ interface HeaderProps {
    * Awalan untuk tautan jangkar, dipakai halaman selain beranda.
    *
    * Seluruh menu di header menunjuk bagian-bagian beranda. Dibiarkan apa
-   * adanya, `#fitur` yang dibuka dari `/privasi` tidak menuju ke mana-mana —
+   * adanya, `#fitur` yang dibuka dari `/privasi` tidak menuju ke mana-mana,
    * dan menu mati adalah jenis kerusakan yang tidak terlihat sampai diklik.
    * Halaman hukum mengisinya dengan `/` atau `/en/`.
    *
@@ -71,7 +71,7 @@ export function Header({ dict, locale, anchorBase = "", altHref }: HeaderProps) 
     return () => document.body.classList.remove("menu-open");
   }, [open]);
 
-  // Esc menutup menu — pengguna papan ketik mengharapkannya.
+  // Esc menutup menu; pengguna papan ketik mengharapkannya.
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
@@ -88,7 +88,7 @@ export function Header({ dict, locale, anchorBase = "", altHref }: HeaderProps) 
   // `lg:hidden` sehingga ikut lenyap, tapi `open` tetap true dan efek di atas
   // menahan `body { overflow: hidden }`. Yang tersisa bagi pengguna adalah
   // halaman yang tidak bisa digulir dan tidak ada satu pun tombol untuk
-  // membukanya kembali — hanya muat ulang yang menolong. Terpicu nyata saat
+  // membukanya kembali; hanya muat ulang yang menolong. Terpicu nyata saat
   // tablet diputar ke lanskap atau ponsel lipat dibentangkan selagi menu
   // terbuka.
   //
@@ -96,7 +96,7 @@ export function Header({ dict, locale, anchorBase = "", altHref }: HeaderProps) 
   //
   // Sengaja mendengarkan `resize`, bukan peristiwa `change` milik matchMedia.
   // Keduanya seharusnya setara, tapi `change` tidak selalu terkirim ketika
-  // ukuran viewport diubah dari luar peramban — terbukti saat menguji ini:
+  // ukuran viewport diubah dari luar peramban, terbukti saat menguji ini:
   // media query-nya sudah cocok, panelnya sudah lenyap, tapi peristiwanya
   // tidak pernah sampai dan halaman tetap terkunci. `resize` jauh lebih
   // terjamin, dan pemeriksaannya cukup murah untuk dijalankan sesering itu.
@@ -120,7 +120,7 @@ export function Header({ dict, locale, anchorBase = "", altHref }: HeaderProps) 
     : {};
 
   // Selama Play Store belum hidup, `downloadHref` berisi jangkar `#unduh` yang
-  // ada di beranda — jadi ia butuh awalan yang sama seperti menu di atas.
+  // ada di beranda, jadi ia butuh awalan yang sama seperti menu di atas.
   // Begitu `playStoreLive: true`, isinya alamat penuh dan awalan itu justru
   // akan merusaknya.
   const ctaHref = downloadIsExternal ? downloadHref : `${anchorBase}${downloadHref}`;
@@ -179,7 +179,7 @@ export function Header({ dict, locale, anchorBase = "", altHref }: HeaderProps) 
 
           {/* Kembaran tombol di atas untuk layar sempit. Di bawah md, tombol
               berteks itu hilang dan satu-satunya jalan ke sana adalah membuka
-              menu dulu — padahal itu tindakan utama seluruh situs. Versi ini
+              menu dulu, padahal itu tindakan utama seluruh situs. Versi ini
               menahannya tetap sejangkauan ibu jari sepanjang halaman digulir.
 
               Selama belum terbit sengaja berteks, bukan hanya berlambang:
@@ -219,7 +219,7 @@ export function Header({ dict, locale, anchorBase = "", altHref }: HeaderProps) 
           {/* Bidang gelap yang menutupi sisa halaman.
               Selagi menu terbuka, halaman di belakangnya terlihat tapi
               terkunci. Tanpa bidang ini, mengetuknya tidak menghasilkan apa
-              pun dan situsnya terasa macet — padahal mengetuk di luar menu
+              pun dan situsnya terasa macet, padahal mengetuk di luar menu
               adalah cara paling naluriah menutupnya di ponsel. Sekaligus
               memberi tahu secara visual bagian mana yang sedang aktif. */}
           <button

@@ -31,7 +31,7 @@ export function localeHref(locale: Locale): string {
  *
  * Dipakai sebagai awalan tautan jangkar dari halaman selain beranda: dari
  * `/privasi`, tautan "Fitur" harus berbunyi `/#fitur`, bukan `#fitur` yang
- * tidak menuju ke mana-mana. Yang berbahasa Inggris jadi `/en/#fitur` —
+ * tidak menuju ke mana-mana. Yang berbahasa Inggris jadi `/en/#fitur`;
  * garis miringnya wajib ada, karena `/en#fitur` membuat peramban meminta
  * `/en` lalu dialihkan ke `/en/`, dan jangkarnya kerap hilang di tengah
  * pengalihan itu.
@@ -47,7 +47,7 @@ export const localeTag: Record<Locale, string> = {
 };
 
 /** Alamat lengkap halaman sebuah bahasa. Selalu berakhiran garis miring,
- *  mengikuti `trailingSlash: true` di next.config.ts — canonical yang beda
+ *  mengikuti `trailingSlash: true` di next.config.ts. Canonical yang beda
  *  garis miring dengan URL sebenarnya dianggap dua halaman oleh Google. */
 export function localeUrl(locale: Locale): string {
   return locale === "id" ? `${site.url}/` : `${site.url}/en/`;

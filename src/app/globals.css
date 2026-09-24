@@ -28,7 +28,7 @@
 
 /* Yang ini justru TIDAK boleh `inline`. Blok @theme inline tidak menerbitkan
    variabelnya ke CSS, jadi `var(--font-sans)` akan kosong dan seluruh deklarasi
-   font-family gugur — situs lalu memakai font bawaan HeroUI, bukan Jakarta.
+   font-family gugur, situs lalu memakai font bawaan HeroUI, bukan Jakarta.
    Blok biasa menerbitkan --font-sans di :root, dan --font-jakarta dipasang di
    <html> oleh next/font sehingga rujukannya ketemu. */
 @theme {
@@ -45,7 +45,7 @@
     /* Bingkai ponsel pada mockup.
        Sengaja TIDAK memakai --brand-ink: warna itu membalik jadi terang di mode
        gelap, dan bingkai ponsel yang ikut membalik berubah jadi balok putih.
-       Bingkainya gelap di kedua mode — hanya sedikit dinaikkan di mode gelap
+       Bingkainya gelap di kedua mode, hanya sedikit dinaikkan di mode gelap
        supaya masih terpisah dari latar halaman. */
     --device-frame: oklch(23% 0.04 260);
 
@@ -135,8 +135,8 @@
 
      Ditulis sebagai kelas di CSS, bukan `style.overflow` yang dipasang
      JavaScript, karena batas berlakunya jadi ikut aturan CSS. Di atas `lg`
-     menu ponselnya memang tidak ada — panel dan tombol hamburgernya sama-sama
-     `lg:hidden` — jadi kuncinya wajib lepas di sana apa pun yang terjadi.
+     menu ponselnya memang tidak ada (panel dan tombol hamburgernya sama-sama
+     `lg:hidden`), jadi kuncinya wajib lepas di sana apa pun yang terjadi.
 
      Versi JavaScript-nya bergantung pada peristiwa `resize` yang sampai tepat
      waktu. Kalau peristiwa itu meleset, halaman terkunci total tanpa satu pun
@@ -187,7 +187,7 @@
   box-shadow: var(--shadow-brand);
 }
 
-/** Header yang menempel — buram dan tembus pandang. */
+/** Header yang menempel: buram dan tembus pandang. */
 @utility glass {
   background-color: color-mix(in oklab, var(--background) 82%, transparent);
   backdrop-filter: saturate(180%) blur(14px);
@@ -230,14 +230,14 @@
 /* ==========================================================================
    4. Animasi
    --------------------------------------------------------------------------
-   Semua dimatikan bagi pengguna yang meminta pengurangan gerak — lihat blok
+   Semua dimatikan bagi pengguna yang meminta pengurangan gerak; lihat blok
    prefers-reduced-motion di bagian bawah berkas ini.
    ========================================================================== */
 
 /* Muncul saat masuk viewport; kelas .is-visible dipasang oleh Reveal.tsx.
 
    Penyembunyiannya digantung pada `.js`, yang dipasang di <html> oleh skrip di
-   BaseHtml. Kalau JavaScript gagal dimuat, kelas itu tidak pernah ada — elemen
+   BaseHtml. Kalau JavaScript gagal dimuat, kelas itu tidak pernah ada: elemen
    tidak pernah disembunyikan, dan halaman tetap terbaca seluruhnya. */
 .reveal {
   transition:
@@ -310,7 +310,7 @@
   --marquee-speed: 60s;
 
   /* Lebar pudar di tiap ujung. Di layar lebar 6rem terasa halus, tapi di
-     ponsel selebar 375px dua ujung itu memakan 192px — lebih dari separuh
+     ponsel selebar 375px dua ujung itu memakan 192px, lebih dari separuh
      pitanya kabur dan nama portalnya jadi sulit dibaca. Lihat penimpaan di
      media query di bawah. */
   --marquee-fade: 6rem;

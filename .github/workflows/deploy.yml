@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 # Kalau ada dua push berdekatan, biarkan yang sedang berjalan selesai dulu
-# daripada dibatalkan — deploy yang terputus di tengah bisa meninggalkan
+# daripada dibatalkan: deploy yang terputus di tengah bisa meninggalkan
 # situs dalam keadaan setengah jadi.
 concurrency:
   group: pages
@@ -34,14 +34,14 @@ jobs:
       #
       # npm memangkas package-lock.json menurut platform tempat lock itu
       # dibuat. Lock ini dibuat di macOS/arm64, sehingga cabang milik paket
-      # *-wasm32-wasi (@emnapi/core, @emnapi/runtime) tidak ikut tercatat —
+      # *-wasm32-wasi (@emnapi/core, @emnapi/runtime) tidak ikut tercatat;
       # paket-paket itu tidak berlaku di macOS. Runner ini Linux, npm
       # membutuhkannya, lalu `npm ci` menolak jalan karena lock dianggap tidak
       # sinkron. Membuat ulang lock di macOS tidak menyelesaikannya: satu
       # berkas lock tidak bisa memuaskan `npm ci` di macOS dan Linux sekaligus.
       #
       # `npm install` tetap menghormati versi yang sudah terkunci di lock dan
-      # hanya menambal bagian yang hilang untuk platform ini — bukan `npm
+      # hanya menambal bagian yang hilang untuk platform ini, bukan `npm
       # update`, jadi versinya tidak melompat.
       - run: npm install
 
@@ -49,7 +49,7 @@ jobs:
       - run: npm run build
 
       # Tanpa berkas ini, GitHub Pages menjalankan Jekyll, dan Jekyll membuang
-      # semua folder berawalan garis bawah — termasuk _next/, yang berisi
+      # semua folder berawalan garis bawah, termasuk _next/, yang berisi
       # seluruh CSS dan JavaScript situs ini.
       - run: touch out/.nojekyll
 

@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 interface PhoneFrameProps {
   /**
    * Screenshot aplikasi. Rasio yang diharapkan 9:19.5 (mis. 1080×2340).
-   * Kalau dikosongkan, yang tampil adalah kotak placeholder bergaris putus-putus
-   * — pola yang sama seperti di proyek MOGLE.
+   * Kalau dikosongkan, yang tampil adalah kotak placeholder bergaris putus-putus,
+   * pola yang sama seperti di proyek MOGLE.
    */
   src?: string;
   alt: string;
@@ -115,7 +115,7 @@ function Placeholder({ label }: { label: string }) {
         </g>
       </svg>
       {/* Layar mockup selalu putih di kedua mode, jadi warna teksnya ditulis
-          tetap gelap — bukan var(--foreground), yang di mode gelap akan jadi
+          tetap gelap, bukan var(--foreground), yang di mode gelap akan jadi
           teks putih di atas putih. */}
       <figcaption className="text-xs leading-relaxed font-medium text-[#2a3446]/45">
         {label}

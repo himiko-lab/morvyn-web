@@ -20,7 +20,7 @@ import {
  * hanya bisa ditebak dari teks.
  *
  * Semuanya dibangun dari kamus yang sama dengan yang dipakai halamannya, jadi
- * markup dan teks yang terlihat tidak bisa jadi berbeda isi — itu justru yang
+ * markup dan teks yang terlihat tidak bisa jadi berbeda isi; itu justru yang
  * dianggap menyesatkan oleh Google.
  *
  * Sengaja TIDAK ada `aggregateRating` atau `downloadCount`: belum ada

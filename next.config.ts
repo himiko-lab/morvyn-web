@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Ekspor statis ke folder `out/` — GitHub Pages hanya menyajikan berkas
+  // Ekspor statis ke folder `out/`; GitHub Pages hanya menyajikan berkas
   // diam, tidak menjalankan server Node. Situs ini memang tidak butuh server:
   // kedua halamannya sudah dirender penuh saat build.
   output: "export",
@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
 
   // Next 16 menuliskan AGENTS.md dan CLAUDE.md ke akar proyek setiap kali
   // dijalankan. Proyek ini tidak memakainya, dan berkas yang muncul kembali
-  // sendiri setiap `npm run dev` cuma bikin bingung — jadi dimatikan.
+  // sendiri setiap `npm run dev` cuma bikin bingung, jadi dimatikan.
   agentRules: false,
 };
 

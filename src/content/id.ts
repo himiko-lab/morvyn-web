@@ -3,7 +3,7 @@ import type { Dictionary } from "./types";
 /**
  * Salinan bahasa Indonesia.
  *
- * Berpasangan dengan `en.ts` — keduanya memakai bentuk `Dictionary` yang sama,
+ * Berpasangan dengan `en.ts`: keduanya memakai bentuk `Dictionary` yang sama,
  * jadi TypeScript akan protes kalau salah satu bahasa ketinggalan sebuah kunci.
  */
 export const id: Dictionary = {

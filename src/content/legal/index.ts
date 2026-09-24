@@ -19,7 +19,7 @@ export const legalKinds: LegalKind[] = ["privacy", "terms"];
  *
  * Alamat Indonesianya berbahasa Indonesia (`/privasi`, `/ketentuan`) karena
  * itulah yang didaftarkan ke Google Cloud Console dan Play Console. JANGAN
- * diubah setelah didaftarkan — pengajuan verifikasi OAuth menunjuk URL persis,
+ * diubah setelah didaftarkan: pengajuan verifikasi OAuth menunjuk URL persis,
  * dan alamat yang berpindah membatalkan pemeriksaan yang sudah berjalan.
  */
 export const legalPath: Record<LegalKind, Record<Locale, string>> = {
@@ -36,7 +36,7 @@ export function getLegalDocument(kind: LegalKind, locale: Locale): LegalDocument
   return documents[kind][locale];
 }
 
-/** Dokumen pasangannya — dipakai untuk tautan silang di kaki halaman. */
+/** Dokumen pasangannya, dipakai untuk tautan silang di kaki halaman. */
 export function otherLegalKind(kind: LegalKind): LegalKind {
   return kind === "privacy" ? "terms" : "privacy";
 }
@@ -56,7 +56,7 @@ export const legalEffectiveIso: Record<LegalKind, string> = {
 };
 
 /**
- * Teks kerangka halaman — yang di luar isi dokumen itu sendiri.
+ * Teks kerangka halaman, yaitu yang di luar isi dokumen itu sendiri.
  *
  * Ditaruh di sini, bukan di `Dictionary`, karena semuanya hanya dipakai oleh
  * halaman hukum. Bentuk `Record<Locale, ...>`-nya tetap menjaga aturan yang

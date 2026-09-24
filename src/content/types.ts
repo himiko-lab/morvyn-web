@@ -2,7 +2,7 @@
  * Bentuk salinan teks situs.
  *
  * `id.ts` dan `en.ts` sama-sama harus memenuhi bentuk ini. Kalau satu bahasa
- * ketinggalan sebuah kunci, `npm run build` gagal — jadi terjemahan tidak bisa
+ * ketinggalan sebuah kunci, `npm run build` gagal, jadi terjemahan tidak bisa
  * diam-diam tertinggal.
  */
 
@@ -38,7 +38,7 @@ export interface Dictionary {
     title: string;
     /**
      * Judul yang tampil saat tautannya dibagikan (Open Graph). Di sini
-     * taglinenya boleh mengambil alih — yang membaca sudah melihat gambar dan
+     * taglinenya boleh mengambil alih: yang membaca sudah melihat gambar dan
      * lambangnya, jadi kata kunci tidak lagi jadi tugas judul.
      */
     ogTitle: string;
@@ -62,7 +62,7 @@ export interface Dictionary {
   };
   hero: {
     eyebrow: string;
-    /** Dua baris — baris kedua diberi gradien biru→ungu. */
+    /** Dua baris; baris kedua diberi gradien biru→ungu. */
     headline: [string, string];
     body: string;
     primaryCta: string;
@@ -72,7 +72,7 @@ export interface Dictionary {
   };
   /**
    * Teks alternatif mockup di bagian pembahasan fitur. `{name}` diganti nama
-   * menunya saat dipakai — lihat `FeatureDetails.tsx`.
+   * menunya saat dipakai, lihat `FeatureDetails.tsx`.
    */
   featureMockupAlt: string;
   stats: { value: string; label: string; detail: string }[];

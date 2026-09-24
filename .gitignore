@@ -40,5 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# claude code — setelan lokal per mesin
+# claude code: setelan lokal per mesin
 .claude/settings.local.json

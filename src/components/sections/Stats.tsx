@@ -5,7 +5,7 @@ import type { Dictionary } from "@/content";
  * Tiga angka di bawah hero.
  *
  * Semuanya fakta produk yang bisa diperiksa (jumlah menu, jumlah portal berita,
- * jumlah bahasa) — bukan jumlah unduhan atau rating, yang belum ada sumbernya.
+ * jumlah bahasa), bukan jumlah unduhan atau rating, yang belum ada sumbernya.
  * Lihat README kalau mau menggantinya dengan angka Play Console.
  */
 export function Stats({ dict }: { dict: Dictionary }) {
