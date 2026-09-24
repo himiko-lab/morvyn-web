@@ -13,7 +13,7 @@ import { getLegalDocument, legalPath, type LegalKind } from "@/content/legal";
  *
  * Kedua root layout memanggil ini alih-alih menuliskan blok yang sama dua
  * kali. Waktu keduanya masih terpisah, gampang sekali satu bahasa dapat
- * perbaikan dan satunya tertinggal — dan yang tertinggal itu tidak kelihatan
+ * perbaikan dan satunya tertinggal, dan yang tertinggal itu tidak kelihatan
  * dari halamannya, cuma dari kode sumber.
  */
 export function buildMetadata(locale: Locale): Metadata {
@@ -107,13 +107,14 @@ export function buildLegalMetadata(kind: LegalKind, locale: Locale): Metadata {
   const doc = getLegalDocument(kind, locale);
   const url = `${site.url}${legalPath[kind][locale]}`;
   const image = ogImagePath(locale);
+  const title = `${doc.title} - ${site.name}`;
 
   return {
     metadataBase: new URL(site.url),
     // Judul beranda ditulis untuk hasil pencarian; yang ini tidak perlu.
     // Orang mencari halaman ini dengan menyebut namanya beserta nama
     // aplikasinya, dan itu persis yang tertulis di sini.
-    title: { absolute: `${doc.title} — ${site.name}` },
+    title: { absolute: title },
     description: doc.description,
     applicationName: site.name,
     authors: [{ name: site.publisher, url: site.publisherUrl }],
@@ -129,7 +130,7 @@ export function buildLegalMetadata(kind: LegalKind, locale: Locale): Metadata {
       },
     },
 
-    // Halaman ini memang dimaksudkan untuk ditemukan — Google Play dan layar
+    // Halaman ini memang dimaksudkan untuk ditemukan: Google Play dan layar
     // persetujuan OAuth sama-sama menautkannya.
     robots: { index: true, follow: true },
 
@@ -139,7 +140,7 @@ export function buildLegalMetadata(kind: LegalKind, locale: Locale): Metadata {
       alternateLocale: locale === "id" ? "en_US" : "id_ID",
       url,
       siteName: site.name,
-      title: `${doc.title} — ${site.name}`,
+      title,
       description: doc.description,
       images: [
         {
@@ -154,7 +155,7 @@ export function buildLegalMetadata(kind: LegalKind, locale: Locale): Metadata {
 
     twitter: {
       card: "summary_large_image",
-      title: `${doc.title} — ${site.name}`,
+      title,
       description: doc.description,
       images: [{ url: image, alt: getDictionary(locale).meta.ogImageAlt }],
     },

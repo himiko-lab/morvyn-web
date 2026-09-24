@@ -1,7 +1,7 @@
 import type { LegalDocument } from "./types";
 
 /**
- * Terms of Service — English.
+ * Terms of Service, English.
  *
  * Terjemahan dari `terms-id.ts`. Sama seperti kebijakan privasi: urutan dan
  * `id` tiap bagian harus tetap sama dengan versi Indonesianya, supaya tautan
@@ -11,7 +11,7 @@ export const termsEn: LegalDocument = {
   title: "Terms of Service",
   description:
     "The terms for using Morvyn: a free app provided as is, with your data staying entirely in your own hands.",
-  lead: "These terms apply when you install or use Morvyn, an Android app made by Himiko Lab. They are short on purpose — Morvyn stores nothing about you, so there is not much to govern.",
+  lead: "These terms apply when you install or use Morvyn, an Android app made by Himiko Lab. They are short on purpose: Morvyn stores nothing about you, so there is not much to govern.",
   effectiveLabel: "Effective",
   effectiveDate: "14 August 2026",
 
@@ -51,7 +51,7 @@ export const termsEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "The app is **free** and provided **as is**, without warranty of any kind — including any warranty that it will always be available, uninterrupted, or fit for your particular purpose.",
+          text: "The app is **free** and provided **as is**, without warranty of any kind, including any warranty that it will always be available, uninterrupted, or fit for your particular purpose.",
         },
       ],
     },
@@ -66,7 +66,7 @@ export const termsEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "That data goes with the app if you uninstall it, clear its data from Android Settings, or lose or damage the device. For that reason **backups are strongly recommended** — see the Google Drive backup feature inside the app.",
+          text: "That data goes with the app if you uninstall it, clear its data from Android Settings, or lose or damage the device. For that reason **backups are strongly recommended**: see the Google Drive backup feature inside the app.",
         },
       ],
     },
@@ -81,7 +81,7 @@ export const termsEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "That is the point of the feature: changes you make in Morvyn are carried through to your Google calendar. But the consequence is real — deleting an event in Morvyn means that event also disappears from your Google calendar.",
+          text: "That is the point of the feature: changes you make in Morvyn are carried through to your Google calendar. But the consequence is real: deleting an event in Morvyn means that event also disappears from your Google calendar.",
         },
         {
           kind: "p",

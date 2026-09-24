@@ -1,7 +1,7 @@
 import type { LegalDocument } from "./types";
 
 /**
- * Ketentuan Layanan — Bahasa Indonesia.
+ * Ketentuan Layanan, Bahasa Indonesia.
  *
  * Bagian `kalender` sengaja ditulis tegas, bukan diperhalus: sinkronisasi
  * kalender bisa MENGHAPUS acara di kalender Google pengguna. Konsekuensi
@@ -13,7 +13,7 @@ export const termsId: LegalDocument = {
   title: "Ketentuan Layanan",
   description:
     "Ketentuan pemakaian Morvyn: aplikasi gratis yang disediakan sebagaimana adanya, dengan data yang sepenuhnya berada di tangan penggunanya.",
-  lead: "Ketentuan ini berlaku saat Anda memasang atau memakai Morvyn, aplikasi Android buatan Himiko Lab. Isinya pendek dengan sengaja — Morvyn tidak menyimpan apa pun tentang Anda, jadi tidak banyak yang perlu diatur.",
+  lead: "Ketentuan ini berlaku saat Anda memasang atau memakai Morvyn, aplikasi Android buatan Himiko Lab. Isinya pendek dengan sengaja: Morvyn tidak menyimpan apa pun tentang Anda, jadi tidak banyak yang perlu diatur.",
   effectiveLabel: "Berlaku sejak",
   effectiveDate: "14 Agustus 2026",
 
@@ -53,7 +53,7 @@ export const termsId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Aplikasi ini **gratis** dan disediakan **sebagaimana adanya** (*as is*), tanpa jaminan dalam bentuk apa pun — termasuk jaminan bahwa aplikasinya akan selalu tersedia, bebas gangguan, atau cocok untuk keperluan tertentu Anda.",
+          text: "Aplikasi ini **gratis** dan disediakan **sebagaimana adanya** (*as is*), tanpa jaminan dalam bentuk apa pun, termasuk jaminan bahwa aplikasinya akan selalu tersedia, bebas gangguan, atau cocok untuk keperluan tertentu Anda.",
         },
       ],
     },
@@ -68,7 +68,7 @@ export const termsId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Data itu ikut hilang bila aplikasinya dihapus, data aplikasinya dibersihkan lewat Setelan Android, atau perangkatnya rusak atau hilang. Karena itu **pencadangan sangat dianjurkan** — lihat fitur pencadangan ke Google Drive di dalam aplikasi.",
+          text: "Data itu ikut hilang bila aplikasinya dihapus, data aplikasinya dibersihkan lewat Setelan Android, atau perangkatnya rusak atau hilang. Karena itu **pencadangan sangat dianjurkan**: lihat fitur pencadangan ke Google Drive di dalam aplikasi.",
         },
       ],
     },
@@ -83,7 +83,7 @@ export const termsId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Itu memang tujuan fiturnya: perubahan yang Anda lakukan di Morvyn diteruskan ke kalender Google Anda. Tetapi konsekuensinya nyata — menghapus sebuah acara di Morvyn berarti acara itu juga hilang dari kalender Google Anda.",
+          text: "Itu memang tujuan fiturnya: perubahan yang Anda lakukan di Morvyn diteruskan ke kalender Google Anda. Tetapi konsekuensinya nyata: menghapus sebuah acara di Morvyn berarti acara itu juga hilang dari kalender Google Anda.",
         },
         {
           kind: "p",

@@ -1,7 +1,7 @@
 /**
  * Nilai-nilai yang perlu diganti sekali saja, lalu dipakai di seluruh situs.
  *
- * GANTI SEBELUM TAYANG — lihat README bagian "Yang masih perlu diisi".
+ * GANTI SEBELUM TAYANG, lihat README bagian "Yang masih perlu diisi".
  */
 export const site = {
   name: "Morvyn",
@@ -43,11 +43,17 @@ export const site = {
   /** Ditampilkan di footer. */
   publisher: "Himiko Lab",
 
-  /** Situs resmi penerbit. Dipakai di footer dan di `sameAs` data terstruktur. */
-  publisherUrl: "https://www.himikolab.my.id",
+  /**
+   * Situs resmi penerbit. Dipakai di footer dan di `sameAs` data terstruktur.
+   *
+   * Tanpa `www`: alamat berawalan `www` dialihkan (301) ke sini, dan
+   * canonical situs itu sendiri juga menunjuk ke sini. Menautkan alamat yang
+   * dialihkan membuat setiap tautan melewati satu lompatan yang tidak perlu.
+   */
+  publisherUrl: "https://himikolab.my.id",
 
   /**
-   * Kode verifikasi Google Search Console, metode "HTML tag" — isi bagian
+   * Kode verifikasi Google Search Console, metode "HTML tag": isi bagian
    * `content="..."`-nya saja, bukan seluruh tagnya. Kalau dibiarkan kosong,
    * tag itu tidak ikut dicetak sama sekali.
    *
@@ -63,7 +69,7 @@ export const site = {
  *
  * Dipakai dua kali dari satu sumber: sebagai deretan ikon di footer, dan
  * sebagai `sameAs` pada data terstruktur Organization. Yang kedua itu cara
- * Google diberi tahu bahwa akun-akun ini satu pemilik dengan situsnya —
+ * Google diberi tahu bahwa akun-akun ini satu pemilik dengan situsnya;
  * kalau daftarnya cuma ada di footer, hubungan itu hanya tertebak.
  *
  * `label` sengaja tidak diterjemahkan: nama platform sama di kedua bahasa.
@@ -128,7 +134,7 @@ export const sameAsUrls = socialLinks
 
 /**
  * Portal berita yang masuk ke menu Berita, disalin persis dari daftar sah di
- * `REMOTE_CONFIG_MORVYN.md`. Penulisannya memang tidak seragam — `detikcom`,
+ * `REMOTE_CONFIG_MORVYN.md`. Penulisannya memang tidak seragam: `detikcom`,
  * `detik inet`, dan `detik Finance` ditulis huruf kecil di sumbernya, dan itu
  * dipertahankan di sini supaya cocok dengan yang ada di aplikasi.
  */
