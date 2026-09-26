@@ -11,9 +11,9 @@ export const termsEn: LegalDocument = {
   title: "Terms of Service",
   description:
     "The terms for using Morvyn: a free app provided as is, with your data staying entirely in your own hands.",
-  lead: "These terms apply when you install or use Morvyn, an Android app made by Himiko Lab. They are short on purpose: Morvyn stores nothing about you, so there is not much to govern.",
+  lead: "These terms apply when you install or use Morvyn, an Android app made by Himiko Lab. They are short on purpose: Morvyn keeps your data on your own device, so there is not much to govern.",
   effectiveLabel: "Effective",
-  effectiveDate: "14 August 2026",
+  effectiveDate: "26 September 2026",
 
   summaryHeading: "In short",
   summary: [
@@ -62,7 +62,7 @@ export const termsEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "All Morvyn data is stored inside your device. Himiko Lab holds no copy of it and **cannot recover data that is lost**.",
+          text: "All Morvyn data is stored inside your device. Himiko Lab holds no copy of it and **cannot recover data that is lost**. The one thing Himiko Lab does hold, if you sign in with Google, is the sign-in record for your account: the [Privacy Policy](/en/privacy/) sets out what it contains and how to delete it.",
         },
         {
           kind: "p",
@@ -103,7 +103,11 @@ export const termsEn: LegalDocument = {
           items: [
             {
               term: "Google",
-              text: "Sign in with Google, Google Drive backup, and Google Calendar sync.",
+              text: "Sign in with Google, Google Drive backup, Google Calendar sync, announcement notifications and app configuration (Firebase), in-app updates from the Play Store, and the document scanner (ML Kit).",
+            },
+            {
+              term: "Earthquake data sources",
+              text: "BMKG for users in Indonesia, and the U.S. Geological Survey for users elsewhere. The information is provided as received, and Morvyn is **not an earthquake early warning system**.",
             },
             {
               term: "Weather data providers",
@@ -180,7 +184,7 @@ export const termsEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "You can stop using Morvyn at any time by uninstalling it. Himiko Lab may discontinue or change the app, including retiring particular features, and will try to give notice ahead of significant changes.",
+          text: "You can stop using Morvyn at any time by uninstalling it. If you signed in with Google, you can also delete your account from Settings > DATA > Delete Account, which deletes your sign-in record and every Morvyn backup in your Drive: see the [Privacy Policy](/en/privacy/#delete-account). Himiko Lab may discontinue or change the app, including retiring particular features, and will try to give notice ahead of significant changes.",
         },
       ],
     },

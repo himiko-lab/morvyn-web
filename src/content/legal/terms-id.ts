@@ -13,9 +13,9 @@ export const termsId: LegalDocument = {
   title: "Ketentuan Layanan",
   description:
     "Ketentuan pemakaian Morvyn: aplikasi gratis yang disediakan sebagaimana adanya, dengan data yang sepenuhnya berada di tangan penggunanya.",
-  lead: "Ketentuan ini berlaku saat Anda memasang atau memakai Morvyn, aplikasi Android buatan Himiko Lab. Isinya pendek dengan sengaja: Morvyn tidak menyimpan apa pun tentang Anda, jadi tidak banyak yang perlu diatur.",
+  lead: "Ketentuan ini berlaku saat Anda memasang atau memakai Morvyn, aplikasi Android buatan Himiko Lab. Isinya pendek dengan sengaja: Morvyn menyimpan data Anda di perangkat Anda sendiri, jadi tidak banyak yang perlu diatur.",
   effectiveLabel: "Berlaku sejak",
-  effectiveDate: "14 Agustus 2026",
+  effectiveDate: "26 September 2026",
 
   summaryHeading: "Ringkasnya",
   summary: [
@@ -64,7 +64,7 @@ export const termsId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Seluruh data Morvyn tersimpan di dalam perangkat Anda. Himiko Lab tidak memegang salinannya dan **tidak dapat memulihkan data yang hilang**.",
+          text: "Seluruh data Morvyn tersimpan di dalam perangkat Anda. Himiko Lab tidak memegang salinannya dan **tidak dapat memulihkan data yang hilang**. Satu-satunya yang dipegang Himiko Lab, bila Anda masuk dengan Google, adalah catatan masuk untuk akun Anda: [Kebijakan Privasi](/privasi/) merinci isinya dan cara menghapusnya.",
         },
         {
           kind: "p",
@@ -105,7 +105,11 @@ export const termsId: LegalDocument = {
           items: [
             {
               term: "Google",
-              text: "Masuk dengan Google, pencadangan ke Google Drive, dan sinkronisasi Google Calendar.",
+              text: "Masuk dengan Google, pencadangan ke Google Drive, sinkronisasi Google Calendar, notifikasi pengumuman dan konfigurasi aplikasi (Firebase), pembaruan dalam aplikasi dari Play Store, serta pemindai dokumen (ML Kit).",
+            },
+            {
+              term: "Sumber data gempa",
+              text: "BMKG untuk pengguna di Indonesia, dan U.S. Geological Survey untuk pengguna di luar Indonesia. Informasinya disajikan sebagaimana diterima, dan Morvyn **bukan sistem peringatan dini gempa**.",
             },
             {
               term: "Penyedia data cuaca",
@@ -182,7 +186,7 @@ export const termsId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Anda dapat berhenti memakai Morvyn kapan saja dengan menghapus aplikasinya. Himiko Lab dapat menghentikan atau mengubah aplikasinya, termasuk menghentikan fitur tertentu, dan akan berusaha memberi tahu lebih dulu bila perubahannya besar.",
+          text: "Anda dapat berhenti memakai Morvyn kapan saja dengan menghapus aplikasinya. Bila Anda pernah masuk dengan Google, akun Anda juga dapat dihapus lewat Pengaturan > DATA > Hapus Akun, yang menghapus catatan masuk Anda beserta seluruh cadangan Morvyn di Drive Anda: lihat [Kebijakan Privasi](/privasi/#delete-account). Himiko Lab dapat menghentikan atau mengubah aplikasinya, termasuk menghentikan fitur tertentu, dan akan berusaha memberi tahu lebih dulu bila perubahannya besar.",
         },
       ],
     },

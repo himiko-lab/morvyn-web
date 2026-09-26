@@ -23,16 +23,16 @@ import type { LegalDocument } from "./types";
 export const privacyId: LegalDocument = {
   title: "Kebijakan Privasi",
   description:
-    "Cara Morvyn menangani data Anda: tetap di perangkat kecuali Anda menyalakan pencadangan. Tanpa server, tanpa pelacakan, sinkronisasi kalender opsional.",
+    "Cara Morvyn menangani data Anda: tetap di perangkat kecuali Anda menyalakan pencadangan. Tanpa iklan, tanpa analitik, dan semua fitur Google opsional.",
   lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan, sama pentingnya, apa yang tidak dilakukannya.",
   effectiveLabel: "Berlaku sejak",
-  effectiveDate: "20 September 2026",
+  effectiveDate: "26 September 2026",
 
   summaryHeading: "Ringkasnya",
   summary: [
-    "**Morvyn tidak punya server.** Himiko Lab tidak memiliki basis data pengguna dan tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun.",
+    "**Morvyn tidak punya server.** Himiko Lab tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun. Bila Anda masuk dengan Google, satu-satunya yang kami pegang adalah catatan masuk untuk akun Anda, dan Anda dapat menghapusnya sendiri dari dalam aplikasi.",
     "Seluruh data Anda disimpan **di dalam perangkat Anda sendiri**, dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
-    "**Tidak ada analitik, tidak ada iklan, tidak ada SDK pelacak.** Tidak ada data yang dijual atau dibagikan.",
+    "**Tidak ada analitik, tidak ada iklan, tidak ada SDK pelacak.** Tidak ada data yang dijual atau dibagikan. SDK Google yang dipakai Morvyn memang mengirim data teknis terbatas ke Google, dirinci di bagian \"Notifikasi, konfigurasi aplikasi, dan layanan Google lain\".",
     "Masuk dengan Google, pencadangan ke Google Drive, dan sinkronisasi Google Calendar semuanya **opsional**: Morvyn tetap utuh tanpa satu pun di antaranya.",
   ],
 
@@ -71,11 +71,15 @@ export const privacyId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "**Morvyn tidak punya server sendiri.** Himiko Lab tidak memiliki basis data pengguna dan tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun. Seluruh data pengguna disimpan di dalam perangkat memakai basis data lokal (Room/SQLite), dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
+          text: "**Morvyn tidak punya server sendiri.** Himiko Lab tidak memiliki basis data berisi isi aplikasi Anda dan tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun. Seluruh data pengguna disimpan di dalam perangkat memakai basis data lokal (Room/SQLite), dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
         },
         {
           kind: "p",
-          text: "**Tidak ada pelacakan sama sekali.** Aplikasi ini tidak memakai Google Analytics, Firebase Analytics, Crashlytics, SDK iklan, maupun SDK pelacak pihak ketiga lain. Tidak ada profil perilaku yang dibangun, dan tidak ada data yang dijual atau dibagikan untuk keperluan iklan.",
+          text: "**Ada satu pengecualian: catatan masuk.** Saat Anda masuk dengan Google, Firebase Authentication membuat akun di proyek Firebase milik Himiko Lab yang berisi alamat email, nama tampilan, URL foto profil Google, pengenal pengguna (UID), serta tanggal akun dibuat dan terakhir masuk. Himiko Lab dapat melihat daftar akun itu di konsol Firebase. Isinya tidak memuat satu pun isi aplikasi Anda, dan Anda dapat menghapusnya sendiri dari dalam Morvyn: lihat bagian \"Menghapus akun\".",
+        },
+        {
+          kind: "p",
+          text: "**Tidak ada pelacakan sama sekali.** Aplikasi ini tidak memakai Google Analytics, Firebase Analytics, Crashlytics, SDK iklan, maupun SDK pelacak pihak ketiga lain. Tidak ada profil perilaku yang dibangun, dan tidak ada data yang dijual atau dibagikan untuk keperluan iklan. SDK Google yang dipakai untuk masuk, notifikasi, konfigurasi, dan pemindai dokumen memang mengirim data teknis terbatas ke Google, masing-masing sesuai dokumentasinya sendiri: rinciannya ada di bagian \"Notifikasi, konfigurasi aplikasi, dan layanan Google lain\".",
         },
       ],
     },
@@ -100,6 +104,11 @@ export const privacyId: LegalDocument = {
             "Berita yang Anda simpan",
             "Riwayat bacaan berita",
             "Catatan cuaca",
+            "Riwayat penghapusan: item Jadwal dan Tugas yang Anda hapus disimpan 7 hari agar bisa dipulihkan, lalu dibuang otomatis",
+            "Lampiran catatan: gambar, berkas PDF, hasil pindaian dokumen yang disimpan sebagai PDF, dan coretan",
+            "Nama dan foto profil Anda",
+            "Tempat pada catatan transaksi keuangan, bila Anda mengisinya dari posisi Anda (lihat bagian \"Lokasi, cuaca, dan tempat\")",
+            "Data gempa: posisi terakhir yang diketahui, setelan notifikasi gempa, dan salinan data gempa terakhir (lihat bagian \"Info gempa\")",
           ],
         },
         {
@@ -116,6 +125,14 @@ export const privacyId: LegalDocument = {
         {
           kind: "p",
           text: "Morvyn memakai **Firebase Authentication** untuk fitur Masuk dengan Google. Gunanya hanya satu: membuktikan bahwa akun yang meminta pencadangan memang milik Anda. Ini syarat fitur pencadangan.",
+        },
+        {
+          kind: "p",
+          text: "Masuk berarti membuat akun di proyek Firebase milik Himiko Lab. Akun itu berisi alamat email, nama tampilan, URL foto profil Google, pengenal pengguna (UID), serta tanggal akun dibuat dan terakhir masuk. Firebase Authentication juga mengumpulkan alamat IP Anda, untuk keamanan dan pencegahan penyalahgunaan, sebagaimana disebut dalam dokumentasi pengungkapan data Firebase.",
+        },
+        {
+          kind: "p",
+          text: "Akun itu dapat Anda hapus sendiri dari dalam aplikasi kapan saja: lihat bagian \"Menghapus akun\".",
         },
         {
           kind: "p",
@@ -168,18 +185,30 @@ export const privacyId: LegalDocument = {
 
     {
       id: "firebase",
-      title: "Notifikasi dan konfigurasi aplikasi",
+      title: "Notifikasi, konfigurasi aplikasi, dan layanan Google lain",
       blocks: [
         {
           kind: "defs",
           items: [
             {
               term: "Firebase Cloud Messaging",
-              text: "Mengirim notifikasi pengumuman dari pengembang. Perangkat berlangganan sebuah topik; sistem ini tidak dipakai untuk mengidentifikasi orang per orang.",
+              text: "Mengirim notifikasi pengumuman dari pengembang. Perangkat berlangganan sebuah topik; sistem ini tidak dipakai untuk mengidentifikasi orang per orang. Untuk langganan topik itu, versi aplikasi ikut dikirim.",
             },
             {
               term: "Firebase Remote Config",
-              text: "Mengambil nilai konfigurasi aplikasi. Tidak ada data pribadi yang dikirim.",
+              text: "Mengambil nilai konfigurasi aplikasi. Untuk menentukan nilai mana yang berlaku, layanan ini mengirim kode negara, kode bahasa, zona waktu, versi platform dan sistem operasi, Firebase App ID, nama paket, serta versi SDK.",
+            },
+            {
+              term: "Firebase Installations",
+              text: "Dipakai oleh kedua layanan di atas. Layanan ini membuat pengenal per-instalasi (FID). Menurut Firebase, FID tidak mengidentifikasi orang atau perangkat secara unik.",
+            },
+            {
+              term: "Pembaruan dalam aplikasi Google Play",
+              text: "Morvyn menanyakan ke Play Store apakah ada versi yang lebih baru. Nilai versi minimum pembandingnya diambil dari Remote Config.",
+            },
+            {
+              term: "ML Kit Document Scanner",
+              text: "Menjalankan fitur Pindai dokumen, lewat Google Play services. Menurut halaman pengungkapan data ML Kit, SDK ini mengirim info perangkat (pabrikan, model, versi sistem operasi), info aplikasi (nama paket, versi), pengenal per-instalasi, metrik kinerja, konfigurasi API, dan kode galat ke Google, untuk diagnostik dan analitik penggunaan, terenkripsi dengan HTTPS dan tidak diteruskan ke pihak ketiga. Hasil pindaiannya sendiri disimpan di perangkat Anda, sebagai PDF di Catatan.",
             },
           ],
         },
@@ -240,29 +269,87 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Masa simpan.** Acara yang ditarik dari Google Calendar tetap ada di perangkat Anda sampai Anda menghapusnya atau memutus sambungan Google Calendar dari Pengaturan Morvyn, yang menghapusnya dari Morvyn. Mematikan sinkronisasi hanya menjedanya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya. Memutus sambungan Morvyn tidak menghapusnya; lihat \"Cara menghapus data Anda\". Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
+          text: "**Masa simpan.** Acara yang ditarik dari Google Calendar tetap ada di perangkat Anda sampai Anda menghapusnya atau memutus sambungan Google Calendar dari Pengaturan Morvyn, yang menghapusnya dari Morvyn. Mematikan sinkronisasi hanya menjedanya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya. Memutus sambungan Morvyn tidak menghapusnya; lihat \"Cara menghapus data Anda\". Menghapus akun dari dalam Morvyn memang menghapus seluruh cadangan Morvyn di Drive Anda: lihat bagian \"Menghapus akun\". Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
         },
       ],
     },
 
     {
       id: "lokasi",
-      title: "Lokasi dan cuaca",
+      title: "Lokasi, cuaca, dan tempat",
       blocks: [
         {
           kind: "p",
-          text: "Morvyn meminta izin lokasi (`ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION`) **hanya untuk menampilkan cuaca di sekitar Anda**. Koordinat lintang dan bujur dikirim langsung ke penyedia data cuaca sebagai bagian dari permintaan:",
+          text: "Morvyn meminta izin lokasi (`ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION`) untuk tiga fitur. **Tidak ada izin lokasi latar** (`ACCESS_BACKGROUND_LOCATION`), dan izinnya sendiri tetap **opsional**.",
         },
         {
-          kind: "list",
+          kind: "defs",
           items: [
-            "`api.open-meteo.com`: [Open-Meteo](https://open-meteo.com/)",
-            "`api.openweathermap.org`: [OpenWeather](https://openweathermap.org/)",
+            {
+              term: "Cuaca",
+              text: "Koordinat lintang dan bujur dikirim langsung ke penyedia data cuaca sebagai bagian dari permintaan: `api.open-meteo.com` ([Open-Meteo](https://open-meteo.com/)), dengan `api.openweathermap.org` ([OpenWeather](https://openweathermap.org/)) sebagai cadangan.",
+            },
+            {
+              term: "Tempat pada catatan keuangan",
+              text: "Di Keuangan, kolom tempat transaksi dapat Anda isi dari posisi Anda. Yang disimpan di catatan itu adalah nama tempatnya, atau koordinat bila nama tempat tidak tersedia, dan ikut masuk cadangan bersama sisa catatannya.",
+            },
+            {
+              term: "Gempa",
+              text: "Posisi terakhir yang diketahui dipakai untuk menghitung jarak gempa dan menentukan sumber data mana yang dibaca. Bagian berikutnya menjelaskannya lengkap.",
+            },
+            {
+              term: "Geocoder",
+              text: "Untuk mengubah koordinat menjadi nama tempat (Cuaca, Beranda, Keuangan) atau kode negara (Gempa), Morvyn memakai layanan geocoder sistem Android. Pada ponsel dengan Google Play services, layanan itu dilayani Google, jadi koordinatnya sampai ke Google.",
+            },
           ],
         },
         {
           kind: "p",
-          text: "Koordinat itu **tidak disimpan di server mana pun oleh Morvyn**, dan tidak dikaitkan dengan identitas Anda. Izin ini opsional; menolaknya hanya membuat fitur cuaca tidak menampilkan lokasi secara otomatis.",
+          text: "Koordinat itu **tidak disimpan di server mana pun oleh Morvyn**, dan tidak dikaitkan dengan identitas Anda. Menolak izinnya membuat cuaca, tempat transaksi, dan jarak gempa tidak mengambil lokasi Anda secara otomatis.",
+        },
+      ],
+    },
+
+    {
+      id: "earthquake",
+      title: "Info gempa",
+      blocks: [
+        {
+          kind: "p",
+          text: "Morvyn punya menu Gempa, kartu kecil di layar Cuaca, dan notifikasi \"Info gempa\". Sifatnya **info gempa, bukan peringatan dini**.",
+        },
+        {
+          kind: "p",
+          text: "Datanya berasal dari **BMKG** (`data.bmkg.go.id`) untuk pengguna di Indonesia, dan dari **U.S. Geological Survey** (`earthquake.usgs.gov`) untuk pengguna di luar Indonesia. Morvyn mengunduh berkas data mereka secara utuh, termasuk gambar peta guncangan, dan **tidak mengirim posisi Anda sama sekali**. Kedua lembaga itu hanya melihat permintaan biasa, yaitu alamat IP dan informasi permintaan biasa, persis seperti penerbit berita.",
+        },
+        {
+          kind: "p",
+          text: "Jarak gempa dihitung **di perangkat Anda**, dari posisi terakhir yang didapat layar Cuaca atau Beranda. Posisi itu tetap di perangkat Anda: tidak dikirim ke BMKG maupun USGS, tidak ikut cadangan sistem Android, dan tidak ikut cadangan Drive.",
+        },
+        {
+          kind: "p",
+          text: "Sumber mana yang dibaca ditentukan negara Anda, dan Morvyn menentukannya dengan urutan berikut:",
+        },
+        {
+          kind: "list",
+          items: [
+            "Geocoder sistem, atas posisi terakhir yang diketahui.",
+            "Negara jaringan seluler Anda.",
+            "Kode negara yang disiarkan router Wi-Fi di sekitar. Ini hanya dibaca bila izin lokasi presisi diberikan dan layanan lokasi menyala, hanya saat aplikasi terbuka, dan disimpan di perangkat paling lama 3 hari.",
+            "Setelan bahasa ponsel Anda.",
+          ],
+        },
+        {
+          kind: "p",
+          text: "Tidak satu pun dari cara itu memakai alamat IP, jadi VPN tidak mengubahnya, dan semuanya diproses di perangkat Anda.",
+        },
+        {
+          kind: "p",
+          text: "Pemeriksaan di latar sekitar tiap 15 menit memakai posisi dan negara yang sudah tersimpan; pemeriksaan itu tidak membaca lokasi baru. Salinan data gempa terakhir disimpan di perangkat Anda, dan tidak diikutkan ke cadangan, supaya menunya tetap berisi saat Anda luring.",
+        },
+        {
+          kind: "p",
+          text: "Notifikasinya dapat dimatikan dan diatur di menu Gempa: radius, magnitudo minimal, gempa besar, dan potensi tsunami dari BMKG.",
         },
       ],
     },
@@ -274,6 +361,10 @@ export const privacyId: LegalDocument = {
         {
           kind: "p",
           text: "Fitur berita mengambil umpan RSS **langsung dari situs penerbitnya**, tanpa perantara. Artinya penerbit tersebut dapat melihat permintaan yang datang dari perangkat Anda (alamat IP dan informasi permintaan biasa), sebagaimana bila Anda membuka situs mereka lewat peramban.",
+        },
+        {
+          kind: "p",
+          text: "Catatan berperilaku sama untuk tautan. Bila sebuah catatan memuat tautan ke suatu situs, Morvyn mengambil ikon (favicon) situs itu **langsung dari situsnya**, tanpa layanan pihak ketiga di tengah, sehingga situs itu melihat permintaan yang datang dari perangkat Anda (alamat IP dan informasi permintaan biasa) persis seperti penerbit berita.",
         },
         {
           kind: "p",
@@ -302,15 +393,19 @@ export const privacyId: LegalDocument = {
           items: [
             {
               term: "`INTERNET`",
-              text: "Mengambil cuaca, berita, kurs, dan menjalankan sinkronisasi Google.",
+              text: "Mengambil cuaca, berita, data gempa, kurs, dan ikon tautan di catatan Anda, serta menjalankan sinkronisasi Google.",
             },
             {
               term: "`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`",
-              text: "Menampilkan cuaca di sekitar Anda. Opsional.",
+              text: "Menampilkan cuaca di sekitar Anda, mengisi tempat pada catatan keuangan, dan menghitung jarak gempa. Opsional.",
+            },
+            {
+              term: "`ACCESS_WIFI_STATE`",
+              text: "Membaca kode negara yang disiarkan router Wi-Fi di sekitar, untuk fitur Gempa.",
             },
             {
               term: "`POST_NOTIFICATIONS`",
-              text: "Menampilkan pengingat dan alarm.",
+              text: "Menampilkan pengingat dan alarm, pengumuman dari pengembang, dan info gempa.",
             },
             {
               term: "`SCHEDULE_EXACT_ALARM`",
@@ -334,6 +429,10 @@ export const privacyId: LegalDocument = {
             },
           ],
         },
+        {
+          kind: "p",
+          text: "Tiga izin lain dideklarasikan oleh pustaka Google dan AndroidX yang dipakai Morvyn, dan **tidak dipakai oleh fitur Morvyn mana pun**: `ACCESS_NETWORK_STATE`, `USE_BIOMETRIC`, dan `USE_FINGERPRINT`. Dua yang terakhir datang dari androidx.biometric, yang ikut terbawa pustaka masuk Google. Morvyn tidak memakai sidik jari maupun biometrik.",
+        },
       ],
     },
 
@@ -347,7 +446,36 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Karena itu pula tidak ada yang bisa kami hapus dari sisi kami bila diminta: data anak yang memakai perangkat tertentu berada di perangkat itu sendiri, dan di cadangan perangkat itu bila pencadangan pernah dinyalakan. Data itu dapat dihapus dengan menghapus data aplikasinya dan menghapus cadangan tersebut. Caranya ada di bagian berikutnya.",
+          text: "Karena itu pula tidak ada yang bisa kami hapus dari sisi kami bila diminta: data anak yang memakai perangkat tertentu berada di perangkat itu sendiri, dan di cadangan perangkat itu bila pencadangan pernah dinyalakan. Data itu dapat dihapus dengan menghapus data aplikasinya dan menghapus cadangan tersebut. Caranya ada di bagian-bagian berikutnya.",
+        },
+      ],
+    },
+
+    {
+      id: "delete-account",
+      title: "Menghapus akun",
+      blocks: [
+        {
+          kind: "p",
+          text: "Cara utamanya **dari dalam aplikasi: Pengaturan > DATA > Hapus Akun**. Baris itu hanya tampil bila Anda sedang masuk dengan Google. Anda diminta memilih akun Google sekali lagi sebagai verifikasi, dan tombol hapusnya baru aktif sesudah 10 detik, supaya penjelasannya sempat dibaca.",
+        },
+        {
+          kind: "p",
+          text: "Yang terjadi saat Anda menghapus akun dari aplikasi:",
+        },
+        {
+          kind: "list",
+          items: [
+            "Akun Firebase Authentication Anda di proyek Himiko Lab dihapus, beserta alamat email, nama, UID, dan catatan masuk yang dipegangnya.",
+            "**Seluruh cadangan Morvyn di Google Drive Anda ikut dihapus**, lalu izin Google Drive untuk Morvyn dicabut. Cadangan itu tidak bisa dipulihkan lagi.",
+            "Sambungan Google Drive dan Google Calendar diputus. Acara di Google Calendar Anda tetap ada di sana; salinan di Morvyn yang berasal dari Google dilepas.",
+            "**Data di ponsel Anda tidak dihapus.** Anda dapat mengosongkannya sendiri lewat \"Hapus Semua Data\".",
+            "Bila langkah menghapus cadangan gagal, misalnya karena tidak ada koneksi internet, akunnya tidak jadi dihapus dan Anda bisa mencoba lagi.",
+          ],
+        },
+        {
+          kind: "p",
+          text: "**Bila aplikasinya sudah tidak terpasang**, kirim email ke [hi@himikolab.my.id](mailto:hi@himikolab.my.id) dari alamat Google yang Anda pakai masuk. Himiko Lab menghapus akun Firebase Authentication itu **paling lama 14 hari** sejak permintaan. Berkas cadangan di Drive Anda dihapus sendiri oleh Anda, lewat pengaturan aplikasi terhubung di Google Drive, karena Himiko Lab tidak punya akses ke Drive Anda.",
         },
       ],
     },
@@ -360,12 +488,16 @@ export const privacyId: LegalDocument = {
           kind: "defs",
           items: [
             {
+              term: "Akun Morvyn",
+              text: "Pengaturan > DATA > Hapus Akun, dari dalam aplikasi. Lihat bagian \"Menghapus akun\" di atas.",
+            },
+            {
               term: "Semua data lokal",
-              text: "Hapus (uninstall) aplikasinya, atau hapus data aplikasi dari Setelan Android.",
+              text: "Pakai \"Hapus Semua Data\" di Pengaturan Morvyn, hapus data aplikasi dari Setelan Android, atau copot (uninstall) aplikasinya. Menghapus akun tidak menghapus data di ponsel Anda.",
             },
             {
               term: "Cadangan di Google Drive",
-              text: "Putuskan sambungan dari Pengaturan Morvyn, lalu hapus berkas cadangannya lewat pengaturan aplikasi terhubung di Google Drive.",
+              text: "Ada dua cara: hapus akun dari dalam aplikasi, yang sekaligus menghapus cadangannya, atau putuskan sambungan Drive dari Pengaturan Morvyn lalu hapus data aplikasinya lewat pengaturan aplikasi terhubung di Google Drive.",
             },
             {
               term: "Cadangan sistem Android",
