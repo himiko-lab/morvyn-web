@@ -26,7 +26,7 @@ export const privacyId: LegalDocument = {
     "Cara Morvyn menangani data Anda: tetap di perangkat kecuali Anda menyalakan pencadangan. Tanpa iklan, tanpa analitik, dan semua fitur Google opsional.",
   lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan, sama pentingnya, apa yang tidak dilakukannya.",
   effectiveLabel: "Berlaku sejak",
-  effectiveDate: "26 September 2026",
+  effectiveDate: "7 Oktober 2026",
 
   summaryHeading: "Ringkasnya",
   summary: [
@@ -106,9 +106,12 @@ export const privacyId: LegalDocument = {
             "Catatan cuaca",
             "Riwayat penghapusan: item Jadwal dan Tugas yang Anda hapus disimpan 7 hari agar bisa dipulihkan, lalu dibuang otomatis",
             "Lampiran catatan: gambar, berkas PDF, hasil pindaian dokumen yang disimpan sebagai PDF, dan coretan",
-            "Nama dan foto profil Anda",
+            "Profil Anda: nama, foto, jenis kelamin, tanggal lahir, dan zona waktu",
             "Tempat pada catatan transaksi keuangan, bila Anda mengisinya dari posisi Anda (lihat bagian \"Lokasi, cuaca, dan tempat\")",
-            "Data gempa: posisi terakhir yang diketahui, setelan notifikasi gempa, dan salinan data gempa terakhir (lihat bagian \"Info gempa\")",
+            "Posisi terakhir Anda: satu nilai yang dipakai bersama oleh Beranda, Cuaca, Gempa, dan tempat transaksi di Keuangan (lihat bagian \"Lokasi, cuaca, dan tempat\")",
+            "Data gempa: setelan notifikasi gempa dan salinan data gempa terakhir (lihat bagian \"Info gempa\")",
+            "Teks hasil pengenalan (OCR) pada halaman PDF, disimpan di cache aplikasi",
+            "Angka penyimpanan akun Google yang terakhir terbaca, selama Drive terhubung (lihat bagian \"Pencadangan ke Google Drive\")",
           ],
         },
         {
@@ -155,7 +158,19 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
+          text: "Selain data aplikasi dan berkas PDF itu, cadangan memuat profil Anda (nama, jenis kelamin, tanggal lahir, zona waktu, foto profil) dan pengaturan aplikasi (tema, bahasa, satuan suhu, mata uang, pengingat harian, urutan dan saringan Catatan, pengaturan Gempa, riwayat warna pena, dan posisi baca PDF).",
+        },
+        {
+          kind: "p",
+          text: "Ada yang sengaja tidak diikutkan ke cadangan: tembolok cuaca, berita, dan kurs; posisi terakhir dan kode negara Wi-Fi; status sambungan Drive dan Kalender; serta sandi PDF.",
+        },
+        {
+          kind: "p",
           text: "Folder itu tersembunyi dari aplikasi lain, dan **Himiko Lab tidak punya akses ke sana**. Anda dapat menghapus isinya sendiri kapan saja lewat pengaturan Google Drive.",
+        },
+        {
+          kind: "p",
+          text: "**Angka penyimpanan akun.** Selama Drive terhubung, Morvyn membaca dua angka dari akun Google Anda lewat Drive API: penyimpanan yang terpakai (total di semua layanan Google) dan batas penyimpanannya. Keduanya ditampilkan kepada Anda di Pengaturan, bagian Cadangan, sebagai \"Penyimpanan Google\". Ini memakai scope yang sama, `drive.appdata`; tidak ada scope baru yang diminta. Angkanya disimpan hanya di perangkat Anda, bersama pengaturan cadangan, dan tidak dikirim ke Himiko Lab maupun pihak mana pun. Angka itu dihapus saat Anda memutus sambungan Drive atau mengganti akun. Karena tersimpan bersama pengaturan aplikasi, angka itu bisa ikut cadangan sistem Android yang dijelaskan di bagian \"Cara data Anda dilindungi\", sama seperti pengaturan lain.",
         },
       ],
     },
@@ -210,6 +225,10 @@ export const privacyId: LegalDocument = {
               term: "ML Kit Document Scanner",
               text: "Menjalankan fitur Pindai dokumen, lewat Google Play services. Menurut halaman pengungkapan data ML Kit, SDK ini mengirim info perangkat (pabrikan, model, versi sistem operasi), info aplikasi (nama paket, versi), pengenal per-instalasi, metrik kinerja, konfigurasi API, dan kode galat ke Google, untuk diagnostik dan analitik penggunaan, terenkripsi dengan HTTPS dan tidak diteruskan ke pihak ketiga. Hasil pindaiannya sendiri disimpan di perangkat Anda, sebagai PDF di Catatan.",
             },
+            {
+              term: "ML Kit Text Recognition",
+              text: "Membuat pembaca PDF mengenali teks pada halaman PDF hasil pindaian, supaya bisa dicari dan diseleksi. Morvyn memakai versi bundled: modelnya (Latin, Mandarin, Jepang, Korea, Devanagari) ikut di dalam aplikasi dan dijalankan di perangkat Anda, tanpa unduhan model. Morvyn sendiri tidak mengunggah halaman PDF maupun teks hasilnya ke mana pun. Teks hasil pengenalan disimpan di folder cache aplikasi di perangkat Anda, dan dienkripsi bila PDF-nya bersandi. Cache itu tidak ikut cadangan apa pun dan terhapus lewat \"Hapus cache\" di Pengaturan. Seperti SDK ML Kit lain, pustakanya memang mengirim data teknis ke Google. Menurut [halaman pengungkapan data ML Kit](https://developers.google.com/ml-kit/android-data-disclosure) dari Google, isinya informasi perangkat, informasi aplikasi, pengenal per-instalasi, metrik kinerja, konfigurasi API, ukuran masukan dan keluaran fitur, versi fitur, jenis kejadian, dan kode galat, dipakai untuk diagnostik dan analitik penggunaan, terenkripsi dengan HTTPS saat dikirim dan tidak diteruskan ke pihak ketiga.",
+            },
           ],
         },
       ],
@@ -230,7 +249,7 @@ export const privacyId: LegalDocument = {
         {
           kind: "list",
           items: [
-            "Data itu hanya dipakai untuk menyediakan fitur yang terlihat langsung oleh Anda, yaitu pencadangan dan sinkronisasi kalender yang Anda nyalakan sendiri.",
+            "Data itu hanya dipakai untuk menyediakan fitur yang terlihat langsung oleh Anda, yaitu pencadangan dan sinkronisasi kalender yang Anda nyalakan sendiri, serta menampilkan pemakaian penyimpanan akun Google Anda kepada Anda sendiri.",
             "Data itu tidak dipindahkan ke pihak mana pun. Tidak ada perantara yang dilewati, karena Morvyn tidak punya server.",
             "Data itu tidak dipakai untuk iklan, dan tidak dipakai untuk membangun profil apa pun.",
             "Tidak ada manusia yang membacanya. Himiko Lab tidak punya jalan teknis ke sana: berkas cadangan berada di folder tersembunyi milik Anda di Drive, dan data kalender tidak pernah keluar dari perangkat Anda selain menuju kalender Google Anda sendiri atau cadangan milik Anda sendiri, bila Anda menyalakannya.",
@@ -265,7 +284,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Hak akses seminimal mungkin.** Morvyn hanya meminta dua scope Google, `drive.appdata` dan `calendar.events`, dan hanya setelah Anda menyalakan fitur yang bersangkutan. Akses kalender dibatasi pada satu kalender yang Anda pilih.",
+          text: "**Hak akses seminimal mungkin.** Morvyn hanya meminta dua scope Google, `drive.appdata` dan `calendar.events`, dan hanya setelah Anda menyalakan fitur yang bersangkutan. Akses kalender dibatasi pada satu kalender yang Anda pilih. Angka penyimpanan akun yang tampil di Pengaturan dibaca dengan scope `drive.appdata` yang sama.",
         },
         {
           kind: "p",
@@ -295,13 +314,17 @@ export const privacyId: LegalDocument = {
             },
             {
               term: "Gempa",
-              text: "Posisi terakhir yang diketahui dipakai untuk menghitung jarak gempa dan menentukan sumber data mana yang dibaca. Bagian berikutnya menjelaskannya lengkap.",
+              text: "Posisi terakhir yang diketahui dipakai untuk menghitung jarak gempa dan menentukan sumber data mana yang dibaca. Menu Gempa juga bisa meminta izin lokasi sendiri, lewat tombol \"Izinkan lokasi\", dan lokasi perkiraan sudah cukup. Bila izinnya ada, menu itu membaca posisi ponsel saat dibuka atau disegarkan, yang hanya terjadi saat aplikasi terbuka dan menunya tampil. Bagian berikutnya menjelaskannya lengkap.",
             },
             {
               term: "Geocoder",
-              text: "Untuk mengubah koordinat menjadi nama tempat (Cuaca, Beranda, Keuangan) atau kode negara (Gempa), Morvyn memakai layanan geocoder sistem Android. Pada ponsel dengan Google Play services, layanan itu dilayani Google, jadi koordinatnya sampai ke Google.",
+              text: "Untuk mengubah koordinat menjadi nama tempat (Cuaca, Beranda, Keuangan, dan keterangan \"Lokasi Anda\" di Gempa) atau kode negara (Gempa), Morvyn memakai layanan geocoder sistem Android. Pada ponsel dengan Google Play services, layanan itu dilayani Google, jadi koordinatnya sampai ke Google.",
             },
           ],
+        },
+        {
+          kind: "p",
+          text: "**Satu posisi terakhir, dipakai bersama.** Morvyn menyimpan satu \"posisi terakhir\" di perangkat Anda, yang dipakai bersama oleh Beranda, Cuaca, Gempa, dan tempat transaksi di Keuangan. Siapa pun dari keempatnya yang mendapat posisi akan menyimpannya. Ketika posisi baru tersimpan (posisi pertama, atau yang bergeser lebih dari sekitar 3 km), Beranda dan Cuaca menyegarkan cuaca untuk posisi itu. Jadi koordinatnya dikirim ke Open-Meteo (cadangan: OpenWeather) dan ke geocoder sistem, **walaupun posisi itu didapat di menu Gempa atau saat mengisi tempat transaksi di Keuangan**.",
         },
         {
           kind: "p",
@@ -320,11 +343,19 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Datanya berasal dari **BMKG** (`data.bmkg.go.id`) untuk pengguna di Indonesia, dan dari **U.S. Geological Survey** (`earthquake.usgs.gov`) untuk pengguna di luar Indonesia. Morvyn mengunduh berkas data mereka secara utuh, termasuk gambar peta guncangan, dan **tidak mengirim posisi Anda sama sekali**. Kedua lembaga itu hanya melihat permintaan biasa, yaitu alamat IP dan informasi permintaan biasa, persis seperti penerbit berita.",
+          text: "Datanya berasal dari **BMKG** (`data.bmkg.go.id`) untuk pengguna di Indonesia, dan dari **U.S. Geological Survey** (`earthquake.usgs.gov`) untuk pengguna di luar Indonesia. Morvyn mengunduh berkas data mereka secara utuh, termasuk gambar peta guncangan, dan **tidak mengirim posisi Anda sama sekali kepada mereka**. Kedua lembaga itu hanya melihat permintaan biasa, yaitu alamat IP dan informasi permintaan biasa, persis seperti penerbit berita.",
         },
         {
           kind: "p",
-          text: "Jarak gempa dihitung **di perangkat Anda**, dari posisi terakhir yang didapat layar Cuaca atau Beranda. Posisi itu tetap di perangkat Anda: tidak dikirim ke BMKG maupun USGS, tidak ikut cadangan sistem Android, dan tidak ikut cadangan Drive.",
+          text: "Jarak gempa dihitung **di perangkat Anda**, dari posisi terakhir yang didapat Beranda, Cuaca, menu Gempa sendiri, atau pengisian tempat transaksi di Keuangan. Posisi yang tersimpan itu tidak dikirim ke BMKG maupun USGS, tidak ikut cadangan sistem Android, dan tidak ikut cadangan Drive.",
+        },
+        {
+          kind: "p",
+          text: "Bila izin lokasi ada, menu Gempa membaca posisi ponsel sendiri saat menunya dibuka atau disegarkan. Itu hanya terjadi saat aplikasi terbuka dan menunya tampil. Izinnya bisa diberikan lewat tombol \"Izinkan lokasi\" di menu itu; izin itu tetap opsional, dan lokasi perkiraan sudah cukup. Geocoder sistem mengubah posisi itu menjadi nama tempat yang tampil sebagai keterangan \"Lokasi Anda\".",
+        },
+        {
+          kind: "p",
+          text: "Posisi terakhir itu satu nilai yang dipakai bersama dengan Beranda, Cuaca, dan Keuangan. Ketika posisi baru tersimpan (posisi pertama, atau yang bergeser lebih dari sekitar 3 km), Beranda dan Cuaca menyegarkan cuaca untuk posisi itu, sehingga koordinatnya dikirim ke Open-Meteo (cadangan: OpenWeather) dan ke geocoder sistem walaupun posisi itu didapat di menu Gempa ini. Rinciannya ada di bagian \"Lokasi, cuaca, dan tempat\" di atas.",
         },
         {
           kind: "p",

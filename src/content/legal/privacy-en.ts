@@ -17,7 +17,7 @@ export const privacyEn: LegalDocument = {
     "How Morvyn handles your data: it stays on your device unless you turn on backup. No ads, no analytics, and every Google feature is optional.",
   lead: "Morvyn is an Android app made by Himiko Lab. This page explains what data the app handles, where it goes, and, just as importantly, what it does not do.",
   effectiveLabel: "Effective",
-  effectiveDate: "26 September 2026",
+  effectiveDate: "7 October 2026",
 
   summaryHeading: "In short",
   summary: [
@@ -97,9 +97,12 @@ export const privacyEn: LegalDocument = {
             "Weather records",
             "Deletion history: schedule and task items you delete are kept for 7 days so you can restore them, then dropped automatically",
             "Note attachments: images, PDF files, document scans saved as PDF, and drawings",
-            "Your profile name and photo",
+            "Your profile: name, photo, gender, date of birth, and time zone",
             "The place on a finance record, when you fill it in from where you are (see \"Location, weather, and places\")",
-            "Earthquake data: your last known position, your earthquake notification settings, and a copy of the latest earthquake data (see \"Earthquake information\")",
+            "Your last known position: a single value shared by Home, Weather, Earthquake, and the transaction place in Finance (see \"Location, weather, and places\")",
+            "Earthquake data: your earthquake notification settings and a copy of the latest earthquake data (see \"Earthquake information\")",
+            "The text recognised (OCR) on PDF pages, kept in the app's cache",
+            "The Google account storage figures last read, while Drive is connected (see \"Google Drive backup\")",
           ],
         },
         {
@@ -146,7 +149,19 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
+          text: "Besides your app data and those PDF files, a backup holds your profile (name, gender, date of birth, time zone, profile photo) and your app settings (theme, language, temperature unit, currency, daily reminder, the sort order and filters in Notes, Earthquake settings, pen colour history, and PDF reading positions).",
+        },
+        {
+          kind: "p",
+          text: "Some things are deliberately left out of the backup: the weather, news, and exchange rate caches; your last known position and the Wi-Fi country code; the connection status of Drive and Calendar; and PDF passwords.",
+        },
+        {
+          kind: "p",
           text: "That folder is hidden from other apps, and **Himiko Lab has no access to it**. You can delete its contents yourself at any time through your Google Drive settings.",
+        },
+        {
+          kind: "p",
+          text: "**Account storage figures.** While Drive is connected, Morvyn reads two figures from your Google account through the Drive API: the storage in use (the total across all Google services) and the storage limit. They are shown to you in Settings, under Backup, as \"Google storage\". This uses the same `drive.appdata` scope; no new scope is requested. The figures are kept only on your device, together with the backup settings, and are not sent to Himiko Lab or to anyone else. They are removed when you disconnect Drive or switch accounts. Because they are stored with the app's settings, they can be included in the Android system backup described under \"How your data is protected\", like any other setting.",
         },
       ],
     },
@@ -201,6 +216,10 @@ export const privacyEn: LegalDocument = {
               term: "ML Kit Document Scanner",
               text: "Powers Scan document, through Google Play services. According to ML Kit's data disclosure page, the SDK sends device information (manufacturer, model, OS version), app information (package name, version), a per-installation identifier, performance metrics, API configuration, and error codes to Google, for diagnostics and usage analytics, encrypted with HTTPS and not passed on to third parties. The scan itself is saved on your device, as a PDF in Notes.",
             },
+            {
+              term: "ML Kit Text Recognition",
+              text: "Lets the PDF reader recognise the text on scanned PDF pages, so that it can be searched and selected. Morvyn uses the bundled version: the models (Latin, Chinese, Japanese, Korean, Devanagari) ship inside the app and run on your device, with no model download. Morvyn itself does not upload the PDF pages or the recognised text anywhere. The recognised text is kept in the app's cache folder on your device, and is encrypted when the PDF is password-protected. That cache is left out of every backup and is removed by \"Clear cache\" in Settings. Like the other ML Kit SDKs, the library does send technical data to Google. According to Google's [ML Kit data disclosure page](https://developers.google.com/ml-kit/android-data-disclosure), that is device information, application information, per-installation identifiers, performance metrics, API configuration, feature input and output size, feature version, event types, and error codes, used for diagnostics and usage analytics, encrypted in transit with HTTPS and not transferred to third parties.",
+            },
           ],
         },
       ],
@@ -221,7 +240,7 @@ export const privacyEn: LegalDocument = {
         {
           kind: "list",
           items: [
-            "It is used only to provide user-facing features: the backup and calendar sync that you switch on yourself.",
+            "It is used only to provide user-facing features: the backup and calendar sync that you switch on yourself, and showing you your own Google account's storage usage.",
             "It is not transferred to anyone. There is no intermediary to pass through, because Morvyn has no server.",
             "It is not used for advertising, and not used to build any kind of profile.",
             "No human reads it. Himiko Lab has no technical route to it: backup files sit in your own hidden folder on Drive, and calendar data never leaves your device except to reach your own Google calendar or your own backups, if you turn them on.",
@@ -256,7 +275,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Least privilege.** Morvyn requests only two Google scopes, `drive.appdata` and `calendar.events`, and only after you turn on the matching feature. Calendar access is limited to the one calendar you choose.",
+          text: "**Least privilege.** Morvyn requests only two Google scopes, `drive.appdata` and `calendar.events`, and only after you turn on the matching feature. Calendar access is limited to the one calendar you choose. The account storage figures shown in Settings are read with the same `drive.appdata` scope.",
         },
         {
           kind: "p",
@@ -286,13 +305,17 @@ export const privacyEn: LegalDocument = {
             },
             {
               term: "Earthquake",
-              text: "Your last known position is used to work out how far away an earthquake was, and which source to read. The next section explains it in full.",
+              text: "Your last known position is used to work out how far away an earthquake was, and which source to read. The Earthquake menu can also ask for the location permission itself, through its \"Allow location\" button, and approximate location is enough. With the permission granted, the menu reads the phone's position when it is opened or refreshed, which happens only while the app is open and the menu is on screen. The next section explains it in full.",
             },
             {
               term: "Geocoder",
-              text: "To turn coordinates into a place name (Weather, Home, Finance) or a country code (Earthquake), Morvyn uses the Android system geocoder. On phones with Google Play services, that service is provided by Google, so the coordinates reach Google.",
+              text: "To turn coordinates into a place name (Weather, Home, Finance, and the \"Your location\" caption in Earthquake) or a country code (Earthquake), Morvyn uses the Android system geocoder. On phones with Google Play services, that service is provided by Google, so the coordinates reach Google.",
             },
           ],
+        },
+        {
+          kind: "p",
+          text: "**One last position, shared.** Morvyn keeps a single \"last position\" on your device, shared by Home, Weather, Earthquake, and the transaction place in Finance. Whichever of the four obtains a position saves it. When a new position is saved (the first one, or one that has moved more than about 3 km), Home and Weather refresh the weather for it. So the coordinates are sent to Open-Meteo (fallback: OpenWeather) and to the system geocoder, **even when the position was obtained in the Earthquake menu or while filling in a transaction place in Finance**.",
         },
         {
           kind: "p",
@@ -311,11 +334,19 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "The data comes from **BMKG** (`data.bmkg.go.id`) for users in Indonesia, and from the **U.S. Geological Survey** (`earthquake.usgs.gov`) for users outside Indonesia. Morvyn downloads their data files whole, including the shake map images, and **sends none of your position**. Both institutions see an ordinary request only, your IP address and ordinary request information, exactly as the news publishers do.",
+          text: "The data comes from **BMKG** (`data.bmkg.go.id`) for users in Indonesia, and from the **U.S. Geological Survey** (`earthquake.usgs.gov`) for users outside Indonesia. Morvyn downloads their data files whole, including the shake map images, and **sends none of your position to them**. Both institutions see an ordinary request only, your IP address and ordinary request information, exactly as the news publishers do.",
         },
         {
           kind: "p",
-          text: "The distance to an earthquake is worked out **on your device**, from the last position the Weather or Home screen obtained. That position stays on your device: it is not sent to BMKG or USGS, it is not part of your Android system backup, and it is not part of your Drive backup.",
+          text: "The distance to an earthquake is worked out **on your device**, from the last position obtained by Home, Weather, the Earthquake menu itself, or filling in a transaction place in Finance. That stored position is not sent to BMKG or USGS, it is not part of your Android system backup, and it is not part of your Drive backup.",
+        },
+        {
+          kind: "p",
+          text: "With the location permission granted, the Earthquake menu reads the phone's position itself when it is opened or refreshed. That happens only while the app is open and the menu is on screen. The permission can be granted from the menu's \"Allow location\" button; it stays optional, and approximate location is enough. The system geocoder turns the position into the place name shown as \"Your location\".",
+        },
+        {
+          kind: "p",
+          text: "The last position is one value shared with Home, Weather, and Finance. When a new one is saved (the first one, or one that has moved more than about 3 km), Home and Weather refresh the weather for it, so the coordinates are sent to Open-Meteo (fallback: OpenWeather) and to the system geocoder even when the position was obtained here in the Earthquake menu. \"Location, weather, and places\" above has the details.",
         },
         {
           kind: "p",

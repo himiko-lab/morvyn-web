@@ -169,8 +169,8 @@ tanggal berbeda. Saat ini:
 
 | Dokumen | Tanggal berlaku |
 | --- | --- |
-| Kebijakan Privasi | 20 September 2026 |
-| Ketentuan Layanan | 14 Agustus 2026 |
+| Kebijakan Privasi | 7 Oktober 2026 |
+| Ketentuan Layanan | 26 September 2026 |
 
 Kalau isi sebuah dokumen berubah, perbarui `effectiveDate` di kedua berkas
 bahasanya (misalnya `privacy-id.ts` dan `privacy-en.ts`) DAN entrinya di
