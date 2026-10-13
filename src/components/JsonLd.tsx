@@ -111,7 +111,14 @@ export function JsonLd({ locale }: { locale: Locale }) {
       mainEntity: faqItems(dict).map((item) => ({
         "@type": "Question",
         name: item.q,
-        acceptedAnswer: { "@type": "Answer", text: item.a },
+        acceptedAnswer: {
+          "@type": "Answer",
+          // Google menerima tautan <a> di jawaban FAQ. Alamatnya ditulis
+          // lengkap, karena data terstruktur dibaca di luar halaman ini.
+          text: item.link
+            ? `${item.a} <a href="${site.url}${item.link.href}">${item.link.label}</a>`
+            : item.a,
+        },
       })),
     },
   ];

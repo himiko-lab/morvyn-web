@@ -10,16 +10,17 @@ import type { LegalDocument } from "./types";
 export const termsEn: LegalDocument = {
   title: "Terms of Service",
   description:
-    "The terms for using Morvyn: a free app provided as is, with your data staying entirely in your own hands.",
-  lead: "These terms apply when you install or use Morvyn, an Android app made by Himiko Lab. They are short on purpose: Morvyn keeps your data on your own device, so there is not much to govern.",
+    "The terms for using Morvyn: a free app provided as is, with your app content stored on your own device.",
+  lead: "These terms apply when you install or use Morvyn, an Android app made by Himiko Lab. They are short on purpose: Morvyn keeps your app content on your own device, so there is not much to govern. What does leave the device without you turning anything on is menu usage statistics and crash reports, which are sent to Google and cannot be turned off from inside the app.",
   effectiveLabel: "Effective",
-  effectiveDate: "26 September 2026",
+  effectiveDate: "14 October 2026",
 
   summaryHeading: "In short",
   summary: [
     "Morvyn is **free** and provided **as is**, without warranty.",
     "Your data lives on your device, so **keeping it safe is your responsibility**. Backups are strongly recommended.",
-    "When enabled, calendar sync can **create, change, and delete** events on the Google calendar you choose.",
+    "Morvyn sends **menu usage statistics and crash reports** to Google (Firebase Analytics and Crashlytics). Both are always on and cannot be turned off from inside the app.",
+    "When enabled, calendar sync can **create, change, and delete** events on the Google calendar you choose. Disconnecting it deletes from Google Calendar the copies of schedule entries that Morvyn created.",
     "These terms are governed by **the laws of the Republic of Indonesia**.",
   ],
 
@@ -62,7 +63,7 @@ export const termsEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "All Morvyn data is stored inside your device. Himiko Lab holds no copy of it and **cannot recover data that is lost**. The one thing Himiko Lab does hold, if you sign in with Google, is the sign-in record for your account: the [Privacy Policy](/en/privacy/) sets out what it contains and how to delete it.",
+          text: "All of your Morvyn content (notes, schedule, finances, habits) is stored inside your device. Himiko Lab holds no copy of it and **cannot recover data that is lost**. Two things do reach Himiko Lab's Firebase project. First, the sign-in record for your account, if you sign in with Google: the [Privacy Policy](/en/privacy/#delete-account) sets out what it contains and how to delete it. Second, menu usage statistics and crash reports, which are always on and hold none of your app content: see [Usage statistics and crash reports](/en/privacy/#analytics).",
         },
         {
           kind: "p",
@@ -87,6 +88,10 @@ export const termsEn: LegalDocument = {
           kind: "p",
           text: "Pick the calendar you actually mean, and turn sync off from Morvyn's Settings when you no longer want it.",
         },
+        {
+          kind: "p",
+          text: "**Disconnecting deletes too.** Turning sync off only pauses it. Disconnecting Google Calendar in Settings removes the events that came from Google from Morvyn, **and deletes from Google Calendar the copies of schedule entries that Morvyn created**. Events you created yourself in Google Calendar are not touched. If some of the deletions fail, for example with no internet connection, the disconnection is held back and you can choose to disconnect anyway.",
+        },
       ],
     },
 
@@ -103,7 +108,7 @@ export const termsEn: LegalDocument = {
           items: [
             {
               term: "Google",
-              text: "Sign in with Google, Google Drive backup, Google Calendar sync, announcement notifications and app configuration (Firebase), in-app updates from the Play Store, and the document scanner (ML Kit).",
+              text: "Sign in with Google, Google Drive backup, Google Calendar sync, announcement notifications and app configuration (Firebase), usage statistics and crash reports (Firebase Analytics and Crashlytics), in-app updates from the Play Store, and the document scanner (ML Kit).",
             },
             {
               term: "Earthquake data sources",

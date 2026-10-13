@@ -8,7 +8,7 @@ export const en: Dictionary = {
     title: "Morvyn: Notes, Finance, and Agenda in One Android App",
     ogTitle: "Morvyn, one calm space for your whole day",
     description:
-      "Morvyn brings notes, finance, agenda, habits, weather, calendar, and news from 27 outlets into a single Android app. Free on Google Play.",
+      "Morvyn brings notes, finance, agenda, habits, weather, calendar, earthquake info, and news from 29 outlets into a single Android app. Free on Google Play.",
     localeName: "English",
     localeShort: "EN",
     ogImageAlt: "Morvyn, one calm space for your whole day",
@@ -27,9 +27,9 @@ export const en: Dictionary = {
   },
 
   hero: {
-    eyebrow: "Seven daily needs, one app",
+    eyebrow: "Eight daily needs, one app",
     headline: ["One calm space for", "your whole day"],
-    body: "Notes, finances, agenda, habits, weather, calendar, and news. All inside Morvyn, and all able to talk to each other.",
+    body: "Notes, finances, agenda, habits, weather, calendar, news, and earthquake information. All inside Morvyn, and all able to talk to each other.",
     primaryCta: "Get it on Google Play",
     secondaryCta: "See the features",
     iosNote: "iOS version in the works",
@@ -39,38 +39,42 @@ export const en: Dictionary = {
   featureMockupAlt: "The {name} screen in the Morvyn app",
 
   stats: [
-    { value: "7", label: "core features", detail: "in a single app" },
-    { value: "27", label: "news outlets", detail: "local & international" },
+    { value: "8", label: "core features", detail: "in a single app" },
+    { value: "29", label: "news outlets", detail: "local & international" },
     { value: "2", label: "languages", detail: "Indonesian & English" },
   ],
 
   overview: {
     eyebrow: "What's inside",
-    title: "Seven menus that cover an ordinary day",
-    body: "Not seven separate apps bolted together. Seven menus that know about each other.",
+    title: "Eight menus that cover an ordinary day",
+    body: "Not eight separate apps bolted together. Eight menus that know about each other.",
   },
 
   features: {
     notes: {
       name: "Notes",
       tagline: "Notes that don't stay just notes",
-      short: "Free text, bullet lists, and links into the rest of Morvyn.",
-      body: "Write plain notes, break them into bullets, or link them straight to your agenda, transactions, and habits. One meeting note can carry the tasks that came out of it.",
+      short: "Text, checklists, images, PDFs, and links into the rest of Morvyn.",
+      body: "Write plain notes, break them into bullets or checklists, or link them straight to your agenda, transactions, and habits. A note can also hold images, handwritten sketches, maths formulas, and PDF attachments with a reader to open them. Documents can be scanned into PDFs. One meeting note can carry the tasks that came out of it.",
       points: [
-        "Free text and bullet lists in one editor",
+        "Free text, bullet lists, and checklists in one editor",
+        "Images, handwritten sketches, maths formulas, and PDF attachments with their reader",
         "Link a note to Agenda, Finance, or Habits",
-        "Search across everything you've written",
+        "Note categories and quick search across everything you've written",
+        "Notes widget: tick checklist items straight from the home screen",
       ],
     },
     finance: {
       name: "Finance",
       tagline: "Know where your money actually went",
-      short: "Income, expenses, charts, and live currency rates.",
-      body: "Record income and expenses, watch the pattern emerge in charts, then check currency rates without leaving the app.",
+      short: "Income, expenses, multiple wallets, charts, and live currency rates.",
+      body: "Record income and expenses across multiple wallets, such as cash, a bank account, and an e-wallet, and move balances between them. Watch the pattern emerge in charts, and check currency rates without leaving the app.",
       points: [
+        "Multiple wallets, with transfers between them",
         "Income and expense charts",
         "Spending categories you can adjust",
         "Currency exchange rates, kept current",
+        "A hide-balance toggle that also applies to the Finance widget",
       ],
     },
     agenda: {
@@ -82,15 +86,16 @@ export const en: Dictionary = {
         "Alarms with repeat patterns",
         "Event schedules and their reminders",
         "Tasks with due dates",
+        "Agenda widget: tick off tasks straight from the home screen",
       ],
     },
     news: {
       name: "News",
-      tagline: "World news from 27 outlets",
+      tagline: "World news from 29 outlets",
       short: "From ANTARA and detikcom to BBC, Al Jazeera, and The Guardian.",
-      body: "Twenty-seven local and international outlets pulled into one feed, sorted into categories, and refreshed through the day.",
+      body: "Twenty-nine local and international outlets pulled into one feed, sorted into categories, and refreshed through the day.",
       points: [
-        "27 local and international outlets",
+        "29 local and international outlets",
         "Business, sports, and tech categories",
         "Refreshed throughout the day",
       ],
@@ -104,6 +109,7 @@ export const en: Dictionary = {
         "Daily targets, or only on chosen days",
         "Streaks you can see at a glance",
         "Reminders on your own schedule",
+        "A Habits widget on your phone's home screen",
       ],
     },
     weather: {
@@ -126,6 +132,17 @@ export const en: Dictionary = {
         "A full, uncluttered month view",
         "Tasks and events sit on their dates",
         "Wired directly into Agenda",
+      ],
+    },
+    earthquake: {
+      name: "Earthquake",
+      tagline: "The latest earthquake information, not an early warning",
+      short: "The latest earthquake information from BMKG or USGS. Not an early warning.",
+      body: "Morvyn shows the latest earthquake information, from BMKG if you are in Indonesia and from the U.S. Geological Survey if you are outside Indonesia. If you grant the location permission, the distance to each earthquake is worked out from where you are. This is earthquake information, not an early warning.",
+      points: [
+        "BMKG as the source in Indonesia, the U.S. Geological Survey elsewhere",
+        "Distance from your location, if you grant the location permission",
+        "Notifications you can tune: radius, minimum magnitude, large earthquakes, and BMKG tsunami potential",
       ],
     },
   },
@@ -157,7 +174,7 @@ export const en: Dictionary = {
       },
       {
         title: "Turn on the menus you need",
-        body: "Not everyone needs all seven. Use what's relevant; the rest stays out of your way.",
+        body: "Not everyone needs all eight. Use what's relevant; the rest stays out of your way.",
       },
       {
         title: "Connect notes to the rest of your day",
@@ -168,7 +185,7 @@ export const en: Dictionary = {
 
   news: {
     eyebrow: "News sources",
-    title: "Twenty-seven outlets, one feed",
+    title: "Twenty-nine outlets, one feed",
     body: "The full list of outlets that feed the News menu.",
   },
 
@@ -178,7 +195,7 @@ export const en: Dictionary = {
     items: [
       {
         q: "Is Morvyn available for iPhone?",
-        a: "Not yet. Coming soon.",
+        a: "Not yet. For now, Morvyn is Android only.",
       },
       {
         q: "Which languages are supported?",
@@ -186,15 +203,20 @@ export const en: Dictionary = {
       },
       {
         q: "Where does the news come from?",
-        a: "From 27 local and international outlets, among them ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, and The New York Times.",
+        a: "From 29 local and international outlets, among them ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, and The New York Times.",
       },
       {
         q: "Do I have to use every feature?",
-        a: "No. The seven menus stand on their own. If you only want Notes and Agenda, leave the rest alone.",
+        a: "No. The eight menus stand on their own. If you only want Notes and Agenda, leave the rest alone.",
       },
       {
         q: "How does Morvyn work out my weather?",
         a: "From your device's location, so the forecast is for where you actually are rather than a city-wide average.",
+      },
+      {
+        q: "What data does Morvyn send?",
+        a: "The contents of your notes, finances, agenda, and habits stay on your device. Morvyn sends statistics on which menus are opened, plus crash reports, to the developer through Google. Both are always on, and there are no ads. The details are in the Privacy Policy.",
+        link: { label: "Read the Privacy Policy", href: "/en/privacy/" },
       },
     ],
   },

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { localeTag, localeUrl, locales, site } from "@/content";
+import { homeUpdatedIso, localeTag, localeUrl, locales, site } from "@/content";
 import { legalEffectiveIso, legalKinds, legalPath } from "@/content/legal";
 
 // Situs ini diekspor statis, jadi berkasnya dibuat sekali saat build. Tanpa
@@ -31,8 +31,8 @@ export const dynamic = "force-static";
  *
  * - Halaman hukum memakai `legalEffectiveIso`, tanggal yang memang ikut
  *   diperbarui setiap kali isi dokumennya berubah.
- * - Beranda tidak punya tanggal seperti itu, jadi `lastmod`-nya sengaja
- *   tidak ada. Tanpa `lastmod`, Google menjadwalkan kunjungannya sendiri.
+ * - Beranda memakai `homeUpdatedIso` di `content/site.ts`, yang diperbarui
+ *   dengan tangan hanya saat teks berandanya benar-benar berubah.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const homeLanguages = {
@@ -44,6 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const home: MetadataRoute.Sitemap = locales.map((locale) => ({
     url: localeUrl(locale),
+    lastModified: homeUpdatedIso,
     changeFrequency: "monthly",
     priority: locale === "id" ? 1 : 0.9,
     alternates: { languages: homeLanguages },

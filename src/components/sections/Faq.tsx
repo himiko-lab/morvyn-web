@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Accordion } from "@heroui/react";
 import { CaretDown } from "@phosphor-icons/react/ssr";
 import { SectionHeading } from "../SectionHeading";
@@ -31,6 +32,20 @@ export function Faq({ dict }: { dict: Dictionary }) {
                   <Accordion.Panel>
                     <Accordion.Body className="leading-relaxed text-[color:var(--foreground)]/65">
                       {item.a}
+                      {/* Jawaban yang merujuk halaman lain membawa tautannya
+                          sendiri; teks jawabannya tetap polos supaya bisa
+                          dipakai apa adanya di data terstruktur. */}
+                      {item.link && (
+                        <>
+                          {" "}
+                          <Link
+                            href={item.link.href}
+                            className="font-medium text-[color:var(--link)] underline decoration-[color:var(--link)]/30 underline-offset-[3px] transition-colors hover:decoration-[color:var(--link)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)]"
+                          >
+                            {item.link.label}
+                          </Link>
+                        </>
+                      )}
                     </Accordion.Body>
                   </Accordion.Panel>
                 </Accordion.Item>

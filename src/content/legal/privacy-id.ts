@@ -23,16 +23,17 @@ import type { LegalDocument } from "./types";
 export const privacyId: LegalDocument = {
   title: "Kebijakan Privasi",
   description:
-    "Cara Morvyn menangani data Anda: tetap di perangkat kecuali Anda menyalakan pencadangan. Tanpa iklan, tanpa analitik, dan semua fitur Google opsional.",
+    "Cara Morvyn menangani data Anda: isi aplikasi tetap di perangkat. Tanpa iklan. Statistik pemakaian menu dan laporan crash dikirim ke Google, selalu menyala.",
   lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan, sama pentingnya, apa yang tidak dilakukannya.",
   effectiveLabel: "Berlaku sejak",
-  effectiveDate: "7 Oktober 2026",
+  effectiveDate: "14 Oktober 2026",
 
   summaryHeading: "Ringkasnya",
   summary: [
-    "**Morvyn tidak punya server.** Himiko Lab tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun. Bila Anda masuk dengan Google, satu-satunya yang kami pegang adalah catatan masuk untuk akun Anda, dan Anda dapat menghapusnya sendiri dari dalam aplikasi.",
-    "Seluruh data Anda disimpan **di dalam perangkat Anda sendiri**, dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
-    "**Tidak ada analitik, tidak ada iklan, tidak ada SDK pelacak.** Tidak ada data yang dijual atau dibagikan. SDK Google yang dipakai Morvyn memang mengirim data teknis terbatas ke Google, dirinci di bagian \"Notifikasi, konfigurasi aplikasi, dan layanan Google lain\".",
+    "**Morvyn tidak punya server.** Himiko Lab tidak dapat melihat isi catatan, jadwal, keuangan, maupun kebiasaan siapa pun. Bila Anda masuk dengan Google, kami memegang catatan masuk untuk akun Anda, dan Anda dapat menghapusnya sendiri dari dalam aplikasi.",
+    "Isi aplikasi Anda disimpan **di dalam perangkat Anda sendiri**, dan di Akun Google milik Anda sendiri hanya bila Anda menyalakan pencadangan.",
+    "**Statistik pemakaian dan laporan crash dikirim ke Google, dan tidak bisa dimatikan dari dalam aplikasi.** Morvyn memakai Firebase Analytics dan Firebase Crashlytics, yang aktif sejak aplikasi dipasang. Yang sengaja dikirim Morvyn hanya nama menu yang dibuka dan nama bagian kode yang gagal, tanpa isi catatan, keuangan, agenda, kebiasaan, maupun lokasi Anda. Rinciannya ada di bagian \"Statistik pemakaian dan laporan crash\".",
+    "**Tidak ada iklan dan tidak ada SDK iklan.** Tidak ada data yang dijual, dan tidak ada yang dibagikan untuk keperluan iklan. SDK Google lain yang dipakai Morvyn juga mengirim data teknis terbatas ke Google, dirinci di bagian \"Notifikasi, konfigurasi aplikasi, dan layanan Google lain\".",
     "Masuk dengan Google, pencadangan ke Google Drive, dan sinkronisasi Google Calendar semuanya **opsional**: Morvyn tetap utuh tanpa satu pun di antaranya.",
   ],
 
@@ -67,7 +68,7 @@ export const privacyId: LegalDocument = {
 
     {
       id: "prinsip",
-      title: "Prinsip utama: tanpa server, tanpa pelacakan",
+      title: "Prinsip utama: tanpa server sendiri, isi aplikasi tetap di perangkat",
       blocks: [
         {
           kind: "p",
@@ -75,11 +76,99 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Ada satu pengecualian: catatan masuk.** Saat Anda masuk dengan Google, Firebase Authentication membuat akun di proyek Firebase milik Himiko Lab yang berisi alamat email, nama tampilan, URL foto profil Google, pengenal pengguna (UID), serta tanggal akun dibuat dan terakhir masuk. Himiko Lab dapat melihat daftar akun itu di konsol Firebase. Isinya tidak memuat satu pun isi aplikasi Anda, dan Anda dapat menghapusnya sendiri dari dalam Morvyn: lihat bagian \"Menghapus akun\".",
+          text: "**Ada dua hal yang sampai ke proyek Firebase milik Himiko Lab. Yang pertama catatan masuk.** Saat Anda masuk dengan Google, Firebase Authentication membuat akun di proyek Firebase milik Himiko Lab yang berisi alamat email, nama tampilan, URL foto profil Google, pengenal pengguna (UID), serta tanggal akun dibuat dan terakhir masuk. Himiko Lab dapat melihat daftar akun itu di konsol Firebase. Isinya tidak memuat satu pun isi aplikasi Anda, dan Anda dapat menghapusnya sendiri dari dalam Morvyn: lihat bagian \"Menghapus akun\".",
         },
         {
           kind: "p",
-          text: "**Tidak ada pelacakan sama sekali.** Aplikasi ini tidak memakai Google Analytics, Firebase Analytics, Crashlytics, SDK iklan, maupun SDK pelacak pihak ketiga lain. Tidak ada profil perilaku yang dibangun, dan tidak ada data yang dijual atau dibagikan untuk keperluan iklan. SDK Google yang dipakai untuk masuk, notifikasi, konfigurasi, dan pemindai dokumen memang mengirim data teknis terbatas ke Google, masing-masing sesuai dokumentasinya sendiri: rinciannya ada di bagian \"Notifikasi, konfigurasi aplikasi, dan layanan Google lain\".",
+          text: "**Yang kedua statistik pemakaian dan laporan crash.** Morvyn memakai Firebase Analytics dan Firebase Crashlytics, keduanya layanan Google. Keduanya aktif sejak aplikasi dipasang, dan tidak ada sakelar untuk mematikannya di dalam aplikasi. Yang sengaja dikirim Morvyn hanya nama menu yang dibuka dan nama bagian kode yang gagal, bukan isi aplikasi Anda. Rinciannya ada di bagian \"Statistik pemakaian dan laporan crash\".",
+        },
+        {
+          kind: "p",
+          text: "**Tidak ada iklan.** Morvyn tidak memakai SDK iklan. Tidak ada data yang dijual, dan tidak ada yang dibagikan untuk keperluan iklan. SDK Google yang dipakai untuk masuk, notifikasi, konfigurasi, dan pemindai dokumen memang mengirim data teknis terbatas ke Google, masing-masing sesuai dokumentasinya sendiri: rinciannya ada di bagian \"Notifikasi, konfigurasi aplikasi, dan layanan Google lain\".",
+        },
+      ],
+    },
+
+    {
+      id: "analytics",
+      title: "Statistik pemakaian dan laporan crash",
+      blocks: [
+        {
+          kind: "p",
+          text: "Morvyn memakai **Firebase Analytics** (Google Analytics for Firebase) dan **Firebase Crashlytics**. Keduanya layanan Google, dan keduanya berjalan di proyek Firebase milik Himiko Lab. Bersama Crashlytics ikut terpasang komponen Firebase Sessions.",
+        },
+        {
+          kind: "p",
+          text: "**Keduanya selalu menyala.** Analytics dan Crashlytics aktif sejak aplikasi dipasang, dan **tidak ada sakelar untuk mematikannya di dalam aplikasi**. Ini keputusan pengembang. Tujuannya mengetahui menu mana yang dipakai dan bagian mana yang galat, supaya bisa diperbaiki.",
+        },
+        {
+          kind: "p",
+          text: "Yang dikirim Morvyn dengan sengaja hanya nama tempat di dalam aplikasi:",
+        },
+        {
+          kind: "list",
+          items: [
+            "Nama menu yang dibuka, berupa kata tetap berhuruf kecil: `beranda`, `catatan`, `keuangan`, `agenda`, `kalender`, `kebiasaan`, `cuaca`, `berita`, `gempa`, serta nama layar lain seperti `settings`, `pembaca_pdf`, dan `tambah_transaksi_cepat`.",
+            "Nama bagian kode yang gagal, misalnya \"pengamat widget Agenda\".",
+            "Pada laporan crash: nama menu terakhir yang dibuka dan keterangan apakah aplikasinya sedang tampil di layar.",
+          ],
+        },
+        {
+          kind: "p",
+          text: "Yang **tidak** dikirim Morvyn: judul dan isi catatan, nominal dan catatan keuangan, nama dompet, nama agenda dan tugas, kebiasaan, lokasi, alamat email, nama, dan foto.",
+        },
+        {
+          kind: "p",
+          text: "Morvyn tidak memasang pengenal pengguna pada kedua layanan itu (tanpa `setUserId`). Jadi statistik dan laporan crash tidak dikaitkan dengan akun Google yang Anda pakai masuk.",
+        },
+        {
+          kind: "p",
+          text: "Daftar di atas adalah yang dikirim Morvyn dengan sengaja. SDK Analytics dan Crashlytics sendiri juga mengumpulkan data teknis secara otomatis dan mengirimnya ke Google. Menurut [halaman pengungkapan data Firebase](https://firebase.google.com/docs/android/play-data-disclosure) dan [halaman bantuan Google Analytics](https://support.google.com/analytics/answer/11582702), isinya:",
+        },
+        {
+          kind: "defs",
+          items: [
+            {
+              term: "Firebase Analytics",
+              text: "Pengenal instalasi aplikasi (app-instance ID), kejadian siklus aplikasi (tampilan layar dan sesi), dan lokasi kasar yang diturunkan dari alamat IP yang sudah disamarkan.",
+            },
+            {
+              term: "Firebase Crashlytics",
+              text: "Jejak tumpukan (stack trace) saat crash, keadaan aplikasi saat crash, metadata perangkat saat crash, dan pengenal instalasi Crashlytics (UUID) untuk menghitung berapa pemasangan yang terdampak. Laporannya dikirim saat aplikasi dibuka lagi. Yang dilampirkan Morvyn ke laporan itu: nama menu terakhir, keterangan apakah aplikasi sedang tampil, dan nama bagian kode yang gagal.",
+            },
+            {
+              term: "Firebase Sessions",
+              text: "Ikut terpasang bersama Crashlytics. Metadata aplikasi (nama paket, informasi sistem operasi, versi SDK, jenis koneksi jaringan), metadata perangkat (pabrikan dan model), dan waktu aplikasi dibuka ke depan.",
+            },
+            {
+              term: "Firebase Installations",
+              text: "Pengenal per-instalasi (FID).",
+            },
+          ],
+        },
+        {
+          kind: "p",
+          text: "Semuanya dienkripsi saat dikirim (HTTPS).",
+        },
+        {
+          kind: "p",
+          text: "**ID iklan tidak dikumpulkan.** Izin `AD_ID`, `ACCESS_ADSERVICES_AD_ID`, dan `ACCESS_ADSERVICES_ATTRIBUTION` yang dibawa pustaka Analytics dicabut dari aplikasi, pengumpulan ID iklan dimatikan, dan seluruh pemakaian data untuk iklan dimatikan: penyimpanan iklan, data pengguna untuk iklan, dan sinyal personalisasi iklan.",
+        },
+        {
+          kind: "p",
+          text: "**Posisi perangkat tidak ikut.** Posisi yang dipakai Cuaca, Gempa, dan tempat transaksi di Keuangan tidak dikirim ke Analytics maupun Crashlytics. Lokasi kasar yang disebut di atas diturunkan dari alamat IP yang sudah disamarkan.",
+        },
+        {
+          kind: "p",
+          text: "**Siapa yang melihatnya.** Tidak ada data yang dijual, dan tidak ada yang dibagikan untuk keperluan iklan. Google memproses statistik dan laporan crash sebagai penyedia layanan untuk Himiko Lab, dan Himiko Lab melihatnya di konsol Firebase. Properti Google Analytics Morvyn tidak ditautkan ke Google Ads, Google Signals mati, dan berbagi data dengan produk dan layanan Google mati.",
+        },
+        {
+          kind: "p",
+          text: "**Masa simpan.** Data kejadian statistik pemakaian disimpan Google Analytics selama **2 bulan**, sesuai pengaturan properti. Untuk laporan crash, menurut dokumentasi Firebase, jejak tumpukan dan pengenal yang menyertainya disimpan **90 hari**, lalu mulai dihapus dari sistem aktif dan cadangan.",
+        },
+        {
+          kind: "p",
+          text: "**Yang dapat Anda lakukan.** Mencopot aplikasi menghentikan pengumpulan. Menghapus data aplikasi dari Setelan Android membuat pengenal instalasinya diganti. Keterbatasannya kami tulis apa adanya: karena statistik tidak dikaitkan dengan akun, Himiko Lab tidak dapat mencari data milik satu orang berdasarkan nama atau email.",
         },
       ],
     },
@@ -104,7 +193,7 @@ export const privacyId: LegalDocument = {
             "Berita yang Anda simpan",
             "Riwayat bacaan berita",
             "Catatan cuaca",
-            "Riwayat penghapusan: item Jadwal dan Tugas yang Anda hapus disimpan 7 hari agar bisa dipulihkan, lalu dibuang otomatis",
+            "Riwayat penghapusan: Jadwal, Tugas, Alarm, Catatan, dan Transaksi keuangan yang Anda hapus disimpan 7 hari agar bisa dipulihkan, lalu dibuang otomatis",
             "Lampiran catatan: gambar, berkas PDF, hasil pindaian dokumen yang disimpan sebagai PDF, dan coretan",
             "Profil Anda: nama, foto, jenis kelamin, tanggal lahir, dan zona waktu",
             "Tempat pada catatan transaksi keuangan, bila Anda mengisinya dari posisi Anda (lihat bagian \"Lokasi, cuaca, dan tempat\")",
@@ -118,6 +207,10 @@ export const privacyId: LegalDocument = {
           kind: "p",
           text: "Semuanya lokal, selain cadangan milik Anda sendiri. Tidak satu pun dari daftar di atas yang dikirim ke Himiko Lab.",
         },
+        {
+          kind: "p",
+          text: "**Widget layar utama.** Morvyn punya widget Kebiasaan, Keuangan, Agenda, dan Catatan. Widget menampilkan isi yang Anda pilih, misalnya isi catatan, agenda hari ini, atau saldo, di layar utama ponsel. Untuk menggambarnya, isi itu diserahkan ke aplikasi layar utama (launcher) di ponsel yang sama, dan tidak dikirim ke mana pun. Siapa pun yang melihat layar utama Anda dapat membacanya. Setelan sembunyikan saldo juga berlaku di widget Keuangan.",
+        },
       ],
     },
 
@@ -127,7 +220,7 @@ export const privacyId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Morvyn memakai **Firebase Authentication** untuk fitur Masuk dengan Google. Gunanya hanya satu: membuktikan bahwa akun yang meminta pencadangan memang milik Anda. Ini syarat fitur pencadangan.",
+          text: "Morvyn memakai **Firebase Authentication** untuk fitur Masuk dengan Google. Masuk adalah syarat dua fitur: akun Google harus terhubung lebih dulu sebelum Anda menghubungkan Google Drive untuk pencadangan maupun Google Calendar untuk sinkronisasi kalender. Memutus akun ikut memutus keduanya.",
         },
         {
           kind: "p",
@@ -158,7 +251,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Selain data aplikasi dan berkas PDF itu, cadangan memuat profil Anda (nama, jenis kelamin, tanggal lahir, zona waktu, foto profil) dan pengaturan aplikasi (tema, bahasa, satuan suhu, mata uang, pengingat harian, urutan dan saringan Catatan, pengaturan Gempa, riwayat warna pena, dan posisi baca PDF).",
+          text: "Selain data aplikasi dan berkas PDF itu, cadangan memuat profil Anda (nama, jenis kelamin, tanggal lahir, zona waktu, foto profil) dan pengaturan aplikasi (tema, bahasa, satuan suhu, mata uang, pengingat harian, urutan dan saringan Catatan, format angka, setelan sembunyikan saldo, motif kartu saldo, pengaturan Gempa, riwayat warna pena, dan posisi baca PDF). Ikut pula pengaturan Berita (menu Berita menyala atau mati, dan portal yang dipilih) serta kategori buatan Anda.",
         },
         {
           kind: "p",
@@ -195,6 +288,10 @@ export const privacyId: LegalDocument = {
           kind: "p",
           text: "Anda dapat memutus sambungan ini kapan saja dari Pengaturan di dalam Morvyn, dan mencabut izinnya dari halaman [Izin Pihak Ketiga di Akun Google](https://myaccount.google.com/permissions) milik Anda.",
         },
+        {
+          kind: "p",
+          text: "**Memutus sambungan bekerja dua arah.** Memutus sambungan Google Calendar dari Pengaturan menghapus acara asal Google dari Morvyn, **dan menghapus dari Google Calendar salinan jadwal yang dibuat Morvyn**. Acara yang Anda buat sendiri di Google Calendar tidak disentuh. Bila sebagian penghapusan gagal, misalnya tanpa internet, sambungannya ditahan dan Anda dapat memilih tetap memutuskan.",
+        },
       ],
     },
 
@@ -215,7 +312,19 @@ export const privacyId: LegalDocument = {
             },
             {
               term: "Firebase Installations",
-              text: "Dipakai oleh kedua layanan di atas. Layanan ini membuat pengenal per-instalasi (FID). Menurut Firebase, FID tidak mengidentifikasi orang atau perangkat secara unik.",
+              text: "Dipakai oleh Cloud Messaging dan Remote Config di atas, serta oleh Analytics dan Crashlytics (lihat bagian \"Statistik pemakaian dan laporan crash\"). Layanan ini membuat pengenal per-instalasi (FID). Menurut Firebase, FID tidak mengidentifikasi orang atau perangkat secara unik.",
+            },
+            {
+              term: "Firebase Analytics",
+              text: "Statistik pemakaian menu. Selalu menyala. Lihat bagian \"Statistik pemakaian dan laporan crash\".",
+            },
+            {
+              term: "Firebase Crashlytics",
+              text: "Laporan crash dan galat. Selalu menyala. Lihat bagian \"Statistik pemakaian dan laporan crash\".",
+            },
+            {
+              term: "Firebase Sessions",
+              text: "Ikut terpasang bersama Crashlytics. Lihat bagian \"Statistik pemakaian dan laporan crash\".",
             },
             {
               term: "Pembaruan dalam aplikasi Google Play",
@@ -251,6 +360,7 @@ export const privacyId: LegalDocument = {
           items: [
             "Data itu hanya dipakai untuk menyediakan fitur yang terlihat langsung oleh Anda, yaitu pencadangan dan sinkronisasi kalender yang Anda nyalakan sendiri, serta menampilkan pemakaian penyimpanan akun Google Anda kepada Anda sendiri.",
             "Data itu tidak dipindahkan ke pihak mana pun. Tidak ada perantara yang dilewati, karena Morvyn tidak punya server.",
+            "Data itu tidak dikirim ke Firebase Analytics maupun Firebase Crashlytics.",
             "Data itu tidak dipakai untuk iklan, dan tidak dipakai untuk membangun profil apa pun.",
             "Tidak ada manusia yang membacanya. Himiko Lab tidak punya jalan teknis ke sana: berkas cadangan berada di folder tersembunyi milik Anda di Drive, dan data kalender tidak pernah keluar dari perangkat Anda selain menuju kalender Google Anda sendiri atau cadangan milik Anda sendiri, bila Anda menyalakannya.",
           ],
@@ -280,7 +390,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Cadangan sistem Android.** Bila cadangan Android menyala, database lokal dan pengaturan Morvyn dapat ikut masuk ke cadangan perangkat di Akun Google Anda. Morvyn hanya mengizinkan cadangan ini bila perangkat memakai kunci layar, agar Android dapat mengenkripsinya secara end-to-end dengan kredensial kunci layar Anda. Sesi masuk Anda tidak pernah ikut dicadangkan.",
+          text: "**Cadangan sistem Android.** Bila cadangan Android menyala, database lokal dan pengaturan Morvyn dapat ikut masuk ke cadangan perangkat di Akun Google Anda. Morvyn hanya mengizinkan cadangan ini bila perangkat memakai kunci layar, agar Android dapat mengenkripsinya secara end-to-end dengan kredensial kunci layar Anda. Sesi masuk Anda tidak pernah ikut dicadangkan. Data kerja Analytics dan Crashlytics di perangkat tidak ikut cadangan sistem Android, tidak ikut pindah perangkat, dan tidak ikut cadangan Google Drive Morvyn.",
         },
         {
           kind: "p",
@@ -288,7 +398,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Masa simpan.** Acara yang ditarik dari Google Calendar tetap ada di perangkat Anda sampai Anda menghapusnya atau memutus sambungan Google Calendar dari Pengaturan Morvyn, yang menghapusnya dari Morvyn. Mematikan sinkronisasi hanya menjedanya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya. Memutus sambungan Morvyn tidak menghapusnya; lihat \"Cara menghapus data Anda\". Menghapus akun dari dalam Morvyn memang menghapus seluruh cadangan Morvyn di Drive Anda: lihat bagian \"Menghapus akun\". Karena Himiko Lab tidak punya server, tidak ada salinan di pihak kami untuk disimpan atau dihapus.",
+          text: "**Masa simpan.** Acara yang ditarik dari Google Calendar tetap ada di perangkat Anda sampai Anda menghapusnya atau memutus sambungan Google Calendar dari Pengaturan Morvyn, yang menghapusnya dari Morvyn dan menghapus dari Google Calendar salinan jadwal yang dibuat Morvyn. Mematikan sinkronisasi hanya menjedanya. Berkas cadangan tetap berada di Drive Anda sampai Anda menghapusnya. Memutus sambungan Morvyn tidak menghapusnya; lihat \"Cara menghapus data Anda\". Menghapus akun dari dalam Morvyn memang menghapus seluruh cadangan Morvyn di Drive Anda: lihat bagian \"Menghapus akun\". Karena Himiko Lab tidak punya server sendiri, tidak ada salinan isi aplikasi Anda di pihak kami untuk disimpan atau dihapus. Masa simpan statistik pemakaian dan laporan crash ada di bagian \"Statistik pemakaian dan laporan crash\".",
         },
       ],
     },
@@ -424,11 +534,15 @@ export const privacyId: LegalDocument = {
           items: [
             {
               term: "`INTERNET`",
-              text: "Mengambil cuaca, berita, data gempa, kurs, dan ikon tautan di catatan Anda, serta menjalankan sinkronisasi Google.",
+              text: "Mengambil cuaca, berita, data gempa, kurs, dan ikon tautan di catatan Anda, menjalankan sinkronisasi Google, serta mengirim statistik pemakaian dan laporan crash.",
             },
             {
               term: "`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`",
               text: "Menampilkan cuaca di sekitar Anda, mengisi tempat pada catatan keuangan, dan menghitung jarak gempa. Opsional.",
+            },
+            {
+              term: "`ACCESS_NETWORK_STATE`",
+              text: "Membedakan \"ponsel sedang luring\" dari \"server gagal\", dan memuat ulang begitu jaringan kembali.",
             },
             {
               term: "`ACCESS_WIFI_STATE`",
@@ -462,7 +576,32 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Tiga izin lain dideklarasikan oleh pustaka Google dan AndroidX yang dipakai Morvyn, dan **tidak dipakai oleh fitur Morvyn mana pun**: `ACCESS_NETWORK_STATE`, `USE_BIOMETRIC`, dan `USE_FINGERPRINT`. Dua yang terakhir datang dari androidx.biometric, yang ikut terbawa pustaka masuk Google. Morvyn tidak memakai sidik jari maupun biometrik.",
+          text: "Tiga izin berikut dideklarasikan oleh pustaka Google yang dipakai Morvyn:",
+        },
+        {
+          kind: "defs",
+          items: [
+            {
+              term: "`com.google.android.c2dm.permission.RECEIVE`",
+              text: "Menerima notifikasi Firebase Cloud Messaging.",
+            },
+            {
+              term: "`com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE`",
+              text: "Dari pustaka Analytics. Membaca keterangan Play Store tentang dari mana aplikasi dipasang.",
+            },
+            {
+              term: "`com.google.android.providers.gsf.permission.READ_GSERVICES`",
+              text: "Terbawa pustaka reCAPTCHA yang ikut Firebase Authentication.",
+            },
+          ],
+        },
+        {
+          kind: "p",
+          text: "Dua izin lain hanya terbawa pustaka dan **tidak dipakai oleh fitur Morvyn mana pun**: `USE_BIOMETRIC` dan `USE_FINGERPRINT`. Keduanya datang dari androidx.biometric, yang ikut terbawa pustaka masuk Google. Morvyn tidak memakai sidik jari maupun biometrik.",
+        },
+        {
+          kind: "p",
+          text: "**Tiga izin ID iklan sengaja dicabut.** Izin `AD_ID`, `ACCESS_ADSERVICES_AD_ID`, dan `ACCESS_ADSERVICES_ATTRIBUTION` dibawa pustaka Analytics, dan Morvyn mencabutnya. Manifest gabungan aplikasi rilis sudah diperiksa, dan ketiganya tidak ada.",
         },
       ],
     },
@@ -473,11 +612,11 @@ export const privacyId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Morvyn tidak ditujukan untuk anak di bawah 13 tahun. Himiko Lab tidak mengumpulkan data dari mereka dengan sengaja, dan tidak mengumpulkan data dari siapa pun, karena tidak ada server yang menerimanya.",
+          text: "Morvyn tidak ditujukan untuk anak di bawah 13 tahun, dan Himiko Lab tidak dengan sengaja menyasar mereka. Statistik pemakaian dan laporan crash yang dijelaskan di bagian \"Statistik pemakaian dan laporan crash\" dikirim dari setiap pemasangan Morvyn, termasuk bila perangkatnya dipakai seorang anak. Yang sengaja dikirim Morvyn di dalamnya hanya nama menu dan nama bagian kode, dan Morvyn tidak memasang pengenal pengguna.",
         },
         {
           kind: "p",
-          text: "Karena itu pula tidak ada yang bisa kami hapus dari sisi kami bila diminta: data anak yang memakai perangkat tertentu berada di perangkat itu sendiri, dan di cadangan perangkat itu bila pencadangan pernah dinyalakan. Data itu dapat dihapus dengan menghapus data aplikasinya dan menghapus cadangan tersebut. Caranya ada di bagian-bagian berikutnya.",
+          text: "Isi aplikasinya sendiri tidak pernah sampai ke Himiko Lab: data anak yang memakai perangkat tertentu berada di perangkat itu sendiri, dan di cadangan perangkat itu bila pencadangan pernah dinyalakan. Data itu dapat dihapus dengan menghapus data aplikasinya dan menghapus cadangan tersebut. Bila anak itu pernah masuk dengan Google, catatan masuknya dihapus lewat \"Menghapus akun\". Caranya ada di bagian-bagian berikutnya.",
         },
       ],
     },
@@ -536,7 +675,11 @@ export const privacyId: LegalDocument = {
             },
             {
               term: "Data kalender",
-              text: "Mematikan sinkronisasi hanya menjedanya; acara yang sudah ditarik tetap ada di Morvyn. Memutus sambungan Google Calendar dari Pengaturan Morvyn menghapus acara yang berasal dari Google dari Morvyn. Acara di Google Calendar sendiri tetap milik Anda dan dapat dihapus dari sana. Salinan di cadangan dihapus lewat dua butir cadangan di atas.",
+              text: "Mematikan sinkronisasi hanya menjedanya; acara yang sudah ditarik tetap ada di Morvyn. Memutus sambungan Google Calendar dari Pengaturan Morvyn menghapus acara yang berasal dari Google dari Morvyn, dan menghapus dari Google Calendar salinan jadwal yang dibuat Morvyn. Acara yang Anda buat sendiri di Google Calendar tidak disentuh, dan dapat Anda hapus dari sana. Bila sebagian penghapusan gagal, misalnya tanpa internet, sambungannya ditahan dan Anda dapat memilih tetap memutuskan. Salinan di cadangan dihapus lewat dua butir cadangan di atas.",
+            },
+            {
+              term: "Statistik pemakaian dan laporan crash",
+              text: "Mencopot aplikasi menghentikan pengumpulan. Menghapus data aplikasi dari Setelan Android membuat pengenal instalasinya diganti. Statistik pemakaian disimpan 2 bulan, dan laporan crash 90 hari. Karena statistik tidak dikaitkan dengan akun, Himiko Lab tidak dapat mencari data milik satu orang berdasarkan nama atau email. Lihat bagian \"Statistik pemakaian dan laporan crash\".",
             },
             {
               term: "Cabut izin Google",

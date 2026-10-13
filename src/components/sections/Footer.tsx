@@ -56,7 +56,7 @@ interface FooterProps {
   /**
    * Awalan tautan jangkar untuk halaman selain beranda, sama persis
    * alasannya seperti di `Header`. Daftar "Produk" di bawah seluruhnya
-   * berjangkar ke bagian beranda, jadi tanpa ini ketujuh tautannya mati
+   * berjangkar ke bagian beranda, jadi tanpa ini kedelapan tautannya mati
    * begitu footer ini dipakai di halaman hukum.
    */
   anchorBase?: string;

@@ -5,6 +5,7 @@ import {
   CloudSun,
   Newspaper,
   NotePencil,
+  Pulse,
   Target,
 } from "@phosphor-icons/react/ssr";
 // Titik masuk /ssr hanya mengekspor komponen ikonnya, bukan tipe `Icon`;
@@ -15,8 +16,8 @@ import type { FeatureKey } from "@/content";
 /**
  * Satu ikon Phosphor per menu, ditambah pergeseran rona untuk gradien kartunya.
  *
- * `hue` adalah posisi antara biru merek (0) dan ungu merek (1). Ketujuh kartu
- * jadi terbaca sebagai satu keluarga warna alih-alih tujuh warna acak, tapi
+ * `hue` adalah posisi antara biru merek (0) dan ungu merek (1). Kedelapan kartu
+ * jadi terbaca sebagai satu keluarga warna alih-alih delapan warna acak, tapi
  * tetap bisa dibedakan satu sama lain.
  */
 export const featureIcons: Record<FeatureKey, { Icon: Icon; hue: number }> = {
@@ -26,7 +27,8 @@ export const featureIcons: Record<FeatureKey, { Icon: Icon; hue: number }> = {
   news: { Icon: Newspaper, hue: 0.54 },
   habits: { Icon: Target, hue: 0.72 },
   weather: { Icon: CloudSun, hue: 0.86 },
-  calendar: { Icon: CalendarDots, hue: 1 },
+  calendar: { Icon: CalendarDots, hue: 0.93 },
+  earthquake: { Icon: Pulse, hue: 1 },
 };
 
 /** Warna satu menu, dihitung dari posisinya di antara biru dan ungu merek. */
@@ -43,4 +45,5 @@ export const featureOrder: FeatureKey[] = [
   "habits",
   "weather",
   "calendar",
+  "earthquake",
 ];

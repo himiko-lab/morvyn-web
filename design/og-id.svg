@@ -40,7 +40,7 @@
   <text x="88" y="300" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.6">Satu ruang tenang untuk</text>
   <text x="88" y="378" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.6">seluruh harimu</text>
 
-  <text x="88" y="446" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="29" font-weight="500" fill="#FFFFFF" fill-opacity="0.82">Catatan · Keuangan · Agenda · Kebiasaan · Cuaca · Kalender · Berita</text>
+  <text x="88" y="446" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="29" font-weight="500" fill="#FFFFFF" fill-opacity="0.82">Catatan · Keuangan · Agenda · Kebiasaan · Cuaca · Kalender · Berita · Gempa</text>
 
   <rect x="88" y="510" width="296" height="58" rx="29" fill="#FFFFFF"/>
   <text x="236" y="548" text-anchor="middle" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700" fill="#078DFB">Segera di Google Play</text>

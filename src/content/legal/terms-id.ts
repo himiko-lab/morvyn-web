@@ -12,16 +12,17 @@ import type { LegalDocument } from "./types";
 export const termsId: LegalDocument = {
   title: "Ketentuan Layanan",
   description:
-    "Ketentuan pemakaian Morvyn: aplikasi gratis yang disediakan sebagaimana adanya, dengan data yang sepenuhnya berada di tangan penggunanya.",
-  lead: "Ketentuan ini berlaku saat Anda memasang atau memakai Morvyn, aplikasi Android buatan Himiko Lab. Isinya pendek dengan sengaja: Morvyn menyimpan data Anda di perangkat Anda sendiri, jadi tidak banyak yang perlu diatur.",
+    "Ketentuan pemakaian Morvyn: aplikasi gratis yang disediakan sebagaimana adanya, dengan isi aplikasi yang tersimpan di perangkat penggunanya sendiri.",
+  lead: "Ketentuan ini berlaku saat Anda memasang atau memakai Morvyn, aplikasi Android buatan Himiko Lab. Isinya pendek dengan sengaja: Morvyn menyimpan isi aplikasi Anda di perangkat Anda sendiri, jadi tidak banyak yang perlu diatur. Yang keluar dari perangkat tanpa Anda nyalakan adalah statistik pemakaian menu dan laporan crash, yang dikirim ke Google dan tidak bisa dimatikan dari dalam aplikasi.",
   effectiveLabel: "Berlaku sejak",
-  effectiveDate: "26 September 2026",
+  effectiveDate: "14 Oktober 2026",
 
   summaryHeading: "Ringkasnya",
   summary: [
     "Morvyn **gratis** dan disediakan **sebagaimana adanya**, tanpa jaminan.",
     "Data Anda ada di perangkat Anda, jadi **menjaganya adalah tanggung jawab Anda**. Pencadangan sangat dianjurkan.",
-    "Bila dinyalakan, sinkronisasi kalender dapat **membuat, mengubah, dan menghapus** acara di kalender Google yang Anda pilih.",
+    "Morvyn mengirim **statistik pemakaian menu dan laporan crash** ke Google (Firebase Analytics dan Crashlytics). Keduanya selalu menyala dan tidak bisa dimatikan dari dalam aplikasi.",
+    "Bila dinyalakan, sinkronisasi kalender dapat **membuat, mengubah, dan menghapus** acara di kalender Google yang Anda pilih. Memutus sambungannya menghapus dari Google Calendar salinan jadwal yang dibuat Morvyn.",
     "Ketentuan ini tunduk pada **hukum Republik Indonesia**.",
   ],
 
@@ -64,7 +65,7 @@ export const termsId: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Seluruh data Morvyn tersimpan di dalam perangkat Anda. Himiko Lab tidak memegang salinannya dan **tidak dapat memulihkan data yang hilang**. Satu-satunya yang dipegang Himiko Lab, bila Anda masuk dengan Google, adalah catatan masuk untuk akun Anda: [Kebijakan Privasi](/privasi/) merinci isinya dan cara menghapusnya.",
+          text: "Seluruh isi Morvyn Anda (catatan, jadwal, keuangan, kebiasaan) tersimpan di dalam perangkat Anda. Himiko Lab tidak memegang salinannya dan **tidak dapat memulihkan data yang hilang**. Yang sampai ke proyek Firebase milik Himiko Lab ada dua. Pertama, catatan masuk untuk akun Anda, bila Anda masuk dengan Google: [Kebijakan Privasi](/privasi/#delete-account) merinci isinya dan cara menghapusnya. Kedua, statistik pemakaian menu dan laporan crash, yang selalu menyala dan tidak memuat isi aplikasi Anda: lihat [bagian Statistik pemakaian dan laporan crash](/privasi/#analytics).",
         },
         {
           kind: "p",
@@ -89,6 +90,10 @@ export const termsId: LegalDocument = {
           kind: "p",
           text: "Pilihlah kalender yang memang Anda maksudkan, dan matikan sinkronisasi dari Pengaturan Morvyn bila Anda tidak lagi menginginkannya.",
         },
+        {
+          kind: "p",
+          text: "**Memutus sambungan juga menghapus.** Mematikan sinkronisasi hanya menjedanya. Memutus sambungan Google Calendar dari Pengaturan menghapus acara asal Google dari Morvyn, **dan menghapus dari Google Calendar salinan jadwal yang dibuat Morvyn**. Acara yang Anda buat sendiri di Google Calendar tidak disentuh. Bila sebagian penghapusan gagal, misalnya tanpa internet, sambungannya ditahan dan Anda dapat memilih tetap memutuskan.",
+        },
       ],
     },
 
@@ -105,7 +110,7 @@ export const termsId: LegalDocument = {
           items: [
             {
               term: "Google",
-              text: "Masuk dengan Google, pencadangan ke Google Drive, sinkronisasi Google Calendar, notifikasi pengumuman dan konfigurasi aplikasi (Firebase), pembaruan dalam aplikasi dari Play Store, serta pemindai dokumen (ML Kit).",
+              text: "Masuk dengan Google, pencadangan ke Google Drive, sinkronisasi Google Calendar, notifikasi pengumuman dan konfigurasi aplikasi (Firebase), statistik pemakaian dan laporan crash (Firebase Analytics dan Crashlytics), pembaruan dalam aplikasi dari Play Store, serta pemindai dokumen (ML Kit).",
             },
             {
               term: "Sumber data gempa",

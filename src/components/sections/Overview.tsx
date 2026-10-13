@@ -4,7 +4,7 @@ import { featureColor, featureIcons, featureOrder } from "../featureIcons";
 import type { Dictionary } from "@/content";
 
 /**
- * Grid bento tujuh menu.
+ * Grid bento delapan menu.
  *
  * Kartu pertama (Catatan) sengaja dibuat dua kali lebih lebar di layar besar:
  * itulah fitur yang membedakan Morvyn, dan ukurannya sendiri yang menyampaikan

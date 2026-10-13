@@ -5,7 +5,7 @@ import { featureColor, featureIcons, featureOrder } from "../featureIcons";
 import type { Dictionary, FeatureKey } from "@/content";
 
 /**
- * Pembahasan panjang ketujuh menu, berselang-seling kiri-kanan.
+ * Pembahasan panjang kedelapan menu, berselang-seling kiri-kanan.
  *
  * Latar belakangnya bergantian antara warna halaman dan permukaan, supaya
  * batas antar fitur terlihat tanpa perlu menarik garis pemisah.

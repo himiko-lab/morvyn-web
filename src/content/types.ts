@@ -13,7 +13,8 @@ export type FeatureKey =
   | "news"
   | "habits"
   | "weather"
-  | "calendar";
+  | "calendar"
+  | "earthquake";
 
 export interface FeatureCopy {
   /** Nama menu seperti yang tampil di aplikasi. */
@@ -24,8 +25,19 @@ export interface FeatureCopy {
   short: string;
   /** Paragraf untuk bagian pembahasan panjang. */
   body: string;
-  /** Tiga poin pendukung. */
+  /** Poin pendukung, tiga sampai lima butir. */
   points: string[];
+}
+
+export interface FaqItem {
+  q: string;
+  /** Jawaban sebagai teks polos; dipakai apa adanya di data terstruktur. */
+  a: string;
+  /**
+   * Tautan di bawah jawaban, untuk jawaban yang merujuk halaman lain.
+   * `href` berupa alamat dalam situs yang diawali garis miring.
+   */
+  link?: { label: string; href: string };
 }
 
 export interface Dictionary {
@@ -95,7 +107,7 @@ export interface Dictionary {
   faq: {
     eyebrow: string;
     title: string;
-    items: { q: string; a: string }[];
+    items: FaqItem[];
   };
   cta: { title: string; body: string; button: string; iosNote: string };
   /**
@@ -116,7 +128,7 @@ export interface Dictionary {
     /** Judul di atas deretan tombol media sosial. */
     followHeading: string;
     /** Tanya jawab tambahan, disisipkan paling atas selama belum terbit. */
-    faq: { q: string; a: string };
+    faq: FaqItem;
   };
   footer: {
     tagline: string;

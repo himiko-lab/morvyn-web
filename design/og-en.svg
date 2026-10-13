@@ -40,7 +40,7 @@
   <text x="88" y="300" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.6">One calm space for</text>
   <text x="88" y="378" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" letter-spacing="-1.6">your whole day</text>
 
-  <text x="88" y="446" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="29" font-weight="500" fill="#FFFFFF" fill-opacity="0.82">Notes · Finance · Agenda · Habits · Weather · Calendar · News</text>
+  <text x="88" y="446" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="29" font-weight="500" fill="#FFFFFF" fill-opacity="0.82">Notes · Finance · Agenda · Habits · Weather · Calendar · News · Earthquake</text>
 
   <rect x="88" y="510" width="408" height="58" rx="29" fill="#FFFFFF"/>
   <text x="292" y="548" text-anchor="middle" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" fill="#078DFB">Coming soon to Google Play</text>

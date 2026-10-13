@@ -1,7 +1,7 @@
 import { id } from "./id";
 import { en } from "./en";
 import { site } from "./site";
-import type { Dictionary } from "./types";
+import type { Dictionary, FaqItem } from "./types";
 
 export type Locale = "id" | "en";
 
@@ -64,7 +64,7 @@ export function localeUrl(locale: Locale): string {
  * Kalau keduanya menyusun daftarnya sendiri-sendiri, markup dan teks yang
  * terlihat bisa berbeda isi, dan itu justru yang dianggap menyesatkan Google.
  */
-export function faqItems(dict: Dictionary): { q: string; a: string }[] {
+export function faqItems(dict: Dictionary): FaqItem[] {
   return site.playStoreLive
     ? dict.faq.items
     : [dict.comingSoon.faq, ...dict.faq.items];
@@ -91,5 +91,5 @@ export function ogImagePath(locale: Locale): string {
   return locale === "id" ? "/og-id.png" : "/og-en.png";
 }
 
-export type { Dictionary, FeatureCopy, FeatureKey } from "./types";
-export { site, newsSources, socialLinks, sameAsUrls } from "./site";
+export type { Dictionary, FaqItem, FeatureCopy, FeatureKey } from "./types";
+export { site, homeUpdatedIso, newsSources, socialLinks, sameAsUrls } from "./site";

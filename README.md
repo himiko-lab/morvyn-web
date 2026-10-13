@@ -41,13 +41,13 @@ src/
 │   ├── Header.tsx         # navigasi, menu ponsel, pengalih bahasa & tema
 │   ├── PhoneFrame.tsx     # bingkai ponsel + placeholder screenshot
 │   ├── Reveal.tsx         # animasi muncul saat digulir
-│   ├── featureIcons.tsx   # peta ikon & warna ketujuh menu
+│   ├── featureIcons.tsx   # peta ikon & warna kedelapan menu
 │   ├── sections/          # satu berkas per bagian beranda
 │   └── legal/             # kerangka halaman hukum + penerjemah teks sebarisnya
 ├── content/
 │   ├── types.ts           # bentuk salinan teks
 │   ├── id.ts / en.ts      # SELURUH teks beranda
-│   ├── site.ts            # URL Play Store, domain, daftar 27 portal berita
+│   ├── site.ts            # URL Play Store, domain, daftar 29 portal berita
 │   └── legal/             # isi Kebijakan Privasi & Ketentuan Layanan (4 berkas)
 └── public/logo-morvyn.svg
 ```
@@ -67,7 +67,7 @@ Dua aturan yang memudahkan perawatan:
 ### 1. Screenshot aplikasi (**wajib**)
 
 Seluruh bingkai ponsel saat ini menampilkan kotak placeholder bergaris
-putus-putus. Ada **8 tempat**: satu di hero, tujuh di bagian pembahasan fitur.
+putus-putus. Ada **9 tempat**: satu di hero, delapan di bagian pembahasan fitur.
 
 Cari semuanya dengan:
 
@@ -169,8 +169,8 @@ tanggal berbeda. Saat ini:
 
 | Dokumen | Tanggal berlaku |
 | --- | --- |
-| Kebijakan Privasi | 7 Oktober 2026 |
-| Ketentuan Layanan | 26 September 2026 |
+| Kebijakan Privasi | 14 Oktober 2026 |
+| Ketentuan Layanan | 14 Oktober 2026 |
 
 Kalau isi sebuah dokumen berubah, perbarui `effectiveDate` di kedua berkas
 bahasanya (misalnya `privacy-id.ts` dan `privacy-en.ts`) DAN entrinya di
@@ -185,7 +185,7 @@ tetap sepadan.
 ### 5. Angka di bagian statistik (periksa dulu)
 
 Tiga angka di bawah hero (`stats` pada `id.ts`/`en.ts`) sengaja hanya berisi
-fakta yang bisa diperiksa: **7** fitur, **27** sumber berita, **2** bahasa.
+fakta yang bisa diperiksa: **8** fitur, **29** sumber berita, **2** bahasa.
 Jumlah unduhan dan rating Play Store TIDAK dicantumkan karena angkanya belum
 ada. Kalau nanti mau ditambahkan, ambil dari Play Console, jangan dikarang.
 
@@ -233,6 +233,9 @@ Beberapa hal yang sengaja diputuskan begitu:
   di footer saja tidak cukup.
 - **Peta situs memakai daftar `locales`.** Kalau nanti ada bahasa ketiga,
   entrinya bertambah sendiri.
+- **`lastmod` beranda diisi dengan tangan** lewat `homeUpdatedIso` di `site.ts`.
+  Perbarui hanya saat teks beranda atau daftar portal berita benar-benar
+  berubah, bukan setiap deploy.
 
 ### Mendaftarkan ke Google Search Console
 

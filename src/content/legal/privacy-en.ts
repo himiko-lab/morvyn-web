@@ -14,16 +14,17 @@ import type { LegalDocument } from "./types";
 export const privacyEn: LegalDocument = {
   title: "Privacy Policy",
   description:
-    "How Morvyn handles your data: it stays on your device unless you turn on backup. No ads, no analytics, and every Google feature is optional.",
+    "How Morvyn handles your data: app content stays on your device. No ads. Menu usage statistics and crash reports are sent to Google and are always on.",
   lead: "Morvyn is an Android app made by Himiko Lab. This page explains what data the app handles, where it goes, and, just as importantly, what it does not do.",
   effectiveLabel: "Effective",
-  effectiveDate: "7 October 2026",
+  effectiveDate: "14 October 2026",
 
   summaryHeading: "In short",
   summary: [
-    "**Morvyn has no server.** Himiko Lab cannot see anyone's notes, schedule, finances, or habits. If you sign in with Google, the only thing we hold is the sign-in record for your account, and you can delete it yourself from inside the app.",
-    "All of your data is stored **on your own device**, and in your own Google account only if you turn on backup.",
-    "**No analytics, no ads, no tracking SDKs.** Nothing is sold or shared. The Google SDKs Morvyn uses do send limited technical data to Google, described under \"Notifications, app configuration, and other Google services\".",
+    "**Morvyn has no server.** Himiko Lab cannot see anyone's notes, schedule, finances, or habits. If you sign in with Google, we hold the sign-in record for your account, and you can delete it yourself from inside the app.",
+    "Your app content is stored **on your own device**, and in your own Google account only if you turn on backup.",
+    "**Usage statistics and crash reports are sent to Google, and cannot be turned off from inside the app.** Morvyn uses Firebase Analytics and Firebase Crashlytics, which are active from the moment the app is installed. All Morvyn deliberately sends is the name of the menu you opened and the name of the part of the code that failed, with none of your notes, finances, agenda, habits, or location. The details are under \"Usage statistics and crash reports\".",
+    "**No ads and no advertising SDK.** No data is sold, and none is shared for advertising. The other Google SDKs Morvyn uses also send limited technical data to Google, described under \"Notifications, app configuration, and other Google services\".",
     "Google sign-in, Google Drive backup, and Google Calendar sync are all **optional**: Morvyn works fully without any of them.",
   ],
 
@@ -58,7 +59,7 @@ export const privacyEn: LegalDocument = {
 
     {
       id: "prinsip",
-      title: "The core principle: no server, no tracking",
+      title: "The core principle: no server of our own, app content stays on your device",
       blocks: [
         {
           kind: "p",
@@ -66,11 +67,99 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**There is one exception: the sign-in record.** When you sign in with Google, Firebase Authentication creates an account in Himiko Lab's Firebase project holding your email address, display name, Google profile photo URL, a user ID (UID), and the dates the account was created and last signed in. Himiko Lab can see that list of accounts in the Firebase console. It holds none of your app content, and you can delete it yourself from inside Morvyn: see \"Deleting your account\".",
+          text: "**Two things do reach Himiko Lab's Firebase project. The first is the sign-in record.** When you sign in with Google, Firebase Authentication creates an account in Himiko Lab's Firebase project holding your email address, display name, Google profile photo URL, a user ID (UID), and the dates the account was created and last signed in. Himiko Lab can see that list of accounts in the Firebase console. It holds none of your app content, and you can delete it yourself from inside Morvyn: see \"Deleting your account\".",
         },
         {
           kind: "p",
-          text: "**There is no tracking at all.** The app uses no Google Analytics, no Firebase Analytics, no Crashlytics, no advertising SDK, and no third-party tracking SDK. No behavioural profile is built, and no data is sold or shared for advertising. The Google SDKs used for sign-in, notifications, configuration, and the document scanner do send limited technical data to Google, each as described in its own documentation: the details are under \"Notifications, app configuration, and other Google services\".",
+          text: "**The second is usage statistics and crash reports.** Morvyn uses Firebase Analytics and Firebase Crashlytics, both Google services. Both are active from the moment the app is installed, and there is no switch inside the app to turn them off. All Morvyn deliberately sends is the name of the menu you opened and the name of the part of the code that failed, not your app content. The details are under \"Usage statistics and crash reports\".",
+        },
+        {
+          kind: "p",
+          text: "**There are no ads.** Morvyn uses no advertising SDK. No data is sold, and none is shared for advertising. The Google SDKs used for sign-in, notifications, configuration, and the document scanner do send limited technical data to Google, each as described in its own documentation: the details are under \"Notifications, app configuration, and other Google services\".",
+        },
+      ],
+    },
+
+    {
+      id: "analytics",
+      title: "Usage statistics and crash reports",
+      blocks: [
+        {
+          kind: "p",
+          text: "Morvyn uses **Firebase Analytics** (Google Analytics for Firebase) and **Firebase Crashlytics**. Both are Google services, and both run in Himiko Lab's Firebase project. The Firebase Sessions component is installed along with Crashlytics.",
+        },
+        {
+          kind: "p",
+          text: "**Both are always on.** Analytics and Crashlytics are active from the moment the app is installed, and **there is no switch inside the app to turn them off**. This is the developer's decision. The purpose is to know which menus are used and which parts fail, so that they can be fixed.",
+        },
+        {
+          kind: "p",
+          text: "All Morvyn deliberately sends is the name of a place inside the app:",
+        },
+        {
+          kind: "list",
+          items: [
+            "The name of the menu you opened, as a fixed lowercase word: `beranda`, `catatan`, `keuangan`, `agenda`, `kalender`, `kebiasaan`, `cuaca`, `berita`, `gempa`, plus the names of other screens such as `settings`, `pembaca_pdf`, and `tambah_transaksi_cepat`.",
+            "The name of the part of the code that failed, for example \"pengamat widget Agenda\" (the Agenda widget observer).",
+            "On crash reports: the name of the last menu you opened, and whether the app was showing on screen at the time.",
+          ],
+        },
+        {
+          kind: "p",
+          text: "What Morvyn does **not** send: note titles and contents, finance amounts and records, wallet names, the names of agenda items and tasks, habits, location, email address, name, and photo.",
+        },
+        {
+          kind: "p",
+          text: "Morvyn sets no user identifier on either service (no `setUserId`). So the statistics and crash reports are not tied to the Google account you sign in with.",
+        },
+        {
+          kind: "p",
+          text: "The list above is what Morvyn sends deliberately. The Analytics and Crashlytics SDKs also collect technical data automatically and send it to Google. According to the [Firebase data disclosure page](https://firebase.google.com/docs/android/play-data-disclosure) and the [Google Analytics help page](https://support.google.com/analytics/answer/11582702), that is:",
+        },
+        {
+          kind: "defs",
+          items: [
+            {
+              term: "Firebase Analytics",
+              text: "An app installation identifier (the app-instance ID), app lifecycle events (screen views and sessions), and a coarse location derived from a masked IP address.",
+            },
+            {
+              term: "Firebase Crashlytics",
+              text: "The stack trace at the time of a crash, the state of the app at the time of the crash, device metadata at the time of the crash, and a Crashlytics installation identifier (a UUID) used to count how many installations are affected. The report is sent the next time the app is opened. What Morvyn attaches to that report: the name of the last menu, whether the app was showing on screen, and the name of the part of the code that failed.",
+            },
+            {
+              term: "Firebase Sessions",
+              text: "Installed along with Crashlytics. App metadata (package name, operating system information, SDK version, network connection type), device metadata (manufacturer and model), and the time the app is brought to the foreground.",
+            },
+            {
+              term: "Firebase Installations",
+              text: "A per-installation identifier (FID).",
+            },
+          ],
+        },
+        {
+          kind: "p",
+          text: "All of it is encrypted in transit (HTTPS).",
+        },
+        {
+          kind: "p",
+          text: "**The advertising ID is not collected.** The `AD_ID`, `ACCESS_ADSERVICES_AD_ID`, and `ACCESS_ADSERVICES_ATTRIBUTION` permissions that the Analytics library brings along are removed from the app, advertising ID collection is turned off, and every use of data for advertising is turned off: ad storage, ad user data, and ad personalisation signals.",
+        },
+        {
+          kind: "p",
+          text: "**Your device position is not included.** The position used by Weather, Earthquake, and the transaction place in Finance is not sent to Analytics or Crashlytics. The coarse location mentioned above is derived from a masked IP address.",
+        },
+        {
+          kind: "p",
+          text: "**Who sees it.** No data is sold, and none is shared for advertising. Google processes the statistics and crash reports as a service provider for Himiko Lab, and Himiko Lab views them in the Firebase console. Morvyn's Google Analytics property is not linked to Google Ads, Google Signals is off, and data sharing with Google products and services is off.",
+        },
+        {
+          kind: "p",
+          text: "**Retention.** Usage statistics event data is kept by Google Analytics for **2 months**, as set on the property. For crash reports, according to the Firebase documentation, stack traces and the identifiers that accompany them are kept for **90 days**, after which they begin to be removed from live and backup systems.",
+        },
+        {
+          kind: "p",
+          text: "**What you can do.** Uninstalling the app stops the collection. Clearing the app's data from Android Settings causes the installation identifier to be replaced. We state the limitation plainly: because the statistics are not tied to an account, Himiko Lab cannot look up one person's data by name or email.",
         },
       ],
     },
@@ -95,7 +184,7 @@ export const privacyEn: LegalDocument = {
             "News articles you saved",
             "News reading history",
             "Weather records",
-            "Deletion history: schedule and task items you delete are kept for 7 days so you can restore them, then dropped automatically",
+            "Deletion history: schedule entries, tasks, alarms, notes, and finance transactions you delete are kept for 7 days so you can restore them, then dropped automatically",
             "Note attachments: images, PDF files, document scans saved as PDF, and drawings",
             "Your profile: name, photo, gender, date of birth, and time zone",
             "The place on a finance record, when you fill it in from where you are (see \"Location, weather, and places\")",
@@ -109,6 +198,10 @@ export const privacyEn: LegalDocument = {
           kind: "p",
           text: "All of it is local, apart from your own backups. Not one item on that list is sent to Himiko Lab.",
         },
+        {
+          kind: "p",
+          text: "**Home screen widgets.** Morvyn has Habits, Finance, Agenda, and Notes widgets. A widget shows the content you choose, for example the contents of a note, today's agenda, or your balance, on your phone's home screen. To draw it, that content is handed to the home screen app (the launcher) on the same phone, and is not sent anywhere. Anyone who can see your home screen can read it. The hide-balance setting also applies to the Finance widget.",
+        },
       ],
     },
 
@@ -118,7 +211,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Morvyn uses **Firebase Authentication** for Sign in with Google. It serves one purpose: proving that the account requesting a backup is yours. This is a prerequisite for the backup feature.",
+          text: "Morvyn uses **Firebase Authentication** for Sign in with Google. Signing in is a prerequisite for two features: a Google account must be connected first before you connect Google Drive for backup or Google Calendar for calendar sync. Disconnecting the account disconnects both.",
         },
         {
           kind: "p",
@@ -149,7 +242,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Besides your app data and those PDF files, a backup holds your profile (name, gender, date of birth, time zone, profile photo) and your app settings (theme, language, temperature unit, currency, daily reminder, the sort order and filters in Notes, Earthquake settings, pen colour history, and PDF reading positions).",
+          text: "Besides your app data and those PDF files, a backup holds your profile (name, gender, date of birth, time zone, profile photo) and your app settings (theme, language, temperature unit, currency, daily reminder, the sort order and filters in Notes, number format, the hide-balance setting, the balance card pattern, Earthquake settings, pen colour history, and PDF reading positions). It also holds your News settings (whether the News menu is on or off, and the outlets you selected) and the categories you created.",
         },
         {
           kind: "p",
@@ -186,6 +279,10 @@ export const privacyEn: LegalDocument = {
           kind: "p",
           text: "You can disconnect at any time from Settings inside Morvyn, and revoke the permission from your [Third-party access page in your Google Account](https://myaccount.google.com/permissions).",
         },
+        {
+          kind: "p",
+          text: "**Disconnecting works in both directions.** Disconnecting Google Calendar in Settings removes the events that came from Google from Morvyn, **and deletes from Google Calendar the copies of schedule entries that Morvyn created**. Events you created yourself in Google Calendar are not touched. If some of the deletions fail, for example with no internet connection, the disconnection is held back and you can choose to disconnect anyway.",
+        },
       ],
     },
 
@@ -206,7 +303,19 @@ export const privacyEn: LegalDocument = {
             },
             {
               term: "Firebase Installations",
-              text: "Used by both services above. It creates a per-installation identifier (FID). According to Firebase, a FID does not uniquely identify a person or a device.",
+              text: "Used by Cloud Messaging and Remote Config above, and by Analytics and Crashlytics (see \"Usage statistics and crash reports\"). It creates a per-installation identifier (FID). According to Firebase, a FID does not uniquely identify a person or a device.",
+            },
+            {
+              term: "Firebase Analytics",
+              text: "Menu usage statistics. Always on. See \"Usage statistics and crash reports\".",
+            },
+            {
+              term: "Firebase Crashlytics",
+              text: "Crash and error reports. Always on. See \"Usage statistics and crash reports\".",
+            },
+            {
+              term: "Firebase Sessions",
+              text: "Installed along with Crashlytics. See \"Usage statistics and crash reports\".",
             },
             {
               term: "Google Play in-app updates",
@@ -242,6 +351,7 @@ export const privacyEn: LegalDocument = {
           items: [
             "It is used only to provide user-facing features: the backup and calendar sync that you switch on yourself, and showing you your own Google account's storage usage.",
             "It is not transferred to anyone. There is no intermediary to pass through, because Morvyn has no server.",
+            "It is not sent to Firebase Analytics or Firebase Crashlytics.",
             "It is not used for advertising, and not used to build any kind of profile.",
             "No human reads it. Himiko Lab has no technical route to it: backup files sit in your own hidden folder on Drive, and calendar data never leaves your device except to reach your own Google calendar or your own backups, if you turn them on.",
           ],
@@ -271,7 +381,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Android system backup.** If Android backup is on, Morvyn's local database and settings may be included in your device backup to your Google Account. Morvyn only allows this backup when the device has a screen lock, so that Android can encrypt it end-to-end with your lock screen credential. Your sign-in session is never included.",
+          text: "**Android system backup.** If Android backup is on, Morvyn's local database and settings may be included in your device backup to your Google Account. Morvyn only allows this backup when the device has a screen lock, so that Android can encrypt it end-to-end with your lock screen credential. Your sign-in session is never included. The working data that Analytics and Crashlytics keep on the device is not included in the Android system backup, is not carried over in a device transfer, and is not included in Morvyn's Google Drive backup.",
         },
         {
           kind: "p",
@@ -279,7 +389,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Retention.** Events pulled from Google Calendar stay on your device until you delete them or disconnect Google Calendar in Morvyn's Settings, which removes them from Morvyn. Turning sync off only pauses it. Backup files stay in your Drive until you delete them. Disconnecting Morvyn does not delete them; see \"How to delete your data\". Deleting your account from inside Morvyn does delete every Morvyn backup in your Drive: see \"Deleting your account\". Because Himiko Lab has no server, there is no copy with us to retain or delete.",
+          text: "**Retention.** Events pulled from Google Calendar stay on your device until you delete them or disconnect Google Calendar in Morvyn's Settings, which removes them from Morvyn and deletes from Google Calendar the copies of schedule entries that Morvyn created. Turning sync off only pauses it. Backup files stay in your Drive until you delete them. Disconnecting Morvyn does not delete them; see \"How to delete your data\". Deleting your account from inside Morvyn does delete every Morvyn backup in your Drive: see \"Deleting your account\". Because Himiko Lab has no server of its own, there is no copy of your app content with us to retain or delete. Retention for usage statistics and crash reports is set out under \"Usage statistics and crash reports\".",
         },
       ],
     },
@@ -415,11 +525,15 @@ export const privacyEn: LegalDocument = {
           items: [
             {
               term: "`INTERNET`",
-              text: "Fetching weather, news, earthquake data, exchange rates, and the icons of links in your notes, and running Google sync.",
+              text: "Fetching weather, news, earthquake data, exchange rates, and the icons of links in your notes, running Google sync, and sending usage statistics and crash reports.",
             },
             {
               term: "`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`",
               text: "Showing the weather around you, filling in the place on a finance record, and working out the distance to an earthquake. Optional.",
+            },
+            {
+              term: "`ACCESS_NETWORK_STATE`",
+              text: "Telling \"the phone is offline\" apart from \"the server failed\", and reloading as soon as the network is back.",
             },
             {
               term: "`ACCESS_WIFI_STATE`",
@@ -453,7 +567,32 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Three more permissions are declared by the Google and AndroidX libraries Morvyn is built on, and are **not used by any Morvyn feature**: `ACCESS_NETWORK_STATE`, `USE_BIOMETRIC`, and `USE_FINGERPRINT`. The last two come from androidx.biometric, which the Google sign-in library brings along. Morvyn does not use fingerprint or biometric authentication.",
+          text: "The following three permissions are declared by the Google libraries Morvyn is built on:",
+        },
+        {
+          kind: "defs",
+          items: [
+            {
+              term: "`com.google.android.c2dm.permission.RECEIVE`",
+              text: "Receiving Firebase Cloud Messaging notifications.",
+            },
+            {
+              term: "`com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE`",
+              text: "From the Analytics library. Reading the Play Store's information about where the app was installed from.",
+            },
+            {
+              term: "`com.google.android.providers.gsf.permission.READ_GSERVICES`",
+              text: "Brought along by the reCAPTCHA library that comes with Firebase Authentication.",
+            },
+          ],
+        },
+        {
+          kind: "p",
+          text: "Two more permissions are only brought along by libraries and are **not used by any Morvyn feature**: `USE_BIOMETRIC` and `USE_FINGERPRINT`. Both come from androidx.biometric, which the Google sign-in library brings along. Morvyn does not use fingerprint or biometric authentication.",
+        },
+        {
+          kind: "p",
+          text: "**The three advertising ID permissions are deliberately removed.** The `AD_ID`, `ACCESS_ADSERVICES_AD_ID`, and `ACCESS_ADSERVICES_ATTRIBUTION` permissions are brought along by the Analytics library, and Morvyn removes them. The merged manifest of the release app has been checked, and none of the three is present.",
         },
       ],
     },
@@ -464,11 +603,11 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "p",
-          text: "Morvyn is not directed at children under 13. Himiko Lab does not knowingly collect data from them, and collects data from no one at all, because there is no server to receive it.",
+          text: "Morvyn is not directed at children under 13, and Himiko Lab does not knowingly target them. The usage statistics and crash reports described under \"Usage statistics and crash reports\" are sent from every installation of Morvyn, including when the device is used by a child. All Morvyn deliberately sends in them is menu names and the names of parts of the code, and Morvyn sets no user identifier.",
         },
         {
           kind: "p",
-          text: "For the same reason there is nothing for us to delete on request: a child's data lives on the device they used, and in that device's own backups if backup was turned on. It can be removed by clearing that app's data and deleting those backups. The sections below explain how.",
+          text: "The app content itself never reaches Himiko Lab: a child's data lives on the device they used, and in that device's own backups if backup was turned on. It can be removed by clearing that app's data and deleting those backups. If the child ever signed in with Google, the sign-in record is deleted through \"Deleting your account\". The sections below explain how.",
         },
       ],
     },
@@ -527,7 +666,11 @@ export const privacyEn: LegalDocument = {
             },
             {
               term: "Calendar data",
-              text: "Turning sync off only pauses it; events already pulled stay in Morvyn. Disconnecting Google Calendar in Morvyn's Settings removes the events that came from Google from Morvyn. Events in Google Calendar itself remain yours and can be deleted there. Copies in your backups are deleted through the two backup items above.",
+              text: "Turning sync off only pauses it; events already pulled stay in Morvyn. Disconnecting Google Calendar in Morvyn's Settings removes the events that came from Google from Morvyn, and deletes from Google Calendar the copies of schedule entries that Morvyn created. Events you created yourself in Google Calendar are not touched, and you can delete them there. If some of the deletions fail, for example with no internet connection, the disconnection is held back and you can choose to disconnect anyway. Copies in your backups are deleted through the two backup items above.",
+            },
+            {
+              term: "Usage statistics and crash reports",
+              text: "Uninstalling the app stops the collection. Clearing the app's data from Android Settings causes the installation identifier to be replaced. Usage statistics are kept for 2 months, and crash reports for 90 days. Because the statistics are not tied to an account, Himiko Lab cannot look up one person's data by name or email. See \"Usage statistics and crash reports\".",
             },
             {
               term: "Revoke Google access",

@@ -2,7 +2,7 @@ import { SectionHeading } from "../SectionHeading";
 import { newsSources, type Dictionary } from "@/content";
 
 /**
- * Pita berjalan berisi 27 portal berita.
+ * Pita berjalan berisi 29 portal berita.
  *
  * Sama seperti pita di situs MOGLE: berisi DUA daftar yang isinya harus persis
  * sama. Animasinya menggeser jalur tepat 50% dari lebarnya, sehingga grup kedua

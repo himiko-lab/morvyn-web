@@ -11,7 +11,7 @@ export const id: Dictionary = {
     title: "Morvyn: Catatan, Keuangan, dan Agenda dalam Satu Aplikasi",
     ogTitle: "Morvyn, satu ruang tenang untuk seluruh harimu",
     description:
-      "Morvyn menyatukan catatan, keuangan, agenda, kebiasaan, cuaca, kalender, dan berita dari 27 portal dalam satu aplikasi Android. Gratis di Google Play.",
+      "Morvyn menyatukan catatan, keuangan, agenda, kebiasaan, cuaca, kalender, gempa, dan berita dari 29 portal dalam satu aplikasi Android. Gratis di Google Play.",
     localeName: "Indonesia",
     localeShort: "ID",
     ogImageAlt: "Morvyn, satu ruang tenang untuk seluruh harimu",
@@ -30,9 +30,9 @@ export const id: Dictionary = {
   },
 
   hero: {
-    eyebrow: "Tujuh kebutuhan harian, satu aplikasi",
+    eyebrow: "Delapan kebutuhan harian, satu aplikasi",
     headline: ["Satu ruang tenang untuk", "seluruh harimu"],
-    body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, dan berita. Semuanya ada di Morvyn, dan semuanya bisa saling terhubung.",
+    body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, berita, dan info gempa. Semuanya ada di Morvyn, dan semuanya bisa saling terhubung.",
     primaryCta: "Unduh di Google Play",
     secondaryCta: "Lihat fiturnya",
     iosNote: "Versi iOS sedang disiapkan",
@@ -42,38 +42,42 @@ export const id: Dictionary = {
   featureMockupAlt: "Tampilan menu {name} di aplikasi Morvyn",
 
   stats: [
-    { value: "7", label: "fitur inti", detail: "dalam satu aplikasi" },
-    { value: "27", label: "sumber berita", detail: "nasional & internasional" },
+    { value: "8", label: "fitur inti", detail: "dalam satu aplikasi" },
+    { value: "29", label: "sumber berita", detail: "nasional & internasional" },
     { value: "2", label: "bahasa", detail: "Indonesia & Inggris" },
   ],
 
   overview: {
     eyebrow: "Isi aplikasinya",
-    title: "Tujuh menu yang menutupi hari biasa",
-    body: "Bukan tujuh aplikasi terpisah yang kebetulan digabung. Tujuh menu yang tahu satu sama lain.",
+    title: "Delapan menu yang menutupi hari biasa",
+    body: "Bukan delapan aplikasi terpisah yang kebetulan digabung. Delapan menu yang tahu satu sama lain.",
   },
 
   features: {
     notes: {
       name: "Catatan",
       tagline: "Catatan yang tidak berhenti jadi catatan",
-      short: "Teks bebas, daftar poin, dan tautan ke menu lain di Morvyn.",
-      body: "Tulis catatan biasa, susun jadi daftar poin, atau kaitkan langsung ke agenda, transaksi, dan kebiasaanmu. Satu catatan rapat bisa sekalian menyimpan tugas turunannya.",
+      short: "Teks, daftar centang, gambar, PDF, dan tautan ke menu lain di Morvyn.",
+      body: "Tulis catatan biasa, susun jadi daftar poin atau daftar centang, atau kaitkan langsung ke agenda, transaksi, dan kebiasaanmu. Catatan juga bisa memuat gambar, coretan tangan, rumus matematika, dan lampiran PDF lengkap dengan pembacanya. Dokumen bisa dipindai menjadi PDF. Satu catatan rapat bisa sekalian menyimpan tugas turunannya.",
       points: [
-        "Teks bebas dan daftar poin dalam satu editor",
+        "Teks bebas, daftar poin, dan daftar centang dalam satu editor",
+        "Gambar, coretan tangan, rumus matematika, dan lampiran PDF dengan pembacanya",
         "Tautkan satu catatan ke agenda, keuangan, atau kebiasaan",
-        "Cari cepat ke seluruh catatan",
+        "Kategori catatan dan pencarian cepat ke seluruh catatan",
+        "Widget Catatan: daftar centang bisa dicentang langsung dari layar utama",
       ],
     },
     finance: {
       name: "Keuangan",
       tagline: "Tahu ke mana uangmu pergi",
-      short: "Pemasukan, pengeluaran, grafik, dan nilai tukar mata uang.",
-      body: "Catat pemasukan dan pengeluaran, lihat polanya lewat grafik, lalu periksa nilai tukar mata uang tanpa perlu pindah aplikasi.",
+      short: "Pemasukan, pengeluaran, beberapa dompet, grafik, dan nilai tukar mata uang.",
+      body: "Catat pemasukan dan pengeluaran di beberapa dompet, misalnya tunai, rekening, dan dompet digital, lalu pindahkan saldo di antaranya. Lihat polanya lewat grafik, dan periksa nilai tukar mata uang tanpa perlu pindah aplikasi.",
       points: [
+        "Beberapa dompet dan pindah saldo antardompet",
         "Grafik pemasukan dan pengeluaran",
         "Kategori pengeluaran yang bisa disesuaikan",
         "Nilai tukar mata uang yang diperbarui",
+        "Tombol sembunyikan saldo, berlaku juga di widget Keuangan",
       ],
     },
     agenda: {
@@ -85,15 +89,16 @@ export const id: Dictionary = {
         "Alarm dengan pola pengulangan",
         "Jadwal acara beserta pengingatnya",
         "Daftar tugas dengan tenggat waktu",
+        "Widget Agenda: tugas bisa dicentang langsung dari layar utama",
       ],
     },
     news: {
       name: "Berita",
-      tagline: "Kabar dunia dari 27 sumber",
+      tagline: "Kabar dunia dari 29 sumber",
       short: "Dari ANTARA dan detikcom sampai BBC, Al Jazeera, dan The Guardian.",
-      body: "Dua puluh tujuh portal nasional dan internasional dikumpulkan jadi satu, dikelompokkan per kategori, dan terus diperbarui.",
+      body: "Dua puluh sembilan portal nasional dan internasional dikumpulkan jadi satu, dikelompokkan per kategori, dan terus diperbarui.",
       points: [
-        "27 portal nasional dan internasional",
+        "29 portal nasional dan internasional",
         "Kategori bisnis, olahraga, dan teknologi",
         "Diperbarui terus sepanjang hari",
       ],
@@ -107,6 +112,7 @@ export const id: Dictionary = {
         "Target harian atau hanya di hari tertentu",
         "Hitungan rentetan hari yang terlihat jelas",
         "Pengingat yang bisa diatur sendiri",
+        "Widget Kebiasaan di layar utama ponselmu",
       ],
     },
     weather: {
@@ -129,6 +135,17 @@ export const id: Dictionary = {
         "Tampilan bulanan yang utuh",
         "Tugas dan acara menempel di tanggalnya",
         "Langsung tersambung ke Agenda",
+      ],
+    },
+    earthquake: {
+      name: "Gempa",
+      tagline: "Info gempa terbaru, bukan peringatan dini",
+      short: "Info gempa terbaru dari BMKG atau USGS. Bukan peringatan dini.",
+      body: "Morvyn menampilkan info gempa terbaru, dari BMKG kalau kamu di Indonesia dan dari U.S. Geological Survey kalau kamu di luar Indonesia. Bila izin lokasi kamu berikan, jarak gempanya dihitung dari lokasimu. Ini info gempa, bukan peringatan dini.",
+      points: [
+        "Sumber BMKG di Indonesia, U.S. Geological Survey di luar Indonesia",
+        "Jarak gempa dari lokasimu, bila izin lokasi diberikan",
+        "Notifikasi yang bisa diatur: radius, magnitudo minimal, gempa besar, dan potensi tsunami dari BMKG",
       ],
     },
   },
@@ -160,7 +177,7 @@ export const id: Dictionary = {
       },
       {
         title: "Nyalakan menu yang kamu perlu",
-        body: "Tidak semua orang butuh tujuh-tujuhnya. Pakai yang relevan, sisanya tidak akan mengganggu.",
+        body: "Tidak semua orang butuh delapan-delapannya. Pakai yang relevan, sisanya tidak akan mengganggu.",
       },
       {
         title: "Hubungkan catatan ke sisa harimu",
@@ -171,7 +188,7 @@ export const id: Dictionary = {
 
   news: {
     eyebrow: "Sumber berita",
-    title: "Dua puluh tujuh portal, satu halaman",
+    title: "Dua puluh sembilan portal, satu halaman",
     body: "Daftar lengkap portal yang masuk ke menu Berita.",
   },
 
@@ -181,7 +198,7 @@ export const id: Dictionary = {
     items: [
       {
         q: "Apakah Morvyn tersedia untuk iPhone?",
-        a: "Belum. Segera hadir.",
+        a: "Belum. Saat ini Morvyn hanya untuk Android.",
       },
       {
         q: "Bahasa apa saja yang didukung?",
@@ -189,15 +206,20 @@ export const id: Dictionary = {
       },
       {
         q: "Dari mana berita-beritanya diambil?",
-        a: "Dari 27 portal nasional dan internasional, di antaranya ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, dan The New York Times.",
+        a: "Dari 29 portal nasional dan internasional, di antaranya ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, dan The New York Times.",
       },
       {
         q: "Apakah saya harus memakai semua fiturnya?",
-        a: "Tidak. Tujuh menu itu berdiri sendiri-sendiri. Kalau kamu hanya butuh Catatan dan Agenda, sisanya tinggal dibiarkan.",
+        a: "Tidak. Delapan menu itu berdiri sendiri-sendiri. Kalau kamu hanya butuh Catatan dan Agenda, sisanya tinggal dibiarkan.",
       },
       {
         q: "Bagaimana Morvyn menentukan cuaca saya?",
         a: "Dari lokasi perangkatmu, sehingga perkiraannya untuk tempat kamu berada, bukan rata-rata satu kota.",
+      },
+      {
+        q: "Data apa yang dikirim Morvyn?",
+        a: "Isi catatan, keuangan, agenda, dan kebiasaanmu tetap di perangkatmu. Morvyn mengirim statistik menu yang dibuka dan laporan crash ke pengembang lewat Google. Keduanya selalu menyala, dan tidak ada iklan. Rinciannya ada di Kebijakan Privasi.",
+        link: { label: "Baca Kebijakan Privasi", href: "/privasi/" },
       },
     ],
   },

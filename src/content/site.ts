@@ -65,6 +65,15 @@ export const site = {
 } as const;
 
 /**
+ * Tanggal terakhir isi beranda berubah, dipakai sebagai `lastmod` beranda di
+ * peta situs. Perbarui HANYA saat teks beranda (`id.ts`/`en.ts`) atau daftar
+ * portal di bawah benar-benar berubah, bukan setiap deploy: Google memakai
+ * `lastmod` selama nilainya terbukti akurat, dan mengabaikannya begitu sering
+ * meleset.
+ */
+export const homeUpdatedIso = "2026-10-14";
+
+/**
  * Akun resmi Himiko Lab.
  *
  * Dipakai dua kali dari satu sumber: sebagai deretan ikon di footer, dan
@@ -142,6 +151,7 @@ export const newsSources = [
   "ABC News",
   "ANTARA",
   "ANTARA Ekonomi",
+  "ANTARA English",
   "ANTARA Olahraga",
   "ANTARA Tekno",
   "Al Jazeera",
@@ -161,6 +171,7 @@ export const newsSources = [
   "Tempo",
   "Tempo Bisnis",
   "Tempo Bola",
+  "Tempo English",
   "The Guardian",
   "The Independent",
   "detik Finance",
