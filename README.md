@@ -88,15 +88,18 @@ Simpan screenshot di `public/screenshots/` lalu tambahkan prop `src`:
 Rasio yang diharapkan **9:19.5** (mis. 1080×2340, ukuran layar Android umum).
 Gunakan PNG atau WebP. Begitu `src` diisi, placeholder-nya hilang sendiri.
 
-### 2. Google Play (**wajib saat peluncuran**)
+### 2. Google Play (sakelar sudah dinyalakan)
 
-Aplikasinya belum terbit, dan alamat di `playStoreUrl` masih membalas **404**.
-Karena itu ada sakelar di `src/content/site.ts`:
+Seluruh ajakan mengunduh diatur satu sakelar di `src/content/site.ts`:
 
 ```ts
 playStoreUrl: "https://play.google.com/store/apps/details?id=com.himikolab.morvyn",
-playStoreLive: false,
+playStoreLive: true,
 ```
+
+Sakelar ini dinyalakan pada 14 Oktober 2026 atas keputusan pemilik. **Saat itu
+alamat di `playStoreUrl` masih membalas 404**, jadi periksa lagi dengan
+perintah `curl` di bawah. Kalau lama tetap 404, kembalikan ke `false`.
 
 Selama `playStoreLive: false`, **tidak satu pun tautan ke Play Store dicetak**.
 Yang berubah otomatis:
@@ -110,19 +113,21 @@ Yang berubah otomatis:
 | Tanya jawab | "Kapan Morvyn bisa diunduh?" disisipkan paling atas | tidak disisipkan |
 | JSON-LD | tanpa `offers`, `downloadUrl`, `installUrl` | ketiganya dicetak |
 
-**Saat peluncuran:** ganti `playStoreUrl` dengan URL asli dari Play Console,
-setel `playStoreLive: true`, lalu deploy. Tidak ada teks yang perlu ditulis
-ulang: salinan versi terbit sudah tersimpan utuh di `dict.cta`.
+Kedua salinan tersimpan utuh di kamus (`dict.cta` untuk versi terbit,
+`dict.comingSoon` untuk versi "segera"), jadi berpindah arah cukup dengan
+mengubah sakelarnya lalu deploy. Lencana di gambar Open Graph
+(`design/og-*.svg`) TIDAK ikut sakelar: teksnya diganti dengan tangan, lalu
+PNG-nya dibuat ulang.
 
-Periksa dulu sebelum menyalakannya:
+Periksa alamatnya dengan:
 
 ```bash
 curl -sI -o /dev/null -w '%{http_code}\n' "https://play.google.com/store/apps/details?id=com.himikolab.morvyn"
 ```
 
-Harus `200`. Kalau masih `404`, biarkan sakelarnya `false`: halaman yang
-mengajak mengunduh sesuatu yang belum ada merugikan dua kali, pengunjung
-sampai di halaman kosong dan Google melihat halaman promosi bertombol mati.
+Harus `200`. Selama masih `404`, halaman yang mengajak mengunduh sesuatu yang
+belum bisa dibuka merugikan dua kali: pengunjung sampai di halaman kosong, dan
+Google melihat halaman promosi bertombol mati.
 
 ### 3. Alamat email kontak (sudah diisi)
 
@@ -189,14 +194,15 @@ fakta yang bisa diperiksa: **8** fitur, **29** sumber berita, **2** bahasa.
 Jumlah unduhan dan rating Play Store TIDAK dicantumkan karena angkanya belum
 ada. Kalau nanti mau ditambahkan, ambil dari Play Console, jangan dikarang.
 
-### 6. Dua jawaban FAQ yang perlu Anda pastikan
+### 6. Satu jawaban FAQ yang perlu Anda pastikan
 
-Isi FAQ disusun dari `REMOTE_CONFIG_MORVYN.md` dan keterangan Anda. Dua hal
-berikut belum terkonfirmasi dan sebaiknya diperiksa sebelum tayang:
+Isi FAQ disusun dari `REMOTE_CONFIG_MORVYN.md` dan keterangan Anda. "Morvyn
+tersedia gratis di Google Play" sudah dipastikan pemilik pada 14 Oktober 2026:
+gratis sepenuhnya, tanpa pembelian dalam aplikasi. Satu hal berikut belum
+terkonfirmasi:
 
 | Pertanyaan | Yang perlu dipastikan |
 |---|---|
-| "Morvyn tersedia gratis di Google Play" (blok CTA) | Benarkah gratis sepenuhnya, atau ada pembelian dalam aplikasi? |
 | Fitur mana yang jalan tanpa internet | Belum disinggung di FAQ. Layak ditambahkan kalau Catatan/Agenda/Kebiasaan memang bisa offline. |
 
 ---

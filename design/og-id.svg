@@ -42,8 +42,8 @@
 
   <text x="88" y="446" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="29" font-weight="500" fill="#FFFFFF" fill-opacity="0.82">Catatan · Keuangan · Agenda · Kebiasaan · Cuaca · Kalender · Berita · Gempa</text>
 
-  <rect x="88" y="510" width="296" height="58" rx="29" fill="#FFFFFF"/>
-  <text x="236" y="548" text-anchor="middle" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700" fill="#078DFB">Segera di Google Play</text>
+  <rect x="88" y="510" width="320" height="58" rx="29" fill="#FFFFFF"/>
+  <text x="248" y="548" text-anchor="middle" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700" fill="#078DFB">Tersedia di Google Play</text>
 
   <text x="1112" y="548" text-anchor="end" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="600" fill="#FFFFFF" fill-opacity="0.78">morvyn.himikolab.my.id</text>
 </svg>

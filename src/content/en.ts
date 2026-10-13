@@ -32,7 +32,7 @@ export const en: Dictionary = {
     body: "Notes, finances, agenda, habits, weather, calendar, news, and earthquake information. All inside Morvyn, and all able to talk to each other.",
     primaryCta: "Get it on Google Play",
     secondaryCta: "See the features",
-    iosNote: "iOS version in the works",
+    iosNote: "Android only for now",
     mockupAlt: "The Morvyn app home screen",
   },
 
@@ -225,7 +225,7 @@ export const en: Dictionary = {
     title: "Start tidying your day today",
     body: "Morvyn is free on Google Play.",
     button: "Get it on Google Play",
-    iosNote: "iOS version in the works",
+    iosNote: "Android only for now",
   },
 
   comingSoon: {

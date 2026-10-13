@@ -13,10 +13,7 @@ export const site = {
    */
   url: "https://morvyn.himikolab.my.id",
 
-  /**
-   * PLACEHOLDER. Ganti dengan URL Play Store yang sebenarnya, bentuknya:
-   * https://play.google.com/store/apps/details?id=com.namapaket.morvyn
-   */
+  /** Alamat Morvyn di Google Play, dari nama paket `com.himikolab.morvyn`. */
   playStoreUrl: "https://play.google.com/store/apps/details?id=com.himikolab.morvyn",
 
   /**
@@ -34,8 +31,11 @@ export const site = {
    *
    * Periksa dulu sebelum menyalakannya:
    *   curl -sI -o /dev/null -w '%{http_code}\n' "$PLAY_STORE_URL"
+   *
+   * Dinyalakan 14 Oktober 2026 atas keputusan pemilik. Saat itu alamatnya
+   * masih membalas 404; kalau lama tetap begitu, kembalikan ke `false`.
    */
-  playStoreLive: false,
+  playStoreLive: true,
 
   /** Kosongkan string ini kalau alamatnya dicabut dan belum ada gantinya. */
   contactEmail: "hi@himikolab.my.id",

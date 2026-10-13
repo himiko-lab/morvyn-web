@@ -35,7 +35,7 @@ export const id: Dictionary = {
     body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, berita, dan info gempa. Semuanya ada di Morvyn, dan semuanya bisa saling terhubung.",
     primaryCta: "Unduh di Google Play",
     secondaryCta: "Lihat fiturnya",
-    iosNote: "Versi iOS sedang disiapkan",
+    iosNote: "Saat ini hanya untuk Android",
     mockupAlt: "Tampilan Beranda aplikasi Morvyn",
   },
 
@@ -228,7 +228,7 @@ export const id: Dictionary = {
     title: "Rapikan harimu mulai hari ini",
     body: "Morvyn tersedia gratis di Google Play.",
     button: "Unduh di Google Play",
-    iosNote: "Versi iOS sedang disiapkan",
+    iosNote: "Saat ini hanya untuk Android",
   },
 
   comingSoon: {
