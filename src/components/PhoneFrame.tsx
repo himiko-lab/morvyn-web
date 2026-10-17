@@ -51,39 +51,54 @@ export function PhoneFrame({
   children,
 }: PhoneFrameProps) {
   return (
-    <div
-      className={`relative aspect-[9/19.5] rounded-[2.75rem] border-[6px] border-[color:var(--device-frame)] bg-[color:var(--device-frame)] p-[3px] shadow-[var(--shadow-brand-lg)] ${className}`}
-    >
-      <div className="relative h-full w-full overflow-hidden rounded-[2.35rem] bg-white">
-        {src ? (
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            priority={priority}
-            sizes="(max-width: 768px) 70vw, 304px"
-            className="object-cover"
+    // Pembungkus ini hanya menjadi wadah kueri (`@container`), supaya ukuran
+    // bingkai di dalamnya bisa ditulis dalam `cqw`, yaitu persen dari lebar
+    // bingkai itu sendiri.
+    //
+    // Dulu lengkung sudut, tebal bingkai, dan celah layarnya ditulis dalam
+    // rem/px tetap (2.75rem, 6px, 3px, 2.35rem). Angka itu pas di lebar 17rem,
+    // tapi bingkai ini dipakai dari 12rem sampai 19rem. Di ponsel, saat
+    // bingkainya menyusut ke 12rem, lengkung 44px yang sama memakan 23% lebar
+    // alih-alih 16%, dan bingkainya terlihat jauh lebih bulat dan tebal
+    // daripada di desktop. Dengan `cqw`, bentuknya sama persis di lebar
+    // berapa pun.
+    //
+    // Angkanya diturunkan dari tampilan desktop di 17rem (272px):
+    // lengkung luar 44px = 16.18cqw, bingkai 6px = 2.21cqw, celah 3px =
+    // 1.1cqw, lengkung layar 37.6px = 13.82cqw.
+    <div className={`@container ${className}`}>
+      <div className="relative aspect-[9/19.5] w-full rounded-[16.18cqw] border-[2.21cqw] border-[color:var(--device-frame)] bg-[color:var(--device-frame)] p-[1.1cqw] shadow-[var(--shadow-brand-lg)]">
+        <div className="relative h-full w-full overflow-hidden rounded-[13.82cqw] bg-white">
+          {src ? (
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              priority={priority}
+              sizes="(max-width: 768px) 70vw, 304px"
+              className="object-cover"
+            />
+          ) : (
+            <Placeholder label={placeholderLabel ?? alt} />
+          )}
+          {children}
+
+          {/* Kamera punch-hole ala Android: lubang bundar di tengah atas, di
+              ATAS layar dan bukan di bingkainya. Itu bedanya dengan poni iPhone,
+              yang memakan sepotong bingkai selebar 86px.
+
+              Ukurannya dalam persen, bukan piksel, karena bingkai ini dipakai
+              dalam tiga lebar berbeda (19rem di hero, 17rem dan 15rem di bagian
+              fitur). Ukuran piksel tetap akan terlihat kebesaran di yang kecil.
+
+              Ditaruh setelah {children} supaya selalu di atas isinya, dan di
+              dalam wadah ber-overflow-hidden supaya ikut terpotong lengkung
+              layar. Murni hiasan, jadi disembunyikan dari pembaca layar. */}
+          <div
+            aria-hidden
+            className="absolute left-1/2 top-[1.7%] z-20 aspect-square w-[5%] -translate-x-1/2 rounded-full bg-[color:var(--device-camera)] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.16)]"
           />
-        ) : (
-          <Placeholder label={placeholderLabel ?? alt} />
-        )}
-        {children}
-
-        {/* Kamera punch-hole ala Android: lubang bundar di tengah atas, di
-            ATAS layar dan bukan di bingkainya. Itu bedanya dengan poni iPhone,
-            yang memakan sepotong bingkai selebar 86px.
-
-            Ukurannya dalam persen, bukan piksel, karena bingkai ini dipakai
-            dalam tiga lebar berbeda (19rem di hero, 17rem dan 15rem di bagian
-            fitur). Ukuran piksel tetap akan terlihat kebesaran di yang kecil.
-
-            Ditaruh setelah {children} supaya selalu di atas isinya, dan di
-            dalam wadah ber-overflow-hidden supaya ikut terpotong lengkung
-            layar. Murni hiasan, jadi disembunyikan dari pembaca layar. */}
-        <div
-          aria-hidden
-          className="absolute left-1/2 top-[1.7%] z-20 aspect-square w-[5%] -translate-x-1/2 rounded-full bg-[color:var(--device-camera)] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.16)]"
-        />
+        </div>
       </div>
     </div>
   );
