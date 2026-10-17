@@ -2,7 +2,7 @@ import { Check } from "@phosphor-icons/react/ssr";
 import { PhoneFrame } from "../PhoneFrame";
 import { Reveal } from "../Reveal";
 import { featureColor, featureIcons, featureOrder } from "../featureIcons";
-import type { Dictionary, FeatureKey } from "@/content";
+import { screenshotSrc, type Dictionary, type FeatureKey, type Locale } from "@/content";
 
 /**
  * Pembahasan panjang kedelapan menu, berselang-seling kiri-kanan.
@@ -10,7 +10,7 @@ import type { Dictionary, FeatureKey } from "@/content";
  * Latar belakangnya bergantian antara warna halaman dan permukaan, supaya
  * batas antar fitur terlihat tanpa perlu menarik garis pemisah.
  */
-export function FeatureDetails({ dict }: { dict: Dictionary }) {
+export function FeatureDetails({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   return (
     <div>
       {featureOrder.map((key, index) => (
@@ -18,6 +18,7 @@ export function FeatureDetails({ dict }: { dict: Dictionary }) {
           key={key}
           featureKey={key}
           dict={dict}
+          locale={locale}
           flipped={index % 2 === 1}
           tinted={index % 2 === 1}
         />
@@ -29,11 +30,13 @@ export function FeatureDetails({ dict }: { dict: Dictionary }) {
 function FeatureRow({
   featureKey,
   dict,
+  locale,
   flipped,
   tinted,
 }: {
   featureKey: FeatureKey;
   dict: Dictionary;
+  locale: Locale;
   flipped: boolean;
   tinted: boolean;
 }) {
@@ -105,9 +108,9 @@ function FeatureRow({
               style={{ backgroundColor: color }}
             />
             <PhoneFrame
+              src={screenshotSrc(locale, featureKey)}
               alt={mockupAlt}
-              placeholderLabel={mockupAlt}
-              className="max-w-[12rem] sm:max-w-[15rem] lg:max-w-[17rem]"
+              className="w-[12rem] sm:w-[15rem] lg:w-[17rem]"
             />
           </div>
         </Reveal>

@@ -27,11 +27,11 @@ export function SiteContent({ locale }: { locale: Locale }) {
       <JsonLd locale={locale} />
       <Header dict={dict} locale={locale} />
       <main>
-        <Hero dict={dict} />
+        <Hero dict={dict} locale={locale} />
         <Stats dict={dict} />
         <Overview dict={dict} />
         <Connected dict={dict} />
-        <FeatureDetails dict={dict} />
+        <FeatureDetails dict={dict} locale={locale} />
         <NewsSources dict={dict} />
         <HowItWorks dict={dict} />
         <Faq dict={dict} />

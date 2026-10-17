@@ -12,14 +12,19 @@ interface PhoneFrameProps {
   /** Keterangan pada placeholder, menjelaskan layar mana yang seharusnya di sini. */
   placeholderLabel?: string;
   /**
-   * WAJIB memuat batas lebar, mis. `max-w-[13rem] sm:max-w-[17rem]`.
+   * WAJIB memuat lebar pasti, mis. `w-[13rem] sm:w-[17rem]`.
    *
-   * Kelas dasar di bawah sengaja hanya memasang `w-full` dan TIDAK memasang
-   * `max-w-*` bawaan. Dulu ada `max-w-[19rem]` di sana, dan akibatnya
-   * `w-[15rem]` yang dikirim dari FeatureDetails tidak pernah berlaku:
-   * keduanya sama-sama utilitas lebar dengan kekhususan yang sama, jadi yang
-   * menang ditentukan urutan di berkas CSS, bukan urutan di string kelas.
-   * Bingkai fitur ikut melar ke 304px dan itu tidak kelihatan sampai diukur.
+   * Kelas dasar di bawah sengaja TIDAK memasang utilitas lebar apa pun. Dulu
+   * ada `max-w-[19rem]` di sana, dan akibatnya `w-[15rem]` yang dikirim dari
+   * FeatureDetails tidak pernah berlaku: keduanya sama-sama utilitas lebar
+   * dengan kekhususan yang sama, jadi yang menang ditentukan urutan di berkas
+   * CSS, bukan urutan di string kelas.
+   *
+   * Lebarnya harus pasti, bukan `w-full` dengan `max-w-*`. Bingkai ini duduk
+   * di wadah flex yang lebarnya mengikuti isi, sedangkan gambar ber-`fill`
+   * diposisikan absolut dan tidak menyumbang lebar sama sekali. Selama masih
+   * placeholder, teks keterangannya yang diam-diam memberi lebar; begitu
+   * diganti gambar, bingkainya menyusut tinggal pinggirannya.
    */
   className?: string;
   /** Hero memakai `priority` supaya gambarnya tidak dimuat belakangan. */
@@ -47,7 +52,7 @@ export function PhoneFrame({
 }: PhoneFrameProps) {
   return (
     <div
-      className={`relative aspect-[9/19.5] w-full rounded-[2.75rem] border-[6px] border-[color:var(--device-frame)] bg-[color:var(--device-frame)] p-[3px] shadow-[var(--shadow-brand-lg)] ${className}`}
+      className={`relative aspect-[9/19.5] rounded-[2.75rem] border-[6px] border-[color:var(--device-frame)] bg-[color:var(--device-frame)] p-[3px] shadow-[var(--shadow-brand-lg)] ${className}`}
     >
       <div className="relative h-full w-full overflow-hidden rounded-[2.35rem] bg-white">
         {src ? (

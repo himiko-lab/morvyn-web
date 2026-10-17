@@ -49,6 +49,7 @@ src/
 │   ├── id.ts / en.ts      # SELURUH teks beranda
 │   ├── site.ts            # URL Play Store, domain, daftar 29 portal berita
 │   └── legal/             # isi Kebijakan Privasi & Ketentuan Layanan (4 berkas)
+├── public/screenshots/   # tangkapan layar di bingkai ponsel (sumbernya di design/screenshots/)
 └── public/logo-morvyn.svg
 ```
 
@@ -64,29 +65,39 @@ Dua aturan yang memudahkan perawatan:
 
 ## Yang masih perlu diisi
 
-### 1. Screenshot aplikasi (**wajib**)
+### 1. Screenshot aplikasi (sudah diisi, versi Inggris)
 
-Seluruh bingkai ponsel saat ini menampilkan kotak placeholder bergaris
-putus-putus. Ada **9 tempat**: satu di hero, delapan di bagian pembahasan fitur.
+Kesembilan bingkai ponsel (satu di hero, delapan di bagian pembahasan fitur)
+sudah berisi tangkapan layar aplikasi. Alamatnya dirakit `screenshotSrc()` di
+`src/content/screenshots.ts`, dengan nama berkas sama dengan kunci menunya:
 
-Cari semuanya dengan:
+| Berkas | Dipakai di |
+|---|---|
+| `home.webp` | Hero (layar Beranda aplikasi) |
+| `notes.webp`, `finance.webp`, `agenda.webp`, `news.webp`, `habits.webp`, `weather.webp`, `calendar.webp`, `earthquake.webp` | Bagian pembahasan tiap menu |
+
+- **Yang disajikan** ada di `public/screenshots/<bahasa>/`: WebP lebar 720 px.
+  Itu tiga kali lebar bingkai di ponsel (15rem), jadi tetap tajam tanpa
+  mengirim gambar penuh.
+- **Sumbernya** (JPEG 1080×2340) ada di `design/screenshots/<bahasa>/` dan
+  tidak ikut disajikan.
+- **Versi Indonesia belum ada.** Beranda Indonesia sementara memakai set
+  berbahasa Inggris. Begitu ada, taruh di `design/screenshots/id/`, buat
+  WebP-nya ke `public/screenshots/id/`, lalu ganti folder `id` di
+  `screenshots.ts`.
+- **Foto berita diburamkan.** `news.jpg` memuat foto milik SCMP dan The
+  Guardian, jadi fotonya diburamkan sebelum dipasang. Berkas aslinya,
+  `news-original.jpg`, sengaja diabaikan `.gitignore`: repositori ini publik.
+
+Membuat ulang WebP dari sumbernya (rasio wajib 9:19.5, mis. 1080×2340):
 
 ```bash
-grep -rn "PhoneFrame" src/components
+for k in home notes finance agenda news habits weather calendar earthquake; do cwebp -q 82 -resize 720 1560 design/screenshots/en/$k.jpg -o public/screenshots/en/$k.webp; done
 ```
 
-Simpan screenshot di `public/screenshots/` lalu tambahkan prop `src`:
-
-```tsx
-{/* sebelum: teks alternatifnya masih dirakit dari dict.featureMockupAlt */}
-<PhoneFrame alt={mockupAlt} placeholderLabel={mockupAlt} />
-
-{/* sesudah */}
-<PhoneFrame src="/screenshots/catatan.png" alt={mockupAlt} />
-```
-
-Rasio yang diharapkan **9:19.5** (mis. 1080×2340, ukuran layar Android umum).
-Gunakan PNG atau WebP. Begitu `src` diisi, placeholder-nya hilang sendiri.
+Kalau berkas gambar suatu menu dihapus, bingkainya tidak kembali ke
+placeholder: gambarnya tampil rusak. Placeholder hanya muncul bila prop `src`
+pada `PhoneFrame` tidak diisi.
 
 ### 2. Google Play (sakelar sudah dinyalakan)
 

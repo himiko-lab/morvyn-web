@@ -66,12 +66,12 @@ export const site = {
 
 /**
  * Tanggal terakhir isi beranda berubah, dipakai sebagai `lastmod` beranda di
- * peta situs. Perbarui HANYA saat teks beranda (`id.ts`/`en.ts`) atau daftar
- * portal di bawah benar-benar berubah, bukan setiap deploy: Google memakai
+ * peta situs. Perbarui HANYA saat teks beranda (`id.ts`/`en.ts`), tangkapan
+ * layarnya, atau daftar portal di bawah benar-benar berubah, bukan setiap deploy: Google memakai
  * `lastmod` selama nilainya terbukti akurat, dan mengabaikannya begitu sering
  * meleset.
  */
-export const homeUpdatedIso = "2026-10-14";
+export const homeUpdatedIso = "2026-10-17";
 
 /**
  * Akun resmi Himiko Lab.

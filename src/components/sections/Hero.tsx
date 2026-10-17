@@ -6,11 +6,13 @@ import { featureColor, featureIcons, featureOrder } from "../featureIcons";
 import {
   downloadHref,
   downloadIsExternal,
+  screenshotSrc,
   site,
   type Dictionary,
+  type Locale,
 } from "@/content";
 
-export function Hero({ dict }: { dict: Dictionary }) {
+export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   // Selama aplikasinya belum terbit, tombol utama mengaku apa adanya dan
   // menurunkan pembaca ke blok penjelasan, bukan ke Play Store yang 404.
   const primaryLabel = site.playStoreLive
@@ -100,10 +102,10 @@ export function Hero({ dict }: { dict: Dictionary }) {
         <Reveal delay={200} className="flex justify-center lg:justify-end">
           <div className="relative">
             <PhoneFrame
+              src={screenshotSrc(locale, "home")}
               alt={dict.hero.mockupAlt}
-              placeholderLabel={dict.hero.mockupAlt}
               priority
-              className="float-slow max-w-[15rem] sm:max-w-[19rem]"
+              className="float-slow w-[15rem] sm:w-[19rem]"
             />
             <FloatingChip
               className="-left-6 top-[16%] md:-left-14"

@@ -40,5 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# tangkapan layar asli yang memuat foto berita milik penerbit; yang dipakai
+# dan disimpan di repo adalah versi yang fotonya sudah diburamkan (news.jpg)
+/design/screenshots/en/news-original.jpg
+
 # claude code: setelan lokal per mesin
 .claude/settings.local.json

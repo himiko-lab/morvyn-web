@@ -93,3 +93,4 @@ export function ogImagePath(locale: Locale): string {
 
 export type { Dictionary, FaqItem, FeatureCopy, FeatureKey } from "./types";
 export { site, homeUpdatedIso, newsSources, socialLinks, sameAsUrls } from "./site";
+export { screenshotSrc, type ScreenshotKey } from "./screenshots";
