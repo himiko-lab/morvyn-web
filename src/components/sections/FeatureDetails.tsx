@@ -1,8 +1,10 @@
-import { Check } from "@phosphor-icons/react/ssr";
+import Link from "next/link";
+import { ArrowRight, Check } from "@phosphor-icons/react/ssr";
 import { PhoneFrame } from "../PhoneFrame";
 import { Reveal } from "../Reveal";
 import { featureColor, featureIcons, featureOrder } from "../featureIcons";
 import { screenshotSrc, type Dictionary, type FeatureKey, type Locale } from "@/content";
+import { featurePageUi, featurePath } from "@/content/featurePages";
 
 /**
  * Pembahasan panjang kedelapan menu, berselang-seling kiri-kanan.
@@ -93,6 +95,25 @@ function FeatureRow({
                 </li>
               ))}
             </ul>
+          </Reveal>
+
+          {/* Pintu ke halaman menu ini sendiri, yang membahasnya jauh lebih
+              lengkap daripada yang muat di beranda. Teks tautannya menyebut
+              nama menunya, bukan "selengkapnya" polos: delapan tautan
+              berteks sama tidak bisa dibedakan, baik oleh pembaca layar
+              maupun mesin pencari. */}
+          <Reveal delay={240}>
+            <Link
+              href={featurePath(featureKey, locale)}
+              className="group mt-8 inline-flex items-center gap-1.5 font-semibold text-[color:var(--link)] transition-colors hover:text-[color:var(--brand-violet)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--focus)]"
+            >
+              {featurePageUi[locale].learnMore.replace("{name}", feature.name)}
+              <ArrowRight
+                size={16}
+                weight="bold"
+                className="transition-transform group-hover:translate-x-0.5"
+              />
+            </Link>
           </Reveal>
         </div>
 

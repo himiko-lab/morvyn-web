@@ -4,8 +4,10 @@ import {
   localeUrl,
   ogImagePath,
   site,
+  type FeatureKey,
   type Locale,
 } from "@/content";
+import { featurePath, getFeaturePage } from "@/content/featurePages";
 import { getLegalDocument, legalPath, type LegalKind } from "@/content/legal";
 
 /**
@@ -158,6 +160,69 @@ export function buildLegalMetadata(kind: LegalKind, locale: Locale): Metadata {
       title,
       description: doc.description,
       images: [{ url: image, alt: getDictionary(locale).meta.ogImageAlt }],
+    },
+  };
+}
+
+/**
+ * Metadata <head> untuk satu halaman fitur, mis. `/fitur/catatan/`.
+ *
+ * Bentuknya mengikuti `buildLegalMetadata`: canonical dan hreflang menunjuk
+ * pasangan halaman yang sama dalam bahasa lain, supaya `/fitur/catatan/` dan
+ * `/en/features/notes/` dikenali sebagai satu halaman dalam dua bahasa.
+ */
+export function buildFeatureMetadata(key: FeatureKey, locale: Locale): Metadata {
+  const page = getFeaturePage(key, locale);
+  const url = `${site.url}${featurePath(key, locale)}`;
+  const image = ogImagePath(locale);
+  const imageAlt = getDictionary(locale).meta.ogImageAlt;
+
+  return {
+    metadataBase: new URL(site.url),
+    title: { absolute: page.title },
+    description: page.description,
+    applicationName: site.name,
+    authors: [{ name: site.publisher, url: site.publisherUrl }],
+    creator: site.publisher,
+    publisher: site.publisher,
+
+    alternates: {
+      canonical: url,
+      languages: {
+        "id-ID": `${site.url}${featurePath(key, "id")}`,
+        "en-US": `${site.url}${featurePath(key, "en")}`,
+        "x-default": `${site.url}${featurePath(key, "id")}`,
+      },
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+
+    openGraph: {
+      type: "website",
+      locale: locale === "id" ? "id_ID" : "en_US",
+      alternateLocale: locale === "id" ? "en_US" : "id_ID",
+      url,
+      siteName: site.name,
+      title: page.title,
+      description: page.description,
+      images: [{ url: image, width: 1200, height: 630, alt: imageAlt, type: "image/png" }],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+      images: [{ url: image, alt: imageAlt }],
     },
   };
 }

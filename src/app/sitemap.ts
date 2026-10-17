@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { homeUpdatedIso, localeTag, localeUrl, locales, site } from "@/content";
+import { featurePagesUpdatedIso, featurePath } from "@/content/featurePages";
 import { legalEffectiveIso, legalKinds, legalPath } from "@/content/legal";
+import { featureOrder } from "@/components/featureIcons";
 
 // Situs ini diekspor statis, jadi berkasnya dibuat sekali saat build. Tanpa
 // baris ini Next menganggapnya rute dinamis dan `output: "export"` gagal.
@@ -9,10 +11,11 @@ export const dynamic = "force-static";
 /**
  * Peta situs untuk Google Search Console.
  *
- * Enam alamat: beranda dan dua halaman hukum, masing-masing dalam dua bahasa.
- * Semuanya ditarik dari daftar `locales` dan `legalKinds`, jadi kalau nanti ada
- * bahasa ketiga atau dokumen ketiga, peta ini ikut bertambah sendiri alih-alih
- * diam-diam ketinggalan.
+ * Dua puluh dua alamat: beranda, delapan halaman fitur, dan dua halaman hukum,
+ * masing-masing dalam dua bahasa. Semuanya ditarik dari daftar `locales`,
+ * `featureOrder`, dan `legalKinds`, jadi kalau nanti ada bahasa, menu, atau
+ * dokumen baru, peta ini ikut bertambah sendiri alih-alih diam-diam
+ * ketinggalan.
  *
  * Tiap entri menyebut versi bahasa lainnya lewat `alternates`. Itu memberi
  * tahu Google bahwa `/` dan `/en/` adalah halaman yang sama dalam dua bahasa,
@@ -33,6 +36,7 @@ export const dynamic = "force-static";
  *   diperbarui setiap kali isi dokumennya berubah.
  * - Beranda memakai `homeUpdatedIso` di `content/site.ts`, yang diperbarui
  *   dengan tangan hanya saat teks berandanya benar-benar berubah.
+ * - Halaman fitur memakai `featurePagesUpdatedIso`, dengan aturan yang sama.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const homeLanguages = {
@@ -72,5 +76,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  return [...home, ...legal];
+  // Prioritasnya di antara beranda dan halaman hukum: inilah halaman yang
+  // menjawab pencarian per menu, misalnya "aplikasi catatan dengan PDF".
+  const features: MetadataRoute.Sitemap = featureOrder.flatMap((key) => {
+    const languages = {
+      ...Object.fromEntries(
+        locales.map((locale) => [localeTag[locale], `${site.url}${featurePath(key, locale)}`]),
+      ),
+      "x-default": `${site.url}${featurePath(key, "id")}`,
+    };
+
+    return locales.map((locale) => ({
+      url: `${site.url}${featurePath(key, locale)}`,
+      lastModified: featurePagesUpdatedIso,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      alternates: { languages },
+    }));
+  });
+
+  return [...home, ...features, ...legal];
 }

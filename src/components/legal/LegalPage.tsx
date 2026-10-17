@@ -51,7 +51,7 @@ export function LegalPage({ kind, locale }: { kind: LegalKind; locale: Locale })
 
   return (
     <>
-      {/* Tautan jangkar di header dan footer menunjuk bagian-bagian beranda,
+      {/* Tautan jangkar di header menunjuk bagian-bagian beranda,
           yang tidak ada di halaman ini. `anchorBase` mengubahnya jadi
           "/#fitur" alih-alih "#fitur"; tanpa itu seluruh menu jadi mati saat
           dibuka dari sini.
@@ -229,12 +229,7 @@ export function LegalPage({ kind, locale }: { kind: LegalKind; locale: Locale })
         </article>
       </main>
 
-      <Footer
-        dict={dict}
-        locale={locale}
-        anchorBase={home}
-        altHref={legalPath[kind][otherLocale]}
-      />
+      <Footer dict={dict} locale={locale} altHref={legalPath[kind][otherLocale]} />
     </>
   );
 }

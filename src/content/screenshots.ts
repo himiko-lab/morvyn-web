@@ -1,8 +1,9 @@
 import type { Locale } from "./index";
 import type { FeatureKey } from "./types";
+import available from "./screenshots.json";
 
 /**
- * Tangkapan layar aplikasi di dalam bingkai ponsel beranda.
+ * Tangkapan layar aplikasi di dalam bingkai ponsel.
  *
  * Satu untuk hero (`home`, layar Beranda aplikasi) dan satu per menu, dengan
  * nama berkas sama dengan kunci menunya: `public/screenshots/<bahasa>/<kunci>.webp`.
@@ -11,19 +12,24 @@ import type { FeatureKey } from "./types";
  */
 export type ScreenshotKey = FeatureKey | "home";
 
+/** Bahasa cadangan: set berbahasa Inggris sudah lengkap kesembilannya. */
+const fallbackLocale: Locale = "en";
+
 /**
- * Folder gambar per bahasa.
+ * Daftar tangkapan layar yang SUDAH ADA per bahasa, dibaca dari
+ * `screenshots.json`.
  *
- * SEMENTARA: belum ada tangkapan layar berbahasa Indonesia, jadi beranda
- * Indonesia memakai set berbahasa Inggris. Begitu ada, taruh di
- * `public/screenshots/id/` dengan nama berkas yang sama, lalu ganti `id` di
- * bawah menjadi "/screenshots/id". Tidak ada yang lain yang perlu diubah.
+ * Bukan sakelar satu folder sekaligus: tangkapan layar Indonesia boleh datang
+ * satu per satu. Kunci yang belum tercantum di daftar `id` tetap memakai
+ * versi Inggrisnya, jadi tidak pernah ada bingkai yang gambarnya rusak.
+ *
+ * Daftarnya JSON, bukan konstanta TypeScript, karena `scripts/check-screenshots.mjs`
+ * ikut membacanya sebelum build dan menggagalkan build bila ada nama yang
+ * tercantum tapi berkasnya tidak ada.
  */
-const folder: Record<Locale, string> = {
-  id: "/screenshots/en",
-  en: "/screenshots/en",
-};
+const localized: Record<Locale, readonly string[]> = available;
 
 export function screenshotSrc(locale: Locale, key: ScreenshotKey): string {
-  return `${folder[locale]}/${key}.webp`;
+  const folder = localized[locale].includes(key) ? locale : fallbackLocale;
+  return `/screenshots/${folder}/${key}.webp`;
 }

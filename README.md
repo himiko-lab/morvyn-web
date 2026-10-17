@@ -26,13 +26,15 @@ src/
 ├── app/
 │   ├── globals.css        # SELURUH tema: warna, font, animasi, utilitas
 │   ├── icon.svg           # favicon (dipungut otomatis oleh Next.js)
-│   ├── siteMetadata.ts    # <head> beranda (buildMetadata) & halaman hukum
+│   ├── siteMetadata.ts    # <head> beranda, halaman fitur, & halaman hukum
 │   ├── (id)/              # root layout <html lang="id">
 │   │   ├── page.tsx       #   "/"
+│   │   ├── fitur/[slug]/  #   "/fitur/catatan" dan tujuh menu lainnya
 │   │   ├── privasi/       #   "/privasi"
 │   │   └── ketentuan/     #   "/ketentuan"
 │   └── (en)/en/           # root layout <html lang="en">
 │       ├── page.tsx       #   "/en"
+│       ├── features/[slug]/ # "/en/features/notes" dan tujuh menu lainnya
 │       ├── privacy/       #   "/en/privacy"
 │       └── terms/         #   "/en/terms"
 ├── components/
@@ -43,11 +45,14 @@ src/
 │   ├── Reveal.tsx         # animasi muncul saat digulir
 │   ├── featureIcons.tsx   # peta ikon & warna kedelapan menu
 │   ├── sections/          # satu berkas per bagian beranda
+│   ├── feature/           # kerangka halaman fitur + data terstrukturnya
 │   └── legal/             # kerangka halaman hukum + penerjemah teks sebarisnya
 ├── content/
 │   ├── types.ts           # bentuk salinan teks
 │   ├── id.ts / en.ts      # SELURUH teks beranda
 │   ├── site.ts            # URL Play Store, domain, daftar 29 portal berita
+│   ├── screenshots.json   # tangkapan layar yang sudah ada per bahasa
+│   ├── featurePages/      # isi halaman per menu (id.ts / en.ts)
 │   └── legal/             # isi Kebijakan Privasi & Ketentuan Layanan (4 berkas)
 ├── public/screenshots/   # tangkapan layar di bingkai ponsel (sumbernya di design/screenshots/)
 └── public/logo-morvyn.svg
@@ -81,10 +86,15 @@ sudah berisi tangkapan layar aplikasi. Alamatnya dirakit `screenshotSrc()` di
   mengirim gambar penuh.
 - **Sumbernya** (JPEG 1080×2340) ada di `design/screenshots/<bahasa>/` dan
   tidak ikut disajikan.
-- **Versi Indonesia belum ada.** Beranda Indonesia sementara memakai set
-  berbahasa Inggris. Begitu ada, taruh di `design/screenshots/id/`, buat
-  WebP-nya ke `public/screenshots/id/`, lalu ganti folder `id` di
-  `screenshots.ts`.
+- **Versi Indonesia belum ada.** Halaman Indonesia sementara memakai set
+  berbahasa Inggris. Daftar layar dan syaratnya ada di
+  `design/screenshots/id/README.md`. Boleh dicicil: taruh sumbernya di
+  `design/screenshots/id/`, jalankan `scripts/make-screenshots.sh id`, lalu
+  tempel daftar yang dicetaknya ke kunci `id` di `src/content/screenshots.json`.
+  Kunci yang belum tercantum tetap memakai versi Inggris.
+- **Build memeriksa daftarnya.** `npm run build` menjalankan
+  `scripts/check-screenshots.mjs` lebih dulu, dan gagal bila ada nama di
+  `screenshots.json` yang berkas WebP-nya tidak ada.
 - **Foto berita diburamkan.** `news.jpg` memuat foto milik SCMP dan The
   Guardian, jadi fotonya diburamkan sebelum dipasang. Berkas aslinya,
   `news-original.jpg`, sengaja diabaikan `.gitignore`: repositori ini publik.
@@ -227,8 +237,9 @@ sudah cukup: metadata, peta situs, dan data terstruktur ikut menyesuaikan.
 |---|---|
 | `src/app/siteMetadata.ts` | Judul, deskripsi, canonical, hreflang, Open Graph, Twitter Card, arahan robots. Dipanggil kedua root layout supaya tidak ada bahasa yang tertinggal |
 | `src/app/robots.ts` | Menghasilkan `/robots.txt` beserta baris `Sitemap:` |
-| `src/app/sitemap.ts` | Menghasilkan `/sitemap.xml`, satu entri per bahasa lengkap dengan `xhtml:link` hreflang |
-| `src/components/JsonLd.tsx` | Data terstruktur schema.org: `Organization`, `WebSite`, `MobileApplication`, dan `WebPage`+`FAQPage` |
+| `src/app/sitemap.ts` | Menghasilkan `/sitemap.xml` (22 alamat), satu entri per bahasa lengkap dengan `xhtml:link` hreflang |
+| `src/components/JsonLd.tsx` | Data terstruktur beranda: `Organization`, `WebSite`, `MobileApplication`, dan `WebPage`+`FAQPage` |
+| `src/components/feature/FeatureJsonLd.tsx` | Data terstruktur halaman fitur: `WebPage`+`FAQPage` dan `BreadcrumbList`, menunjuk simpul aplikasi di beranda lewat `@id` |
 | `public/og-id.png`, `public/og-en.png` | Gambar 1200×630 yang tampil saat tautannya dibagikan |
 | `design/og-id.svg`, `design/og-en.svg` | Sumber kedua gambar di atas. Tidak ikut disajikan |
 
@@ -252,7 +263,14 @@ Beberapa hal yang sengaja diputuskan begitu:
   entrinya bertambah sendiri.
 - **`lastmod` beranda diisi dengan tangan** lewat `homeUpdatedIso` di `site.ts`.
   Perbarui hanya saat teks beranda atau daftar portal berita benar-benar
-  berubah, bukan setiap deploy.
+  berubah, bukan setiap deploy. Halaman fitur punya tanggalnya sendiri,
+  `featurePagesUpdatedIso` di `src/content/featurePages/index.ts`.
+- **Satu halaman per menu** (`/fitur/catatan/`, `/en/features/notes/`, dan
+  seterusnya). Beranda hanya muat satu paragraf per menu, sedangkan orang
+  mencari per kebutuhan: "aplikasi catatan dengan PDF", "info gempa BMKG".
+  Isinya harus lebih dalam daripada beranda, bukan salinannya, dan setiap
+  klaim harus sesuai Kebijakan Privasi. Halaman-halaman ini ditautkan dari
+  bagian fitur beranda, dari footer setiap halaman, dan dari sesamanya.
 
 ### Mendaftarkan ke Google Search Console
 

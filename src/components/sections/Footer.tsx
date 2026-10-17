@@ -20,6 +20,7 @@ import {
   type Dictionary,
   type Locale,
 } from "@/content";
+import { featurePath } from "@/content/featurePages";
 import { legalPath } from "@/content/legal";
 
 /** Ikon untuk tiap akun di `socialLinks`, dikunci lewat `key`-nya. */
@@ -53,18 +54,11 @@ const footerLinkClass =
 interface FooterProps {
   dict: Dictionary;
   locale: Locale;
-  /**
-   * Awalan tautan jangkar untuk halaman selain beranda, sama persis
-   * alasannya seperti di `Header`. Daftar "Produk" di bawah seluruhnya
-   * berjangkar ke bagian beranda, jadi tanpa ini kedelapan tautannya mati
-   * begitu footer ini dipakai di halaman hukum.
-   */
-  anchorBase?: string;
   /** Tujuan tautan ganti bahasa. Bawaannya beranda bahasa satunya. */
   altHref?: string;
 }
 
-export function Footer({ dict, locale, anchorBase = "", altHref }: FooterProps) {
+export function Footer({ dict, locale, altHref }: FooterProps) {
   const other = altLocale(locale);
   const switchHref = altHref ?? localeHref(other);
 
@@ -110,12 +104,15 @@ export function Footer({ dict, locale, anchorBase = "", altHref }: FooterProps) 
           <h2 className="text-sm font-bold tracking-wider uppercase">
             {dict.footer.productHeading}
           </h2>
+          {/* Menuju halaman tiap menu, bukan jangkar di beranda. Footer ini
+              ada di setiap halaman, jadi inilah yang memastikan kedelapan
+              halaman fitur ditautkan dari mana pun, termasuk dari sesamanya. */}
           <ul className={footerListClass}>
             {featureOrder.map((key) => (
               <li key={key}>
-                <a href={`${anchorBase}#fitur-${key}`} className={footerLinkClass}>
+                <Link href={featurePath(key, locale)} className={footerLinkClass}>
                   {dict.features[key].name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
