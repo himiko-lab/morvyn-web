@@ -7,7 +7,7 @@ import {
   type FeatureKey,
   type Locale,
 } from "@/content";
-import { featurePath, getFeaturePage } from "@/content/featurePages";
+import { featureOgImagePath, featurePath, getFeaturePage } from "@/content/featurePages";
 import { getLegalDocument, legalPath, type LegalKind } from "@/content/legal";
 
 /**
@@ -170,12 +170,16 @@ export function buildLegalMetadata(kind: LegalKind, locale: Locale): Metadata {
  * Bentuknya mengikuti `buildLegalMetadata`: canonical dan hreflang menunjuk
  * pasangan halaman yang sama dalam bahasa lain, supaya `/fitur/catatan/` dan
  * `/en/features/notes/` dikenali sebagai satu halaman dalam dua bahasa.
+ *
+ * Gambar bagikannya milik menu itu sendiri, bukan gambar beranda: tautan
+ * `/fitur/gempa/` yang dibagikan menampilkan layar Gempa.
  */
 export function buildFeatureMetadata(key: FeatureKey, locale: Locale): Metadata {
   const page = getFeaturePage(key, locale);
   const url = `${site.url}${featurePath(key, locale)}`;
-  const image = ogImagePath(locale);
-  const imageAlt = getDictionary(locale).meta.ogImageAlt;
+  const image = featureOgImagePath(key, locale);
+  const feature = getDictionary(locale).features[key];
+  const imageAlt = `${site.name} ${feature.name}: ${feature.tagline}`;
 
   return {
     metadataBase: new URL(site.url),
@@ -215,7 +219,7 @@ export function buildFeatureMetadata(key: FeatureKey, locale: Locale): Metadata 
       siteName: site.name,
       title: page.title,
       description: page.description,
-      images: [{ url: image, width: 1200, height: 630, alt: imageAlt, type: "image/png" }],
+      images: [{ url: image, width: 1200, height: 630, alt: imageAlt, type: "image/jpeg" }],
     },
 
     twitter: {

@@ -3,7 +3,7 @@ import { ArrowRight, Check } from "@phosphor-icons/react/ssr";
 import { PhoneFrame } from "../PhoneFrame";
 import { Reveal } from "../Reveal";
 import { featureColor, featureIcons, featureOrder } from "../featureIcons";
-import { screenshotSrc, type Dictionary, type FeatureKey, type Locale } from "@/content";
+import { screenshotCaption, screenshotSrc, type Dictionary, type FeatureKey, type Locale } from "@/content";
 import { featurePageUi, featurePath } from "@/content/featurePages";
 
 /**
@@ -45,7 +45,6 @@ function FeatureRow({
   const feature = dict.features[featureKey];
   const { Icon, hue } = featureIcons[featureKey];
   const color = featureColor(hue);
-  const mockupAlt = dict.featureMockupAlt.replace("{name}", feature.name);
 
   return (
     <section
@@ -130,7 +129,7 @@ function FeatureRow({
             />
             <PhoneFrame
               src={screenshotSrc(locale, featureKey)}
-              alt={mockupAlt}
+              alt={screenshotCaption(dict, featureKey)}
               className="w-[12rem] sm:w-[15rem] lg:w-[17rem]"
             />
           </div>

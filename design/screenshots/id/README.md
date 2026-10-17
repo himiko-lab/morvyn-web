@@ -39,3 +39,10 @@ Skrip itu membuat WebP ke `public/screenshots/id/` dan mencetak daftar yang
 harus ditempel ke kunci `id` di `src/content/screenshots.json`. Boleh dicicil:
 yang belum ada tetap memakai versi Inggris. `npm run build` gagal bila ada nama
 di daftar itu yang berkasnya tidak ada.
+
+Setelah daftar itu diperbarui, buat ulang gambar bagikan halaman fitur supaya
+ikut memakai layar berbahasa Indonesia:
+
+```bash
+node --no-warnings scripts/make-og-features.mjs
+```

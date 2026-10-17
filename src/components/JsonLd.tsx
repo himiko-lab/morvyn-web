@@ -6,6 +6,9 @@ import {
   localeUrl,
   ogImagePath,
   sameAsUrls,
+  screenshotCaption,
+  screenshotSize,
+  screenshotSrc,
   site,
   type Locale,
 } from "@/content";
@@ -68,6 +71,17 @@ export function JsonLd({ locale }: { locale: Locale }) {
       operatingSystem: "Android",
       inLanguage: Object.values(localeTag),
       featureList: featureOrder.map((key) => dict.features[key].name),
+      // Kesembilan tangkapan layar yang tampil di beranda ini, dengan
+      // keterangan yang sama dengan teks alt-nya. Inilah yang menyatakan
+      // secara tegas bahwa gambar-gambar itu tangkapan layar Morvyn, bukan
+      // sekadar gambar yang kebetulan ada di halaman tentang Morvyn.
+      screenshot: (["home", ...featureOrder] as const).map((key) => ({
+        "@type": "ImageObject",
+        url: `${site.url}${screenshotSrc(locale, key)}`,
+        caption: screenshotCaption(dict, key),
+        width: screenshotSize.width,
+        height: screenshotSize.height,
+      })),
       publisher: { "@id": organizationId },
 
       // `installUrl`, `downloadUrl`, dan `offers` hanya dicetak setelah

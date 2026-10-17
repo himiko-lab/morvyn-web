@@ -12,6 +12,7 @@ import {
   downloadIsExternal,
   getDictionary,
   localeHomePath,
+  screenshotCaption,
   screenshotSrc,
   site,
   type FeatureKey,
@@ -124,7 +125,7 @@ export function FeaturePage({ featureKey, locale }: { featureKey: FeatureKey; lo
                 />
                 <PhoneFrame
                   src={screenshotSrc(locale, featureKey)}
-                  alt={dict.featureMockupAlt.replace("{name}", feature.name)}
+                  alt={screenshotCaption(dict, featureKey)}
                   className="w-[13rem] sm:w-[16rem] lg:w-[18rem]"
                   priority
                 />

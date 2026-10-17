@@ -31,6 +31,16 @@ export function featurePath(key: FeatureKey, locale: Locale): string {
   return locale === "id" ? `/fitur/${slug}/` : `/en/features/${slug}/`;
 }
 
+/**
+ * Gambar Open Graph satu halaman fitur: tangkapan layar menunya di dalam
+ * bingkai ponsel, beserta nama dan taglinenya. Dibuat oleh
+ * `scripts/make-og-features.mjs` dan diberi nama menurut kunci menunya, bukan
+ * slug, supaya kedua bahasa memakai nama berkas yang sama.
+ */
+export function featureOgImagePath(key: FeatureKey, locale: Locale): string {
+  return `/og/${locale}/${key}.jpg`;
+}
+
 /** Kebalikan dari `slug`, untuk rute dinamis. */
 export function featureKeyFromSlug(locale: Locale, slug: string): FeatureKey | undefined {
   const entry = Object.entries(pages[locale]).find(([, page]) => page.slug === slug);

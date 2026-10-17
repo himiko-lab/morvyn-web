@@ -240,7 +240,8 @@ sudah cukup: metadata, peta situs, dan data terstruktur ikut menyesuaikan.
 | `src/app/sitemap.ts` | Menghasilkan `/sitemap.xml` (22 alamat), satu entri per bahasa lengkap dengan `xhtml:link` hreflang |
 | `src/components/JsonLd.tsx` | Data terstruktur beranda: `Organization`, `WebSite`, `MobileApplication`, dan `WebPage`+`FAQPage` |
 | `src/components/feature/FeatureJsonLd.tsx` | Data terstruktur halaman fitur: `WebPage`+`FAQPage` dan `BreadcrumbList`, menunjuk simpul aplikasi di beranda lewat `@id` |
-| `public/og-id.png`, `public/og-en.png` | Gambar 1200×630 yang tampil saat tautannya dibagikan |
+| `public/og-id.png`, `public/og-en.png` | Gambar 1200×630 yang tampil saat tautan beranda dan halaman hukum dibagikan |
+| `public/og/<bahasa>/<menu>.jpg` | Gambar bagikan tiap halaman fitur: tangkapan layar menunya di bingkai ponsel, beserta nama dan taglinenya. Dibuat `scripts/make-og-features.mjs` |
 | `design/og-id.svg`, `design/og-en.svg` | Sumber kedua gambar di atas. Tidak ikut disajikan |
 
 Gambar Open Graph dibuat ulang dari sumbernya dengan:
@@ -248,6 +249,22 @@ Gambar Open Graph dibuat ulang dari sumbernya dengan:
 ```bash
 cd design && rsvg-convert -w 1200 -h 630 og-id.svg -o ../public/og-id.png && rsvg-convert -w 1200 -h 630 og-en.svg -o ../public/og-en.png
 ```
+
+Gambar bagikan halaman fitur dibuat ulang dengan perintah di bawah, setiap kali
+tagline, kalimat ringkas menu (`features.*.tagline` dan `.short` di
+`id.ts`/`en.ts`), atau tangkapan layarnya berubah. Butuh `rsvg-convert` dan
+font Plus Jakarta Sans terpasang di sistem. `npm run build` gagal bila ada
+yang hilang.
+
+```bash
+node --no-warnings scripts/make-og-features.mjs
+```
+
+Untuk Google Gambar, tangkapan layar didaftarkan dua kali: di peta situs
+(`<image:image>` per halaman, hanya gambar yang tampil di halaman itu) dan di
+properti `screenshot` pada `MobileApplication` di data terstruktur beranda.
+Keterangan gambarnya diambil dari `screenshotCaption()`, fungsi yang sama yang
+mengisi teks alt di halaman, jadi keduanya tidak bisa berbeda.
 
 Beberapa hal yang sengaja diputuskan begitu:
 

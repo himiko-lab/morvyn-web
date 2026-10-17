@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { homeUpdatedIso, localeTag, localeUrl, locales, site } from "@/content";
+import { homeUpdatedIso, localeTag, localeUrl, locales, screenshotSrc, site } from "@/content";
 import { featurePagesUpdatedIso, featurePath } from "@/content/featurePages";
 import { legalEffectiveIso, legalKinds, legalPath } from "@/content/legal";
 import { featureOrder } from "@/components/featureIcons";
@@ -37,6 +37,13 @@ export const dynamic = "force-static";
  * - Beranda memakai `homeUpdatedIso` di `content/site.ts`, yang diperbarui
  *   dengan tangan hanya saat teks berandanya benar-benar berubah.
  * - Halaman fitur memakai `featurePagesUpdatedIso`, dengan aturan yang sama.
+ *
+ * Beranda dan halaman fitur juga menyebut tangkapan layar yang dimuatnya
+ * (`<image:image>`), supaya gambar-gambar itu ditemukan untuk Google Gambar
+ * tanpa menunggu Google merender halamannya. Yang didaftarkan HANYA gambar
+ * yang memang tampil di halaman itu: beranda kesembilannya, halaman fitur
+ * gambar menunya sendiri. Halaman hukum tidak memuat tangkapan layar, jadi
+ * tidak menyebut apa pun.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const homeLanguages = {
@@ -52,6 +59,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: locale === "id" ? 1 : 0.9,
     alternates: { languages: homeLanguages },
+    images: (["home", ...featureOrder] as const).map(
+      (key) => `${site.url}${screenshotSrc(locale, key)}`,
+    ),
   }));
 
   const legal: MetadataRoute.Sitemap = legalKinds.flatMap((kind) => {
@@ -92,6 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
       alternates: { languages },
+      images: [`${site.url}${screenshotSrc(locale, key)}`],
     }));
   });
 

@@ -2,6 +2,8 @@ import {
   getDictionary,
   localeTag,
   localeUrl,
+  screenshotCaption,
+  screenshotSize,
   screenshotSrc,
   site,
   type FeatureKey,
@@ -40,6 +42,9 @@ export function FeatureJsonLd({ featureKey, locale }: { featureKey: FeatureKey; 
       primaryImageOfPage: {
         "@type": "ImageObject",
         url: `${site.url}${screenshotSrc(locale, featureKey)}`,
+        caption: screenshotCaption(dict, featureKey),
+        width: screenshotSize.width,
+        height: screenshotSize.height,
       },
       mainEntity: page.faq.map((item) => ({
         "@type": "Question",

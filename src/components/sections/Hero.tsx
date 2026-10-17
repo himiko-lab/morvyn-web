@@ -6,6 +6,7 @@ import { featureColor, featureIcons, featureOrder } from "../featureIcons";
 import {
   downloadHref,
   downloadIsExternal,
+  screenshotCaption,
   screenshotSrc,
   site,
   type Dictionary,
@@ -103,7 +104,7 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           <div className="relative">
             <PhoneFrame
               src={screenshotSrc(locale, "home")}
-              alt={dict.hero.mockupAlt}
+              alt={screenshotCaption(dict, "home")}
               priority
               className="float-slow w-[15rem] sm:w-[19rem]"
             />
