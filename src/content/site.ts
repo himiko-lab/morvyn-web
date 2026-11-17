@@ -156,7 +156,7 @@ export const playDeveloperUrl: string =
  * pernyataan yang berbeda isi tentang satu `@id` membuat Google harus memilih
  * sendiri mana yang benar. Karena itu setiap nilai di sini disalin persis
  * dari sana, termasuk hal kecil seperti garis miring di akhir `url` dan
- * penulisan alamat media sosial tanpa `www`. Kalau situs Himiko Lab berubah,
+ * ada-tidaknya `www` di alamat media sosial. Kalau situs Himiko Lab berubah,
  * yang di sini menyusul; jangan sebaliknya.
  *
  * `sameAs` sengaja TIDAK lagi diturunkan dari `socialLinks`: daftar itu
@@ -175,9 +175,15 @@ export const organization = {
     "Studio aplikasi digital yang membangun aplikasi harian, pengembang aplikasi Morvyn.",
   email: "hi@himikolab.my.id",
   slogan: "Explore Beyond. Build Within.",
+  contactPoint: {
+    contactType: "customer support",
+    email: "hi@himikolab.my.id",
+    url: "https://himikolab.my.id/kontak/",
+    availableLanguage: ["id", "en"],
+  },
   sameAs: [
-    "https://instagram.com/himiko.lab",
-    "https://tiktok.com/@himiko.lab",
+    "https://www.instagram.com/himiko.lab",
+    "https://www.tiktok.com/@himiko.lab",
     "https://www.threads.com/@himiko.lab",
     "https://id.pinterest.com/labhimiko/",
     "https://www.youtube.com/@HimikoLab",

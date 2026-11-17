@@ -58,6 +58,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
       description: organization.description,
       email: organization.email,
       slogan: organization.slogan,
+      contactPoint: { "@type": "ContactPoint", ...organization.contactPoint },
       // Inilah yang menghubungkan penerbit dengan akun media sosialnya.
       sameAs: organization.sameAs,
     },
