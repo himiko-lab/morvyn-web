@@ -1,6 +1,7 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 import "@/app/globals.css";
+import { ScrollToTop } from "./ScrollToTop";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -43,6 +44,10 @@ export function BaseHtml({ lang, children }: { lang: string; children: ReactNode
     // React sempat menghidrasi, jadi selisih atribut ini memang diharapkan.
     // Kelas font dipasang di <html>, bukan <body>: --font-sans dideklarasikan
     // di :root, jadi --font-jakarta harus sudah ada di tingkat itu juga.
+    //
+    // Sengaja TANPA `data-scroll-behavior="smooth"`. Dengan atribut itu,
+    // Next.js melompatkan halaman ke puncak seketika saat pindah halaman,
+    // sebelum ScrollToTop sempat menganimasikannya.
     <html lang={lang} className={jakarta.variable} suppressHydrationWarning>
       {/* eslint-disable-next-line @next/next/no-head-element --
           Saran aturan ini (`next/head`) hanya berlaku untuk Pages Router. Di
@@ -52,7 +57,10 @@ export function BaseHtml({ lang, children }: { lang: string; children: ReactNode
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <ScrollToTop />
+        {children}
+      </body>
     </html>
   );
 }
