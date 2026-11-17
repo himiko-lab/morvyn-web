@@ -28,6 +28,13 @@ const { id } = await import(join(root, "src/content/id.ts"));
 const { en } = await import(join(root, "src/content/en.ts"));
 const manifest = JSON.parse(readFileSync(join(root, "src/content/screenshots.json"), "utf8"));
 
+// Bingkai ponsel yang sama dengan di situs: render model 3D dengan area layar
+// bening, dan posisi layarnya. Keduanya dibuat scripts/render-phone-frame.mjs.
+const frame = readFileSync(join(root, "design/mockup/phone-frame.png")).toString("base64");
+const frameGeometry = JSON.parse(
+  readFileSync(join(root, "src/components/phoneFrameGeometry.json"), "utf8"),
+);
+
 const dictionaries = { id, en };
 const keys = ["notes", "finance", "agenda", "news", "habits", "weather", "calendar", "earthquake"];
 
@@ -105,19 +112,18 @@ function buildSvg(locale, key) {
   const headline = fitHeadline(feature.tagline, textWidth);
   const lead = wrap(feature.short, 27, textWidth, EM_REGULAR).slice(0, 2);
 
-  // Bingkai ponsel dengan perbandingan yang sama seperti PhoneFrame.tsx:
-  // lengkung 16.18%, bingkai 2.21%, celah 1.1%, lengkung layar 13.82% dari
-  // lebarnya. Ujung bawahnya sengaja terpotong tepi gambar.
+  // Bingkai ponsel, disusun persis seperti PhoneFrame.tsx: tangkapan layar di
+  // lubang layar, gambar bingkai di atasnya. Ujung bawahnya sengaja terpotong
+  // tepi gambar.
   const pw = 300;
-  const ph = (pw * 19.5) / 9;
+  const ph = pw * frameGeometry.aspect;
   const px = 830;
   const py = 72;
-  const inset = pw * (0.0221 + 0.011);
-  const sx = px + inset;
-  const sy = py + inset;
-  const sw = pw - inset * 2;
-  const sh = ph - inset * 2;
-  const cam = sw * 0.05;
+  const { screen } = frameGeometry;
+  const sx = px + (pw * screen.left) / 100;
+  const sy = py + (ph * screen.top) / 100;
+  const sw = (pw * screen.width) / 100;
+  const sh = (ph * screen.height) / 100;
 
   const chipWidth = Math.round(feature.name.length * 26 * EM_BOLD + 48);
   const headlineTop = 322;
@@ -138,7 +144,7 @@ function buildSvg(locale, key) {
       <feGaussianBlur stdDeviation="22"/>
     </filter>
     <clipPath id="screen">
-      <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${pw * 0.1382}"/>
+      <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${(sw * screen.radiusX) / 100}"/>
     </clipPath>
   </defs>
 
@@ -165,10 +171,9 @@ function buildSvg(locale, key) {
     .join("\n  ")}
 
   <rect x="${px + 10}" y="${py + 26}" width="${pw}" height="${ph}" rx="${pw * 0.1618}" fill="#0B1A4A" fill-opacity="0.45" filter="url(#shadow)"/>
-  <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="${pw * 0.1618}" fill="#1A2232"/>
-  <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${pw * 0.1382}" fill="#FFFFFF"/>
-  <image x="${sx}" y="${sy}" width="${sw}" height="${sh}" preserveAspectRatio="xMidYMin slice" clip-path="url(#screen)" xlink:href="data:image/jpeg;base64,${image}"/>
-  <circle cx="${sx + sw / 2}" cy="${sy + sh * 0.017 + cam / 2}" r="${cam / 2}" fill="#0B1220"/>
+  <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${(sw * screen.radiusX) / 100}" fill="#FFFFFF"/>
+  <image x="${sx}" y="${sy}" width="${sw}" height="${sh}" preserveAspectRatio="xMidYMid slice" clip-path="url(#screen)" xlink:href="data:image/jpeg;base64,${image}"/>
+  <image x="${px}" y="${py}" width="${pw}" height="${ph}" xlink:href="data:image/png;base64,${frame}"/>
 </svg>`;
 }
 

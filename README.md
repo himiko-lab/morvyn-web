@@ -46,7 +46,7 @@ src/
 │   ├── BaseHtml.tsx       # kerangka <html> yang dipakai kedua bahasa
 │   ├── SiteContent.tsx    # susunan bagian halaman, satu-satunya tempat urutan diatur
 │   ├── Header.tsx         # navigasi, menu ponsel, pengalih bahasa & tema
-│   ├── PhoneFrame.tsx     # bingkai ponsel + placeholder screenshot
+│   ├── PhoneFrame.tsx     # bingkai ponsel (render model 3D) + tangkapan layar di bawahnya
 │   ├── Reveal.tsx         # animasi muncul saat digulir
 │   ├── featureIcons.tsx   # peta ikon & warna kedelapan menu
 │   ├── sections/          # satu berkas per bagian beranda
@@ -62,6 +62,7 @@ src/
 │   ├── pages/             # isi halaman tambahan + alamat dan tanggal ubahnya
 │   └── legal/             # isi Kebijakan Privasi & Ketentuan Layanan (4 berkas)
 ├── public/screenshots/   # tangkapan layar di bingkai ponsel (sumbernya di design/screenshots/)
+├── public/phone-frame/   # gambar bingkai ponsel, hasil render design/mockup/*.glb
 └── public/logo-morvyn.svg
 ```
 
@@ -251,6 +252,17 @@ sudah cukup: metadata, peta situs, dan data terstruktur ikut menyesuaikan.
 | `public/og-id.png`, `public/og-en.png` | Gambar 1200×630 yang tampil saat tautan beranda dan halaman hukum dibagikan |
 | `public/og/<bahasa>/<menu>.jpg` | Gambar bagikan tiap halaman fitur: tangkapan layar menunya di bingkai ponsel, beserta nama dan taglinenya. Dibuat `scripts/make-og-features.mjs` |
 | `design/og-id.svg`, `design/og-en.svg` | Sumber kedua gambar di atas. Tidak ikut disajikan |
+
+Bingkai ponsel di seluruh situs dan di gambar bagikan halaman fitur adalah
+render model 3D Galaxy S24 di `design/mockup/galaxy-s24-sm-s921b-ds.glb`,
+tampak depan, dengan area layar bening. Tangkapan layar ditaruh di bawahnya.
+Modelnya sendiri tidak disajikan ke pengunjung. Setelah mengganti model,
+render ulang bingkainya (butuh Google Chrome dan `cwebp`), lalu buat ulang
+gambar bagikan halaman fitur:
+
+```bash
+node scripts/render-phone-frame.mjs
+```
 
 Gambar Open Graph dibuat ulang dari sumbernya dengan:
 

@@ -1,9 +1,12 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import geometry from "./phoneFrameGeometry.json";
 
 interface PhoneFrameProps {
   /**
-   * Screenshot aplikasi. Rasio yang diharapkan 9:19.5 (mis. 1080×2340).
+   * Screenshot aplikasi. Rasio yang diharapkan 9:19.5 (mis. 1080×2340). Layar
+   * model sedikit lebih lebar (67,1 × 143,5 mm), jadi tepi atas dan bawah
+   * tangkapan layar terpotong kurang dari 1%.
    * Kalau dikosongkan, yang tampil adalah kotak placeholder bergaris putus-putus,
    * pola yang sama seperti di proyek MOGLE.
    */
@@ -21,10 +24,9 @@ interface PhoneFrameProps {
    * CSS, bukan urutan di string kelas.
    *
    * Lebarnya harus pasti, bukan `w-full` dengan `max-w-*`. Bingkai ini duduk
-   * di wadah flex yang lebarnya mengikuti isi, sedangkan gambar ber-`fill`
-   * diposisikan absolut dan tidak menyumbang lebar sama sekali. Selama masih
-   * placeholder, teks keterangannya yang diam-diam memberi lebar; begitu
-   * diganti gambar, bingkainya menyusut tinggal pinggirannya.
+   * di wadah flex yang lebarnya mengikuti isi, sedangkan gambar bingkai dan
+   * tangkapan layarnya diposisikan absolut dan tidak menyumbang lebar sama
+   * sekali. Tanpa lebar pasti, bingkainya menyusut jadi nol.
    */
   className?: string;
   /** Hero memakai `priority` supaya gambarnya tidak dimuat belakangan. */
@@ -35,8 +37,16 @@ interface PhoneFrameProps {
 /**
  * Bingkai ponsel Android untuk memajang tampilan aplikasi.
  *
- * Bingkainya digambar dengan CSS, bukan gambar, jadi tetap tajam di layar
- * kepadatan berapa pun dan tidak menambah berat halaman.
+ * Bingkainya gambar hasil render model 3D Galaxy S24
+ * (`design/mockup/galaxy-s24-sm-s921b-ds.glb`) dengan area layar bening,
+ * dibuat oleh `scripts/render-phone-frame.mjs`. Tangkapan layar ditaruh DI
+ * BAWAH gambar itu, tepat di lubang layarnya, sehingga lengkung layar dan
+ * lubang kamera punch-hole datang dari modelnya sendiri, bukan ditiru CSS.
+ *
+ * Gambar statis, bukan model 3D yang dirender di peramban: beranda memuat
+ * sembilan bingkai, dan model 4 MB plus WebGL di setiap bingkai akan berat.
+ * Bingkainya sendiri cuma 7 sampai 13 KB dan sama di semua halaman, jadi
+ * cukup diunduh sekali.
  *
  * Bentuknya sengaja Android, bukan iPhone: Morvyn hanya ada di Google Play,
  * dan memajangnya di dalam bingkai iPhone menjanjikan sesuatu yang tidak bisa
@@ -50,25 +60,29 @@ export function PhoneFrame({
   priority = false,
   children,
 }: PhoneFrameProps) {
+  const { aspect, screen } = geometry;
+
   return (
-    // Pembungkus ini hanya menjadi wadah kueri (`@container`), supaya ukuran
-    // bingkai di dalamnya bisa ditulis dalam `cqw`, yaitu persen dari lebar
-    // bingkai itu sendiri.
-    //
-    // Dulu lengkung sudut, tebal bingkai, dan celah layarnya ditulis dalam
-    // rem/px tetap (2.75rem, 6px, 3px, 2.35rem). Angka itu pas di lebar 17rem,
-    // tapi bingkai ini dipakai dari 12rem sampai 19rem. Di ponsel, saat
-    // bingkainya menyusut ke 12rem, lengkung 44px yang sama memakan 23% lebar
-    // alih-alih 16%, dan bingkainya terlihat jauh lebih bulat dan tebal
-    // daripada di desktop. Dengan `cqw`, bentuknya sama persis di lebar
-    // berapa pun.
-    //
-    // Angkanya diturunkan dari tampilan desktop di 17rem (272px):
-    // lengkung luar 44px = 16.18cqw, bingkai 6px = 2.21cqw, celah 3px =
-    // 1.1cqw, lengkung layar 37.6px = 13.82cqw.
-    <div className={`@container ${className}`}>
-      <div className="relative aspect-[9/19.5] w-full rounded-[16.18cqw] border-[2.21cqw] border-[color:var(--device-frame)] bg-[color:var(--device-frame)] p-[1.1cqw] shadow-[var(--shadow-brand-lg)]">
-        <div className="relative h-full w-full overflow-hidden rounded-[13.82cqw] bg-white">
+    <div className={className}>
+      <div
+        className="relative w-full [filter:var(--device-shadow)]"
+        style={{ aspectRatio: `1 / ${aspect}` }}
+      >
+        {/* Layar: seukuran lubang layar pada gambar bingkai, dengan lengkung
+            sudut yang sama dengan layar modelnya. Lengkung itu wajib: sudut
+            ponselnya lebih bulat daripada sudut layar, jadi tanpa lengkung,
+            sudut tangkapan layar menyembul keluar dari ponsel. Latar putih
+            mengisi sisa layar bila rasio tangkapan layarnya sedikit beda. */}
+        <div
+          className="absolute overflow-hidden bg-white"
+          style={{
+            left: `${screen.left}%`,
+            top: `${screen.top}%`,
+            width: `${screen.width}%`,
+            height: `${screen.height}%`,
+            borderRadius: `${screen.radiusX}% / ${screen.radiusY}%`,
+          }}
+        >
           {src ? (
             <Image
               src={src}
@@ -82,23 +96,23 @@ export function PhoneFrame({
             <Placeholder label={placeholderLabel ?? alt} />
           )}
           {children}
-
-          {/* Kamera punch-hole ala Android: lubang bundar di tengah atas, di
-              ATAS layar dan bukan di bingkainya. Itu bedanya dengan poni iPhone,
-              yang memakan sepotong bingkai selebar 86px.
-
-              Ukurannya dalam persen, bukan piksel, karena bingkai ini dipakai
-              dalam tiga lebar berbeda (19rem di hero, 17rem dan 15rem di bagian
-              fitur). Ukuran piksel tetap akan terlihat kebesaran di yang kecil.
-
-              Ditaruh setelah {children} supaya selalu di atas isinya, dan di
-              dalam wadah ber-overflow-hidden supaya ikut terpotong lengkung
-              layar. Murni hiasan, jadi disembunyikan dari pembaca layar. */}
-          <div
-            aria-hidden
-            className="absolute left-1/2 top-[1.7%] z-20 aspect-square w-[5%] -translate-x-1/2 rounded-full bg-[color:var(--device-camera)] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.16)]"
-          />
         </div>
+
+        {/* Bingkainya hiasan, jadi alt kosong: yang perlu dibacakan pembaca
+            layar adalah tangkapan layarnya, bukan "ponsel". `srcSet` dua
+            ukuran, karena bingkai ini tampil dari 12rem sampai 19rem. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/phone-frame/frame-640.webp"
+          srcSet="/phone-frame/frame-640.webp 640w, /phone-frame/frame-960.webp 960w"
+          sizes="(max-width: 768px) 70vw, 304px"
+          alt=""
+          aria-hidden
+          draggable={false}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          className="pointer-events-none absolute inset-0 z-10 h-full w-full select-none"
+        />
       </div>
     </div>
   );

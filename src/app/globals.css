@@ -42,20 +42,12 @@
     --brand-violet: oklch(56.99% 0.2254 271.43);
     --brand-ink: oklch(25% 0.045 260);
 
-    /* Bingkai ponsel pada mockup.
-       Sengaja TIDAK memakai --brand-ink: warna itu membalik jadi terang di mode
-       gelap, dan bingkai ponsel yang ikut membalik berubah jadi balok putih.
-       Bingkainya gelap di kedua mode, hanya sedikit dinaikkan di mode gelap
-       supaya masih terpisah dari latar halaman. */
-    --device-frame: oklch(23% 0.04 260);
-
-    /* Lubang kamera di layar mockup.
-       Sengaja hanya dideklarasikan di sini dan TIDAK ditimpa di blok gelap:
-       lubang ini duduk di atas layar aplikasi yang selalu putih, bukan di atas
-       latar halaman, jadi nilainya tidak boleh ikut membalik. Blok
-       [data-theme="dark"] hanya menimpa token yang disebutnya, sisanya tetap
-       memakai nilai :root ini. */
-    --device-camera: oklch(14% 0.02 262);
+    /* Bayangan mockup ponsel (PhoneFrame.tsx), sebagai `filter: drop-shadow`.
+       Bukan --shadow-brand-lg: bingkainya kini gambar ber-alpha, dan
+       box-shadow akan menggambar bayangan kotak, bukan mengikuti bentuk
+       ponselnya. */
+    --device-shadow: drop-shadow(0 28px 32px oklch(64.06% 0.1909 252.22 / 0.22))
+      drop-shadow(0 4px 6px oklch(64.06% 0.1909 252.22 / 0.08));
 
     /* Warna merek HeroUI. */
     --accent: var(--brand-blue);
@@ -85,9 +77,11 @@
     --brand-violet: oklch(66% 0.2 271.43);
     --brand-ink: oklch(97% 0.005 250);
 
-    /* Lihat catatan di blok terang: nilainya tetap gelap, hanya dinaikkan
-       sedikit agar bingkainya tidak lebur ke latar halaman yang juga gelap. */
-    --device-frame: oklch(32% 0.028 262);
+    /* Bingkai ponsel hasil render hampir hitam, dan di latar gelap tepinya
+       lebur. Garis tipis terang di sekelilingnya memisahkan ponsel dari
+       latar, menggantikan bingkai CSS yang dulu dinaikkan warnanya. */
+    --device-shadow: drop-shadow(0 0 1px oklch(100% 0 0 / 0.35))
+      drop-shadow(0 28px 32px oklch(0% 0 0 / 0.6));
 
     --accent: var(--brand-blue);
     --accent-foreground: oklch(16% 0.03 260);

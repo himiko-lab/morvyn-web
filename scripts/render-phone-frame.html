@@ -1,0 +1,173 @@
+<!doctype html>
+<!--
+  Halaman render untuk scripts/render-phone-frame.mjs. Tidak ikut disajikan
+  situs. Dibuka Chrome tanpa kepala lewat server lokal skrip itu, merender
+  model GLB tampak depan, lalu mengirim hasilnya kembali ke skrip.
+
+  Dua kali render dengan kamera yang sama:
+  1. Ponsel apa adanya, latar bening.
+  2. Masker: layar putih, semua yang lain hitam. Dengan uji kedalaman, apa
+     pun yang berada di DEPAN layar (lubang kamera selfie) ikut hitam.
+  Alpha hasil akhirnya = alpha render 1 x (1 - masker), jadi area layar
+  menjadi bening dan tangkapan layar di bawahnya terlihat, sedangkan lubang
+  kamera tetap tergambar di atasnya.
+-->
+<meta charset="utf-8" />
+<script type="importmap">
+  {
+    "imports": {
+      "three": "/node_modules/three/build/three.module.js",
+      "three/addons/": "/node_modules/three/examples/jsm/"
+    }
+  }
+</script>
+<body style="margin: 0; background: transparent">
+  <script type="module">
+    import * as THREE from "three";
+    import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+    import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+    const params = new URLSearchParams(location.search);
+    const WIDTH = Number(params.get("width") ?? 1200);
+    const SCREEN_NODE = "AMOLED_display_illustration";
+
+    async function send(name, body) {
+      await fetch(`/__out/${name}`, { method: "POST", body });
+    }
+
+    try {
+      const gltf = await new GLTFLoader().loadAsync(params.get("model"));
+      const scene = gltf.scene;
+      scene.updateMatrixWorld(true);
+
+      const screen = scene.getObjectByName(SCREEN_NODE);
+      if (!screen) throw new Error(`Node ${SCREEN_NODE} tidak ada di model.`);
+
+      // Batas ponsel dan batas layar, dalam koordinat dunia.
+      const phoneBox = new THREE.Box3().setFromObject(scene);
+      const screenBox = new THREE.Box3().setFromObject(screen);
+      const size = phoneBox.getSize(new THREE.Vector3());
+      const center = phoneBox.getCenter(new THREE.Vector3());
+
+      const HEIGHT = Math.round((WIDTH * size.y) / size.x);
+      const camera = new THREE.OrthographicCamera(
+        phoneBox.min.x,
+        phoneBox.max.x,
+        phoneBox.max.y,
+        phoneBox.min.y,
+        0.001,
+        1,
+      );
+      camera.position.set(0, 0, phoneBox.max.z + 0.1);
+      camera.lookAt(0, 0, phoneBox.max.z);
+      camera.position.x = 0;
+      camera.updateProjectionMatrix();
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        preserveDrawingBuffer: true,
+      });
+      renderer.setPixelRatio(1);
+      renderer.setSize(WIDTH, HEIGHT);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NeutralToneMapping;
+      renderer.toneMappingExposure = Number(params.get("exposure") ?? 1);
+      document.body.appendChild(renderer.domElement);
+
+      // Lingkungan studio untuk pantulan logam dan kaca, ditambah satu lampu
+      // kunci dari kiri atas supaya bingkai aluminiumnya punya sisi terang.
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      const key = new THREE.DirectionalLight(0xffffff, 1.2);
+      key.position.set(-0.5, 0.8, 1);
+      scene.add(key);
+
+      function snapshot() {
+        const c = document.createElement("canvas");
+        c.width = WIDTH;
+        c.height = HEIGHT;
+        const ctx = c.getContext("2d");
+        ctx.drawImage(renderer.domElement, 0, 0);
+        return ctx.getImageData(0, 0, WIDTH, HEIGHT);
+      }
+
+      // --- Render 1: ponsel apa adanya ---------------------------------
+      renderer.setClearColor(0x000000, 0);
+      renderer.render(scene, camera);
+      const color = snapshot();
+
+      // --- Render 2: masker layar --------------------------------------
+      const black = new THREE.MeshBasicMaterial({ color: 0x000000 });
+      const white = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      scene.environment = null;
+      scene.traverse((obj) => {
+        if (!obj.isMesh) return;
+        // Bagian bening tidak menutupi layar di dunia nyata, jadi tidak
+        // boleh ikut menutupinya di masker.
+        const transparent = [obj.material].flat().some((m) => m.transparent);
+        obj.visible = !transparent || obj === screen;
+        obj.material = obj === screen ? white : black;
+      });
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.setClearColor(0x000000, 1);
+      renderer.render(scene, camera);
+      const mask = snapshot();
+
+      // --- Gabungkan ----------------------------------------------------
+      const out = new ImageData(WIDTH, HEIGHT);
+      for (let i = 0; i < out.data.length; i += 4) {
+        const m = mask.data[i] / 255;
+        out.data[i] = color.data[i];
+        out.data[i + 1] = color.data[i + 1];
+        out.data[i + 2] = color.data[i + 2];
+        out.data[i + 3] = Math.round(color.data[i + 3] * (1 - m));
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = WIDTH;
+      canvas.height = HEIGHT;
+      canvas.getContext("2d").putImageData(out, 0, 0);
+      const png = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+      await send("frame.png", png);
+
+      // Jari-jari lengkung sudut layar, dari mesh layarnya sendiri: jarak
+      // antara ujung kanan layar dan titik terakhir yang masih berada di tepi
+      // atasnya yang lurus. Dipakai untuk memotong tangkapan layar supaya
+      // sudutnya tidak menyembul keluar di sudut ponsel yang lebih bulat.
+      const pos = screen.geometry.attributes.position;
+      screen.geometry.computeBoundingBox();
+      const local = screen.geometry.boundingBox;
+      let flatEnd = local.min.x;
+      for (let i = 0; i < pos.count; i++) {
+        if (Math.abs(pos.getY(i) - local.max.y) < 1e-4) flatEnd = Math.max(flatEnd, pos.getX(i));
+      }
+      const radius = local.max.x - flatEnd;
+      const localWidth = local.max.x - local.min.x;
+      const localHeight = local.max.y - local.min.y;
+
+      // Posisi layar dalam persen dari gambar, untuk menaruh tangkapan layar
+      // tepat di bawah lubangnya.
+      const pct = (v, lo, span) => Number((((v - lo) / span) * 100).toFixed(3));
+      await send(
+        "geometry.json",
+        JSON.stringify({
+          width: WIDTH,
+          height: HEIGHT,
+          screen: {
+            left: pct(screenBox.min.x, phoneBox.min.x, size.x),
+            top: pct(phoneBox.max.y - screenBox.max.y, 0, size.y),
+            width: pct(screenBox.max.x - screenBox.min.x, 0, size.x),
+            height: pct(screenBox.max.y - screenBox.min.y, 0, size.y),
+            // Jari-jari sudut, dalam persen lebar dan tinggi layar.
+            radiusX: Number(((radius / localWidth) * 100).toFixed(3)),
+            radiusY: Number(((radius / localHeight) * 100).toFixed(3)),
+          },
+          center: [center.x, center.y],
+        }),
+      );
+      await send("done", "ok");
+    } catch (error) {
+      await send("error", String(error?.stack ?? error));
+    }
+  </script>
+</body>

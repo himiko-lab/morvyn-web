@@ -25,6 +25,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
     "tailwindcss": "^4",
+    "three": "^0.180.0",
     "typescript": "^5"
   },
   "description": "Website perkenalan aplikasi Morvyn"
