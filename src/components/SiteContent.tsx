@@ -29,7 +29,7 @@ export function SiteContent({ locale }: { locale: Locale }) {
       <main>
         <Hero dict={dict} locale={locale} />
         <Stats dict={dict} />
-        <Overview dict={dict} />
+        <Overview dict={dict} locale={locale} />
         <Connected dict={dict} />
         <FeatureDetails dict={dict} locale={locale} />
         <NewsSources dict={dict} />

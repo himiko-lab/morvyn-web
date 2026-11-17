@@ -9,11 +9,23 @@ const pages: Record<Locale, Record<FeatureKey, FeaturePageCopy>> = {
 };
 
 /**
- * Tanggal terakhir isi halaman fitur berubah, dipakai sebagai `lastmod` di
- * peta situs. Sama aturannya dengan `homeUpdatedIso`: perbarui hanya saat
+ * Tanggal terakhir isi tiap halaman fitur berubah, dipakai sebagai `lastmod`
+ * di peta situs. Sama aturannya dengan `homeUpdatedIso`: perbarui hanya saat
  * teksnya benar-benar berubah, bukan setiap deploy.
+ *
+ * Satu tanggal per menu, bukan satu untuk semuanya: memperbarui Catatan tidak
+ * boleh membuat tujuh halaman lain ikut tampak baru berubah.
  */
-export const featurePagesUpdatedIso = "2026-10-17";
+export const featurePageUpdatedIso: Record<FeatureKey, string> = {
+  notes: "2026-11-17",
+  finance: "2026-10-17",
+  agenda: "2026-11-17",
+  news: "2026-10-17",
+  habits: "2026-10-17",
+  weather: "2026-10-17",
+  calendar: "2026-10-17",
+  earthquake: "2026-10-17",
+};
 
 export function getFeaturePage(key: FeatureKey, locale: Locale): FeaturePageCopy {
   return pages[locale][key];

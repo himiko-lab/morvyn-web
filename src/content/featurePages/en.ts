@@ -21,21 +21,40 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         heading: "One editor for every kind of note",
         paragraphs: [
           "There is no need to pick a note type up front. Start with free text, turn part of it into bullets, then make the rest a checklist once it turns out to be a shopping list.",
-          "Images can sit right between paragraphs. For things that are quicker to draw than to type, there is handwriting with a pen, and Morvyn remembers the pen colours you used last. Maths formulas can be written inside a note too.",
+          "Text can be formatted: bold, italic, text colour, and a highlighter with a colour wheel. Images can sit right between paragraphs and be cropped, and web links can be inserted. For things that are quicker to draw than to type, there is handwriting inside the note, and Morvyn remembers the pen colours you used last. Maths formulas are written with their own formula keyboard.",
+          "When you need more room, there is a separate sketch canvas for free drawing. A finished note can be exported to PDF or Markdown.",
         ],
         points: [
           "Free text, bullet lists, and checklists in one editor",
-          "Images and handwritten sketches inside a note",
-          "Maths formulas",
-          "Your own categories, plus sorting and filters",
+          "Formatted text: bold, italic, text colour, and highlighter",
+          "Croppable images, web links, and handwriting inside a note",
+          "A separate sketch canvas for free drawing",
+          "Maths formula keyboard",
+          "Your own categories, filters, and sorting by date, title, or category",
           "Quick search across every note",
+          "Export to PDF or Markdown",
+        ],
+      },
+      {
+        heading: "Note lock",
+        paragraphs: [
+          "Notes you would rather nobody else read can be locked. Opening them uses your phone's screen lock: PIN, pattern, or fingerprint.",
+          "The title of a locked note stays visible in the list, so you can still find it.",
         ],
       },
       {
         heading: "PDF attachments, with a reader built in",
         paragraphs: [
           "PDFs can be attached to a note and read right inside Morvyn, without switching apps. Your reading position is remembered, so opening the same PDF tomorrow takes you back to the page you left.",
-          "Paper documents can be scanned into PDFs with the camera, using Google's ML Kit document scanner. The result is saved as a PDF in your notes. The PDF reader then recognises the text on scanned pages, so it can be searched and selected. That recognition runs on your own phone, with models for Latin, Chinese, Japanese, Korean, and Devanagari scripts.",
+          "Paper documents can be scanned into PDFs with the camera, using Google's ML Kit document scanner. The result is saved as a PDF in your notes. The PDF reader then recognises the text on scanned pages, so it can be selected, copied, and searched. That recognition runs on your own phone, with no internet, with models for Latin, Chinese, Japanese, Korean, and Devanagari scripts.",
+          "PDF pages can be reordered, deleted, and merged with pages from another PDF or images from your gallery. The PDF's file size can be compressed, and the result can be shared or printed.",
+        ],
+        links: [{ label: "More about PDF and scanning", href: "/en/features/pdf/" }],
+      },
+      {
+        heading: "Markdown, text, and 3D models",
+        paragraphs: [
+          "Markdown and text files (.md, .txt) can be read in Morvyn and saved to Notes. So can 3D models in GLB, glTF, STL, and OBJ formats: view them, then save them to Notes.",
         ],
       },
       {
@@ -48,9 +67,10 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       {
         heading: "Widget and recovery",
         paragraphs: [
-          "The Notes widget puts a note you choose on your phone's home screen, and its checklist items can be ticked from there without opening the app.",
+          "The Notes widget puts a list of notes, or the contents of one note you choose, on your phone's home screen, and its checklist items can be ticked from there without opening the app.",
           "Deleted notes do not vanish immediately. Morvyn keeps them for 7 days so they can be restored, then clears them automatically.",
         ],
+        links: [{ label: "More about widgets", href: "/en/features/widgets/" }],
       },
       {
         heading: "Your notes stay on your phone",
@@ -66,7 +86,11 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       },
       {
         q: "Can Morvyn scan documents into PDFs?",
-        a: "Yes. The document scanner turns photos of a document into a PDF saved in your notes, and the text on its pages is recognised on your phone so it can be searched.",
+        a: "Yes. The document scanner turns photos of a document into a PDF saved in your notes, and the text on its pages is recognised on your phone so it can be selected, copied, and searched.",
+      },
+      {
+        q: "Can notes be locked?",
+        a: "Yes. Notes are locked with your phone's screen lock: PIN, pattern, or fingerprint. Their titles stay visible in the list.",
       },
       {
         q: "Can deleted notes be restored?",
@@ -149,20 +173,30 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       {
         heading: "Alarms that actually go off",
         paragraphs: [
-          "Alarms can repeat on a pattern, so there is no need to set them again every day. Morvyn schedules them with Android at the exact time, shows a full-screen alarm, vibrates, and wakes the screen when they ring.",
+          "Alarms can repeat on a pattern, so there is no need to set them again every day. Morvyn schedules them with Android at the exact time, shows a full-screen alarm, vibrates, and wakes the screen when they ring. If you are not ready yet, alarms and reminders can be snoozed.",
           "After your phone is switched off and on again, reminders and alarms are set up again on their own.",
         ],
         points: [
           "Alarms with repeat patterns",
           "Full-screen alarm, vibration, and screen wake-up",
+          "Snooze",
           "Restored automatically after the phone restarts",
         ],
       },
       {
         heading: "Events and tasks",
         paragraphs: [
-          "Events are recorded with their reminders, and tasks carry due dates. Both appear in the Calendar menu on their dates automatically, so a whole month can be seen at once.",
-          "The Agenda widget shows today's agenda on your home screen, and tasks can be ticked off from there.",
+          "Events are recorded with their reminders, once or repeating: daily, weekly, monthly, yearly, or custom. There is a daily timeline too.",
+          "Tasks can be broken into subtasks, given a priority, and given a due date. A due date is not required: tasks can also be created with no deadline. When all of its subtasks are ticked, a task completes automatically, and as soon as its due time passes, it is marked Overdue.",
+          "Events and tasks with due dates appear in the Calendar menu on their dates automatically, so a whole month can be seen at once.",
+          "The Agenda widget shows your agenda for today or for 2 weeks on your home screen, and tasks can be ticked off from there.",
+        ],
+        points: [
+          "One-off or repeating events: daily, weekly, monthly, yearly, or custom",
+          "Tasks with subtasks, priorities, and due dates",
+          "Tasks with no deadline",
+          "Marked Overdue as soon as the due time passes",
+          "Daily timeline",
         ],
       },
       {
@@ -187,6 +221,14 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Can Agenda sync with Google Calendar?",
         a: "Yes, both ways, for one calendar you choose. It is optional and off by default, and you need to sign in with Google first.",
+      },
+      {
+        q: "Do tasks need a due date?",
+        a: "No. Tasks can be created with no deadline. Tasks that do have one are marked Overdue as soon as their due time passes.",
+      },
+      {
+        q: "Can alarms be snoozed?",
+        a: "Yes. Alarms and reminders can be snoozed.",
       },
       {
         q: "What is the difference between Agenda and Calendar?",

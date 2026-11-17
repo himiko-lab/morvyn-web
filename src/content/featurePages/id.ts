@@ -24,21 +24,40 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Satu editor untuk semua jenis catatan",
         paragraphs: [
           "Tidak perlu memilih jenis catatan di awal. Mulai dengan teks bebas, ubah sebagian jadi daftar poin, lalu jadikan sisanya daftar centang saat ternyata itu daftar belanja.",
-          "Gambar bisa ditempel langsung di antara teks. Untuk yang lebih cepat digambar daripada diketik, ada coretan tangan dengan pena, dan Morvyn mengingat warna pena yang terakhir kamu pakai. Rumus matematika juga bisa ditulis di dalam catatan.",
+          "Teksnya bisa diformat: tebal, miring, warna teks, dan stabilo dengan roda warna. Gambar bisa ditempel langsung di antara teks lalu dipotong, dan tautan web bisa disisipkan. Untuk yang lebih cepat digambar daripada diketik, ada coretan tangan di dalam catatan, dan Morvyn mengingat warna pena yang terakhir kamu pakai. Rumus matematika ditulis dengan papan tik rumusnya sendiri.",
+          "Kalau butuh ruang yang lebih lega, ada kanvas coretan terpisah untuk menggambar bebas. Catatan yang sudah jadi bisa diekspor ke PDF atau Markdown.",
         ],
         points: [
           "Teks bebas, daftar poin, dan daftar centang dalam satu editor",
-          "Gambar dan coretan tangan di dalam catatan",
-          "Rumus matematika",
-          "Kategori buatan sendiri, urutan, dan saringan catatan",
+          "Teks berformat: tebal, miring, warna teks, dan stabilo",
+          "Gambar yang bisa dipotong, tautan web, dan coretan tangan di dalam catatan",
+          "Kanvas coretan terpisah untuk menggambar bebas",
+          "Papan tik rumus matematika",
+          "Kategori buatan sendiri, saringan, dan urutan per tanggal, judul, atau kategori",
           "Pencarian cepat ke seluruh catatan",
+          "Ekspor ke PDF atau Markdown",
+        ],
+      },
+      {
+        heading: "Kunci catatan",
+        paragraphs: [
+          "Catatan yang tidak ingin terbaca orang lain bisa dikunci. Membukanya memakai kunci layar ponselmu: PIN, pola, atau sidik jari.",
+          "Judul catatan yang dikunci tetap terlihat di daftar, supaya kamu masih bisa menemukannya.",
         ],
       },
       {
         heading: "Lampiran PDF, lengkap dengan pembacanya",
         paragraphs: [
           "PDF bisa dilampirkan ke catatan dan dibaca langsung di Morvyn, tanpa pindah ke aplikasi lain. Posisi bacanya diingat, jadi membuka PDF yang sama besok langsung kembali ke halaman terakhir.",
-          "Dokumen kertas bisa dipindai dengan kamera menjadi PDF, lewat pemindai dokumen ML Kit dari Google. Hasilnya tersimpan sebagai PDF di catatan. Pembaca PDF-nya lalu mengenali teks pada halaman hasil pindaian, sehingga teksnya bisa dicari dan diseleksi. Pengenalan teks itu berjalan di ponselmu sendiri, dengan model untuk huruf Latin, Mandarin, Jepang, Korea, dan Dewanagari.",
+          "Dokumen kertas bisa dipindai dengan kamera menjadi PDF, lewat pemindai dokumen ML Kit dari Google. Hasilnya tersimpan sebagai PDF di catatan. Pembaca PDF-nya lalu mengenali teks pada halaman hasil pindaian, sehingga teksnya bisa dipilih, disalin, dan dicari. Pengenalan teks itu berjalan di ponselmu sendiri, tanpa internet, dengan model untuk huruf Latin, Mandarin, Jepang, Korea, dan Dewanagari.",
+          "Halaman PDF bisa diurutkan, dihapus, dan digabungkan dengan halaman dari PDF lain atau gambar dari galeri. Ukuran PDF-nya bisa dikompres, dan hasilnya bisa dibagikan atau dicetak.",
+        ],
+        links: [{ label: "Selengkapnya tentang PDF dan pindai", href: "/fitur/pdf/" }],
+      },
+      {
+        heading: "Markdown, teks, dan model 3D",
+        paragraphs: [
+          "Berkas Markdown dan teks (.md, .txt) bisa dibaca di Morvyn dan disimpan ke Catatan. Begitu juga model 3D berformat GLB, glTF, STL, dan OBJ: bisa dilihat, lalu disimpan ke Catatan.",
         ],
       },
       {
@@ -51,9 +70,10 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       {
         heading: "Widget dan pemulihan",
         paragraphs: [
-          "Widget Catatan menampilkan catatan pilihanmu di layar utama ponsel, dan daftar centangnya bisa dicentang dari sana tanpa membuka aplikasi.",
+          "Widget Catatan menampilkan daftar catatan atau isi satu catatan pilihanmu di layar utama ponsel, dan daftar centangnya bisa dicentang dari sana tanpa membuka aplikasi.",
           "Catatan yang terhapus tidak langsung hilang. Morvyn menyimpannya 7 hari supaya bisa dipulihkan, lalu membuangnya otomatis.",
         ],
+        links: [{ label: "Selengkapnya tentang widget", href: "/fitur/widget/" }],
       },
       {
         heading: "Isi catatanmu tetap di ponselmu",
@@ -69,7 +89,11 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       },
       {
         q: "Bisakah Morvyn memindai dokumen menjadi PDF?",
-        a: "Bisa. Pemindai dokumen mengubah foto dokumen menjadi PDF yang tersimpan di catatan, dan teks di halamannya dikenali di ponselmu sehingga bisa dicari.",
+        a: "Bisa. Pemindai dokumen mengubah foto dokumen menjadi PDF yang tersimpan di catatan, dan teks di halamannya dikenali di ponselmu sehingga bisa dipilih, disalin, dan dicari.",
+      },
+      {
+        q: "Apakah catatan bisa dikunci?",
+        a: "Bisa. Catatan dikunci dengan kunci layar ponselmu: PIN, pola, atau sidik jari. Judulnya tetap terlihat di daftar.",
       },
       {
         q: "Catatan yang terhapus bisa dikembalikan?",
@@ -152,20 +176,30 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       {
         heading: "Alarm yang benar-benar berbunyi",
         paragraphs: [
-          "Alarm bisa diatur dengan pola pengulangan, jadi tidak perlu dibuat ulang setiap hari. Morvyn menjadwalkannya ke sistem Android pada waktu yang tepat, menampilkan layar alarm penuh, bergetar, dan membangunkan layar saat berbunyi.",
+          "Alarm bisa diatur dengan pola pengulangan, jadi tidak perlu dibuat ulang setiap hari. Morvyn menjadwalkannya ke sistem Android pada waktu yang tepat, menampilkan layar alarm penuh, bergetar, dan membangunkan layar saat berbunyi. Kalau belum sempat, alarm dan pengingatnya bisa ditunda (snooze).",
           "Setelah ponsel dimatikan lalu dinyalakan kembali, pengingat dan alarm dipasang ulang dengan sendirinya.",
         ],
         points: [
           "Alarm dengan pola pengulangan",
           "Layar alarm penuh, getar, dan membangunkan layar",
+          "Tunda alarm (snooze)",
           "Dipasang ulang otomatis setelah ponsel menyala kembali",
         ],
       },
       {
         heading: "Acara dan tugas",
         paragraphs: [
-          "Jadwal acara dicatat beserta pengingatnya, sedangkan tugas punya tenggat waktu. Keduanya otomatis muncul di menu Kalender pada tanggalnya, jadi satu bulan penuh bisa dilihat sekaligus.",
-          "Widget Agenda menampilkan agenda hari ini di layar utama ponsel, dan tugasnya bisa dicentang dari sana.",
+          "Jadwal acara dicatat beserta pengingatnya, sekali saja atau berulang: harian, mingguan, bulanan, tahunan, atau kustom. Ada juga garis waktu harian.",
+          "Tugas bisa dipecah menjadi sub-tugas, diberi prioritas, dan diberi tenggat. Tenggat tidak wajib: tugas juga bisa dibuat tanpa batas waktu. Saat semua sub-tugasnya dicentang, tugasnya otomatis selesai, dan begitu jam tenggatnya lewat, tugas ditandai Terlambat.",
+          "Jadwal dan tugas yang bertenggat otomatis muncul di menu Kalender pada tanggalnya, jadi satu bulan penuh bisa dilihat sekaligus.",
+          "Widget Agenda menampilkan agenda hari ini atau 2 minggu di layar utama ponsel, dan tugasnya bisa dicentang dari sana.",
+        ],
+        points: [
+          "Jadwal sekali atau berulang: harian, mingguan, bulanan, tahunan, atau kustom",
+          "Tugas dengan sub-tugas, prioritas, dan tenggat",
+          "Tugas tanpa batas waktu",
+          "Penanda Terlambat begitu jam tenggatnya lewat",
+          "Garis waktu harian",
         ],
       },
       {
@@ -190,6 +224,14 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Bisakah Agenda disinkronkan dengan Google Calendar?",
         a: "Bisa, dua arah, untuk satu kalender yang kamu pilih. Fitur ini opsional dan mati secara bawaan, dan butuh masuk dengan akun Google lebih dulu.",
+      },
+      {
+        q: "Apakah tugas harus punya tenggat?",
+        a: "Tidak. Tugas bisa dibuat tanpa batas waktu. Tugas yang bertenggat ditandai Terlambat begitu jam tenggatnya lewat.",
+      },
+      {
+        q: "Bisakah alarm ditunda?",
+        a: "Bisa. Alarm dan pengingat bisa ditunda (snooze).",
       },
       {
         q: "Apa bedanya Agenda dan Kalender?",

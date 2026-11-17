@@ -44,7 +44,7 @@ export const site = {
   publisher: "Himiko Lab",
 
   /**
-   * Situs resmi penerbit. Dipakai di footer dan di `sameAs` data terstruktur.
+   * Situs resmi penerbit. Dipakai di footer dan halaman Kontak.
    *
    * Tanpa `www`: alamat berawalan `www` dialihkan (301) ke sini, dan
    * canonical situs itu sendiri juga menunjuk ke sini. Menautkan alamat yang
@@ -71,15 +71,20 @@ export const site = {
  * `lastmod` selama nilainya terbukti akurat, dan mengabaikannya begitu sering
  * meleset.
  */
-export const homeUpdatedIso = "2026-10-17";
+export const homeUpdatedIso = "2026-11-17";
 
 /**
- * Akun resmi Himiko Lab.
+ * Versi aplikasi yang isinya dicerminkan situs ini. Dipakai `softwareVersion`
+ * di data terstruktur dan halaman Catatan Rilis. Naikkan bersama entri baru di
+ * `content/pages/` (catatan rilis) setiap kali situsnya menyusul versi baru.
+ */
+export const appVersion = "1.3.1";
+
+/**
+ * Akun resmi Himiko Lab, sebagai deretan ikon di footer.
  *
- * Dipakai dua kali dari satu sumber: sebagai deretan ikon di footer, dan
- * sebagai `sameAs` pada data terstruktur Organization. Yang kedua itu cara
- * Google diberi tahu bahwa akun-akun ini satu pemilik dengan situsnya;
- * kalau daftarnya cuma ada di footer, hubungan itu hanya tertebak.
+ * `sameAs` pada data terstruktur punya daftarnya sendiri di `organization`
+ * di bawah, yang disalin persis dari situs Himiko Lab.
  *
  * `label` sengaja tidak diterjemahkan: nama platform sama di kedua bahasa.
  */
@@ -134,12 +139,53 @@ export const socialLinks = [
 ] as const;
 
 /**
- * Alamat yang layak masuk `sameAs`: harus halaman profil yang bisa dibuka,
- * jadi `mailto:` tidak ikut.
+ * Halaman pengembang Himiko Lab di Google Play, ikut masuk `sameAs` di bawah.
+ * Diambil dari tautan nama pengembang di halaman Morvyn di Play.
+ *
+ * Bentuk `dev?id=<angka>`, bukan `developer?id=<nama>`: angkanya tetap walau
+ * nama pengembangnya diganti, sedangkan bentuk bernama ikut berubah.
  */
-export const sameAsUrls = socialLinks
-  .filter((link) => link.key !== "email")
-  .map((link) => link.href);
+export const playDeveloperUrl: string =
+  "https://play.google.com/store/apps/dev?id=5875924293723204317";
+
+/**
+ * Simpul `Organization` Himiko Lab untuk data terstruktur.
+ *
+ * SUMBER UTAMANYA SITUS HIMIKO LAB (https://himikolab.my.id/), bukan berkas
+ * ini. Kedua situs menyatakan simpul yang sama lewat `@id` yang sama, dan dua
+ * pernyataan yang berbeda isi tentang satu `@id` membuat Google harus memilih
+ * sendiri mana yang benar. Karena itu setiap nilai di sini disalin persis
+ * dari sana, termasuk hal kecil seperti garis miring di akhir `url` dan
+ * penulisan alamat media sosial tanpa `www`. Kalau situs Himiko Lab berubah,
+ * yang di sini menyusul; jangan sebaliknya.
+ *
+ * `sameAs` sengaja TIDAK lagi diturunkan dari `socialLinks`: daftar itu
+ * melayani ikon footer, memuat situs penerbit sendiri (yang bukan "profil
+ * lain" dan tidak boleh ada di `sameAs`), dan penulisan alamatnya boleh
+ * berbeda dari yang dipakai situs sumber.
+ */
+export const organization = {
+  id: "https://himikolab.my.id/#organization",
+  name: "Himiko Lab",
+  alternateName: ["HimikoLab"],
+  url: "https://himikolab.my.id/",
+  logo: { url: "https://himikolab.my.id/favicon.png", width: 512, height: 512 },
+  image: "https://himikolab.my.id/og-image.png",
+  description:
+    "Studio aplikasi digital yang membangun aplikasi harian, pengembang aplikasi Morvyn.",
+  email: "hi@himikolab.my.id",
+  slogan: "Explore Beyond. Build Within.",
+  sameAs: [
+    "https://instagram.com/himiko.lab",
+    "https://tiktok.com/@himiko.lab",
+    "https://www.threads.com/@himiko.lab",
+    "https://id.pinterest.com/labhimiko/",
+    "https://www.youtube.com/@HimikoLab",
+    "https://www.facebook.com/profile.php?id=61593282388390",
+    "https://x.com/HimikoLab",
+    ...(playDeveloperUrl ? [playDeveloperUrl] : []),
+  ],
+} as const;
 
 /**
  * Portal berita yang masuk ke menu Berita, disalin persis dari daftar sah di

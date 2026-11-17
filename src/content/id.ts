@@ -32,7 +32,7 @@ export const id: Dictionary = {
   hero: {
     eyebrow: "Delapan kebutuhan harian, satu aplikasi",
     headline: ["Satu ruang tenang untuk", "seluruh harimu"],
-    body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, berita, dan info gempa. Semuanya ada di Morvyn, dan semuanya bisa saling terhubung.",
+    body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, berita, dan info gempa. Semuanya ada di Morvyn, aplikasi Android buatan Himiko Lab, dan semuanya bisa saling terhubung.",
     primaryCta: "Unduh di Google Play",
     secondaryCta: "Lihat fiturnya",
     iosNote: "Saat ini hanya untuk Android",
@@ -209,6 +209,21 @@ export const id: Dictionary = {
         a: "Dari 29 portal nasional dan internasional, di antaranya ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, dan The New York Times.",
       },
       {
+        q: "Apakah Morvyn bisa membuka dan memindai PDF?",
+        a: "Bisa. Morvyn membuka PDF dari perangkat, dari aplikasi lain lewat \"Buka dengan\", atau dari catatan, dan memindai dokumen kertas dengan kamera menjadi PDF. Teks di PDF hasil pindaian dikenali di ponsel tanpa internet, sehingga bisa dipilih, disalin, dan dicari.",
+        link: { label: "Selengkapnya tentang PDF dan pindai", href: "/fitur/pdf/" },
+      },
+      {
+        q: "Apakah catatan bisa dikunci?",
+        a: "Bisa. Catatan dikunci dengan kunci layar ponselmu: PIN, pola, atau sidik jari. Judulnya tetap terlihat di daftar.",
+        link: { label: "Selengkapnya tentang Catatan", href: "/fitur/catatan/" },
+      },
+      {
+        q: "Apakah Morvyn punya widget?",
+        a: "Punya, empat widget layar utama: Keuangan, Agenda, Catatan, dan Kebiasaan. Dari sana kamu bisa melihat saldo, menambah transaksi, dan mencentang tugas tanpa membuka aplikasi.",
+        link: { label: "Selengkapnya tentang widget", href: "/fitur/widget/" },
+      },
+      {
         q: "Apakah saya harus memakai semua fiturnya?",
         a: "Tidak. Delapan menu itu berdiri sendiri-sendiri. Kalau kamu hanya butuh Catatan dan Agenda, sisanya tinggal dibiarkan.",
       },
@@ -230,6 +245,28 @@ export const id: Dictionary = {
     button: "Unduh di Google Play",
     iosNote: "Saat ini hanya untuk Android",
   },
+
+  appFeatureList: [
+    "Catatan dengan teks berformat, gambar, tautan web, coretan tangan, dan rumus matematika",
+    "Kunci catatan dengan kunci layar ponsel",
+    "Ekspor catatan ke PDF atau Markdown",
+    "Pindai dokumen kertas dengan kamera menjadi PDF",
+    "Pembaca PDF dengan OCR di perangkat, penanda halaman, atur halaman, dan kompres",
+    "Pembaca Markdown, teks, dan model 3D (GLB, glTF, STL, OBJ)",
+    "Jadwal sekali atau berulang, tugas dengan sub-tugas, prioritas, dan tenggat",
+    "Alarm dan pengingat dengan layar alarm penuh dan tunda",
+    "Kalender bulanan, dengan sinkronisasi dua arah Google Kalender yang opsional",
+    "Keuangan dengan saldo per dompet, pindah dana, ringkasan bulanan, grafik pekanan, dan kurs",
+    "Widget layar utama: Keuangan, Agenda, Catatan, dan Kebiasaan",
+    "Kebiasaan dengan cincin progres dan hitungan beruntun",
+    "Cuaca",
+    "Info gempa dari BMKG dan USGS",
+    "Berita dari 29 portal",
+    "Cadangan opsional ke Google Drive milik pengguna",
+    "Mode terang dan gelap",
+    "Bahasa Indonesia dan Inggris",
+    "Gratis, tanpa iklan",
+  ],
 
   comingSoon: {
     badge: "Segera di Google Play",

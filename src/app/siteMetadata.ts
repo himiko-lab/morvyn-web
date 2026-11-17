@@ -9,6 +9,7 @@ import {
 } from "@/content";
 import { featureOgImagePath, featurePath, getFeaturePage } from "@/content/featurePages";
 import { getLegalDocument, legalPath, type LegalKind } from "@/content/legal";
+import { getPage, pagePath, type PageKey } from "@/content/pages";
 
 /**
  * Metadata <head> untuk satu bahasa.
@@ -220,6 +221,70 @@ export function buildFeatureMetadata(key: FeatureKey, locale: Locale): Metadata 
       title: page.title,
       description: page.description,
       images: [{ url: image, width: 1200, height: 630, alt: imageAlt, type: "image/jpeg" }],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+      images: [{ url: image, alt: imageAlt }],
+    },
+  };
+}
+
+/**
+ * Metadata <head> untuk satu halaman tambahan (PDF dan Pindai, Widget,
+ * Catatan Rilis, Kontak).
+ *
+ * Bentuknya sama dengan `buildFeatureMetadata`. Gambar bagikannya gambar
+ * beranda, seperti halaman hukum: halaman-halaman ini belum punya tangkapan
+ * layar sendiri untuk dijadikan gambar.
+ */
+export function buildPageMetadata(key: PageKey, locale: Locale): Metadata {
+  const page = getPage(key, locale);
+  const url = `${site.url}${pagePath[key][locale]}`;
+  const image = ogImagePath(locale);
+  const imageAlt = getDictionary(locale).meta.ogImageAlt;
+
+  return {
+    metadataBase: new URL(site.url),
+    title: { absolute: page.title },
+    description: page.description,
+    applicationName: site.name,
+    authors: [{ name: site.publisher, url: site.publisherUrl }],
+    creator: site.publisher,
+    publisher: site.publisher,
+
+    alternates: {
+      canonical: url,
+      languages: {
+        "id-ID": `${site.url}${pagePath[key].id}`,
+        "en-US": `${site.url}${pagePath[key].en}`,
+        "x-default": `${site.url}${pagePath[key].id}`,
+      },
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+
+    openGraph: {
+      type: "website",
+      locale: locale === "id" ? "id_ID" : "en_US",
+      alternateLocale: locale === "id" ? "en_US" : "id_ID",
+      url,
+      siteName: site.name,
+      title: page.title,
+      description: page.description,
+      images: [{ url: image, width: 1200, height: 630, alt: imageAlt, type: "image/png" }],
     },
 
     twitter: {

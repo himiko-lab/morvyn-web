@@ -29,7 +29,7 @@ export const en: Dictionary = {
   hero: {
     eyebrow: "Eight daily needs, one app",
     headline: ["One calm space for", "your whole day"],
-    body: "Notes, finances, agenda, habits, weather, calendar, news, and earthquake information. All inside Morvyn, and all able to talk to each other.",
+    body: "Notes, finances, agenda, habits, weather, calendar, news, and earthquake information. All inside Morvyn, an Android app made by Himiko Lab, and all able to talk to each other.",
     primaryCta: "Get it on Google Play",
     secondaryCta: "See the features",
     iosNote: "Android only for now",
@@ -206,6 +206,21 @@ export const en: Dictionary = {
         a: "From 29 local and international outlets, among them ANTARA, detikcom, CNN Indonesia, Tempo, Republika, BBC, Al Jazeera, The Guardian, and The New York Times.",
       },
       {
+        q: "Can Morvyn open and scan PDFs?",
+        a: "Yes. Morvyn opens PDFs from your device, from another app through \"Open with\", or from a note, and scans paper documents into PDFs with the camera. Text in scanned PDFs is recognised on your phone with no internet, so it can be selected, copied, and searched.",
+        link: { label: "More about PDF and scanning", href: "/en/features/pdf/" },
+      },
+      {
+        q: "Can notes be locked?",
+        a: "Yes. Notes are locked with your phone's screen lock: PIN, pattern, or fingerprint. Their titles stay visible in the list.",
+        link: { label: "More about Notes", href: "/en/features/notes/" },
+      },
+      {
+        q: "Does Morvyn have widgets?",
+        a: "Yes, four home screen widgets: Finance, Agenda, Notes, and Habits. From there you can see your balance, add a transaction, and tick off tasks without opening the app.",
+        link: { label: "More about widgets", href: "/en/features/widgets/" },
+      },
+      {
         q: "Do I have to use every feature?",
         a: "No. The eight menus stand on their own. If you only want Notes and Agenda, leave the rest alone.",
       },
@@ -227,6 +242,28 @@ export const en: Dictionary = {
     button: "Get it on Google Play",
     iosNote: "Android only for now",
   },
+
+  appFeatureList: [
+    "Notes with formatted text, images, web links, handwriting, and maths formulas",
+    "Note lock using the phone's screen lock",
+    "Export notes to PDF or Markdown",
+    "Scan paper documents into PDFs with the camera",
+    "PDF reader with on-device OCR, page bookmarks, page organising, and compression",
+    "Markdown, text, and 3D model viewer (GLB, glTF, STL, OBJ)",
+    "One-off or repeating events, tasks with subtasks, priorities, and due dates",
+    "Alarms and reminders with a full-screen alarm and snooze",
+    "Monthly calendar, with optional two-way Google Calendar sync",
+    "Finance with per-wallet balances, transfers, monthly summary, weekly chart, and exchange rates",
+    "Home screen widgets: Finance, Agenda, Notes, and Habits",
+    "Habits with progress rings and streak counts",
+    "Weather",
+    "Earthquake information from BMKG and USGS",
+    "News from 29 outlets",
+    "Optional backup to the user's own Google Drive",
+    "Light and dark mode",
+    "Indonesian and English",
+    "Free, with no ads",
+  ],
 
   comingSoon: {
     badge: "Coming soon to Google Play",

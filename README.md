@@ -30,11 +30,16 @@ src/
 │   ├── (id)/              # root layout <html lang="id">
 │   │   ├── page.tsx       #   "/"
 │   │   ├── fitur/[slug]/  #   "/fitur/catatan" dan tujuh menu lainnya
+│   │   ├── fitur/pdf/     #   "/fitur/pdf", pembaca PDF dan pindai
+│   │   ├── fitur/widget/  #   "/fitur/widget"
+│   │   ├── catatan-rilis/ #   "/catatan-rilis"
+│   │   ├── kontak/        #   "/kontak"
 │   │   ├── privasi/       #   "/privasi"
 │   │   └── ketentuan/     #   "/ketentuan"
 │   └── (en)/en/           # root layout <html lang="en">
 │       ├── page.tsx       #   "/en"
 │       ├── features/[slug]/ # "/en/features/notes" dan tujuh menu lainnya
+│       ├── features/pdf/, features/widgets/, release-notes/, contact/
 │       ├── privacy/       #   "/en/privacy"
 │       └── terms/         #   "/en/terms"
 ├── components/
@@ -46,6 +51,7 @@ src/
 │   ├── featureIcons.tsx   # peta ikon & warna kedelapan menu
 │   ├── sections/          # satu berkas per bagian beranda
 │   ├── feature/           # kerangka halaman fitur + data terstrukturnya
+│   ├── page/              # kerangka halaman tambahan (PDF, Widget, Catatan Rilis, Kontak)
 │   └── legal/             # kerangka halaman hukum + penerjemah teks sebarisnya
 ├── content/
 │   ├── types.ts           # bentuk salinan teks
@@ -53,6 +59,7 @@ src/
 │   ├── site.ts            # URL Play Store, domain, daftar 29 portal berita
 │   ├── screenshots.json   # tangkapan layar yang sudah ada per bahasa
 │   ├── featurePages/      # isi halaman per menu (id.ts / en.ts)
+│   ├── pages/             # isi halaman tambahan + alamat dan tanggal ubahnya
 │   └── legal/             # isi Kebijakan Privasi & Ketentuan Layanan (4 berkas)
 ├── public/screenshots/   # tangkapan layar di bingkai ponsel (sumbernya di design/screenshots/)
 └── public/logo-morvyn.svg
@@ -237,9 +244,10 @@ sudah cukup: metadata, peta situs, dan data terstruktur ikut menyesuaikan.
 |---|---|
 | `src/app/siteMetadata.ts` | Judul, deskripsi, canonical, hreflang, Open Graph, Twitter Card, arahan robots. Dipanggil kedua root layout supaya tidak ada bahasa yang tertinggal |
 | `src/app/robots.ts` | Menghasilkan `/robots.txt` beserta baris `Sitemap:` |
-| `src/app/sitemap.ts` | Menghasilkan `/sitemap.xml` (22 alamat), satu entri per bahasa lengkap dengan `xhtml:link` hreflang |
+| `src/app/sitemap.ts` | Menghasilkan `/sitemap.xml` (30 alamat), satu entri per bahasa lengkap dengan `xhtml:link` hreflang |
 | `src/components/JsonLd.tsx` | Data terstruktur beranda: `Organization`, `WebSite`, `MobileApplication`, dan `WebPage`+`FAQPage` |
 | `src/components/feature/FeatureJsonLd.tsx` | Data terstruktur halaman fitur: `WebPage`+`FAQPage` dan `BreadcrumbList`, menunjuk simpul aplikasi di beranda lewat `@id` |
+| `src/components/page/PageJsonLd.tsx` | Data terstruktur halaman tambahan: `WebPage` (ditambah `FAQPage` bila bertanya-jawab, `ContactPage` untuk Kontak) dan `BreadcrumbList` |
 | `public/og-id.png`, `public/og-en.png` | Gambar 1200×630 yang tampil saat tautan beranda dan halaman hukum dibagikan |
 | `public/og/<bahasa>/<menu>.jpg` | Gambar bagikan tiap halaman fitur: tangkapan layar menunya di bingkai ponsel, beserta nama dan taglinenya. Dibuat `scripts/make-og-features.mjs` |
 | `design/og-id.svg`, `design/og-en.svg` | Sumber kedua gambar di atas. Tidak ikut disajikan |
@@ -273,15 +281,28 @@ Beberapa hal yang sengaja diputuskan begitu:
   memakai taglinenya, karena yang melihatnya sudah menatap gambar dan lambang.
 - **Tidak ada `aggregateRating` atau jumlah unduhan** di data terstruktur.
   Angkanya belum ada, dan mengarangnya bisa berbuntut sanksi manual dari Google.
-- **`sameAs` diambil dari `socialLinks`** di `site.ts`. Itulah yang memberi tahu
-  Google bahwa akun Instagram dan TikTok satu pemilik dengan situs ini; daftar
-  di footer saja tidak cukup.
+- **Simpul `Organization` disalin persis dari situs Himiko Lab**
+  (`organization` di `site.ts`), termasuk `logo`, `url` bergaris miring, dan
+  daftar `sameAs`. Situs Himiko Lab sumber utamanya; kalau di sana berubah, di
+  sini menyusul. `sameAs` tidak lagi diturunkan dari `socialLinks`, yang kini
+  hanya melayani ikon footer. Halaman pengembang Google Play masuk `sameAs`
+  begitu `playDeveloperUrl` diisi.
+- **`softwareVersion` dan `featureList`** pada `MobileApplication` diisi dari
+  `appVersion` (`site.ts`) dan `appFeatureList` (`id.ts`/`en.ts`). Naikkan
+  keduanya, beserta Catatan Rilis di `content/pages/`, setiap kali situs ini
+  menyusul versi aplikasi yang baru.
 - **Peta situs memakai daftar `locales`.** Kalau nanti ada bahasa ketiga,
   entrinya bertambah sendiri.
 - **`lastmod` beranda diisi dengan tangan** lewat `homeUpdatedIso` di `site.ts`.
   Perbarui hanya saat teks beranda atau daftar portal berita benar-benar
-  berubah, bukan setiap deploy. Halaman fitur punya tanggalnya sendiri,
-  `featurePagesUpdatedIso` di `src/content/featurePages/index.ts`.
+  berubah, bukan setiap deploy. Halaman fitur punya tanggalnya sendiri per
+  menu, `featurePageUpdatedIso` di `src/content/featurePages/index.ts`, dan
+  halaman tambahan `pageUpdatedIso` di `src/content/pages/index.ts`.
+- **PDF dan Widget bukan menu kesembilan dan kesepuluh.** Keduanya punya
+  halaman sendiri (`/fitur/pdf/`, `/fitur/widget/`) karena dicari orang seperti
+  mencari menu, tapi tidak masuk `FeatureKey`, supaya "delapan menu" di seluruh
+  situs tetap benar. Belum ada tangkapan layar atau gambar bagikan khusus
+  untuk keduanya; gambar bagikannya masih gambar beranda.
 - **Satu halaman per menu** (`/fitur/catatan/`, `/en/features/notes/`, dan
   seterusnya). Beranda hanya muat satu paragraf per menu, sedangkan orang
   mencari per kebutuhan: "aplikasi catatan dengan PDF", "info gempa BMKG".

@@ -1,11 +1,12 @@
 import { featureOrder } from "./featureIcons";
 import {
+  appVersion,
   faqItems,
   getDictionary,
   localeTag,
   localeUrl,
   ogImagePath,
-  sameAsUrls,
+  organization,
   screenshotCaption,
   screenshotSize,
   screenshotSrc,
@@ -26,7 +27,7 @@ import {
  * markup dan teks yang terlihat tidak bisa jadi berbeda isi; itu justru yang
  * dianggap menyesatkan oleh Google.
  *
- * Sengaja TIDAK ada `aggregateRating` atau `downloadCount`: belum ada
+ * Sengaja TIDAK ada `aggregateRating`, `review`, atau `downloadCount`: belum ada
  * angkanya, dan mengarang nilai di sini bisa membuat situs kena sanksi.
  */
 export function JsonLd({ locale }: { locale: Locale }) {
@@ -34,23 +35,31 @@ export function JsonLd({ locale }: { locale: Locale }) {
   const pageUrl = localeUrl(locale);
   const lang = localeTag[locale];
 
-  const organizationId = `${site.publisherUrl}/#organization`;
+  const organizationId = organization.id;
   const websiteId = `${site.url}/#website`;
   const appId = `${site.url}/#app`;
 
   const graph = [
     {
+      // Disalin persis dari situs Himiko Lab, sumber utama simpul ini.
+      // Lihat catatan di `organization` (content/site.ts) sebelum mengubahnya.
       "@type": "Organization",
       "@id": organizationId,
-      name: site.publisher,
-      url: site.publisherUrl,
-      email: site.contactEmail,
+      name: organization.name,
+      alternateName: organization.alternateName,
+      url: organization.url,
       logo: {
         "@type": "ImageObject",
-        url: `${site.url}/logo-morvyn.svg`,
+        url: organization.logo.url,
+        width: organization.logo.width,
+        height: organization.logo.height,
       },
-      // Inilah yang menghubungkan situs dengan akun media sosialnya.
-      sameAs: sameAsUrls,
+      image: organization.image,
+      description: organization.description,
+      email: organization.email,
+      slogan: organization.slogan,
+      // Inilah yang menghubungkan penerbit dengan akun media sosialnya.
+      sameAs: organization.sameAs,
     },
     {
       "@type": "WebSite",
@@ -70,7 +79,11 @@ export function JsonLd({ locale }: { locale: Locale }) {
       applicationCategory: "ProductivityApplication",
       operatingSystem: "Android",
       inLanguage: Object.values(localeTag),
-      featureList: featureOrder.map((key) => dict.features[key].name),
+      softwareVersion: appVersion,
+      // Ringkasan kemampuan aplikasi per bahasa, bukan sekadar nama menunya:
+      // pemindai PDF, kunci catatan, dan widget tidak punya menu sendiri,
+      // jadi tidak pernah tersebut kalau daftarnya hanya delapan nama menu.
+      featureList: dict.appFeatureList,
       // Kesembilan tangkapan layar yang tampil di beranda ini, dengan
       // keterangan yang sama dengan teks alt-nya. Inilah yang menyatakan
       // secara tegas bahwa gambar-gambar itu tangkapan layar Morvyn, bukan

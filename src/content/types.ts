@@ -111,6 +111,12 @@ export interface Dictionary {
   };
   cta: { title: string; body: string; button: string; iosNote: string };
   /**
+   * Ringkasan kemampuan aplikasi untuk `featureList` di data terstruktur
+   * `MobileApplication`. Tidak tampil di halaman. Harus cocok dengan versi
+   * aplikasi di `appVersion` (content/site.ts).
+   */
+  appFeatureList: string[];
+  /**
    * Teks yang menggantikan seluruh ajakan mengunduh selama
    * `site.playStoreLive` masih `false`.
    *

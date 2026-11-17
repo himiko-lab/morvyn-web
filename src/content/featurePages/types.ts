@@ -28,6 +28,8 @@ export interface FeatureSection {
   heading: string;
   paragraphs: string[];
   points?: string[];
+  /** Tautan di bawah bagian ini, mis. ke halaman PDF dan Pindai. */
+  links?: { label: string; href: string }[];
 }
 
 /** Teks kerangka halaman fitur, di luar isi tiap menu. */

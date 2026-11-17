@@ -22,6 +22,7 @@ import {
 } from "@/content";
 import { featurePath } from "@/content/featurePages";
 import { legalPath } from "@/content/legal";
+import { featureLikePageKeys, getPage, pagePath } from "@/content/pages";
 
 /** Ikon untuk tiap akun di `socialLinks`, dikunci lewat `key`-nya. */
 const socialIcons = {
@@ -115,6 +116,15 @@ export function Footer({ dict, locale, altHref }: FooterProps) {
                 </Link>
               </li>
             ))}
+            {/* PDF dan Widget bukan menu, tapi orang mencarinya seperti
+                mencari menu, jadi ikut ditautkan dari setiap halaman. */}
+            {featureLikePageKeys.map((key) => (
+              <li key={key}>
+                <Link href={pagePath[key][locale]} className={footerLinkClass}>
+                  {getPage(key, locale).name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -170,16 +180,18 @@ export function Footer({ dict, locale, altHref }: FooterProps) {
                 {dict.footer.terms}
               </Link>
             </li>
-            {site.contactEmail && (
-              <li>
-                <a
-                  href={`mailto:${site.contactEmail}`}
-                  className={footerLinkClass}
-                >
-                  {dict.footer.contact}
-                </a>
-              </li>
-            )}
+            <li>
+              <Link href={pagePath.releaseNotes[locale]} className={footerLinkClass}>
+                {getPage("releaseNotes", locale).name}
+              </Link>
+            </li>
+            {/* Dulu `mailto:` langsung. Kini menuju halaman Kontak, yang
+                memuat alamat itu beserta cara melapor yang berguna. */}
+            <li>
+              <Link href={pagePath.contact[locale]} className={footerLinkClass}>
+                {dict.footer.contact}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
