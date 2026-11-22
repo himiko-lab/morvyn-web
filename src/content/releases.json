@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "1.7.1",
+      "versionCode": 41,
+      "addedIso": "2026-11-23",
+      "notes": {
+        "id": "Yang baru di Morvyn 1.7.1:\n• Utang & Piutang kini mendukung bunga atau biaya tambahan. Isi jumlah pinjaman dan total yang harus dibayar, Morvyn menghitung bunga dan persennya. Dompet hanya mencatat jumlah pinjamannya.\n• Dua widget baru Utang & Piutang: ringkas, dan dengan daftar jatuh tempo terdekat. Tiap widget bisa menampilkan utang, piutang, atau keduanya, dan selalu sama dengan aplikasi.\n• Perbaikan kecil dan peningkatan stabilitas.",
+        "en": "What's new in Morvyn 1.7.1:\n• Debts & Loans now support interest or extra fees. Enter the loan amount and the total to pay, and Morvyn works out the interest and its percentage. Your wallet records only the loan amount.\n• Two new Debts & Loans widgets: a compact one, and one with the nearest due dates. Each widget can show debts, loans, or both, and always matches the app.\n• Minor fixes and stability improvements."
+      }
+    },
+    {
       "version": "1.7.0",
       "versionCode": 40,
       "addedIso": "2026-11-22",
