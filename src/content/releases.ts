@@ -31,6 +31,12 @@ export interface Release {
 
 export const releases: Release[] = data.releases;
 
+/**
+ * Jumlah versi yang tampil terbuka di halaman Catatan Rilis. Versi yang lebih
+ * lama tetap ada, terlipat di bawah tombol "Versi sebelumnya".
+ */
+export const releasesShown = 10;
+
 /** Versi terbaru, yaitu entri pertama. */
 export const appVersion = releases[0].version;
 

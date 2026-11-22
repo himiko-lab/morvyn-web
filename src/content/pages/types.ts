@@ -39,6 +39,12 @@ export interface PageCopy {
   h1: string;
   lead: string;
   sections: PageSection[];
+  /**
+   * Bagian tambahan yang tampil terlipat di bawah `sections`, di balik satu
+   * tombol. Dipakai Catatan Rilis untuk versi lama. Isinya tetap ada di HTML,
+   * jadi tetap terbaca mesin pencari.
+   */
+  collapsed?: { label: string; sections: PageSection[] };
   /** Bila ada, tampil utuh di halaman dan ikut jadi `FAQPage`. */
   faq?: { q: string; a: string }[];
 }

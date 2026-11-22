@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CaretRight, Check, GooglePlayLogo } from "@phosphor-icons/react/ssr";
+import { CaretDown, CaretRight, Check, GooglePlayLogo } from "@phosphor-icons/react/ssr";
 import { Header } from "../Header";
 import { SectionLinks } from "../SectionLinks";
 import { Footer } from "../sections/Footer";
@@ -18,7 +18,13 @@ import {
   type Locale,
 } from "@/content";
 import { featurePageUi } from "@/content/featurePages";
-import { featureLikePageKeys, getPage, pagePath, type PageKey } from "@/content/pages";
+import {
+  featureLikePageKeys,
+  getPage,
+  pagePath,
+  type PageKey,
+  type PageSection,
+} from "@/content/pages";
 
 /**
  * Kerangka halaman tambahan: PDF dan Pindai, Widget, Catatan Rilis, Kontak.
@@ -46,6 +52,44 @@ export function InfoPage({ pageKey, locale }: { pageKey: PageKey; locale: Locale
     : {};
   const ctaHref = downloadIsExternal ? downloadHref : `${home}${downloadHref}`;
   const ctaLabel = site.playStoreLive ? dict.hero.primaryCta : dict.comingSoon.badge;
+
+  function renderSection(section: PageSection) {
+    return (
+      <section key={section.heading}>
+        <h2 className="text-2xl font-extrabold tracking-tight md:text-[1.75rem]">
+          {section.heading}
+        </h2>
+        {section.paragraphs.length > 0 && (
+          <div className="mt-4 space-y-4">
+            {section.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="text-lg leading-[1.75] text-[color:var(--foreground)]/70"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        )}
+        {section.points && (
+          <ul className="mt-6 space-y-3.5">
+            {section.points.map((point) => (
+              <li key={point} className="flex items-start gap-3">
+                <span
+                  className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full text-white"
+                  style={{ backgroundColor: color }}
+                >
+                  <Check size={12} weight="bold" />
+                </span>
+                <span className="text-[color:var(--foreground)]/75">{point}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {section.links && <SectionLinks links={section.links} />}
+      </section>
+    );
+  }
 
   return (
     <>
@@ -109,41 +153,26 @@ export function InfoPage({ pageKey, locale }: { pageKey: PageKey; locale: Locale
             {/* --- Isi ---------------------------------------------------- */}
 
             <div className="mt-12 space-y-12 sm:mt-14">
-              {page.sections.map((section) => (
-                <section key={section.heading}>
-                  <h2 className="text-2xl font-extrabold tracking-tight md:text-[1.75rem]">
-                    {section.heading}
-                  </h2>
-                  {section.paragraphs.length > 0 && (
-                    <div className="mt-4 space-y-4">
-                      {section.paragraphs.map((paragraph) => (
-                        <p
-                          key={paragraph}
-                          className="text-lg leading-[1.75] text-[color:var(--foreground)]/70"
-                        >
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
-                  )}
-                  {section.points && (
-                    <ul className="mt-6 space-y-3.5">
-                      {section.points.map((point) => (
-                        <li key={point} className="flex items-start gap-3">
-                          <span
-                            className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full text-white"
-                            style={{ backgroundColor: color }}
-                          >
-                            <Check size={12} weight="bold" />
-                          </span>
-                          <span className="text-[color:var(--foreground)]/75">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {section.links && <SectionLinks links={section.links} />}
-                </section>
-              ))}
+              {page.sections.map(renderSection)}
+
+              {/* Bagian terlipat, mis. versi lama di Catatan Rilis.
+                  <details> bawaan HTML: tetap bisa dibuka tanpa JavaScript,
+                  dan isinya tetap ada di HTML untuk mesin pencari. */}
+              {page.collapsed && (
+                <details className="group rounded-[calc(var(--radius)*1.25)] border border-[color:var(--border)]">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-lg font-bold sm:px-6 [&::-webkit-details-marker]:hidden">
+                    {page.collapsed.label}
+                    <CaretDown
+                      size={18}
+                      weight="bold"
+                      className="shrink-0 text-[color:var(--foreground)]/50 transition-transform group-open:rotate-180"
+                    />
+                  </summary>
+                  <div className="space-y-12 border-t border-[color:var(--border)] px-5 py-8 sm:px-6">
+                    {page.collapsed.sections.map(renderSection)}
+                  </div>
+                </details>
+              )}
 
               {/* Tanya jawab. Teksnya sama persis dengan FAQPage di
                   PageJsonLd, karena keduanya membaca `page.faq`. */}

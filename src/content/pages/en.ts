@@ -1,6 +1,11 @@
 import { appVersion, site } from "../site";
-import { releaseBody, releases } from "../releases";
+import { releaseBody, releases, releasesShown, type Release } from "../releases";
 import type { PageCopy, PageKey } from "./types";
+
+/** Satu versi sebagai bagian halaman Catatan Rilis. */
+function releaseSection(release: Release) {
+  return { heading: `Version ${release.version}`, ...releaseBody(release, "en") };
+}
 
 /** Tiga versi terbaru, mis. "1.6.0, 1.5.0, dan 1.4.0", untuk deskripsi meta. */
 function recentVersions(and: string): string {
@@ -174,10 +179,16 @@ export const pagesEn: Record<PageKey, PageCopy> = {
     description: `Morvyn release notes, newest first: fixes and new features in versions ${recentVersions("and")} of the Android app made by Himiko Lab.`,
     h1: "Morvyn release notes",
     lead: `What changed in each version of Morvyn, newest first. The current version is ${appVersion}.`,
-    sections: releases.map((release) => ({
-      heading: `Version ${release.version}`,
-      ...releaseBody(release, "en"),
-    })),
+    sections: releases.slice(0, releasesShown).map(releaseSection),
+    // Undefined selama versinya belum lebih dari `releasesShown`, sehingga
+    // tombol lipatnya baru muncul begitu memang ada yang perlu dilipat.
+    collapsed:
+      releases.length > releasesShown
+        ? {
+            label: `Earlier versions (${releases.length - releasesShown})`,
+            sections: releases.slice(releasesShown).map(releaseSection),
+          }
+        : undefined,
   },
 
   contact: {
