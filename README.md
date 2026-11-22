@@ -476,7 +476,7 @@ Lambangnya ada di **lima** tempat dan kelimanya harus diganti bersamaan:
 | `public/logo-morvyn.svg` | Berkas mandiri, dirujuk `Organization.logo` di data terstruktur |
 | `src/components/Logo.tsx` | Lambang di header dan footer, ditanam inline |
 | `src/components/PhoneFrame.tsx` | Lambang samar di placeholder mockup, tanpa percikan putih |
-| `src/app/icon.svg` | Favicon, berlatar putih dan bersudut membulat |
+| `src/app/icon.svg` | Favicon SVG, transparan. Sumber `favicon.ico`, `icon.png`, dan `apple-icon.png` di folder yang sama: buat ulang ketiganya dengan `node scripts/make-icons.mjs` |
 | `design/og-id.svg`, `design/og-en.svg` | Lambang putih di gambar Open Graph |
 
 Berkas Affinity biasanya mengekspor SVG dengan `<g>` bersarang beberapa lapis.
@@ -492,10 +492,9 @@ jadi menimpa satu variabel itu sudah mewarnai seluruh komponennya sekaligus.
 Mengubah `--brand-blue` akan memperbarui tombol, badge, ikon, gradien, dan
 bayangan dalam sekali jalan.
 
-Ada satu warna yang **sengaja tidak ikut membalik** di mode gelap:
-`--device-frame`, yaitu bingkai ponsel pada mockup. Kalau warnanya diambil dari
-`--brand-ink` seperti warna teks, bingkainya akan berubah jadi balok putih di
-mode gelap.
+Bingkai ponsel pada mockup bukan warna CSS, melainkan gambar hasil render model
+3D (lihat bagian SEO). Yang diatur per mode hanya bayangannya, `--device-shadow`:
+di mode gelap ditambah garis tipis terang supaya ponselnya tidak lebur ke latar.
 
 ## Catatan teknis
 
