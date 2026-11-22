@@ -1,0 +1,58 @@
+{
+  "releases": [
+    {
+      "version": "1.6.0",
+      "versionCode": 39,
+      "addedIso": "2026-11-21",
+      "notes": {
+        "id": "Morvyn kini nyaman di tablet dan ponsel lipat.\n• Isian formulir dan catatan tak lagi hilang saat layar diputar atau ponsel dilipat\n• Tablet lanskap: dua panel di Catatan, Agenda, Kalender, Kebiasaan, Gempa, serta Utang & Piutang, dengan sorotan pada butir yang dibuka\n• Navigasi samping di layar lebar, isi tak lagi membentang\n• Alarm: tampilan lanskap dan mode tabletop untuk ponsel lipat setengah terbuka\n• Perbaikan dialog, navigasi 3 tombol, dan performa",
+        "en": "Morvyn now feels at home on tablets and foldables.\n• Forms and notes no longer reset when you rotate or fold your phone\n• Landscape tablets: two-pane layout in Notes, Agenda, Calendar, Habits, Earthquakes, and Debts & Loans, with the open item highlighted\n• Side navigation on wide screens; content no longer stretches\n• Alarms: landscape layout and tabletop mode for half-folded phones\n• Fixes for dialogs, 3-button navigation, and performance"
+      }
+    },
+    {
+      "version": "1.5.0",
+      "versionCode": 38,
+      "addedIso": "2026-11-21",
+      "notes": {
+        "id": "Baru: Utang & Piutang di Keuangan\n• Catat utang dan piutang, lalu pilih apakah uangnya masuk atau keluar dompet, atau cukup dicatat\n• Cicilan harian, mingguan, bulanan, atau tahunan, lengkap dengan sisa dan tanda terlambat\n• Pengingat jatuh tempo berupa banner, dengan jam sendiri untuk hari H dan sehari sebelumnya\n• Bayar atau terima cicilan langsung, saldo dan grafik ikut terhitung\n• Tampilkan sebagai kartu, halaman geser, atau sembunyikan di Pengaturan Keuangan",
+        "en": "New: Debts & Loans in Finance\n• Track what you owe and what others owe you, with or without moving money in a wallet\n• Daily, weekly, monthly, or yearly installments, with the remaining amount and overdue status\n• Due date reminders as banners, with separate times for the due date and the day before\n• Pay or receive an installment in a tap; balances and charts update automatically\n• Show it as a card, a swipe page, or hide it in Finance settings"
+      }
+    },
+    {
+      "version": "1.4.0",
+      "versionCode": 36,
+      "addedIso": "2026-11-21",
+      "notes": {
+        "id": "Yang baru di Morvyn 1.4.0:\n• Widget Cuaca: pilih Cuaca atau Cuaca + harian, selalu terkini, ketuk untuk membuka menu Cuaca\n• Prakiraan 24 jam kini bisa digeser, lengkap dengan garis suhu dan peluang hujan\n• Alarm: pakai lagu atau audio milikmu sendiri sebagai nada\n• Jadwal bisa diberi alarm sendiri, dengan nada, tunda, dan getar\n• Hasil pencarian Catatan langsung membuka dan menandai teks yang dicari\n• Perbaikan kecil dan peningkatan kinerja",
+        "en": "What's new in Morvyn 1.4.0:\n• Weather widget: choose Weather or Weather + daily, always up to date, tap to open Weather\n• The 24-hour forecast now scrolls, with a temperature line and rain chance\n• Alarms: use your own song or audio file as the tone\n• Schedules can have their own alarm, with tone, snooze, and vibration\n• Note search results open right at the matching text and highlight it\n• Minor fixes and performance improvements"
+      }
+    },
+    {
+      "version": "1.3.1",
+      "versionCode": 35,
+      "addedIso": "2026-11-17",
+      "notes": {
+        "id": "• Tampilan Catatan tidak lagi melompat ke bawah saat kamu mengetuk baris lain sesudah mengetik\n• Tombol format kembali mengenai baris yang ditulis sesudah sebuah lampiran dihapus\n• Tugas ditandai Terlambat begitu jam tenggatnya lewat, juga di widget Agenda\n• Ikon mata di widget Keuangan berganti seketika",
+        "en": "• The Notes view no longer jumps to the bottom when you tap another line after typing\n• Formatting buttons once again apply to a line written after an attachment was deleted\n• Tasks are marked Overdue as soon as their due time passes, on the Agenda widget too\n• The eye icon on the Finance widget switches instantly"
+      }
+    },
+    {
+      "version": "1.3.0",
+      "versionCode": 34,
+      "addedIso": "2026-11-17",
+      "notes": {
+        "id": "• Kunci catatan\n• Tugas tanpa batas waktu\n• Ketukan di ruang kosong editor Catatan menaruh kursor di baris terdekat",
+        "en": "• Note lock\n• Tasks with no deadline\n• Tapping empty space in the Notes editor places the cursor on the nearest line"
+      }
+    },
+    {
+      "version": "1.2.0",
+      "versionCode": 33,
+      "addedIso": "2026-11-17",
+      "notes": {
+        "id": "• Pembaca model 3D\n• Impor berkas ke Catatan",
+        "en": "• 3D model viewer\n• Importing files into Notes"
+      }
+    }
+  ]
+}

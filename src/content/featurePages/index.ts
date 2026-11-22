@@ -17,12 +17,12 @@ const pages: Record<Locale, Record<FeatureKey, FeaturePageCopy>> = {
  * boleh membuat tujuh halaman lain ikut tampak baru berubah.
  */
 export const featurePageUpdatedIso: Record<FeatureKey, string> = {
-  notes: "2026-11-17",
-  finance: "2026-10-17",
-  agenda: "2026-11-17",
+  notes: "2026-11-22",
+  finance: "2026-11-22",
+  agenda: "2026-11-22",
   news: "2026-10-17",
   habits: "2026-10-17",
-  weather: "2026-10-17",
+  weather: "2026-11-22",
   calendar: "2026-10-17",
   earthquake: "2026-10-17",
 };

@@ -102,6 +102,15 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     steps: { title: string; body: string }[];
+    /** Video perkenalan di bawah ketiga langkah. */
+    video: {
+      heading: string;
+      body: string;
+      /** Label tombol putar untuk pembaca layar. */
+      playLabel: string;
+      /** Keterangan kecil bahwa video diputar dari YouTube. */
+      note: string;
+    };
   };
   news: { eyebrow: string; title: string; body: string };
   faq: {

@@ -71,14 +71,13 @@ export const site = {
  * `lastmod` selama nilainya terbukti akurat, dan mengabaikannya begitu sering
  * meleset.
  */
-export const homeUpdatedIso = "2026-11-17";
+export const homeUpdatedIso = "2026-11-22";
 
 /**
- * Versi aplikasi yang isinya dicerminkan situs ini. Dipakai `softwareVersion`
- * di data terstruktur dan halaman Catatan Rilis. Naikkan bersama entri baru di
- * `content/pages/` (catatan rilis) setiap kali situsnya menyusul versi baru.
+ * Versi aplikasi terkini, diambil dari entri teratas `releases.json`. Jangan
+ * ditulis ulang di sini: menambah versi baru cukup di berkas itu.
  */
-export const appVersion = "1.3.1";
+export { appVersion } from "./releases";
 
 /**
  * Akun resmi Himiko Lab, sebagai deretan ikon di footer.

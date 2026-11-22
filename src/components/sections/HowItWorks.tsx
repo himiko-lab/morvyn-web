@@ -1,6 +1,8 @@
 import { SectionHeading } from "../SectionHeading";
 import { Reveal } from "../Reveal";
+import { VideoEmbed } from "../VideoEmbed";
 import type { Dictionary } from "@/content";
+import { introVideo } from "@/content/video";
 
 export function HowItWorks({ dict }: { dict: Dictionary }) {
   return (
@@ -23,6 +25,23 @@ export function HowItWorks({ dict }: { dict: Dictionary }) {
             </Reveal>
           ))}
         </ol>
+
+        {/* Video perkenalan. Teksnya di kiri, pemutarnya di kanan; di layar
+            sempit keduanya menumpuk dengan teks di atas. */}
+        <Reveal delay={120}>
+          <div className="mt-14 grid items-center gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
+            <div>
+              <h3 className="text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.2] font-extrabold tracking-tight text-balance">
+                {dict.how.video.heading}
+              </h3>
+              <p className="mt-4 text-lg leading-relaxed text-[color:var(--foreground)]/60">
+                {dict.how.video.body}
+              </p>
+              <p className="mt-4 text-sm text-[color:var(--foreground)]/45">{dict.how.video.note}</p>
+            </div>
+            <VideoEmbed title={introVideo.title} playLabel={dict.how.video.playLabel} />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

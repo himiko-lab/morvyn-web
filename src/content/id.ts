@@ -75,7 +75,7 @@ export const id: Dictionary = {
       points: [
         "Beberapa dompet dan pindah saldo antardompet",
         "Grafik pemasukan dan pengeluaran",
-        "Kategori pengeluaran yang bisa disesuaikan",
+        "Utang & Piutang, dengan cicilan dan pengingat jatuh tempo",
         "Nilai tukar mata uang yang diperbarui",
         "Tombol sembunyikan saldo, berlaku juga di widget Keuangan",
       ],
@@ -89,6 +89,7 @@ export const id: Dictionary = {
         "Alarm dengan pola pengulangan",
         "Jadwal acara beserta pengingatnya",
         "Daftar tugas dengan tenggat waktu",
+        "Nada alarm dari lagu atau audio milikmu sendiri",
         "Widget Agenda: tugas bisa dicentang langsung dari layar utama",
       ],
     },
@@ -123,6 +124,7 @@ export const id: Dictionary = {
       points: [
         "Lokasi akurat, bukan perkiraan tingkat kota",
         "Perkiraan per jam dan beberapa hari ke depan",
+        "Prakiraan 24 jam yang bisa digeser, dan widget Cuaca",
         "Tampil berdampingan dengan agenda harimu",
       ],
     },
@@ -184,6 +186,12 @@ export const id: Dictionary = {
         body: "Begitu catatan tersambung ke agenda dan keuangan, kamu berhenti mengetik hal yang sama dua kali.",
       },
     ],
+    video: {
+      heading: "Lihat Morvyn dalam 90 detik",
+      body: "Video perkenalan singkat yang menyusuri semua menu Morvyn, dan memperlihatkan tampilannya di ponsel, ponsel lipat, dan tablet.",
+      playLabel: "Putar video Introducing Morvyn",
+      note: "Video diputar dari YouTube setelah kamu menekan tombol putar.",
+    },
   },
 
   news: {
@@ -220,8 +228,12 @@ export const id: Dictionary = {
       },
       {
         q: "Apakah Morvyn punya widget?",
-        a: "Punya, empat widget layar utama: Keuangan, Agenda, Catatan, dan Kebiasaan. Dari sana kamu bisa melihat saldo, menambah transaksi, dan mencentang tugas tanpa membuka aplikasi.",
+        a: "Punya, lima widget layar utama: Keuangan, Agenda, Catatan, Kebiasaan, dan Cuaca. Dari sana kamu bisa melihat saldo, menambah transaksi, dan mencentang tugas tanpa membuka aplikasi.",
         link: { label: "Selengkapnya tentang widget", href: "/fitur/widget/" },
+      },
+      {
+        q: "Apakah Morvyn bisa dipakai di tablet dan ponsel lipat?",
+        a: "Bisa. Di tablet lanskap, Catatan, Agenda, Kalender, Kebiasaan, Gempa, serta Utang & Piutang tampil dua panel, dan di layar lebar navigasinya pindah ke samping. Isian formulir dan catatan tidak hilang saat layar diputar atau ponsel dilipat, dan alarm punya mode tabletop untuk ponsel lipat yang setengah terbuka.",
       },
       {
         q: "Apakah saya harus memakai semua fiturnya?",
@@ -257,9 +269,12 @@ export const id: Dictionary = {
     "Alarm dan pengingat dengan layar alarm penuh dan tunda",
     "Kalender bulanan, dengan sinkronisasi dua arah Google Kalender yang opsional",
     "Keuangan dengan saldo per dompet, pindah dana, ringkasan bulanan, grafik pekanan, dan kurs",
-    "Widget layar utama: Keuangan, Agenda, Catatan, dan Kebiasaan",
+    "Utang dan piutang dengan cicilan, tanda terlambat, dan pengingat jatuh tempo",
+    "Nada alarm dari lagu atau audio sendiri, dan alarm untuk jadwal",
+    "Tampilan dua panel di tablet lanskap dan dukungan ponsel lipat",
+    "Widget layar utama: Keuangan, Agenda, Catatan, Kebiasaan, dan Cuaca",
     "Kebiasaan dengan cincin progres dan hitungan beruntun",
-    "Cuaca",
+    "Cuaca dengan prakiraan 24 jam yang bisa digeser",
     "Info gempa dari BMKG dan USGS",
     "Berita dari 29 portal",
     "Cadangan opsional ke Google Drive milik pengguna",

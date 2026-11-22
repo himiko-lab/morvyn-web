@@ -2,6 +2,7 @@ import type { Locale } from "@/content";
 import { pagesId } from "./id";
 import { pagesEn } from "./en";
 import type { PageCopy, PageKey } from "./types";
+import { releasesUpdatedIso } from "../releases";
 
 const pages: Record<Locale, Record<PageKey, PageCopy>> = {
   id: pagesId,
@@ -33,12 +34,14 @@ export const pagePath: Record<PageKey, Record<Locale, string>> = {
 /**
  * Tanggal terakhir isi tiap halaman berubah, untuk `lastmod` di peta situs.
  * Perbarui hanya halaman yang teksnya benar-benar berubah, bukan setiap
- * deploy. Catatan Rilis berubah setiap kali ada versi baru.
+ * deploy. Catatan Rilis diambil dari `releases.json`.
  */
 export const pageUpdatedIso: Record<PageKey, string> = {
   pdf: "2026-11-17",
-  widgets: "2026-11-17",
-  releaseNotes: "2026-11-17",
+  widgets: "2026-11-21",
+  // Mengikuti entri terbaru di releases.json, jadi ikut berubah sendiri
+  // setiap kali versi baru ditambahkan.
+  releaseNotes: releasesUpdatedIso,
   contact: "2026-11-17",
 };
 

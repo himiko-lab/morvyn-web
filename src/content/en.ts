@@ -72,7 +72,7 @@ export const en: Dictionary = {
       points: [
         "Multiple wallets, with transfers between them",
         "Income and expense charts",
-        "Spending categories you can adjust",
+        "Debts & Loans, with installments and due date reminders",
         "Currency exchange rates, kept current",
         "A hide-balance toggle that also applies to the Finance widget",
       ],
@@ -86,6 +86,7 @@ export const en: Dictionary = {
         "Alarms with repeat patterns",
         "Event schedules and their reminders",
         "Tasks with due dates",
+        "Alarm tones from your own song or audio file",
         "Agenda widget: tick off tasks straight from the home screen",
       ],
     },
@@ -120,6 +121,7 @@ export const en: Dictionary = {
       points: [
         "Accurate location, not a city-wide average",
         "Hourly and multi-day forecasts",
+        "A scrollable 24-hour forecast, and a Weather widget",
         "Sits right alongside your agenda",
       ],
     },
@@ -181,6 +183,12 @@ export const en: Dictionary = {
         body: "Once notes reach into your agenda and finances, you stop typing the same thing twice.",
       },
     ],
+    video: {
+      heading: "See Morvyn in 90 seconds",
+      body: "A short introduction that walks through every menu in Morvyn and shows how it looks on a phone, a foldable, and a tablet.",
+      playLabel: "Play the Introducing Morvyn video",
+      note: "The video plays from YouTube once you press play.",
+    },
   },
 
   news: {
@@ -217,8 +225,12 @@ export const en: Dictionary = {
       },
       {
         q: "Does Morvyn have widgets?",
-        a: "Yes, four home screen widgets: Finance, Agenda, Notes, and Habits. From there you can see your balance, add a transaction, and tick off tasks without opening the app.",
+        a: "Yes, five home screen widgets: Finance, Agenda, Notes, Habits, and Weather. From there you can see your balance, add a transaction, and tick off tasks without opening the app.",
         link: { label: "More about widgets", href: "/en/features/widgets/" },
+      },
+      {
+        q: "Can Morvyn be used on tablets and foldables?",
+        a: "Yes. On landscape tablets, Notes, Agenda, Calendar, Habits, Earthquakes, and Debts & Loans use a two-pane layout, and on wide screens navigation moves to the side. Forms and notes no longer reset when you rotate the screen or fold your phone, and alarms have a tabletop mode for half-folded phones.",
       },
       {
         q: "Do I have to use every feature?",
@@ -254,9 +266,12 @@ export const en: Dictionary = {
     "Alarms and reminders with a full-screen alarm and snooze",
     "Monthly calendar, with optional two-way Google Calendar sync",
     "Finance with per-wallet balances, transfers, monthly summary, weekly chart, and exchange rates",
-    "Home screen widgets: Finance, Agenda, Notes, and Habits",
+    "Debts and loans with installments, overdue status, and due date reminders",
+    "Alarm tones from your own song or audio, and alarms for schedules",
+    "Two-pane layout on landscape tablets, with foldable support",
+    "Home screen widgets: Finance, Agenda, Notes, Habits, and Weather",
     "Habits with progress rings and streak counts",
-    "Weather",
+    "Weather with a scrollable 24-hour forecast",
     "Earthquake information from BMKG and USGS",
     "News from 29 outlets",
     "Optional backup to the user's own Google Drive",

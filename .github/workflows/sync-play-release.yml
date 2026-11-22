@@ -1,0 +1,78 @@
+name: Sinkron rilis Google Play
+
+# Setiap hari memeriksa rilis Morvyn yang tayang di jalur produksi Google
+# Play. Kalau ada versi baru, nomor versi dan teks "Yang baru"-nya (ID dan EN)
+# ditambahkan ke src/content/releases.json, di-commit, lalu situs dideploy
+# ulang. Bisa juga dijalankan manual dari tab Actions lewat "Run workflow".
+#
+# Butuh secret PLAY_SERVICE_ACCOUNT_JSON: kunci JSON akun layanan Google
+# Cloud yang sudah diundang di Play Console. Lihat README, bagian
+# "Catatan rilis otomatis dari Google Play".
+on:
+  schedule:
+    # 01.00 UTC = 08.00 WIB.
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  # Meng-commit releases.json.
+  contents: write
+  # Menjalankan workflow deploy. Push oleh GITHUB_TOKEN sengaja tidak
+  # memicu workflow lain, jadi deploy harus dipanggil terang-terangan.
+  actions: write
+  # Membuka issue pengingat untuk meninjau halaman fitur.
+  issues: write
+
+concurrency:
+  group: sync-play-release
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      # Skripnya hanya memakai modul bawaan Node, jadi tidak perlu npm install.
+      - id: sync
+        run: node scripts/sync-play-release.mjs
+        env:
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+
+      - name: Commit releases.json
+        if: steps.sync.outputs.version != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/releases.json
+          git commit -m "Tambah catatan rilis Morvyn ${{ steps.sync.outputs.version }} dari Google Play"
+          git push
+
+      - name: Deploy ulang situs
+        if: steps.sync.outputs.version != ''
+        run: gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      # Catatan rilis dan nomor versi sudah otomatis, tapi halaman fitur,
+      # tanya jawab, dan Kebijakan Privasi berisi klaim tentang aplikasi yang
+      # harus ditinjau manusia. Issue ini pengingatnya. Kegagalannya tidak
+      # menggagalkan sinkron yang sudah berhasil.
+      - name: Buka issue pengingat
+        if: steps.sync.outputs.version != ''
+        continue-on-error: true
+        run: |
+          gh issue create \
+            --title "Morvyn ${{ steps.sync.outputs.version }} tayang di Play: tinjau halaman fitur" \
+            --body "Catatan rilis ${{ steps.sync.outputs.version }} (versionCode ${{ steps.sync.outputs.version_code }}) sudah ditambahkan otomatis ke situs.
+
+          Yang masih perlu ditinjau dengan tangan:
+          - Halaman fitur (src/content/featurePages/) untuk fitur baru di versi ini.
+          - Tanya jawab beranda dan daftar fitur (appFeatureList) di src/content/id.ts dan en.ts.
+          - Kebijakan Privasi, bila versi ini mengubah data yang disimpan atau dikirim, atau menambah izin."
+        env:
+          GH_TOKEN: ${{ github.token }}

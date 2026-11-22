@@ -1,5 +1,15 @@
 import { appVersion, site } from "../site";
+import { releaseBody, releases } from "../releases";
 import type { PageCopy, PageKey } from "./types";
+
+/** Tiga versi terbaru, mis. "1.6.0, 1.5.0, dan 1.4.0", untuk deskripsi meta. */
+function recentVersions(and: string): string {
+  const [last, ...rest] = releases
+    .slice(0, 3)
+    .map((release) => release.version)
+    .reverse();
+  return rest.length ? `${rest.reverse().join(", ")}, ${and} ${last}` : last;
+}
 
 /**
  * Halaman tambahan, bahasa Indonesia. Berpasangan dengan `en.ts`.
@@ -93,13 +103,13 @@ export const pagesId: Record<PageKey, PageCopy> = {
 
   widgets: {
     name: "Widget",
-    short: "Empat widget layar utama: Keuangan, Agenda, Catatan, dan Kebiasaan.",
+    short: "Lima widget layar utama: Keuangan, Agenda, Catatan, Kebiasaan, dan Cuaca.",
     eyebrow: "Fitur Morvyn",
-    title: "Widget Morvyn: Keuangan, Agenda, Catatan, dan Kebiasaan",
+    title: "Widget Morvyn: Keuangan, Agenda, Catatan, Kebiasaan, Cuaca",
     description:
-      "Empat widget layar utama Morvyn: Keuangan, Agenda, Catatan, dan Kebiasaan. Lihat saldo, tambah transaksi, dan centang tugas tanpa membuka aplikasi.",
+      "Lima widget layar utama Morvyn: Keuangan, Agenda, Catatan, Kebiasaan, dan Cuaca. Lihat saldo, tambah transaksi, dan centang tugas tanpa membuka aplikasi.",
     h1: "Widget Morvyn untuk layar utama ponselmu",
-    lead: "Morvyn punya empat widget layar utama: Keuangan, Agenda, Catatan, dan Kebiasaan. Yang paling sering kamu lihat dan kerjakan bisa diselesaikan dari layar utama, tanpa membuka aplikasinya.",
+    lead: "Morvyn punya lima widget layar utama: Keuangan, Agenda, Catatan, Kebiasaan, dan Cuaca. Yang paling sering kamu lihat dan kerjakan bisa diselesaikan dari layar utama, tanpa membuka aplikasinya.",
     sections: [
       {
         heading: "Widget Keuangan",
@@ -131,11 +141,18 @@ export const pagesId: Record<PageKey, PageCopy> = {
         ],
         links: [{ label: "Selengkapnya tentang Kebiasaan", href: "/fitur/kebiasaan/" }],
       },
+      {
+        heading: "Widget Cuaca",
+        paragraphs: [
+          "Widget Cuaca hadir dalam dua pilihan: Cuaca, atau Cuaca + harian. Isinya selalu terkini, dan mengetuknya membuka menu Cuaca.",
+        ],
+        links: [{ label: "Selengkapnya tentang Cuaca", href: "/fitur/cuaca/" }],
+      },
     ],
     faq: [
       {
         q: "Apakah Morvyn punya widget?",
-        a: "Punya, empat widget layar utama: Keuangan, Agenda, Catatan, dan Kebiasaan.",
+        a: "Punya, lima widget layar utama: Keuangan, Agenda, Catatan, Kebiasaan, dan Cuaca.",
       },
       {
         q: "Bisakah mencentang tugas dari widget?",
@@ -157,36 +174,13 @@ export const pagesId: Record<PageKey, PageCopy> = {
     short: "Yang berubah di tiap versi Morvyn, dari yang terbaru.",
     eyebrow: "Riwayat versi",
     title: "Catatan Rilis Morvyn: Yang Baru di Tiap Versi",
-    description:
-      "Catatan rilis Morvyn, dari versi terbaru: perbaikan dan fitur baru di versi 1.3.1, 1.3.0, dan 1.2.0 aplikasi Android buatan Himiko Lab.",
+    description: `Catatan rilis Morvyn, dari versi terbaru: perbaikan dan fitur baru di versi ${recentVersions("dan")} aplikasi Android buatan Himiko Lab.`,
     h1: "Catatan rilis Morvyn",
     lead: `Yang berubah di tiap versi Morvyn, dari yang terbaru. Versi terkini adalah ${appVersion}.`,
-    sections: [
-      {
-        heading: "Versi 1.3.1",
-        paragraphs: [],
-        points: [
-          "Tampilan Catatan tidak lagi melompat ke bawah saat kamu mengetuk baris lain sesudah mengetik.",
-          "Tombol format kembali mengenai baris yang ditulis sesudah sebuah lampiran dihapus.",
-          "Tugas ditandai Terlambat begitu jam tenggatnya lewat, juga di widget Agenda.",
-          "Ikon mata di widget Keuangan berganti seketika.",
-        ],
-      },
-      {
-        heading: "Versi 1.3.0",
-        paragraphs: [],
-        points: [
-          "Kunci catatan.",
-          "Tugas tanpa batas waktu.",
-          "Ketukan di ruang kosong editor Catatan menaruh kursor di baris terdekat.",
-        ],
-      },
-      {
-        heading: "Versi 1.2.0",
-        paragraphs: [],
-        points: ["Pembaca model 3D.", "Impor berkas ke Catatan."],
-      },
-    ],
+    sections: releases.map((release) => ({
+      heading: `Versi ${release.version}`,
+      ...releaseBody(release, "id"),
+    })),
   },
 
   contact: {

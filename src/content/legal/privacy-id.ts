@@ -26,7 +26,7 @@ export const privacyId: LegalDocument = {
     "Cara Morvyn menangani data Anda: isi aplikasi tetap di perangkat. Tanpa iklan. Statistik pemakaian menu dan laporan crash dikirim ke Google, selalu menyala.",
   lead: "Morvyn adalah aplikasi Android buatan Himiko Lab. Halaman ini menjelaskan data apa yang ditangani aplikasi, ke mana perginya, dan, sama pentingnya, apa yang tidak dilakukannya.",
   effectiveLabel: "Berlaku sejak",
-  effectiveDate: "14 Oktober 2026",
+  effectiveDate: "22 November 2026",
 
   summaryHeading: "Ringkasnya",
   summary: [
@@ -35,6 +35,7 @@ export const privacyId: LegalDocument = {
     "**Statistik pemakaian dan laporan crash dikirim ke Google, dan tidak bisa dimatikan dari dalam aplikasi.** Morvyn memakai Firebase Analytics dan Firebase Crashlytics, yang aktif sejak aplikasi dipasang. Yang sengaja dikirim Morvyn hanya nama menu yang dibuka dan nama bagian kode yang gagal, tanpa isi catatan, keuangan, agenda, kebiasaan, maupun lokasi Anda. Rinciannya ada di bagian \"Statistik pemakaian dan laporan crash\".",
     "**Tidak ada iklan dan tidak ada SDK iklan.** Tidak ada data yang dijual, dan tidak ada yang dibagikan untuk keperluan iklan. SDK Google lain yang dipakai Morvyn juga mengirim data teknis terbatas ke Google, dirinci di bagian \"Notifikasi, konfigurasi aplikasi, dan layanan Google lain\".",
     "Masuk dengan Google, pencadangan ke Google Drive, dan sinkronisasi Google Calendar semuanya **opsional**: Morvyn tetap utuh tanpa satu pun di antaranya.",
+    "**Widget Cuaca memperbarui diri di latar.** Selama widget itu terpasang dan ada internet, koordinat posisi terakhir yang tersimpan dikirim ke penyedia data cuaca sekitar setiap 30 menit, tanpa membaca lokasi baru. Rinciannya ada di bagian \"Data yang disimpan di perangkat Anda\" dan \"Lokasi, cuaca, dan tempat\".",
   ],
 
   tocHeading: "Isi halaman ini",
@@ -189,11 +190,13 @@ export const privacyId: LegalDocument = {
             "Jadwal dan agenda",
             "Kebiasaan (habit)",
             "Catatan keuangan beserta kategorinya",
+            "Utang & Piutang beserta cicilan dan pembayarannya",
             "Alarm dan pengingat",
+            "Nada alarm yang Anda tambahkan sendiri: salinan berkas lagu atau audio yang Anda pilih, beserta judul, ukuran, dan durasinya",
             "Berita yang Anda simpan",
             "Riwayat bacaan berita",
             "Catatan cuaca",
-            "Riwayat penghapusan: Jadwal, Tugas, Alarm, Catatan, dan Transaksi keuangan yang Anda hapus disimpan 7 hari agar bisa dipulihkan, lalu dibuang otomatis",
+            "Riwayat penghapusan: Jadwal, Tugas, Alarm, Catatan, Transaksi keuangan, dan Utang & Piutang yang Anda hapus disimpan 7 hari agar bisa dipulihkan, lalu dihapus permanen saat Morvyn dibuka berikutnya",
             "Lampiran catatan: gambar, berkas PDF, hasil pindaian dokumen yang disimpan sebagai PDF, dan coretan",
             "Profil Anda: nama, foto, jenis kelamin, tanggal lahir, dan zona waktu",
             "Tempat pada catatan transaksi keuangan, bila Anda mengisinya dari posisi Anda (lihat bagian \"Lokasi, cuaca, dan tempat\")",
@@ -209,7 +212,11 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Widget layar utama.** Morvyn punya widget Kebiasaan, Keuangan, Agenda, dan Catatan. Widget menampilkan isi yang Anda pilih, misalnya isi catatan, agenda hari ini, atau saldo, di layar utama ponsel. Untuk menggambarnya, isi itu diserahkan ke aplikasi layar utama (launcher) di ponsel yang sama, dan tidak dikirim ke mana pun. Siapa pun yang melihat layar utama Anda dapat membacanya. Setelan sembunyikan saldo juga berlaku di widget Keuangan.",
+          text: "**Widget layar utama.** Morvyn menyediakan widget Kebiasaan, Keuangan, Agenda (Hari ini dan 2 minggu), Catatan (daftar dan isi), serta Cuaca (Cuaca dan Cuaca + harian). Widget menampilkan data yang sudah tersimpan di perangkat Anda, misalnya isi catatan, agenda hari ini, atau saldo, di layar utama ponsel. Untuk menggambarnya, isi itu diserahkan ke aplikasi layar utama (launcher) di ponsel yang sama. Siapa pun yang melihat layar utama Anda dapat membacanya. Setelan sembunyikan saldo juga berlaku di widget Keuangan.",
+        },
+        {
+          kind: "p",
+          text: "**Widget Cuaca.** Selama widget Cuaca terpasang dan ada internet, widget itu memuat ulang cuaca sekitar setiap 30 menit di latar, untuk posisi terakhir yang tercatat saat Anda terakhir membuka Morvyn. Koordinat itu dikirim ke Open-Meteo, atau ke OpenWeather bila Open-Meteo gagal, dan bila nama tempatnya belum tercatat, ke geocoder sistem Android. Widget tidak membaca lokasi baru dan tidak memakai izin lokasi latar. Melepas semua widget Cuaca menghentikan pembaruan ini.",
         },
       ],
     },
@@ -247,7 +254,7 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Cadangan juga memuat berkas PDF di Catatan Anda, yang disimpan di folder data aplikasi yang sama.",
+          text: "Cadangan juga memuat berkas PDF di Catatan Anda dan nada alarm yang Anda tambahkan sendiri, yang disimpan di folder data aplikasi yang sama. Utang & Piutang ikut tercadang sebagai bagian dari data aplikasi.",
         },
         {
           kind: "p",
@@ -416,7 +423,7 @@ export const privacyId: LegalDocument = {
           items: [
             {
               term: "Cuaca",
-              text: "Koordinat lintang dan bujur dikirim langsung ke penyedia data cuaca sebagai bagian dari permintaan: `api.open-meteo.com` ([Open-Meteo](https://open-meteo.com/)), dengan `api.openweathermap.org` ([OpenWeather](https://openweathermap.org/)) sebagai cadangan.",
+              text: "Koordinat lintang dan bujur dikirim langsung ke penyedia data cuaca sebagai bagian dari permintaan: `api.open-meteo.com` ([Open-Meteo](https://open-meteo.com/)), dengan `api.openweathermap.org` ([OpenWeather](https://openweathermap.org/)) sebagai cadangan, yang juga menerima satuan suhu dan bahasa. Selama widget Cuaca terpasang, permintaan ini juga dikirim di latar sekitar setiap 30 menit dengan posisi terakhir yang tersimpan, tanpa membaca lokasi baru.",
             },
             {
               term: "Tempat pada catatan keuangan",
@@ -550,7 +557,7 @@ export const privacyId: LegalDocument = {
             },
             {
               term: "`POST_NOTIFICATIONS`",
-              text: "Menampilkan pengingat dan alarm, pengumuman dari pengembang, dan info gempa.",
+              text: "Menampilkan pengingat dan alarm, pengingat jatuh tempo Utang & Piutang, pengumuman dari pengembang, dan info gempa.",
             },
             {
               term: "`SCHEDULE_EXACT_ALARM`",
@@ -597,7 +604,11 @@ export const privacyId: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Dua izin lain hanya terbawa pustaka dan **tidak dipakai oleh fitur Morvyn mana pun**: `USE_BIOMETRIC` dan `USE_FINGERPRINT`. Keduanya datang dari androidx.biometric, yang ikut terbawa pustaka masuk Google. Morvyn tidak memakai sidik jari maupun biometrik.",
+          text: "`USE_BIOMETRIC` dan `USE_FINGERPRINT` datang dari pustaka androidx.biometric dan dipakai untuk **kunci catatan**: membuka catatan yang dikunci memakai kunci layar ponsel Anda (PIN, pola, atau sidik jari). Pemeriksaannya dilakukan sistem Android, dan Morvyn tidak menerima maupun menyimpan data sidik jari Anda.",
+        },
+        {
+          kind: "p",
+          text: "Memilih lagu atau audio sendiri untuk alarm memakai pemilih berkas Android, **tanpa izin akses penyimpanan**. Berkas yang Anda pilih disalin ke penyimpanan Morvyn dan ikut cadangan Google Drive bila pencadangan menyala. Pengingat jatuh tempo Utang & Piutang memakai izin notifikasi yang sudah ada, tanpa alarm presisi. Di layar kunci, pengingat itu tidak menampilkan nama maupun nominal.",
         },
         {
           kind: "p",
@@ -686,6 +697,25 @@ export const privacyId: LegalDocument = {
               text: "Lewat halaman [Izin Pihak Ketiga di Akun Google](https://myaccount.google.com/permissions) Anda.",
             },
           ],
+        },
+      ],
+    },
+
+    {
+      id: "video",
+      title: "Video YouTube di situs ini",
+      blocks: [
+        {
+          kind: "p",
+          text: "Situs morvyn.himikolab.my.id memuat video perkenalan Morvyn yang diunggah Himiko Lab ke YouTube. Pemutarnya **baru dimuat setelah Anda menekan tombol putar**. Sebelum itu, halaman ini tidak menghubungi YouTube.",
+        },
+        {
+          kind: "p",
+          text: "Setelah Anda menekan tombol putar, video dimuat dari youtube-nocookie.com, mode privasi YouTube milik Google. Sejak saat itu Google dapat menerima data seperti alamat IP dan informasi peramban Anda, serta dapat menyimpan cookie atau data serupa di peramban Anda, sesuai [Kebijakan Privasi Google](https://policies.google.com/privacy).",
+        },
+        {
+          kind: "p",
+          text: "Himiko Lab hanya melihat statistik gabungan yang disediakan YouTube untuk pemilik kanal, misalnya jumlah penayangan, bukan data tentang Anda secara pribadi.",
         },
       ],
     },

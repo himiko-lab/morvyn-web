@@ -1,5 +1,15 @@
 import { appVersion, site } from "../site";
+import { releaseBody, releases } from "../releases";
 import type { PageCopy, PageKey } from "./types";
+
+/** Tiga versi terbaru, mis. "1.6.0, 1.5.0, dan 1.4.0", untuk deskripsi meta. */
+function recentVersions(and: string): string {
+  const [last, ...rest] = releases
+    .slice(0, 3)
+    .map((release) => release.version)
+    .reverse();
+  return rest.length ? `${rest.reverse().join(", ")}, ${and} ${last}` : last;
+}
 
 /**
  * Extra pages, English. Pairs with `id.ts` and makes the same claims, no more
@@ -90,13 +100,13 @@ export const pagesEn: Record<PageKey, PageCopy> = {
 
   widgets: {
     name: "Widgets",
-    short: "Four home screen widgets: Finance, Agenda, Notes, and Habits.",
+    short: "Five home screen widgets: Finance, Agenda, Notes, Habits, and Weather.",
     eyebrow: "Morvyn features",
-    title: "Morvyn Widgets: Finance, Agenda, Notes, and Habits",
+    title: "Morvyn Widgets: Finance, Agenda, Notes, Habits, Weather",
     description:
-      "Morvyn's four home screen widgets: Finance, Agenda, Notes, and Habits. See your balance, add a transaction, and tick off tasks without opening the app.",
+      "Morvyn's five home screen widgets: Finance, Agenda, Notes, Habits, and Weather. See your balance, add a transaction, and tick off tasks without opening the app.",
     h1: "Morvyn widgets for your phone's home screen",
-    lead: "Morvyn has four home screen widgets: Finance, Agenda, Notes, and Habits. The things you look at and do most often can be handled from the home screen, without opening the app.",
+    lead: "Morvyn has five home screen widgets: Finance, Agenda, Notes, Habits, and Weather. The things you look at and do most often can be handled from the home screen, without opening the app.",
     sections: [
       {
         heading: "Finance widget",
@@ -128,11 +138,18 @@ export const pagesEn: Record<PageKey, PageCopy> = {
         ],
         links: [{ label: "More about Habits", href: "/en/features/habits/" }],
       },
+      {
+        heading: "Weather widget",
+        paragraphs: [
+          "The Weather widget comes in two options: Weather, or Weather + daily. It stays up to date, and tapping it opens Weather.",
+        ],
+        links: [{ label: "More about Weather", href: "/en/features/weather/" }],
+      },
     ],
     faq: [
       {
         q: "Does Morvyn have widgets?",
-        a: "Yes, four home screen widgets: Finance, Agenda, Notes, and Habits.",
+        a: "Yes, five home screen widgets: Finance, Agenda, Notes, Habits, and Weather.",
       },
       {
         q: "Can I tick off tasks from a widget?",
@@ -154,36 +171,13 @@ export const pagesEn: Record<PageKey, PageCopy> = {
     short: "What changed in each version of Morvyn, newest first.",
     eyebrow: "Version history",
     title: "Morvyn Release Notes: What's New in Each Version",
-    description:
-      "Morvyn release notes, newest first: fixes and new features in versions 1.3.1, 1.3.0, and 1.2.0 of the Android app made by Himiko Lab.",
+    description: `Morvyn release notes, newest first: fixes and new features in versions ${recentVersions("and")} of the Android app made by Himiko Lab.`,
     h1: "Morvyn release notes",
     lead: `What changed in each version of Morvyn, newest first. The current version is ${appVersion}.`,
-    sections: [
-      {
-        heading: "Version 1.3.1",
-        paragraphs: [],
-        points: [
-          "The Notes view no longer jumps to the bottom when you tap another line after typing.",
-          "Formatting buttons once again apply to a line written after an attachment was deleted.",
-          "Tasks are marked Overdue as soon as their due time passes, on the Agenda widget too.",
-          "The eye icon on the Finance widget switches instantly.",
-        ],
-      },
-      {
-        heading: "Version 1.3.0",
-        paragraphs: [],
-        points: [
-          "Note lock.",
-          "Tasks with no deadline.",
-          "Tapping empty space in the Notes editor places the cursor on the nearest line.",
-        ],
-      },
-      {
-        heading: "Version 1.2.0",
-        paragraphs: [],
-        points: ["3D model viewer.", "Importing files into Notes."],
-      },
-    ],
+    sections: releases.map((release) => ({
+      heading: `Version ${release.version}`,
+      ...releaseBody(release, "en"),
+    })),
   },
 
   contact: {

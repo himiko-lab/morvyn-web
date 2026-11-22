@@ -17,7 +17,7 @@ export const privacyEn: LegalDocument = {
     "How Morvyn handles your data: app content stays on your device. No ads. Menu usage statistics and crash reports are sent to Google and are always on.",
   lead: "Morvyn is an Android app made by Himiko Lab. This page explains what data the app handles, where it goes, and, just as importantly, what it does not do.",
   effectiveLabel: "Effective",
-  effectiveDate: "14 October 2026",
+  effectiveDate: "22 November 2026",
 
   summaryHeading: "In short",
   summary: [
@@ -26,6 +26,7 @@ export const privacyEn: LegalDocument = {
     "**Usage statistics and crash reports are sent to Google, and cannot be turned off from inside the app.** Morvyn uses Firebase Analytics and Firebase Crashlytics, which are active from the moment the app is installed. All Morvyn deliberately sends is the name of the menu you opened and the name of the part of the code that failed, with none of your notes, finances, agenda, habits, or location. The details are under \"Usage statistics and crash reports\".",
     "**No ads and no advertising SDK.** No data is sold, and none is shared for advertising. The other Google SDKs Morvyn uses also send limited technical data to Google, described under \"Notifications, app configuration, and other Google services\".",
     "Google sign-in, Google Drive backup, and Google Calendar sync are all **optional**: Morvyn works fully without any of them.",
+    "**The Weather widget refreshes in the background.** While it is on your home screen and you are online, the last stored coordinates are sent to the weather data providers about every 30 minutes, without reading a new location. The details are in \"Data stored on your device\" and \"Location, weather, and places\".",
   ],
 
   tocHeading: "On this page",
@@ -180,11 +181,13 @@ export const privacyEn: LegalDocument = {
             "Schedule and agenda entries",
             "Habits",
             "Finance records and their categories",
+            "Debts & Loans, with their installments and payments",
             "Alarms and reminders",
+            "Alarm tones you add yourself: a copy of the song or audio file you choose, with its title, size, and duration",
             "News articles you saved",
             "News reading history",
             "Weather records",
-            "Deletion history: schedule entries, tasks, alarms, notes, and finance transactions you delete are kept for 7 days so you can restore them, then dropped automatically",
+            "Deletion history: schedule entries, tasks, alarms, notes, finance transactions, and Debts & Loans you delete are kept for 7 days so you can restore them, then permanently deleted the next time Morvyn is opened",
             "Note attachments: images, PDF files, document scans saved as PDF, and drawings",
             "Your profile: name, photo, gender, date of birth, and time zone",
             "The place on a finance record, when you fill it in from where you are (see \"Location, weather, and places\")",
@@ -200,7 +203,11 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "**Home screen widgets.** Morvyn has Habits, Finance, Agenda, and Notes widgets. A widget shows the content you choose, for example the contents of a note, today's agenda, or your balance, on your phone's home screen. To draw it, that content is handed to the home screen app (the launcher) on the same phone, and is not sent anywhere. Anyone who can see your home screen can read it. The hide-balance setting also applies to the Finance widget.",
+          text: "**Home screen widgets.** Morvyn offers widgets for Habits, Finance, Agenda (Today and 2 weeks), Notes (list and content), and Weather (Weather and Weather + daily). Widgets show data already stored on your device, for example the contents of a note, today's agenda, or your balance, on your phone's home screen. To draw it, that content is handed to the home screen app (the launcher) on the same phone. Anyone who can see your home screen can read it. The hide-balance setting also applies to the Finance widget.",
+        },
+        {
+          kind: "p",
+          text: "**Weather widget.** While a Weather widget is on your home screen and you are online, it refreshes the weather in the background about every 30 minutes, for the last position recorded when you last opened Morvyn. Those coordinates are sent to Open-Meteo, or to OpenWeather if Open-Meteo fails, and, if the place name is not yet recorded, to Android's system geocoder. Widgets never read a new location and do not use background location permission. Removing all Weather widgets stops these refreshes.",
         },
       ],
     },
@@ -238,7 +245,7 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Backups also include the PDF files in your Notes, which are kept in the same app data folder.",
+          text: "Backups also include the PDF files in your Notes and the alarm tones you added yourself, which are kept in the same app data folder. Debts & Loans are backed up as part of your app data.",
         },
         {
           kind: "p",
@@ -407,7 +414,7 @@ export const privacyEn: LegalDocument = {
           items: [
             {
               term: "Weather",
-              text: "Latitude and longitude are sent directly to the weather data providers as part of the request: `api.open-meteo.com` ([Open-Meteo](https://open-meteo.com/)), with `api.openweathermap.org` ([OpenWeather](https://openweathermap.org/)) as the fallback.",
+              text: "Latitude and longitude are sent directly to the weather data providers as part of the request: `api.open-meteo.com` ([Open-Meteo](https://open-meteo.com/)), with `api.openweathermap.org` ([OpenWeather](https://openweathermap.org/)) as the fallback, which also receives your temperature unit and language. While a Weather widget is on your home screen, this request is also sent in the background about every 30 minutes with the last stored position, without reading a new location.",
             },
             {
               term: "The place on a finance record",
@@ -541,7 +548,7 @@ export const privacyEn: LegalDocument = {
             },
             {
               term: "`POST_NOTIFICATIONS`",
-              text: "Showing reminders and alarms, announcements from the developer, and earthquake information.",
+              text: "Showing reminders and alarms, Debts & Loans due-date reminders, announcements from the developer, and earthquake information.",
             },
             {
               term: "`SCHEDULE_EXACT_ALARM`",
@@ -588,7 +595,11 @@ export const privacyEn: LegalDocument = {
         },
         {
           kind: "p",
-          text: "Two more permissions are only brought along by libraries and are **not used by any Morvyn feature**: `USE_BIOMETRIC` and `USE_FINGERPRINT`. Both come from androidx.biometric, which the Google sign-in library brings along. Morvyn does not use fingerprint or biometric authentication.",
+          text: "`USE_BIOMETRIC` and `USE_FINGERPRINT` come from the androidx.biometric library and are used for **note lock**: opening a locked note uses your phone's screen lock (PIN, pattern, or fingerprint). The check is done by Android itself, and Morvyn neither receives nor stores your fingerprint data.",
+        },
+        {
+          kind: "p",
+          text: "Choosing your own song or audio for an alarm uses Android's file picker, **with no storage permission**. The file you choose is copied into Morvyn's storage and included in your Google Drive backup if backup is on. Debts & Loans due-date reminders use the existing notification permission, without exact alarms, and do not show names or amounts on the lock screen.",
         },
         {
           kind: "p",
@@ -677,6 +688,25 @@ export const privacyEn: LegalDocument = {
               text: "Through your [Third-party access page in your Google Account](https://myaccount.google.com/permissions).",
             },
           ],
+        },
+      ],
+    },
+
+    {
+      id: "video",
+      title: "YouTube video on this site",
+      blocks: [
+        {
+          kind: "p",
+          text: "The morvyn.himikolab.my.id site includes an introduction video of Morvyn that Himiko Lab uploaded to YouTube. The player **loads only after you press play**. Until then, this page does not contact YouTube.",
+        },
+        {
+          kind: "p",
+          text: "Once you press play, the video loads from youtube-nocookie.com, the privacy-enhanced mode of Google's YouTube. From that point, Google may receive data such as your IP address and browser information, and may store cookies or similar data in your browser, in line with the [Google Privacy Policy](https://policies.google.com/privacy).",
+        },
+        {
+          kind: "p",
+          text: "Himiko Lab only sees the aggregate statistics YouTube provides to channel owners, such as view counts, not data about you personally.",
         },
       ],
     },

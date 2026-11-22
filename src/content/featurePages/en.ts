@@ -31,7 +31,8 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
           "A separate sketch canvas for free drawing",
           "Maths formula keyboard",
           "Your own categories, filters, and sorting by date, title, or category",
-          "Quick search across every note",
+          "Search across every note, opening right at the matching text and highlighting it",
+          "Two-pane layout on landscape tablets",
           "Export to PDF or Markdown",
         ],
       },
@@ -68,7 +69,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Widget and recovery",
         paragraphs: [
           "The Notes widget puts a list of notes, or the contents of one note you choose, on your phone's home screen, and its checklist items can be ticked from there without opening the app.",
-          "Deleted notes do not vanish immediately. Morvyn keeps them for 7 days so they can be restored, then clears them automatically.",
+          "Deleted notes do not vanish immediately. Morvyn keeps them for 7 days so they can be restored, then deletes them permanently the next time Morvyn is opened.",
         ],
         links: [{ label: "More about widgets", href: "/en/features/widgets/" }],
       },
@@ -94,7 +95,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       },
       {
         q: "Can deleted notes be restored?",
-        a: "Yes, for 7 days after deletion. After that they are cleared automatically.",
+        a: "Yes, for 7 days after deletion. After that, they are permanently deleted the next time Morvyn is opened.",
       },
     ],
   },
@@ -103,7 +104,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
     slug: "finance",
     title: "Morvyn Finance: Track Spending Across Wallets",
     description:
-      "Finance in Morvyn: record income and expenses across multiple wallets, move balances, see charts, check currency rates, and hide your balance on the widget.",
+      "Finance in Morvyn: income and expenses across wallets, debts and loans with installments, charts, currency rates, and a balance you can hide.",
     h1: "Finance in Morvyn: know where your money actually went",
     lead: "Record income and expenses across several wallets at once, such as cash, a bank account, and an e-wallet. Morvyn turns them into charts, and currency rates are a tap away without leaving the app.",
     sections: [
@@ -118,6 +119,21 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
           "Income and expense categories you can adjust",
           "Charts to see your spending pattern",
           "A quick-add transaction screen",
+        ],
+      },
+      {
+        heading: "Debts & Loans",
+        paragraphs: [
+          "Since version 1.5.0, Finance includes Debts & Loans. Record what you owe and what others owe you, then choose whether the money moves in or out of a wallet, or is simply recorded.",
+          "Payments can be spread into daily, weekly, monthly, or yearly installments, with the remaining amount and an overdue status. Due date reminders appear as banners, with separate times for the due date and the day before. When an installment is paid or received, balances and charts update with it.",
+          "Debts & Loans can be shown as a card or a swipe page, or hidden in Finance settings. On landscape tablets it uses a two-pane layout.",
+        ],
+        points: [
+          "Track debts and loans, with or without moving money in a wallet",
+          "Daily, weekly, monthly, or yearly installments",
+          "Remaining amount and overdue status",
+          "Due date reminders for the due date and the day before",
+          "Shown as a card, a swipe page, or hidden",
         ],
       },
       {
@@ -136,7 +152,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Hide your balance, on the widget too",
         paragraphs: [
           "Opening a finance app in public should not mean showing your balance to the person next to you. The hide-balance toggle covers the numbers, and that setting also applies to the Finance widget on your home screen.",
-          "Deleted transactions are kept for 7 days so they can be restored, then cleared automatically.",
+          "Deleted transactions, debts, and loans are kept for 7 days so they can be restored, then permanently deleted the next time Morvyn is opened.",
         ],
       },
       {
@@ -150,6 +166,10 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Does Morvyn connect to my bank account or e-wallet?",
         a: "No. Morvyn records the transactions you enter yourself. There is no connection to any bank, e-wallet, or payment service.",
+      },
+      {
+        q: "Can Morvyn track debts and loans?",
+        a: "Yes. Debts & Loans in Finance records what you owe and what others owe you, with installments, the remaining amount, overdue status, and due date reminders.",
       },
       {
         q: "Is my financial data sent anywhere?",
@@ -174,6 +194,8 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Alarms that actually go off",
         paragraphs: [
           "Alarms can repeat on a pattern, so there is no need to set them again every day. Morvyn schedules them with Android at the exact time, shows a full-screen alarm, vibrates, and wakes the screen when they ring. If you are not ready yet, alarms and reminders can be snoozed.",
+          "The alarm tone can be your own song or audio file. Schedules can have their own alarm too, with tone, snooze, and vibration.",
+          "On foldables, the alarm screen has a landscape layout and a tabletop mode when the phone is half-folded.",
           "After your phone is switched off and on again, reminders and alarms are set up again on their own.",
         ],
         points: [
@@ -181,6 +203,9 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
           "Full-screen alarm, vibration, and screen wake-up",
           "Snooze",
           "Restored automatically after the phone restarts",
+          "A tone from your own song or audio file",
+          "Alarms for schedules, with tone, snooze, and vibration",
+          "Landscape layout and tabletop mode on foldables",
         ],
       },
       {
@@ -209,7 +234,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Tasks born from notes",
         paragraphs: [
           "Tasks can be created from a note. A Monday meeting note that says \"send the proposal before Friday\" can become a task with a due date in Agenda, without retyping it.",
-          "Deleted events, tasks, and alarms are kept for 7 days so they can be restored.",
+          "Deleted events, tasks, and alarms are kept for 7 days so they can be restored, then permanently deleted the next time Morvyn is opened.",
         ],
       },
     ],
@@ -221,6 +246,10 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Can Agenda sync with Google Calendar?",
         a: "Yes, both ways, for one calendar you choose. It is optional and off by default, and you need to sign in with Google first.",
+      },
+      {
+        q: "Can I use my own song as an alarm tone?",
+        a: "Yes. Your own song or audio file can be used as the alarm tone.",
       },
       {
         q: "Do tasks need a due date?",
@@ -356,9 +385,24 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         points: [
           "Hourly and multi-day forecasts",
           "Precise location, not a city-wide estimate",
+          "A scrollable 24-hour forecast with a temperature line and rain chance",
           "Adjustable temperature unit",
+          "Weather widget on the home screen",
           "A card with the latest earthquake on the Weather screen",
         ],
+      },
+      {
+        heading: "A 24-hour forecast you can scroll",
+        paragraphs: [
+          "The forecast for the next 24 hours scrolls, with a temperature line and rain chance, so the shape of the day's weather is clear at a glance.",
+        ],
+      },
+      {
+        heading: "Weather widget",
+        paragraphs: [
+          "The Weather widget puts the weather on your home screen, in two options: Weather, or Weather + daily. It stays up to date, and tapping it opens Weather.",
+        ],
+        links: [{ label: "More about widgets", href: "/en/features/widgets/" }],
       },
       {
         heading: "Right alongside your day",
@@ -371,6 +415,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Only the location access it needs",
         paragraphs: [
           "The location permission is optional, and Morvyn does not ask for background location. Your coordinates are sent to the weather provider only as part of the weather request, are not stored on any server by Morvyn, and are not tied to your identity.",
+          "The Weather widget never reads a new location. While it is on your home screen and you are online, it refreshes the weather about every 30 minutes for the last position recorded when you last opened Morvyn. Removing all Weather widgets stops these refreshes.",
         ],
       },
     ],
@@ -382,6 +427,10 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Does Morvyn track my location in the background?",
         a: "No. Morvyn does not request background location. The location permission itself is optional.",
+      },
+      {
+        q: "Is there a Weather widget?",
+        a: "Yes, in two options: Weather, or Weather + daily. Tapping it opens Weather.",
       },
       {
         q: "Can I change the temperature unit?",

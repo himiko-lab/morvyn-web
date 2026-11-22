@@ -34,7 +34,8 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
           "Kanvas coretan terpisah untuk menggambar bebas",
           "Papan tik rumus matematika",
           "Kategori buatan sendiri, saringan, dan urutan per tanggal, judul, atau kategori",
-          "Pencarian cepat ke seluruh catatan",
+          "Pencarian ke seluruh catatan, yang langsung membuka dan menandai teks yang dicari",
+          "Dua panel di tablet lanskap",
           "Ekspor ke PDF atau Markdown",
         ],
       },
@@ -71,7 +72,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Widget dan pemulihan",
         paragraphs: [
           "Widget Catatan menampilkan daftar catatan atau isi satu catatan pilihanmu di layar utama ponsel, dan daftar centangnya bisa dicentang dari sana tanpa membuka aplikasi.",
-          "Catatan yang terhapus tidak langsung hilang. Morvyn menyimpannya 7 hari supaya bisa dipulihkan, lalu membuangnya otomatis.",
+          "Catatan yang terhapus tidak langsung hilang. Morvyn menyimpannya 7 hari supaya bisa dipulihkan, lalu menghapusnya permanen saat Morvyn dibuka berikutnya.",
         ],
         links: [{ label: "Selengkapnya tentang widget", href: "/fitur/widget/" }],
       },
@@ -97,7 +98,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       },
       {
         q: "Catatan yang terhapus bisa dikembalikan?",
-        a: "Bisa, selama 7 hari sejak dihapus. Setelah itu catatannya dibuang otomatis.",
+        a: "Bisa, selama 7 hari sejak dihapus. Setelah itu, catatannya dihapus permanen saat Morvyn dibuka berikutnya.",
       },
     ],
   },
@@ -106,7 +107,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
     slug: "keuangan",
     title: "Keuangan Morvyn: Catat Pengeluaran di Banyak Dompet",
     description:
-      "Menu Keuangan di Morvyn: catat pemasukan dan pengeluaran di beberapa dompet, pindah saldo, lihat grafik, cek kurs mata uang, dan sembunyikan saldo di widget.",
+      "Menu Keuangan di Morvyn: pemasukan dan pengeluaran di beberapa dompet, utang dan piutang dengan cicilan, grafik, kurs mata uang, dan saldo yang bisa disembunyikan.",
     h1: "Keuangan di Morvyn: tahu ke mana uangmu pergi",
     lead: "Catat pemasukan dan pengeluaran di beberapa dompet sekaligus, misalnya tunai, rekening, dan dompet digital. Morvyn merangkumnya jadi grafik, dan nilai tukar mata uang bisa dicek tanpa pindah aplikasi.",
     sections: [
@@ -121,6 +122,21 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
           "Kategori pemasukan dan pengeluaran yang bisa disesuaikan",
           "Grafik untuk melihat pola pengeluaran",
           "Layar tambah transaksi cepat",
+        ],
+      },
+      {
+        heading: "Utang & Piutang",
+        paragraphs: [
+          "Sejak versi 1.5.0, menu Keuangan punya Utang & Piutang. Catat utangmu dan piutang orang lain kepadamu, lalu pilih apakah uangnya ikut masuk atau keluar dari dompet, atau cukup dicatat.",
+          "Pembayarannya bisa dicicil harian, mingguan, bulanan, atau tahunan, lengkap dengan sisa dan tanda terlambat. Pengingat jatuh tempo muncul sebagai banner, dengan jam sendiri untuk hari H dan sehari sebelumnya. Saat cicilan dibayar atau diterima, saldo dan grafik ikut terhitung.",
+          "Utang & Piutang bisa ditampilkan sebagai kartu atau halaman geser, atau disembunyikan lewat Pengaturan Keuangan. Di tablet lanskap, tampilannya dua panel.",
+        ],
+        points: [
+          "Catat utang dan piutang, dengan atau tanpa memindahkan uang di dompet",
+          "Cicilan harian, mingguan, bulanan, atau tahunan",
+          "Sisa cicilan dan tanda terlambat",
+          "Pengingat jatuh tempo untuk hari H dan sehari sebelumnya",
+          "Tampil sebagai kartu, halaman geser, atau disembunyikan",
         ],
       },
       {
@@ -139,7 +155,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Sembunyikan saldo, juga di widget",
         paragraphs: [
           "Membuka aplikasi keuangan di tempat umum tidak harus memperlihatkan saldo ke orang di sebelah. Tombol sembunyikan saldo menutup angkanya, dan setelan itu juga berlaku di widget Keuangan di layar utama ponsel.",
-          "Transaksi yang terhapus disimpan 7 hari supaya bisa dipulihkan, lalu dibuang otomatis.",
+          "Transaksi serta utang dan piutang yang terhapus disimpan 7 hari supaya bisa dipulihkan, lalu dihapus permanen saat Morvyn dibuka berikutnya.",
         ],
       },
       {
@@ -153,6 +169,10 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Apakah Morvyn terhubung ke rekening bank atau dompet digital?",
         a: "Tidak. Morvyn mencatat transaksi yang kamu masukkan sendiri. Tidak ada sambungan ke bank, dompet digital, atau layanan pembayaran mana pun.",
+      },
+      {
+        q: "Bisakah Morvyn mencatat utang dan piutang?",
+        a: "Bisa. Utang & Piutang di menu Keuangan mencatat utang dan piutang, lengkap dengan cicilan, sisa, tanda terlambat, dan pengingat jatuh tempo.",
       },
       {
         q: "Apakah data keuangan saya dikirim ke mana-mana?",
@@ -177,6 +197,8 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Alarm yang benar-benar berbunyi",
         paragraphs: [
           "Alarm bisa diatur dengan pola pengulangan, jadi tidak perlu dibuat ulang setiap hari. Morvyn menjadwalkannya ke sistem Android pada waktu yang tepat, menampilkan layar alarm penuh, bergetar, dan membangunkan layar saat berbunyi. Kalau belum sempat, alarm dan pengingatnya bisa ditunda (snooze).",
+          "Nada alarm bisa diganti dengan lagu atau audio milikmu sendiri. Jadwal juga bisa diberi alarm sendiri, lengkap dengan nada, tunda, dan getar.",
+          "Di ponsel lipat, layar alarm punya tampilan lanskap dan mode tabletop saat ponsel setengah terbuka.",
           "Setelah ponsel dimatikan lalu dinyalakan kembali, pengingat dan alarm dipasang ulang dengan sendirinya.",
         ],
         points: [
@@ -184,6 +206,9 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
           "Layar alarm penuh, getar, dan membangunkan layar",
           "Tunda alarm (snooze)",
           "Dipasang ulang otomatis setelah ponsel menyala kembali",
+          "Nada dari lagu atau audio milikmu sendiri",
+          "Alarm untuk jadwal, dengan nada, tunda, dan getar",
+          "Tampilan lanskap dan mode tabletop di ponsel lipat",
         ],
       },
       {
@@ -212,7 +237,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Tugas yang lahir dari catatan",
         paragraphs: [
           "Tugas bisa dibuat dari catatan. Catatan rapat Senin yang berisi \"kirim proposal sebelum Jumat\" bisa langsung menjadi tugas bertenggat di Agenda, tanpa mengetik ulang.",
-          "Jadwal, tugas, dan alarm yang terhapus disimpan 7 hari supaya bisa dipulihkan.",
+          "Jadwal, tugas, dan alarm yang terhapus disimpan 7 hari supaya bisa dipulihkan, lalu dihapus permanen saat Morvyn dibuka berikutnya.",
         ],
       },
     ],
@@ -224,6 +249,10 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Bisakah Agenda disinkronkan dengan Google Calendar?",
         a: "Bisa, dua arah, untuk satu kalender yang kamu pilih. Fitur ini opsional dan mati secara bawaan, dan butuh masuk dengan akun Google lebih dulu.",
+      },
+      {
+        q: "Bisakah memakai lagu sendiri sebagai nada alarm?",
+        a: "Bisa. Lagu atau audio milikmu sendiri bisa dipakai sebagai nada alarm.",
       },
       {
         q: "Apakah tugas harus punya tenggat?",
@@ -359,9 +388,24 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         points: [
           "Perkiraan per jam dan beberapa hari ke depan",
           "Lokasi presisi, bukan perkiraan tingkat kota",
+          "Prakiraan 24 jam yang bisa digeser, dengan garis suhu dan peluang hujan",
           "Satuan suhu bisa diatur",
+          "Widget Cuaca di layar utama",
           "Kartu info gempa terbaru di layar Cuaca",
         ],
+      },
+      {
+        heading: "Prakiraan 24 jam yang bisa digeser",
+        paragraphs: [
+          "Prakiraan 24 jam ke depan bisa digeser, lengkap dengan garis suhu dan peluang hujan, supaya perubahan cuaca sepanjang hari terlihat sekilas.",
+        ],
+      },
+      {
+        heading: "Widget Cuaca",
+        paragraphs: [
+          "Widget Cuaca menaruh cuaca di layar utama ponsel, dalam dua pilihan: Cuaca, atau Cuaca + harian. Isinya selalu terkini, dan mengetuknya membuka menu Cuaca.",
+        ],
+        links: [{ label: "Selengkapnya tentang widget", href: "/fitur/widget/" }],
       },
       {
         heading: "Berdampingan dengan harimu",
@@ -374,6 +418,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         heading: "Izin lokasi yang secukupnya",
         paragraphs: [
           "Izin lokasi bersifat opsional, dan Morvyn tidak meminta izin lokasi latar. Koordinatmu dikirim ke penyedia data cuaca hanya sebagai bagian dari permintaan cuaca, tidak disimpan di server mana pun oleh Morvyn, dan tidak dikaitkan dengan identitasmu.",
+          "Widget Cuaca tidak membaca lokasi baru. Selama terpasang dan ada internet, widget itu memuat ulang cuaca sekitar setiap 30 menit untuk posisi terakhir yang tercatat saat kamu terakhir membuka Morvyn. Melepas semua widget Cuaca menghentikan pembaruan ini.",
         ],
       },
     ],
@@ -385,6 +430,10 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
       {
         q: "Apakah Morvyn melacak lokasi saya di latar belakang?",
         a: "Tidak. Morvyn tidak meminta izin lokasi latar. Izin lokasinya sendiri opsional.",
+      },
+      {
+        q: "Apakah ada widget Cuaca?",
+        a: "Ada, dalam dua pilihan: Cuaca, atau Cuaca + harian. Mengetuknya membuka menu Cuaca.",
       },
       {
         q: "Bisakah satuan suhunya diganti?",

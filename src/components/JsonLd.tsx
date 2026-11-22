@@ -13,6 +13,7 @@ import {
   site,
   type Locale,
 } from "@/content";
+import { introVideo, introVideoEmbedUrl, introVideoWatchUrl } from "@/content/video";
 
 /**
  * Data terstruktur schema.org untuk satu halaman.
@@ -38,6 +39,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
   const organizationId = organization.id;
   const websiteId = `${site.url}/#website`;
   const appId = `${site.url}/#app`;
+  const videoId = `${site.url}/#video`;
 
   const graph = [
     {
@@ -123,6 +125,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
       // halaman yang kebetulan memuat daftar tanya jawab. Dipecah jadi dua
       // simpul dengan URL sama, keduanya jadi rancu siapa yang mewakili URL itu.
       "@type": ["WebPage", "FAQPage"],
+      video: { "@id": videoId },
       "@id": `${pageUrl}#webpage`,
       url: pageUrl,
       name: dict.meta.title,
@@ -148,6 +151,22 @@ export function JsonLd({ locale }: { locale: Locale }) {
             : item.a,
         },
       })),
+    },
+    {
+      // Video perkenalan yang tampil di bagian Cara pakai. Data ini yang
+      // membuatnya bisa muncul sebagai hasil video saat orang mencari
+      // "Morvyn". Isinya disalin dari halaman videonya di YouTube.
+      "@type": "VideoObject",
+      "@id": videoId,
+      name: introVideo.title,
+      description: introVideo.description,
+      thumbnailUrl: `${site.url}${introVideo.thumbnail}`,
+      uploadDate: introVideo.uploadDate,
+      duration: introVideo.duration,
+      embedUrl: introVideoEmbedUrl,
+      url: introVideoWatchUrl,
+      publisher: { "@id": organizationId },
+      about: { "@id": appId },
     },
   ];
 

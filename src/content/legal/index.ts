@@ -51,7 +51,7 @@ export function otherLegalKind(kind: LegalKind): LegalKind {
  * bersangkutan setiap kali isinya berubah.
  */
 export const legalEffectiveIso: Record<LegalKind, string> = {
-  privacy: "2026-10-14",
+  privacy: "2026-11-22",
   terms: "2026-10-14",
 };
 

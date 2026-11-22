@@ -398,6 +398,61 @@ dibangun tanpa `basePath` karena menargetkan akar subdomain, sehingga seluruh
 aset dicari di `/_next/…` sedangkan di alamat itu letaknya
 `/morvyn-web/_next/…`. Pakai domainnya, bukan URL github.io.
 
+## Catatan rilis otomatis dari Google Play
+
+Seluruh riwayat versi ada di satu berkas, `src/content/releases.json`. Halaman
+Catatan Rilis, `softwareVersion` di data terstruktur, dan kalimat "Versi
+terkini" semuanya dibaca dari sana. Teks tiap versi disimpan persis seperti
+"Yang baru" di Google Play, per bahasa: baris berawalan `•` menjadi butir.
+
+Workflow **Sinkron rilis Google Play**
+(`.github/workflows/sync-play-release.yml`) memeriksa jalur produksi Play
+setiap hari pukul 08.00 WIB lewat `scripts/sync-play-release.mjs`. Kalau ada
+versi baru yang tayang (sudah penuh atau sedang peluncuran bertahap), workflow
+itu menambah entrinya, meng-commit, mendeploy ulang situs, dan membuka issue
+pengingat untuk meninjau halaman fitur. Skripnya hanya **membaca** Play:
+edit yang dibukanya dihapus lagi tanpa pernah di-commit.
+
+Dua kebiasaan yang membuatnya jalan:
+
+- **Nama rilis di Play Console memuat nomor versi**, seperti bentuk bawaannya,
+  `40 (1.7.0)`. Play API tidak menyediakan nomor versi dengan cara lain.
+- **"Yang baru" ditulis dalam bahasa Indonesia (`id`) dan Inggris (`en-US`).**
+  Kalau salah satu kosong, workflow berhenti dengan pesan yang jelas, dan
+  entrinya bisa ditambahkan dengan tangan.
+
+### Menyiapkannya (sekali saja)
+
+1. **Google Cloud Console** (console.cloud.google.com): buat proyek baru,
+   misalnya `morvyn-play-sync`. Gratis, tanpa akun penagihan.
+2. Di proyek itu, **APIs & Services > Library**, cari **Google Play Android
+   Developer API**, lalu **Enable**.
+3. **IAM & Admin > Service Accounts > Create service account**, misalnya
+   `morvyn-web-sync`. Lewati pemberian peran Google Cloud; tidak perlu satu
+   pun.
+4. Buka akun layanan itu, **Keys > Add key > Create new key > JSON**. Sebuah
+   berkas JSON terunduh. Itu kunci rahasia: jangan dikirim ke siapa pun dan
+   jangan dimasukkan ke repositori.
+5. **Play Console > Pengguna dan izin > Undang pengguna baru**. Isi alamat
+   email akun layanan (berakhiran `iam.gserviceaccount.com`). Di **Izin
+   aplikasi**, tambahkan Morvyn dengan izin **Lihat informasi aplikasi dan
+   download laporan massal (hanya baca)**, lalu kirim undangan. Izin baru
+   kadang butuh beberapa jam sampai berlaku.
+6. **GitHub, repositori ini > Settings > Secrets and variables > Actions >
+   New repository secret**. Nama: `PLAY_SERVICE_ACCOUNT_JSON`. Isi: seluruh
+   isi berkas JSON tadi. Sesudah itu hapus berkas JSON dari komputer, atau
+   simpan di tempat aman.
+7. **Actions > Sinkron rilis Google Play > Run workflow**. Hasil yang
+   diharapkan: "sudah ada di releases.json", atau versi baru ditambahkan.
+
+Kalau langkah 7 gagal dengan galat 403, lognya menyebut penyebabnya. Paling
+sering: izin di Play Console belum berlaku, atau API di langkah 2 belum
+diaktifkan.
+
+GitHub menonaktifkan jadwal workflow di repositori publik yang 60 hari tidak
+ada aktivitas, dan mengirim email sebelumnya. Kalau itu terjadi, aktifkan lagi
+dari tab Actions.
+
 ## Menyesuaikan warna
 
 Semua warna terpusat di blok `@layer base` pada `src/app/globals.css`.
