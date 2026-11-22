@@ -41,7 +41,13 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           </Reveal>
 
           <Reveal delay={80}>
-            <h1 className="mt-6 text-[clamp(2.5rem,6.2vw,4.25rem)] leading-[1.05] font-extrabold tracking-tight text-balance">
+            {/* Slogannya berbahasa Inggris di semua bahasa situs. `lang`
+                membuat pembaca layar di halaman Indonesia melafalkannya
+                dengan lafal Inggris. */}
+            <h1
+              lang={locale === "en" ? undefined : "en"}
+              className="mt-6 text-[clamp(2.5rem,6.2vw,4.25rem)] leading-[1.05] font-extrabold tracking-tight text-balance"
+            >
               {dict.hero.headline[0]}{" "}
               <span className="text-gradient-brand">{dict.hero.headline[1]}</span>
             </h1>

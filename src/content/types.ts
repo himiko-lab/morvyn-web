@@ -74,7 +74,12 @@ export interface Dictionary {
   };
   hero: {
     eyebrow: string;
-    /** Dua baris; baris kedua diberi gradien biru→ungu. */
+    /**
+     * Slogan Morvyn, dua baris; baris kedua diberi gradien biru→ungu.
+     * Slogannya berbahasa Inggris di SEMUA bahasa situs ("One app for your
+     * whole day"), keputusan pemilik 22 November 2026, sama dengan video dan
+     * sampulnya. Jangan diterjemahkan.
+     */
     headline: [string, string];
     body: string;
     primaryCta: string;

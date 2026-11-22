@@ -68,7 +68,7 @@ export function Footer({ dict, locale, altHref }: FooterProps) {
       <div className="shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Logo />
-          <p className="mt-5 max-w-xs leading-relaxed text-[color:var(--foreground)]/55">
+          <p lang={locale === "en" ? undefined : "en"} className="mt-5 max-w-xs leading-relaxed text-[color:var(--foreground)]/55">
             {dict.footer.tagline}
           </p>
 

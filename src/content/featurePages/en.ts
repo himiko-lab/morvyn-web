@@ -126,6 +126,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
         paragraphs: [
           "Since version 1.5.0, Finance includes Debts & Loans. Record what you owe and what others owe you, then choose whether the money moves in or out of a wallet, or is simply recorded.",
           "Payments can be spread into daily, weekly, monthly, or yearly installments, with the remaining amount and an overdue status. Due date reminders appear as banners, with separate times for the due date and the day before. When an installment is paid or received, balances and charts update with it.",
+          "Its summary shows what is still outstanding, what is overdue, payment progress, and what is due this month, with larger text and very large amounts that stay readable.",
           "Debts & Loans can be shown as a card or a swipe page, or hidden in Finance settings. On landscape tablets it uses a two-pane layout.",
         ],
         points: [
@@ -133,6 +134,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
           "Daily, weekly, monthly, or yearly installments",
           "Remaining amount and overdue status",
           "Due date reminders for the due date and the day before",
+          "A summary of what is outstanding, overdue, progress, and what is due this month",
           "Shown as a card, a swipe page, or hidden",
         ],
       },
@@ -214,6 +216,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
           "Events are recorded with their reminders, once or repeating: daily, weekly, monthly, yearly, or custom. There is a daily timeline too.",
           "Tasks can be broken into subtasks, given a priority, and given a due date. A due date is not required: tasks can also be created with no deadline. When all of its subtasks are ticked, a task completes automatically, and as soon as its due time passes, it is marked Overdue.",
           "Events and tasks with due dates appear in the Calendar menu on their dates automatically, so a whole month can be seen at once.",
+          "Schedule and Tasks can be sorted oldest or newest first, A to Z or Z to A, or limited to today only, and your choice is remembered. The Schedule summary in the All tab starts from today.",
           "The Agenda widget shows your agenda for today or for 2 weeks on your home screen, and tasks can be ticked off from there.",
         ],
         points: [
@@ -222,6 +225,7 @@ export const featurePagesEn: Record<FeatureKey, FeaturePageCopy> = {
           "Tasks with no deadline",
           "Marked Overdue as soon as the due time passes",
           "Daily timeline",
+          "Sort oldest or newest first, A to Z, or today only, and your choice is remembered",
         ],
       },
       {

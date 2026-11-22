@@ -129,6 +129,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
         paragraphs: [
           "Sejak versi 1.5.0, menu Keuangan punya Utang & Piutang. Catat utangmu dan piutang orang lain kepadamu, lalu pilih apakah uangnya ikut masuk atau keluar dari dompet, atau cukup dicatat.",
           "Pembayarannya bisa dicicil harian, mingguan, bulanan, atau tahunan, lengkap dengan sisa dan tanda terlambat. Pengingat jatuh tempo muncul sebagai banner, dengan jam sendiri untuk hari H dan sehari sebelumnya. Saat cicilan dibayar atau diterima, saldo dan grafik ikut terhitung.",
+          "Ringkasannya memperlihatkan yang belum lunas, yang terlambat, kemajuan pembayaran, dan tagihan bulan ini, dengan teks yang besar dan angka yang tetap terbaca walau nominalnya sangat besar.",
           "Utang & Piutang bisa ditampilkan sebagai kartu atau halaman geser, atau disembunyikan lewat Pengaturan Keuangan. Di tablet lanskap, tampilannya dua panel.",
         ],
         points: [
@@ -136,6 +137,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
           "Cicilan harian, mingguan, bulanan, atau tahunan",
           "Sisa cicilan dan tanda terlambat",
           "Pengingat jatuh tempo untuk hari H dan sehari sebelumnya",
+          "Ringkasan: yang belum lunas, yang terlambat, kemajuan, dan tagihan bulan ini",
           "Tampil sebagai kartu, halaman geser, atau disembunyikan",
         ],
       },
@@ -217,6 +219,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
           "Jadwal acara dicatat beserta pengingatnya, sekali saja atau berulang: harian, mingguan, bulanan, tahunan, atau kustom. Ada juga garis waktu harian.",
           "Tugas bisa dipecah menjadi sub-tugas, diberi prioritas, dan diberi tenggat. Tenggat tidak wajib: tugas juga bisa dibuat tanpa batas waktu. Saat semua sub-tugasnya dicentang, tugasnya otomatis selesai, dan begitu jam tenggatnya lewat, tugas ditandai Terlambat.",
           "Jadwal dan tugas yang bertenggat otomatis muncul di menu Kalender pada tanggalnya, jadi satu bulan penuh bisa dilihat sekaligus.",
+          "Jadwal dan Tugas bisa diurutkan dari yang lama ke yang baru atau sebaliknya, dari A ke Z atau sebaliknya, atau dibatasi ke hari ini saja, dan pilihannya diingat. Ringkasan Jadwal di tab Semua dimulai dari hari ini.",
           "Widget Agenda menampilkan agenda hari ini atau 2 minggu di layar utama ponsel, dan tugasnya bisa dicentang dari sana.",
         ],
         points: [
@@ -225,6 +228,7 @@ export const featurePagesId: Record<FeatureKey, FeaturePageCopy> = {
           "Tugas tanpa batas waktu",
           "Penanda Terlambat begitu jam tenggatnya lewat",
           "Garis waktu harian",
+          "Urutkan dari lama ke baru, A ke Z, atau hari ini saja, dan pilihannya diingat",
         ],
       },
       {

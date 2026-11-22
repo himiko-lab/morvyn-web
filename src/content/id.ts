@@ -9,12 +9,12 @@ import type { Dictionary } from "./types";
 export const id: Dictionary = {
   meta: {
     title: "Morvyn: Catatan, Keuangan, dan Agenda dalam Satu Aplikasi",
-    ogTitle: "Morvyn, satu ruang tenang untuk seluruh harimu",
+    ogTitle: "Morvyn, one app for your whole day",
     description:
       "Morvyn menyatukan catatan, keuangan, agenda, kebiasaan, cuaca, kalender, gempa, dan berita dari 29 portal dalam satu aplikasi Android. Gratis di Google Play.",
     localeName: "Indonesia",
     localeShort: "ID",
-    ogImageAlt: "Morvyn, satu ruang tenang untuk seluruh harimu",
+    ogImageAlt: "Morvyn, one app for your whole day",
   },
 
   nav: {
@@ -31,7 +31,7 @@ export const id: Dictionary = {
 
   hero: {
     eyebrow: "Delapan kebutuhan harian, satu aplikasi",
-    headline: ["Satu ruang tenang untuk", "seluruh harimu"],
+    headline: ["One app for", "your whole day"],
     body: "Catatan, keuangan, agenda, kebiasaan, cuaca, kalender, berita, dan info gempa. Semuanya ada di Morvyn, aplikasi Android buatan Himiko Lab, dan semuanya bisa saling terhubung.",
     primaryCta: "Unduh di Google Play",
     secondaryCta: "Lihat fiturnya",
@@ -296,8 +296,8 @@ export const id: Dictionary = {
   },
 
   footer: {
-    tagline: "Satu ruang tenang untuk seluruh harimu.",
-    productHeading: "Produk",
+    tagline: "One app for your whole day.",
+    productHeading: "Fitur",
     aboutHeading: "Tentang",
     followHeading: "Ikuti kami",
     privacy: "Kebijakan Privasi",

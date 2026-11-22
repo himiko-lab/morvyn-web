@@ -6,12 +6,12 @@ import type { Dictionary } from "./types";
 export const en: Dictionary = {
   meta: {
     title: "Morvyn: Notes, Finance, and Agenda in One Android App",
-    ogTitle: "Morvyn, one calm space for your whole day",
+    ogTitle: "Morvyn, one app for your whole day",
     description:
       "Morvyn brings notes, finance, agenda, habits, weather, calendar, earthquake info, and news from 29 outlets into a single Android app. Free on Google Play.",
     localeName: "English",
     localeShort: "EN",
-    ogImageAlt: "Morvyn, one calm space for your whole day",
+    ogImageAlt: "Morvyn, one app for your whole day",
   },
 
   nav: {
@@ -28,7 +28,7 @@ export const en: Dictionary = {
 
   hero: {
     eyebrow: "Eight daily needs, one app",
-    headline: ["One calm space for", "your whole day"],
+    headline: ["One app for", "your whole day"],
     body: "Notes, finances, agenda, habits, weather, calendar, news, and earthquake information. All inside Morvyn, an Android app made by Himiko Lab, and all able to talk to each other.",
     primaryCta: "Get it on Google Play",
     secondaryCta: "See the features",
@@ -293,8 +293,8 @@ export const en: Dictionary = {
   },
 
   footer: {
-    tagline: "One calm space for your whole day.",
-    productHeading: "Product",
+    tagline: "One app for your whole day.",
+    productHeading: "Features",
     aboutHeading: "About",
     followHeading: "Follow us",
     privacy: "Privacy Policy",

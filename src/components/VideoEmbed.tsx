@@ -56,7 +56,11 @@ export function VideoEmbed({ title, playLabel }: { title: string; playLabel: str
           )}
           <span aria-hidden className="absolute inset-0 bg-black/15 transition-colors group-hover:bg-black/5" />
           <span className="relative grid size-18 place-items-center rounded-full bg-white/95 text-[color:var(--brand-blue)] shadow-lg transition-transform duration-300 group-hover:scale-110 sm:size-20">
-            <Play size={30} weight="fill" className="translate-x-0.5" />
+            {/* Tanpa geseran tambahan: segitiga Phosphor sudah diletakkan
+                agak ke kanan di kotaknya sendiri, sehingga titik beratnya
+                jatuh di tengah lingkaran. Menggesernya lagi membuatnya
+                tampak miring ke kanan. */}
+            <Play size={30} weight="fill" />
           </span>
           {!introVideo.poster && (
             <span className="absolute inset-x-6 bottom-5 text-center text-base font-bold text-white sm:text-lg">
