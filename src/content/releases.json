@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "1.7.0",
+      "versionCode": 40,
+      "addedIso": "2026-11-22",
+      "notes": {
+        "id": "Yang baru di Morvyn 1.7.0:\n- Agenda: urutkan Jadwal dan Tugas dari lama ke baru atau sebaliknya, A-Z atau Z-A, atau tampilkan hari ini saja. Pilihannya diingat.\n- Ringkasan Jadwal di tab Semua kini dimulai dari hari ini.\n- Utang & Piutang: ringkasan lebih lengkap (yang belum lunas, terlambat, kemajuan, dan tagihan bulan ini), teks lebih besar, dan angka sangat besar tetap terbaca.\n- Ikon cuaca di Beranda lebih besar.\n- Kartu lebih bersih tanpa garis tepi, terutama di mode gelap.",
+        "en": "What's new in Morvyn 1.7.0:\n- Agenda: sort Schedule and Tasks oldest or newest first, A-Z or Z-A, or show today only. Your choice is remembered.\n- The Schedule summary in the All tab now starts from today.\n- Debts & Loans: a fuller summary (outstanding, overdue, progress, and what's due this month), larger text, and very large amounts stay readable.\n- Bigger weather icon on Home.\n- Cleaner cards without outlines, especially in dark mode."
+      }
+    },
+    {
       "version": "1.6.0",
       "versionCode": 39,
       "addedIso": "2026-11-21",
